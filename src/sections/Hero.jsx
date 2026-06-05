@@ -104,7 +104,7 @@ export default function Hero() {
 
           {/* GitHub Link */}
           <a
-            href="https://github.com/vardaanbajaj"
+            href="https://github.com/vardaanbazaz"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-2.5 bg-walnut-900/40 hover:bg-walnut-800/50 border border-gold-500/20 hover:border-gold-500/40 text-gold-300 hover:text-gold-200 rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 wood-shadow"

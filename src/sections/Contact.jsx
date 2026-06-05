@@ -62,7 +62,7 @@ export default function Contact() {
         <div className="flex flex-col sm:flex-row gap-4 w-full justify-center pt-4">
           {/* Email Link */}
           <a
-            href="mailto:vardaanbajaj2004@gmail.com"
+            href="mailto:vardaanbazaz@gmail.com"
             className="flex items-center justify-between sm:justify-center gap-3 px-6 py-3 bg-walnut-900/40 hover:bg-walnut-800/50 border border-gold-500/15 hover:border-gold-500/30 text-gold-300 hover:text-gold-200 rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 w-full sm:w-auto"
           >
             <span className="flex items-center gap-2">
@@ -74,7 +74,7 @@ export default function Contact() {
 
           {/* LinkedIn Link */}
           <a
-            href="https://linkedin.com/in/vardaanbajaj"
+            href="https://www.linkedin.com/in/vardaan-bajaj-a03605254/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-between sm:justify-center gap-3 px-6 py-3 bg-walnut-900/40 hover:bg-walnut-800/50 border border-gold-500/15 hover:border-gold-500/30 text-gold-300 hover:text-gold-200 rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 w-full sm:w-auto"
@@ -88,7 +88,7 @@ export default function Contact() {
 
           {/* GitHub Link */}
           <a
-            href="https://github.com/vardaanbajaj"
+            href="https://github.com/vardaanbazaz"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-between sm:justify-center gap-3 px-6 py-3 bg-walnut-900/40 hover:bg-walnut-800/50 border border-gold-500/15 hover:border-gold-500/30 text-gold-300 hover:text-gold-200 rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 w-full sm:w-auto"
