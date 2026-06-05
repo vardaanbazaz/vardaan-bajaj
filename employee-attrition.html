@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Case Study: Employee Attrition Analytics Dashboard by Vardaan Bajaj. In-depth SQL database schemas, ETL pipelines, and interactive BI dashboards." />
+    <title>Case Study: Employee Attrition Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <!-- Link to the main stylesheet so it applies the theme variables and grain overlay styles -->
+    <link rel="stylesheet" href="/src/index.css" />
+  </head>
+  <body class="bg-[#100b08] text-[#eadfc9] font-sans selection:bg-[#c2845b]/30 selection:text-[#f4efe6] antialiased overflow-x-hidden">
+    
+    <!-- Atmospheric SVG noise overlay and lighting drifts -->
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.015] grain-overlay mix-blend-overlay"></div>
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <!-- Soft ambient glows -->
+      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#3b5238]/10 blur-[120px] pointer-events-none animate-soft-pulse"></div>
+      <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#c2845b]/5 blur-[150px] pointer-events-none animate-soft-pulse" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Main Page Container -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-16">
+      
+      <!-- Back to Portfolio Button & Title Monogram -->
+      <div class="flex justify-between items-center border-b border-[#c5a880]/15 pb-6">
+        <a href="/" class="flex items-center gap-2 text-xs tracking-wider uppercase font-medium text-[#c5a880] hover:text-[#eadfc9] transition-colors duration-300">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Back to Portfolio
+        </a>
+        <div class="w-8 h-8 rounded-full border border-[#c5a880]/20 flex items-center justify-center bg-[#18110c]/60 shadow-[inset_0_1px_3px_rgba(255,255,255,0.02)]">
+          <span class="font-serif text-[10px] text-[#c5a880]/80 tracking-widest font-semibold">V</span>
+        </div>
+      </div>
+
+      <!-- Case Study Header -->
+      <header class="space-y-4">
+        <p class="text-xs uppercase tracking-[0.2em] text-[#c2845b] font-semibold">Flagship Case Study</p>
+        <h1 class="font-serif text-4xl md:text-5xl font-normal text-[#f4efe6] tracking-wide leading-tight">
+          Employee Attrition Analytics Dashboard
+        </h1>
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">SQL (MySQL)</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Power BI</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Tableau</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Python</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Pandas & Scikit-Learn</span>
+        </div>
+      </header>
+
+      <!-- 1. Executive Summary & Problem -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">01 //</span> Objective & Problem Scope
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-2 space-y-4 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+            <p>
+              High employee turnover carries heavy organizational costs, including lost institutional knowledge, recruitment overhead, and onboarding friction. This project maps an end-to-end data pipeline to analyze historical HR cohorts and diagnose operational drivers of attrition.
+            </p>
+            <p>
+              By structuring synthetic employee data from disconnected spreadsheets into a normalized relational model, I built diagnostic querying suites and interactive BI dashboards to help stakeholders isolate at-risk segments and make data-backed retention decisions.
+            </p>
+          </div>
+          <div class="bg-[#18110c]/40 border border-[#c5a880]/10 rounded p-5 space-y-3 wood-shadow">
+            <h3 class="font-serif text-sm text-[#f4efe6] font-semibold uppercase tracking-wider">Business Impact</h3>
+            <ul class="text-xs space-y-2 text-[#dcd3c1]/90 font-light">
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> Identify high-risk roles & divisions</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> Measure overtime burnout correlations</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> Benchmark salary brackets & retention</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> Propose actionable HR policies</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Technical Architecture & System Blueprint -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">02 //</span> Technical Architecture & Data Flow
+        </h2>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          The end-to-end data pipeline processes disjointed Excel datasets into a structured SQL database schema, followed by custom diagnostic queries and machine learning churn models, ultimately serving interactive reports to business decision makers.
+        </p>
+        
+        <!-- High-res Architecture Image -->
+        <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded-lg p-3 md:p-6 wood-shadow">
+          <img 
+            src="/assets/architecture.png" 
+            alt="Technical Architecture Diagram" 
+            class="w-full h-auto rounded opacity-90 border border-[#c5a880]/5"
+          />
+          <p class="text-[11px] text-[#9c9281] font-light italic mt-3 text-center">
+            Figure 1. High-resolution system schematic detailing raw data ingestion, relational schema normalization, insights querying, and visualization layers.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Database Schema & Normalization -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">03 //</span> Database Schema & Relational Normalization
+        </h2>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          The raw employee spreadsheets were separated into two core logical tables inside a relational database to enforce data integrity and enable clean query joins:
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-5 space-y-2 wood-shadow">
+            <h3 class="font-serif text-base text-[#c5a880] font-medium">Table 1. Demographics (hr_1)</h3>
+            <p class="text-xs text-[#dcd3c1]/85 font-light leading-relaxed">
+              Stores immutable variable cohorts: `EmployeeNumber` (PK), `Age`, `Gender`, `MaritalStatus`, `EducationField`, and qualitative job satisfaction surveys.
+            </p>
+          </div>
+          <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-5 space-y-2 wood-shadow">
+            <h3 class="font-serif text-base text-[#c5a880] font-medium">Table 2. Job & Compensation (hr_2)</h3>
+            <p class="text-xs text-[#dcd3c1]/85 font-light leading-relaxed">
+              Stores operational variables linked via `EmployeeID` (FK): `MonthlyIncome`, `PercentSalaryHike`, `Overtime` check, `YearsAtCompany`, and `YearsSinceLastPromotion`.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. SQL Query Showcases -->
+      <section class="space-y-6">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">04 //</span> SQL Diagnostic Query Showcase
+        </h2>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          These SQL queries isolate key indicators of attrition, demonstrating conditional groupings, data aggregation, and table joins.
+        </p>
+
+        <!-- Query A -->
+        <div class="space-y-3">
+          <h3 class="font-serif text-base text-[#f4efe6] font-semibold flex items-center gap-2">
+            <span class="text-xs text-[#c2845b] font-mono">Cohort Analysis A //</span> Attrition Rate by Income Bracket
+          </h3>
+          <div class="bg-[#130d0a] border border-[#c5a880]/10 rounded p-4 overflow-x-auto">
+            <pre class="text-xs font-mono text-[#dcd3c1] leading-relaxed"><code><span class="text-[#c2845b]">SELECT</span> 
+    <span class="text-[#c2845b]">CASE</span> 
+        <span class="text-[#c2845b]">WHEN</span> t2.monthlyincome &lt; 3000 <span class="text-[#c2845b]">THEN</span> <span class="text-[#c5a880]">'Under $3k'</span>
+        <span class="text-[#c2845b]">WHEN</span> t2.monthlyincome <span class="text-[#c2845b]">BETWEEN</span> 3000 <span class="text-[#c2845b]">AND</span> 6000 <span class="text-[#c2845b]">THEN</span> <span class="text-[#c5a880]">'$3k - $6k'</span>
+        <span class="text-[#c2845b]">WHEN</span> t2.monthlyincome <span class="text-[#c2845b]">BETWEEN</span> 6001 <span class="text-[#c2845b]">AND</span> 10000 <span class="text-[#c2845b]">THEN</span> <span class="text-[#c5a880]">'$6k - $10k'</span>
+        <span class="text-[#c2845b]">WHEN</span> t2.monthlyincome <span class="text-[#c2845b]">BETWEEN</span> 10001 <span class="text-[#c2845b]">AND</span> 15000 <span class="text-[#c2845b]">THEN</span> <span class="text-[#c5a880]">'$10k - $15k'</span>
+        <span class="text-[#c2845b]">ELSE</span> <span class="text-[#c5a880]">'Over $15k'</span>
+    <span class="text-[#c2845b]">END</span> <span class="text-[#c2845b]">AS</span> income_bracket,
+    <span class="text-[#c2845b]">COUNT</span>(*) <span class="text-[#c2845b]">AS</span> total_employees,
+    <span class="text-[#c2845b]">SUM</span>(<span class="text-[#c2845b]">CASE WHEN</span> t1.attrition = <span class="text-[#c5a880]">'Yes'</span> <span class="text-[#c2845b]">THEN</span> 1 <span class="text-[#c2845b]">ELSE</span> 0 <span class="text-[#c2845b]">END</span>) <span class="text-[#c2845b]">AS</span> attrition_count,
+    <span class="text-[#c2845b]">ROUND</span>(<span class="text-[#c2845b]">SUM</span>(<span class="text-[#c2845b]">CASE WHEN</span> t1.attrition = <span class="text-[#c5a880]">'Yes'</span> <span class="text-[#c2845b]">THEN</span> 1 <span class="text-[#c2845b]">ELSE</span> 0 <span class="text-[#c2845b]">END</span>) * 100.0 / <span class="text-[#c2845b]">COUNT</span>(*), 2) <span class="text-[#c2845b]">AS</span> attrition_rate_pct
+<span class="text-[#c2845b]">FROM</span> hr_1 t1
+<span class="text-[#c2845b]">JOIN</span> hr_2 t2 <span class="text-[#c2845b]">ON</span> t1.employeenumber = t2.employeeid
+<span class="text-[#c2845b]">GROUP BY</span> income_bracket
+<span class="text-[#c2845b]">ORDER BY</span> <span class="text-[#c2845b]">MIN</span>(t2.monthlyincome) <span class="text-[#c2845b]">ASC</span>;</code></pre>
+          </div>
+        </div>
+
+        <!-- Query B -->
+        <div class="space-y-3">
+          <h3 class="font-serif text-base text-[#f4efe6] font-semibold flex items-center gap-2">
+            <span class="text-xs text-[#c2845b] font-mono">Cohort Analysis B //</span> Burnout Metrics (Overtime & Low Raises)
+          </h3>
+          <div class="bg-[#130d0a] border border-[#c5a880]/10 rounded p-4 overflow-x-auto">
+            <pre class="text-xs font-mono text-[#dcd3c1] leading-relaxed"><code><span class="text-[#c2845b]">SELECT</span> 
+    t2.overtime,
+    <span class="text-[#c2845b]">CASE WHEN</span> t2.percentsalaryhike &lt; 15 <span class="text-[#c2845b]">THEN</span> <span class="text-[#c5a880]">'Low Hike (&lt;15%)'</span> <span class="text-[#c2845b]">ELSE</span> <span class="text-[#c5a880]">'Normal/High Hike (15%+)'</span> <span class="text-[#c2845b]">END</span> <span class="text-[#c2845b]">AS</span> hike_status,
+    <span class="text-[#c2845b]">COUNT</span>(*) <span class="text-[#c2845b]">AS</span> total_employees,
+    <span class="text-[#c2845b]">SUM</span>(<span class="text-[#c2845b]">CASE WHEN</span> t1.attrition = <span class="text-[#c5a880]">'Yes'</span> <span class="text-[#c2845b]">THEN</span> 1 <span class="text-[#c2845b]">ELSE</span> 0 <span class="text-[#c2845b]">END</span>) <span class="text-[#c2845b]">AS</span> attrition_count,
+    <span class="text-[#c2845b]">ROUND</span>(<span class="text-[#c2845b]">SUM</span>(<span class="text-[#c2845b]">CASE WHEN</span> t1.attrition = <span class="text-[#c5a880]">'Yes'</span> <span class="text-[#c2845b]">THEN</span> 1 <span class="text-[#c2845b]">ELSE</span> 0 <span class="text-[#c2845b]">END</span>) * 100.0 / <span class="text-[#c2845b]">COUNT</span>(*), 2) <span class="text-[#c2845b]">AS</span> attrition_rate_pct
+<span class="text-[#c2845b]">FROM</span> hr_1 t1
+<span class="text-[#c2845b]">JOIN</span> hr_2 t2 <span class="text-[#c2845b]">ON</span> t1.employeenumber = t2.employeeid
+<span class="text-[#c2845b]">GROUP BY</span> t2.overtime, hike_status
+<span class="text-[#c2845b]">ORDER BY</span> attrition_rate_pct <span class="text-[#c2845b]">DESC</span>;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Interactive Dashboard Previews -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">05 //</span> BI Interactive Dashboard Reports
+        </h2>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          The following interactive screens represent key views of the attrition analytics platform. Built with Power BI and Tableau, they visualize summary statistics and heatmaps to reveal correlation clusters.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          <!-- Overview Screen -->
+          <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-3 wood-shadow space-y-2">
+            <img 
+              src="/assets/dashboard-overview.jpg" 
+              alt="Dashboard Overview" 
+              class="w-full h-auto rounded opacity-95 hover:opacity-100 transition-opacity duration-300 border border-[#c5a880]/5"
+            />
+            <p class="text-[10px] text-[#9c9281] font-light italic text-center">
+              Dashboard View A. Corporate KPI summary metrics, attrition rate deltas, and tenure groupings.
+            </p>
+          </div>
+          <!-- Attrition Drivers Screen -->
+          <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-3 wood-shadow space-y-2">
+            <img 
+              src="/assets/attrition-drivers.jpg" 
+              alt="Attrition Drivers Heatmap" 
+              class="w-full h-auto rounded opacity-95 hover:opacity-100 transition-opacity duration-300 border border-[#c5a880]/5"
+            />
+            <p class="text-[10px] text-[#9c9281] font-light italic text-center">
+              Dashboard View B. Overtime correlation metrics, income density matrix, and travel risk scatter plots.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Key Insights & Recommendations -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">06 //</span> Strategic HR Recommendations
+        </h2>
+        <div class="space-y-3 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          <div class="p-5 bg-[#3b5238]/10 border border-[#3b5238]/20 rounded-lg space-y-3">
+            <h3 class="font-serif text-base text-[#f4efe6] font-medium">Data-Backed Insights:</h3>
+            <ul class="space-y-2 text-xs md:text-sm font-light pl-4 list-disc marker:text-[#c2845b]">
+              <li><strong>Overtime Impact:</strong> Employees working overtime experience double the attrition rates (over 30% exit risk).</li>
+              <li><strong>Income Floors:</strong> Retention issues are highly concentrated in the sub-$3,000 monthly income bracket.</li>
+              <li><strong>Career Stagnation:</strong> Employees who pass the 12-month tenure point without an active promotion show a high tendency to churn.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. GitHub Repository CTA -->
+      <section class="flex flex-col items-center pt-8 border-t border-[#c5a880]/15 gap-4">
+        <h2 class="font-serif text-xl text-[#f4efe6] font-normal tracking-wide">Explore the Implementation Files</h2>
+        <p class="text-xs text-[#9c9281] font-light max-w-md text-center">
+          The full repository contains setup guides, SQL schemas, Excel data files, Tableau packages, and the Jupyter Notebooks.
+        </p>
+        <a 
+          href="https://github.com/vardaanbajaj/employee-attrition-dashboard" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-[#c2845b]/10 hover:bg-[#c2845b]/20 border border-[#c2845b]/40 hover:border-[#c2845b]/60 text-[#eadfc9] hover:text-[#f4efe6] rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 wood-shadow"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#c2845b]"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          View GitHub Repository
+        </a>
+      </section>
+
+      <!-- Footer -->
+      <footer class="pt-8 text-center text-[10px] text-[#9c9281]/50 font-mono">
+        © 2026 Vardaan Bajaj. Handcrafted with precision.
+      </footer>
+
+    </div>
+  </body>
+</html>
