@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Publication Details: An Enhanced Object-Oriented Programming-Based Web Page Linker. Co-authored by Vardaan Bajaj. Published in IEEE IATMSI 2024." />
+    <title>Publication: OOP-Based Web Page Linker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/index.css" />
+  </head>
+  <body class="bg-[#100b08] text-[#eadfc9] font-sans selection:bg-[#c2845b]/30 selection:text-[#f4efe6] antialiased overflow-x-hidden">
+    
+    <!-- Atmospheric SVG noise overlay and lighting drifts -->
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.015] grain-overlay mix-blend-overlay"></div>
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <!-- Soft ambient glows -->
+      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#3b5238]/10 blur-[120px] pointer-events-none animate-soft-pulse"></div>
+      <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#c2845b]/5 blur-[150px] pointer-events-none animate-soft-pulse" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Main Page Container -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-16">
+      
+      <!-- Back to Portfolio Button & Title Monogram -->
+      <div class="flex justify-between items-center border-b border-[#c5a880]/15 pb-6">
+        <a href="/" class="flex items-center gap-2 text-xs tracking-wider uppercase font-medium text-[#c5a880] hover:text-[#eadfc9] transition-colors duration-300">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Back to Portfolio
+        </a>
+        <div class="w-8 h-8 rounded-full border border-[#c5a880]/20 flex items-center justify-center bg-[#18110c]/60 shadow-[inset_0_1px_3px_rgba(255,255,255,0.02)]">
+          <span class="font-serif text-[10px] text-[#c5a880]/80 tracking-widest font-semibold">V</span>
+        </div>
+      </div>
+
+      <!-- Publication Header -->
+      <header class="space-y-4">
+        <p class="text-xs uppercase tracking-[0.2em] text-[#c2845b] font-semibold">IEEE IATMSI | Conference Paper</p>
+        <h1 class="font-serif text-4xl md:text-5xl font-normal text-[#f4efe6] tracking-wide leading-tight">
+          An Enhanced Object-Oriented Programming-Based Web Page Linker
+        </h1>
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Python</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Requests</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Beautiful Soup</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">OOP Encapsulation</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">AI Class Generation</span>
+        </div>
+      </header>
+
+      <!-- 1. Abstract & Objective -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">01 //</span> Abstract
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-2 space-y-4 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+            <p class="italic">
+              "In the realm of web scraping and data extraction, the conventional approach involves repeated utilization of libraries like Requests and Beautiful Soup to extract information from web pages. This often results in cluttered and inefficient code, as programmers are compelled to replicate the same operations for different web URLs."
+            </p>
+            <p class="italic">
+              "To address this challenge, we propose an innovative solution: an Object-Oriented Programming (OOP) based web page linker, which encapsulates the functionality of web pages into reusable Python modules or libraries. The traditional approach for this concept includes the extraction of the input data source from the page and manipulating it as per user convenience. This technique is hectic, time-inefficient, complex, and verbose."
+            </p>
+            <p class="italic">
+              "Our approach in regards to improving the traditional for the same is the AI extracts the particular division (&lt;div&gt;) which is responsible for executing certain functions and creates that functionality into a class. Many times the techniques of input and execution vary from web page to web page which increases the workload on the AI as the techniques are unique to each web page. As a result, we have developed a project that addresses web-page complexity and increases the flexibility for the user to use a certain web page moreover it provides an efficient approach that creates a streamlined and time-efficient experience."
+            </p>
+          </div>
+          <div class="bg-[#18110c]/40 border border-[#c5a880]/10 rounded p-5 space-y-3 wood-shadow shrink-0">
+            <h3 class="font-serif text-sm text-[#f4efe6] font-semibold uppercase tracking-wider">Publication Info</h3>
+            <ul class="text-xs space-y-2 text-[#dcd3c1]/90 font-light">
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> <strong>Conference:</strong> IEEE IATMSI</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> <strong>Published:</strong> April 2024</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> <strong>Focus:</strong> OOP-Based Automation</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> <strong>Co-authors:</strong> J. Vijaya, Aayush Kulkarni, Vaibhav Vikas Ranjan</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Methodology & Design Architecture -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">02 //</span> Core Methodology & Architecture
+        </h2>
+        <div class="space-y-4 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          <p>
+            Traditional scrapers are highly coupled to the DOM structure, breaking whenever structural classes or layouts change. Our architecture shifts this complexity onto an AI-driven encapsulation model:
+          </p>
+          <ul class="space-y-3 pl-4 list-disc marker:text-[#c2845b] text-sm">
+            <li><strong>AI-Driven Division (⟨div⟩) Extraction:</strong> Instead of manual DOM mapping, the system uses localized AI models to identify the specific DOM divisions (<code>&lt;div&gt;</code>) executing key page functionalities.</li>
+            <li><strong>Dynamic Class Encapsulation:</strong> The identified division structure is programmatically encapsulated into self-contained Python class modules, exposing high-level functional APIs (e.g., <code>page.get_pricing()</code>) rather than exposing raw BeautifulSoup tags.</li>
+            <li><strong>Input/Execution Adaptability:</strong> Since web structures vary, the system automatically translates unique page-specific input mechanisms (forms, buttons, inputs) into class methods, insulating the developer from web page complexity.</li>
+            <li><strong>Reusable Python Modules:</strong> Compiled schemas are cached as standard local Python libraries, enabling immediate re-use across web scraping pipelines.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 3. Key Accomplishments -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">03 //</span> Key Contributions
+        </h2>
+        <div class="space-y-3 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          <div class="p-5 bg-[#3b5238]/10 border border-[#3b5238]/20 rounded-lg space-y-3">
+            <ul class="space-y-2 text-xs md:text-sm font-light pl-4 list-disc marker:text-[#c2845b]">
+              <li><strong>DOM-Agnostic Scrapers:</strong> Shields user scripts from direct DOM complexity by delegating structural changes to encapsulated AI class updates.</li>
+              <li><strong>Streamlined Development:</strong> Replaces hectic, verbose, and duplicate Requests/BeautifulSoup scripts with high-level Python object models.</li>
+              <li><strong>Flexible Web Automation:</strong> Extends user flexibility by supporting dynamic elements and handling page-specific input actions automatically.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. External IEEE Link CTA -->
+      <section class="flex flex-col items-center pt-8 border-t border-[#c5a880]/15 gap-4">
+        <h2 class="font-serif text-xl text-[#f4efe6] font-normal tracking-wide">Explore the Official IEEE Publication</h2>
+        <p class="text-xs text-[#9c9281] font-light max-w-md text-center">
+          Read the full research paper on IEEE Xplore for experimental metrics, parser architecture designs, and system robustness checks.
+        </p>
+        <a 
+          href="https://ieeexplore.ieee.org" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-[#c2845b]/10 hover:bg-[#c2845b]/20 border border-[#c2845b]/40 hover:border-[#c2845b]/60 text-[#eadfc9] hover:text-[#f4efe6] rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 wood-shadow"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#c2845b]"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Open on IEEE Xplore
+        </a>
+      </section>
+
+      <!-- Footer -->
+      <footer class="pt-8 text-center text-[10px] text-[#9c9281]/50 font-mono">
+        © 2026 Vardaan Bajaj. Handcrafted with precision.
+      </footer>
+
+    </div>
+  </body>
+</html>

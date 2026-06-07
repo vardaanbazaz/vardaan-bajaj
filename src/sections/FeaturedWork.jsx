@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionContainer from '../components/SectionContainer';
 import Card from '../components/Card';
-import { Database, ArrowUpRight, Award } from 'lucide-react';
+import { Database, ArrowUpRight, Award, Brain } from 'lucide-react';
 
 export default function FeaturedWork() {
   return (
@@ -15,15 +15,13 @@ export default function FeaturedWork() {
         </h2>
       </div>
 
-      <div className="flex justify-center w-full">
-        {/* Clickable Card Link that opens in a new tab */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto">
+        {/* Project 1: Employee Attrition Dashboard */}
         <a 
           href="/employee-attrition.html" 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="block w-full max-w-2xl group cursor-pointer"
+          className="block w-full group cursor-pointer h-full"
         >
-          <Card className="flex flex-col justify-between min-h-[300px] border-gold-500/10 group-hover:border-gold-500/30 transition-all duration-300 bg-walnut-900/40 hover:bg-walnut-800/40">
+          <Card className="flex flex-col justify-between min-h-[320px] border-gold-500/10 group-hover:border-gold-500/30 transition-all duration-300 bg-walnut-900/40 hover:bg-walnut-800/40 h-full">
             <div className="space-y-6">
               {/* Header */}
               <div className="flex justify-between items-start">
@@ -72,6 +70,68 @@ export default function FeaturedWork() {
               <span className="flex items-center gap-1 text-copper-500/80">
                 <Award size={12} />
                 Flagship Case Study
+              </span>
+              <span className="group-hover:text-gold-300 transition-colors duration-300 font-serif italic text-copper-500">
+                Click to explore case study →
+              </span>
+            </div>
+          </Card>
+        </a>
+
+        {/* Project 2: NeuroSight AI */}
+        <a 
+          href="/neurosight-ai.html" 
+          className="block w-full group cursor-pointer h-full"
+        >
+          <Card className="flex flex-col justify-between min-h-[320px] border-gold-500/10 group-hover:border-gold-500/30 transition-all duration-300 bg-walnut-900/40 hover:bg-walnut-800/40 h-full">
+            <div className="space-y-6">
+              {/* Header */}
+              <div className="flex justify-between items-start">
+                <div className="p-2.5 bg-copper-500/10 border border-copper-500/20 text-copper-500 rounded transition-colors duration-300 group-hover:bg-copper-500/20">
+                  <Brain size={20} />
+                </div>
+                
+                {/* Completed / Production Badge */}
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-forest-950/10 border border-forest-700/25">
+                  <span className="w-2 h-2 rounded-full bg-forest-600/80" />
+                  <span className="text-[10px] uppercase tracking-wider text-forest-400 font-semibold font-sans">
+                    Completed
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="space-y-4">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1">
+                    <h3 className="font-serif text-2xl text-gold-200 font-medium tracking-wide group-hover:text-gold-100 transition-colors duration-300">
+                      NeuroSight AI
+                    </h3>
+                    <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {['Python', 'XGBoost', 'Scikit-Learn', 'Pandas', 'fPI Engineering', 'EDA'].map((tech) => (
+                      <span 
+                        key={tech} 
+                        className="px-2 py-0.5 text-[10px] font-sans tracking-wider text-gold-500/70 bg-walnut-950/60 border border-gold-500/10 rounded"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <p className="text-sm text-parchment-400 font-light leading-relaxed">
+                  An explainable machine learning system predicting Parkinson's Disease using vocal acoustic biomarkers. Engineers a custom Feature Performance Index (fPI) with optimized gradient boosted trees (XGBoost) to reach 96.6% accuracy.
+                </p>
+              </div>
+            </div>
+
+            {/* Status Footer */}
+            <div className="pt-4 border-t border-gold-500/10 mt-8 flex justify-between items-center text-[10px] tracking-wider uppercase text-gold-500/60 font-sans">
+              <span className="flex items-center gap-1 text-copper-500/80">
+                <Award size={12} />
+                Flagship ML Research
               </span>
               <span className="group-hover:text-gold-300 transition-colors duration-300 font-serif italic text-copper-500">
                 Click to explore case study →

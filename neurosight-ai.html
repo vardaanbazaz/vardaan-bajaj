@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Case Study: NeuroSight AI by Vardaan Bajaj. Explainable Parkinson's Disease Prediction Using Vocal Acoustics, the Feature Performance Index (fPI), and XGBoost." />
+    <title>Case Study: NeuroSight AI Parkinson's Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <!-- Link to the main stylesheet so it applies the theme variables and grain overlay styles -->
+    <link rel="stylesheet" href="/src/index.css" />
+  </head>
+  <body class="bg-[#100b08] text-[#eadfc9] font-sans selection:bg-[#c2845b]/30 selection:text-[#f4efe6] antialiased overflow-x-hidden">
+    
+    <!-- Atmospheric SVG noise overlay and lighting drifts -->
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.015] grain-overlay mix-blend-overlay"></div>
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <!-- Soft ambient glows -->
+      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#3b5238]/10 blur-[120px] pointer-events-none animate-soft-pulse"></div>
+      <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#c2845b]/5 blur-[150px] pointer-events-none animate-soft-pulse" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Main Page Container -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-16">
+      
+      <!-- Back to Portfolio Button & Title Monogram -->
+      <div class="flex justify-between items-center border-b border-[#c5a880]/15 pb-6">
+        <a href="/" class="flex items-center gap-2 text-xs tracking-wider uppercase font-medium text-[#c5a880] hover:text-[#eadfc9] transition-colors duration-300">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Back to Portfolio
+        </a>
+        <div class="w-8 h-8 rounded-full border border-[#c5a880]/20 flex items-center justify-center bg-[#18110c]/60 shadow-[inset_0_1px_3px_rgba(255,255,255,0.02)]">
+          <span class="font-serif text-[10px] text-[#c5a880]/80 tracking-widest font-semibold">V</span>
+        </div>
+      </div>
+
+      <!-- Case Study Header -->
+      <header class="space-y-4">
+        <p class="text-xs uppercase tracking-[0.2em] text-[#c2845b] font-semibold">Flagship ML Case Study</p>
+        <h1 class="font-serif text-4xl md:text-5xl font-normal text-[#f4efe6] tracking-wide leading-tight">
+          NeuroSight AI: Parkinson's Prediction
+        </h1>
+        <p class="text-lg text-[#c5a880]/80 font-light italic">
+          Explainable Parkinson's Disease prediction using vocal acoustics, the custom Feature Performance Index (fPI), and gradient boosted trees.
+        </p>
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Python (3.11)</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">XGBoost (1.5.0)</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Scikit-Learn</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Pandas & NumPy</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Jupyter Notebooks</span>
+        </div>
+      </header>
+
+      <!-- 1. Executive Summary & Problem -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">01 //</span> Research Objective & Scope
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-2 space-y-4 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+            <p>
+              Parkinson's Disease is a progressive neurodegenerative disorder characterized by the gradual loss of dopaminergic neurons. While motor symptoms like tremors and rigidity are commonly used for clinical diagnosis, vocal impairment (dysphonia) is often one of the earliest indicators, appearing years before gross motor dysfunction.
+            </p>
+            <p>
+              <strong>NeuroSight AI</strong> is an applied machine learning research project exploring the non-invasive prediction of Parkinson's Disease using vocal acoustic biomarkers. By utilizing a custom-engineered <strong>Feature Performance Index (fPI)</strong> alongside advanced tree-based classifiers like <strong>XGBoost</strong>, this project demonstrates how combination features and structured tabular classification can detect early-stage dysphonia with high precision and interpretability.
+            </p>
+            <div class="p-4 bg-[#18110c]/80 border border-[#c2845b]/20 rounded text-xs italic text-[#c5a880]">
+              <strong>Note:</strong> This repository represents a research-oriented predictive modeling study using voice recording datasets. It is not designed, certified, or intended for clinical medical diagnosis or diagnostic product use.
+            </div>
+          </div>
+          <div class="bg-[#18110c]/40 border border-[#c5a880]/10 rounded p-5 space-y-3 wood-shadow">
+            <h3 class="font-serif text-sm text-[#f4efe6] font-semibold uppercase tracking-wider">Research Focus</h3>
+            <ul class="text-xs space-y-2 text-[#dcd3c1]/90 font-light">
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> Non-invasive early biomarkers</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> Biomarker index combination</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> Tree-based ensemble modeling</li>
+              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> Pipeline Explainability</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Technical Architecture & System Blueprint -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">02 //</span> Technical Architecture & Workflow
+        </h2>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          The machine learning pipeline is structured into a modular engineering workflow, starting with dataset acquisition and moving sequentially through pre-processing, index engineering, classifier optimization, and performance benchmarking.
+        </p>
+        
+        <!-- High-res Architecture Image -->
+        <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded-lg p-3 md:p-6 wood-shadow">
+          <img 
+            src="/assets/neurosight-architecture.png" 
+            alt="NeuroSight AI Workflow Architecture" 
+            class="w-full h-auto rounded opacity-90 border border-[#c5a880]/5"
+          />
+          <p class="text-[11px] text-[#9c9281] font-light italic mt-3 text-center">
+            Figure 1. High-resolution workflow architecture illustrating dataset ingestion, Feature Performance Index (fPI) engineering, XGBoost training, and explainable evaluation stages.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Feature Engineering & fPI -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">03 //</span> Feature Performance Index (fPI) Engineering
+        </h2>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          The raw dataset consists of vocal acoustic measurements from 198 subjects (140 Parkinson's, 58 healthy controls). Features cover pitch frequency, amplitude perturbation (Jitter/Shimmer), noise measures, and fractal dynamics.
+        </p>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          To improve the mathematical separation between cohorts, I engineered a domain-specific composite metric called the <strong>Feature Performance Index (fPI)</strong>, combining fractal scaling, chaotic complexity, and variation:
+        </p>
+        <div class="bg-[#18110c]/50 border border-[#c5a880]/10 rounded p-6 text-center wood-shadow max-w-xl mx-auto my-4">
+          <p class="font-serif text-xl md:text-2xl text-[#eadfc9] tracking-wider">
+            fPI = log<sub>10</sub>(DFA &times; D2 &times; spread2)
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-5 space-y-2 wood-shadow">
+            <h3 class="font-serif text-base text-[#c5a880] font-medium">DFA (Fractal Scaling)</h3>
+            <p class="text-xs text-[#dcd3c1]/85 font-light leading-relaxed">
+              Detrended Fluctuation Analysis measures the self-similarity and long-range fractal scaling exponents of the voice signal.
+            </p>
+          </div>
+          <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-5 space-y-2 wood-shadow">
+            <h3 class="font-serif text-base text-[#c5a880] font-medium">D2 (Chaotic Complexity)</h3>
+            <p class="text-xs text-[#dcd3c1]/85 font-light leading-relaxed">
+              Correlation dimension estimates the signal's complexity and characterizes the vocal fold oscillation dynamics.
+            </p>
+          </div>
+          <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-5 space-y-2 wood-shadow">
+            <h3 class="font-serif text-base text-[#c5a880] font-medium">spread2 (Pitch Variation)</h3>
+            <p class="text-xs text-[#dcd3c1]/85 font-light leading-relaxed">
+              A nonlinear measure quantifying fundamental frequency variations to isolate micro-tremors in vocal control.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Model Benchmarking & Performance -->
+      <section class="space-y-6">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">04 //</span> Classifier Benchmarking & Evaluation
+        </h2>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          We compared the optimized XGBoost classifier against three baseline models (Decision Trees, Random Forests, and Support Vector Machines) using stratified train/test folds.
+        </p>
+
+        <!-- Styled Table -->
+        <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded-lg overflow-hidden wood-shadow">
+          <table class="w-full text-left text-xs md:text-sm border-collapse">
+            <thead>
+              <tr class="bg-[#1e1610] text-[#c5a880] border-b border-[#c5a880]/15">
+                <th class="p-4 font-serif font-medium uppercase tracking-wider">Classification Model</th>
+                <th class="p-4 font-sans font-medium text-center">Accuracy</th>
+                <th class="p-4 font-sans font-medium text-center">Precision</th>
+                <th class="p-4 font-sans font-medium text-center">Recall</th>
+                <th class="p-4 font-sans font-medium text-center">F1 Score</th>
+                <th class="p-4 font-sans font-medium text-center">AUC Score</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#c5a880]/10 text-[#dcd3c1]">
+              <tr class="bg-[#241a12]/35 text-[#f4efe6] font-medium">
+                <td class="p-4 font-serif">XGBoost (Optimized)</td>
+                <td class="p-4 text-center font-mono text-[#c2845b]">0.966</td>
+                <td class="p-4 text-center font-mono">0.976</td>
+                <td class="p-4 text-center font-mono">0.976</td>
+                <td class="p-4 text-center font-mono">0.976</td>
+                <td class="p-4 text-center font-mono text-[#c2845b]">0.958</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-serif">Random Forest</td>
+                <td class="p-4 text-center font-mono">0.932</td>
+                <td class="p-4 text-center font-mono">0.975</td>
+                <td class="p-4 text-center font-mono">0.928</td>
+                <td class="p-4 text-center font-mono">0.951</td>
+                <td class="p-4 text-center font-mono">0.934</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-serif">Decision Tree</td>
+                <td class="p-4 text-center font-mono">0.898</td>
+                <td class="p-4 text-center font-mono">0.950</td>
+                <td class="p-4 text-center font-mono">0.904</td>
+                <td class="p-4 text-center font-mono">0.926</td>
+                <td class="p-4 text-center font-mono">0.893</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-serif">SVM (Linear)</td>
+                <td class="p-4 text-center font-mono">0.830</td>
+                <td class="p-4 text-center font-mono">0.900</td>
+                <td class="p-4 text-center font-mono">0.850</td>
+                <td class="p-4 text-center font-mono">0.870</td>
+                <td class="p-4 text-center font-mono">0.810</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 5. Decision Tree Splits -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">05 //</span> Decision Tree Split & Feature Bounds
+        </h2>
+        <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          The structural layout of the Decision Tree model is visualized below to review feature thresholds and node splits. Key predictors such as Pitch Period Entropy (PPE) and features within the engineered fPI drive the primary nodes.
+        </p>
+
+        <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded-lg p-3 md:p-6 wood-shadow">
+          <img 
+            src="/assets/neurosight-decision-tree.png" 
+            alt="Decision Tree Visualization" 
+            class="w-full h-auto rounded opacity-90 border border-[#c5a880]/5 mx-auto max-w-2xl"
+          />
+          <p class="text-[11px] text-[#9c9281] font-light italic mt-3 text-center">
+            Figure 2. Structural breakdown of features splits (e.g. PPE, Shimmer) showing decision paths dividing healthy controls vs. Parkinson's disease subjects.
+          </p>
+        </div>
+      </section>
+
+      <!-- 6. Key Insights & Research Findings -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
+          <span class="text-xs text-[#c2845b] font-mono">06 //</span> Strategic Research Insights
+        </h2>
+        <div class="space-y-3 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
+          <div class="p-5 bg-[#3b5238]/10 border border-[#3b5238]/20 rounded-lg space-y-3">
+            <h3 class="font-serif text-base text-[#f4efe6] font-medium">Core Findings:</h3>
+            <ul class="space-y-2 text-xs md:text-sm font-light pl-4 list-disc marker:text-[#c2845b]">
+              <li><strong>Predictive Signal Strength:</strong> Perturbation measures like Pitch Period Entropy (PPE) and amplitude variations (Shimmer) exhibit high predictive signal strength, capturing vocal fold control degradation.</li>
+              <li><strong>Complexity Metrics:</strong> Correlation Dimension (D2) and Recurrence Period Density Entropy (RPDE) successfully differentiate healthy voice structures from Parkinsonian dysphonia.</li>
+              <li><strong>Explainability Value:</strong> The composite fPI metric scales exponents, chaotic dynamics, and pitch variation into a single composite log-index, acting as a powerful non-invasive acoustic biomarker.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. GitHub Repository CTA -->
+      <section class="flex flex-col items-center pt-8 border-t border-[#c5a880]/15 gap-4">
+        <h2 class="font-serif text-xl text-[#f4efe6] font-normal tracking-wide">Explore the Implementation Files</h2>
+        <p class="text-xs text-[#9c9281] font-light max-w-md text-center">
+          The full repository contains Jupyter notebooks demonstrating exploratory data analysis (EDA), index engineering, model fitting, and GridSearchCV sweeps.
+        </p>
+        <a 
+          href="https://github.com/vardaanbazaz/neuroinsight-ai" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-[#c2845b]/10 hover:bg-[#c2845b]/20 border border-[#c2845b]/40 hover:border-[#c2845b]/60 text-[#eadfc9] hover:text-[#f4efe6] rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 wood-shadow"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#c2845b]"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          View GitHub Repository
+        </a>
+      </section>
+
+      <!-- Footer -->
+      <footer class="pt-8 text-center text-[10px] text-[#9c9281]/50 font-mono">
+        © 2026 Vardaan Bajaj. Handcrafted with precision.
+      </footer>
+
+    </div>
+  </body>
+</html>

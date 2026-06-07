@@ -14,6 +14,9 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         attrition: resolve(__dirname, 'employee-attrition.html'),
+        neurosight: resolve(__dirname, 'neurosight-ai.html'),
+        linker: resolve(__dirname, 'web-page-linker.html'),
+        surveillance: resolve(__dirname, 'v-surveillance.html'),
       },
     },
   },
