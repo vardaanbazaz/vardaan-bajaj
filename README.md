@@ -1,156 +1,51 @@
-# Vardaan Bajaj — Applied ML & Systems Engineering Portfolio
+# Vardaan Bajaj — Digital Manuscript Library [![Live Portfolio](https://img.shields.io/badge/View_Live_Site-Vercel-000000?style=for-the-badge&logo=vercel)](https://vardaan-bajaj.vercel.app) [![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/) [![Vite](https://img.shields.io/badge/Vite_6-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)](https://vitejs.dev/) [![Tailwind v4](https://img.shields.io/badge/Tailwind_v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-[![React 19](https://img.shields.io/badge/React-19.2-blue?logo=react&logoColor=61DAFB)](https://react.dev/)
-[![Vite 6](https://img.shields.io/badge/Vite-6.2-purple?logo=vite&logoColor=646CFF)](https://vitejs.dev/)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.3-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![IEEE Publications](https://img.shields.io/badge/IEEE-Published_Author-blue)](https://ieee.org)
+The personal engineering portfolio, research archive, and digital manuscript library of [Vardaan Bajaj](https://vardaan-bajaj.vercel.app). Rather than a standard Single-Page Application (SPA), this site is custom-engineered using a **hybrid multi-page architecture** to handle heavy, text-dense case studies and high-resolution schematics without bloating the main React bundle.
 
-A restrained, atmospheric portfolio site and interactive manuscript repository showcasing applied machine learning research, real-time signal processing, data science systems, and peer-reviewed IEEE publications. Built with a bespoke **"Scholar's Approach"** design system featuring dark walnut tones (`#100b08`), gold typography, copper accents, and parchment readability.
+## 🏛️ System Architecture
 
-The project is structured as a hybrid web application: a React 19 single-page portfolio interface paired with a Vite multi-page Rollup bundle architecture that serves standalone, interactive manuscript pages for every flagship system and publication.
+* **The Main Landing (`index.html`):** A dynamic React SPA powered by Framer Motion for scroll-triggered physics, acting as the primary routing orchestrator.
+* **The Manuscripts (Standalone HTML):** Deep-dive case studies and peer-reviewed papers (e.g., `datavista.html`, `kanbanlight.html`, `v-surveillance.html`) are compiled by Rollup as separate entry points. They import the global Tailwind `@theme` tokens to maintain the design system while loading lightning-fast (averaging <4kB gzipped).
+* **The Design System ("A Scholar's Approach"):** A custom dark-mode aesthetic utilizing a tailored Tailwind v4 palette:
+  * `Walnut` (`#100b08`) for deep wood backgrounds.
+  * `Gold` (`#c5a880`) for serif typographic hierarchy.
+  * `Copper` & `Forest` for active/completed build statuses.
+* **Atmospheric Rendering Engine:** Uses a custom SVG `GrainOverlay.jsx` with `mix-blend-overlay` and CSS radial blurs to simulate tactile paper noise and ambient banker's lamp lighting.
 
----
+## 📂 Codebase Structure
 
-## 🏛️ Flagship Projects & Systems
-
-### 📊 [DataVista](datavista.html)
-An offline-first, browser-native Business Intelligence platform capable of processing 100MB+ datasets locally with zero server reliance.
-- **Key Features:** Custom AST formula parser, multidimensional pivot engine, IndexedDB persistence, and LLM AI Co-Pilot integration.
-- **Tech Stack:** React 18, TypeScript, IndexedDB, Web Workers, Custom AST Parser, AI Co-Pilot
-
-### 🧠 [NeuroInsight AI / NeuroSight AI](neuroinsight-ai.html)
-Explainable machine learning research predicting early-stage Parkinson's Disease using vocal acoustic biomarkers and gradient-boosted trees.
-- **Key Features:** Engineered Feature Performance Index (fPI), SHAP interpretability, acoustics feature extraction, and optimized XGBoost models.
-- **Tech Stack:** Python, XGBoost, Scikit-Learn, Pandas, SHAP, Acoustic Signal Processing
-
-### 📉 [Employee Attrition Analytics](employee-attrition.html)
-An end-to-end business intelligence analytics system mapping corporate flight risks across multi-departmental cohorts.
-- **Key Features:** Normalized relational database schemas, diagnostic SQL queries, predictive Random Forest modeling, and interactive dashboards.
-- **Tech Stack:** MySQL, Python, Power BI, Tableau, Random Forest ML, ETL Pipelines
-
-### 🌿 [CropDoc AI](cropdoc-ai.html)
-A production-grade, CPU-optimized agricultural computer vision inference microservice built for plant disease diagnosis.
-- **Key Features:** PyTorch ResNet18 model, sub-300ms CPU inference latency, thread-safe transform lifespan, and dataset hash verification.
-- **Tech Stack:** FastAPI, PyTorch, ResNet18, OpenCV, PlantVillage Dataset
-
-### 📋 [KanbanLight](kanbanlight.html)
-A high-performance project management board engineered on Git operational principles for state management and local privacy.
-- **Key Features:** State branching, tri-color visual git diffs, sandboxed WebAssembly plugins, and real-time terminal CLI control via WebSocket bridge.
-- **Tech Stack:** React 18, Zustand, IndexedDB, WASM, WebSocket CLI
-
----
-
-## 📄 Academic Contributions & Peer-Reviewed Publications
-
-### 🛰️ [V-Surveillance: A Hybrid Deep Learning Framework for Real-Time Aerial Surveillance Using Drone Imagery](v-surveillance.html)
-* **Venue:** IEEE CICT (*Published | Feb 2026*)
-* **Abstract:** Introduced an edge-optimized deep learning framework combining convolutional networks with attention mechanisms for real-time object detection and tracking in high-clutter aerial drone feeds under variable illumination.
-* **Tech Stack:** ESRGAN, YOLO12M + SAHI, Deep SORT, PyTorch, UAV Edge Nodes
-
-### 🔗 [An Enhanced Object-Oriented Programming-Based Web Page Linker](web-page-linker.html)
-* **Venue:** IEEE IATMSI (*Published | April 2024*)
-* **Abstract:** Proposed an object-oriented parsing model for structuring web directory linkages, optimizing crawler traverse efficiency, and reducing pointer overheads during search indexing.
-* **Tech Stack:** Python, OOP Design Patterns, BeautifulSoup4, HTTP Crawling Engines
-
----
-
-## 💼 Professional Work Experience
-
-* **Defence Research and Development Organisation (DRDO)** — *Research & Development Intern* `Jan 2026 – Jun 2026 | Hyderabad, India`
-  * **Real-Time Radar DSP Framework:** Engineered a hardware-independent signal processing framework in C to simulate radar echo telemetry and aerospace communication links.
-  * **Custom FFT & Peak Detection:** Implemented an in-place, double-precision Cooley-Tukey Radix-2 FFT (up to 65,536 points) and peak detection routines to compute target altitude under AWGN noise.
-  * **Military-Grade Comm Protocols:** Modeled an RS-422 asynchronous sliding window ring buffer (460.8 kbps) and a MIL-STD-1553 Remote Terminal to serialize, parse, and validate telemetry packets.
-  * **Lock-Free Concurrency:** Architected a thread-safe state machine using Windows threads and C11 atomic variables to achieve lock-free data sharing and minimize execution jitter.
-
-* **AgryBin** — *AI Developer Intern* `May 2025 – Aug 2025 | Remote`
-  * **Geospatial Computer Vision:** Engineered end-to-end computer vision pipelines to assess crop health using deep learning segmentation on satellite imagery.
-  * **Scalable Inference APIs:** Designed and deployed scalable backend API architectures serving heavy ML models for real-time precision agriculture analytics.
-
-* **Mahyco** — *Data Science & Frontend Intern* `Aug 2024 – Dec 2024 | Remote`
-  * **Internal Analytics Tooling:** Developed full-stack internal workflows combining Python data processing with responsive frontend interfaces for crop monitoring.
-  * **Data Integration:** Streamlined agronomic research by integrating complex data-driven analytics into web dashboards.
-
-* **University of Jammu** — *Full-Stack Developer Apprentice* `Jun 2024 – Aug 2024 | Jammu, India`
-  * **System UI Engineering:** Built and maintained modular UI components in React.js for a comprehensive university Hostel Management System.
-  * **Backend Integration:** Integrated frontend modules with relational backend systems for secure user data workflows.
-
----
-
-## 🛠️ Tech Stack & Architecture
-
-| Layer | Technologies |
-| :--- | :--- |
-| **Frontend Core** | React 19, Vite 6, Tailwind CSS v4, Lucide Icons, Framer Motion |
-| **Languages** | JavaScript (ESNext), C / C11, Python 3.x, SQL |
-| **ML & Data Science** | PyTorch, Scikit-Learn, XGBoost, OpenCV, Pandas, NumPy, SHAP |
-| **Systems & DSP** | C/C++, Fast Fourier Transform (Cooley-Tukey Radix-2), Lock-Free Atomics, RS-422, MIL-STD-1553 |
-| **Databases & Storage** | MySQL, IndexedDB, LocalStorage, Custom AST Parsers |
-| **Build & Tooling** | Vite multi-page Rollup bundle, ESLint 9, PostCSS |
-
----
-
-## 📁 Repository Structure
-
-```
+```text
 vardaan-bajaj/
-├── index.html                  # Main Portfolio SPA Entry Point
-├── cropdoc-ai.html             # Manuscript Page: CropDoc AI Spec & Case Study
-├── datavista.html              # Manuscript Page: DataVista BI Architecture
-├── employee-attrition.html     # Manuscript Page: HR Attrition Analytics
-├── kanbanlight.html            # Manuscript Page: KanbanLight Git-Board Specs
-├── neuroinsight-ai.html        # Manuscript Page: NeuroInsight AI Parkinson's Research
-├── neurosight-ai.html          # Manuscript Page: NeuroSight AI Variant Page
-├── v-surveillance.html         # Manuscript Page: IEEE V-Surveillance Paper
-├── web-page-linker.html        # Manuscript Page: IEEE Web Page Linker Paper
-├── package.json                # Project Dependencies & Scripts
-├── vite.config.js              # Vite Multi-Page Rollup Bundler Configuration
-├── eslint.config.js            # Flat ESLint Configuration
+├── index.html                  # Main React SPA Entry Point
+├── cropdoc-ai.html             # Rollup Entry: Case Study
+├── datavista.html              # Rollup Entry: Case Study
+├── employee-attrition.html     # Rollup Entry: Case Study
+├── kanbanlight.html            # Rollup Entry: Case Study
+├── neuroinsight-ai.html        # Rollup Entry: Case Study
+├── neurosight-ai.html          # Rollup Entry: Case Study
+├── v-surveillance.html         # Rollup Entry: IEEE Publication Case Study
+├── web-page-linker.html        # Rollup Entry: IEEE Publication Case Study
+├── vite.config.js              # Multi-page bundle configuration
 └── src/
-    ├── App.jsx                 # Main Application Layout & Component Assembler
-    ├── main.jsx                # React DOM Render Root
-    ├── index.css               # Design Tokens, Tailwind Directives & Custom Scrollbars
-    ├── components/             # Reusable UI Primitives (Cards, Decorative Borders, Grain)
-    └── sections/               # Portfolio Sections (Hero, About, FeaturedWork, Experience, CurrentlyBuilding, Contact)
+    ├── App.jsx                 # SPA Orchestrator & Smooth Scrolling
+    ├── index.css               # Tailwind v4 @theme design tokens
+    ├── components/             # UI Primitives (Cards, Grain Overlays)
+    └── sections/               # Modular SPA sections (Hero, Experience, etc.)
 ```
 
----
+## 🛠️ Local Development
 
-## 🚀 Development & Local Setup
-
-### 1. Prerequisites
-Ensure Node.js (`v18+`) and `npm` are installed on your machine.
-
-### 2. Installation
-Clone the repository and install project dependencies:
 ```bash
-git clone https://github.com/vardaanbazaz/vardaan-bajaj.git
-cd vardaan-bajaj
+# Install dependencies
 npm install
-```
 
-### 3. Start Development Server
-Run Vite in development mode:
-```bash
+# Boot the Vite development server with HMR
 npm run dev
-```
 
-### 4. Build for Production
-Compile the React app and all multi-page manuscripts into static assets in `/dist`:
-```bash
+# Compile the multi-page production bundle to /dist
 npm run build
 ```
 
-### 5. Preview Production Build
-Locally preview the production build output:
-```bash
-npm run preview
-```
-
 ---
 
-## 📬 Contact & Portfolio Links
-
-* **Portfolio Website:** [vardaanbajaj.com](https://vardaanbajaj.com)
-* **GitHub:** [@vardaanbazaz](https://github.com/vardaanbazaz)
-* **LinkedIn:** [Vardaan Bajaj](https://linkedin.com/in/vardaan-bajaj)
-* **Email:** [vardaanbazaz2004@gmail.com](mailto:vardaanbazaz2004@gmail.com)
+For project inquiries, technical deep-dives, or academic correspondence, please visit the [live site](https://vardaan-bajaj.vercel.app).
