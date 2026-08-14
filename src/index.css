@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-walnut-950: #100b08;
+  --color-walnut-900: #18110c;
+  --color-walnut-800: #221812;
+  --color-walnut-700: #33241b;
+  --color-walnut-600: #493326;
+  --color-walnut-500: #604433;
+  --color-walnut-400: #7b5944;
+
+  --color-forest-950: #0c120c;
+  --color-forest-900: #141c14;
+  --color-forest-800: #202b20;
+  --color-forest-700: #304030;
+  --color-forest-600: #445944;
+
+  --color-copper-500: #c2845b;
+  --color-copper-400: #d4a37f;
+  --color-copper-600: #a9673e;
+
+  --color-gold-500: #c5a880;
+  --color-gold-400: #dcd3c1;
+  --color-gold-300: #eadfc9;
+  --color-gold-200: #f4efe6;
+  --color-gold-600: #ad9065;
+
+  --color-parchment-100: #fbf9f4;
+  --color-parchment-200: #f4efe6;
+  --color-parchment-300: #eadfc9;
+  --color-parchment-400: #dcd3c1;
+  --color-parchment-500: #9c9281;
+
+  --color-navy-950: #0b0f15;
+  --color-navy-900: #121822;
+  --color-navy-800: #1b2535;
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "DM Sans", "Inter", sans-serif;
+
+  --animate-subtle-drift: subtle-drift 25s ease-in-out infinite;
+  --animate-soft-pulse: soft-pulse 6s ease-in-out infinite;
+
+  @keyframes subtle-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(1%, 0.5%) scale(1.015); }
+  }
+  @keyframes soft-pulse {
+    0%, 100% { opacity: 0.12; }
+    50% { opacity: 0.22; }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-walnut-950);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 168, 128, 0.15);
+  border-radius: 4px;
+  border: 2px solid var(--color-walnut-950);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 168, 128, 0.35);
+}
+
+/* Base style resets and enhancements */
+html {
+  scrollbar-color: rgba(197, 168, 128, 0.15) var(--color-walnut-950);
+  scrollbar-width: thin;
+}
+
+body {
+  background-color: var(--color-walnut-950);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Faded copper/wood border shadow */
+.wood-shadow {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Book/study divider line styling */
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197, 168, 128, 0.2) 20%, rgba(197, 168, 128, 0.2) 80%, transparent);
+}

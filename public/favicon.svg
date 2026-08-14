@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="6" fill="#18110c" />
+  <circle cx="16" cy="16" r="13" stroke="#c5a880" stroke-width="1" opacity="0.8" />
+  <circle cx="16" cy="16" r="10.5" stroke="#c2845b" stroke-width="0.5" stroke-dasharray="1 1" opacity="0.6" />
+  <text x="16" y="20.5" font-family="'Cormorant Garamond', 'Georgia', serif" font-size="12" font-weight="600" fill="#eadfc9" text-anchor="middle" letter-spacing="0.5">V</text>
+  <polygon points="16,4 17.5,5.5 16,7 14.5,5.5" fill="#c2845b" />
+  <polygon points="16,25 17.5,26.5 16,28 14.5,26.5" fill="#c2845b" />
+</svg>

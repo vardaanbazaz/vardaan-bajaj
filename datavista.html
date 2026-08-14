@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Case Study: DataVista by Vardaan Bajaj. Offline-first, browser-native BI and analytics platform powered by IndexedDB, custom AST formula parser, and AI Co-Pilot." />
+    <title>Case Study: DataVista — Browser-Native BI Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/index.css" />
+  </head>
+  <body class="bg-walnut-950 text-parchment-300 font-sans selection:bg-copper-500/30 selection:text-parchment-100 antialiased overflow-x-hidden">
+    
+    <!-- Atmospheric SVG noise overlay and lighting drifts -->
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.015] grain-overlay mix-blend-overlay"></div>
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <!-- Soft ambient glows -->
+      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-forest-700/10 blur-[120px] pointer-events-none animate-soft-pulse"></div>
+      <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-copper-500/5 blur-[150px] pointer-events-none animate-soft-pulse" style="animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Main Page Container -->
+    <main class="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-16">
+      
+      <!-- Back to Portfolio Link & Title Monogram -->
+      <div class="flex justify-between items-center border-b border-gold-500/15 pb-6">
+        <a href="/index.html" class="flex items-center gap-2 text-xs tracking-wider uppercase font-medium text-gold-500 hover:text-gold-200 transition-colors duration-300">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          ← Back to Portfolio
+        </a>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-forest-950/40 border border-forest-700/40">
+            <span class="w-2 h-2 rounded-full bg-forest-600 animate-pulse" />
+            <span class="text-[10px] uppercase tracking-wider text-forest-400 font-semibold font-sans">
+              Completed System
+            </span>
+          </div>
+          <div class="w-8 h-8 rounded-full border border-gold-500/20 flex items-center justify-center bg-walnut-900/60 shadow-[inset_0_1px_3px_rgba(255,255,255,0.02)]">
+            <span class="font-serif text-[10px] text-gold-500/80 tracking-widest font-semibold">V</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case Study Header -->
+      <header class="space-y-4">
+        <p class="text-xs uppercase tracking-[0.2em] text-copper-500 font-semibold">Flagship System // Browser Analytics</p>
+        <h1 class="font-serif text-4xl md:text-5xl font-normal text-gold-200 tracking-wide leading-tight">
+          DataVista: Offline-First Browser BI Platform
+        </h1>
+        <p class="text-lg text-gold-400/80 font-light italic">
+          Bringing enterprise-grade power into the browser layer with IndexedDB storage, calculated AST formula parsing, multidimensional pivots, and LLM AI Co-Pilot integration.
+        </p>
+        <div class="flex flex-wrap gap-2 pt-2">
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-gold-500/80 bg-walnut-900 border border-gold-500/10 rounded">React 18</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-gold-500/80 bg-walnut-900 border border-gold-500/10 rounded">Strict TypeScript</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-gold-500/80 bg-walnut-900 border border-gold-500/10 rounded">IndexedDB (Dexie.js)</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-gold-500/80 bg-walnut-900 border border-gold-500/10 rounded">Zustand</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-gold-500/80 bg-walnut-900 border border-gold-500/10 rounded">AST Formula Engine</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-gold-500/80 bg-walnut-900 border border-gold-500/10 rounded">Google Gemini & OpenAI</span>
+        </div>
+      </header>
+
+      <!-- 1. Executive Summary & Layman Concept -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+          <span class="text-xs text-copper-500 font-mono">01 //</span> What is DataVista?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+          <div class="md:col-span-2 space-y-4 text-sm md:text-base text-parchment-300 font-light leading-relaxed">
+            <p>
+              Imagine taking the massive analytical power of enterprise tools like <strong>Microsoft Power BI</strong> or <strong>Tableau</strong> and cramming it entirely into your web browser. 
+            </p>
+            <p>
+              Normally, when uploading a spreadsheet to a cloud BI tool, your private data is sent to remote servers for processing. <strong>DataVista flips this model.</strong> It uses your browser's internal storage and computing power to process, slice, and visualize multi-megabyte datasets locally. Your data never leaves your machine.
+            </p>
+            <p>
+              Drag and drop a CSV or Excel file (up to 100MB), and instantly access interactive pivot tables, statistical analysis, complex formula parsing, and an AI Co-Pilot—all running locally at zero backend latency.
+            </p>
+          </div>
+          <div class="bg-walnut-900/40 border border-gold-500/10 rounded p-5 space-y-3 wood-shadow">
+            <h3 class="font-serif text-sm text-gold-200 font-semibold uppercase tracking-wider">Key Differentiators</h3>
+            <ul class="text-xs space-y-2 text-parchment-400 font-light">
+              <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> 100% Offline & Private (Zero server upload)</li>
+              <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> Handles 100MB+ datasets via IndexedDB</li>
+              <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> On-the-fly AST Formula Evaluation</li>
+              <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> Multidimensional Pivot & Aggregations</li>
+              <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> Natural Language AI Co-Pilot Queries</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Technical Architecture & Data Flow -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+          <span class="text-xs text-copper-500 font-mono">02 //</span> System Architecture
+        </h2>
+        <p class="text-sm md:text-base text-parchment-300 font-light leading-relaxed">
+          DataVista bypasses traditional backend servers by utilizing a modular, engine-driven architecture completely housed within the client layer.
+        </p>
+
+        <div class="bg-walnut-900/30 border border-gold-500/10 rounded-lg p-5 wood-shadow space-y-4">
+          <h3 class="font-serif text-lg text-gold-400 font-medium">Modular Processing Layers</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="p-4 bg-walnut-950/60 border border-gold-500/10 rounded space-y-2">
+              <span class="text-copper-500 font-mono font-semibold">Engine 01</span>
+              <h4 class="font-serif text-sm text-gold-200">AST Formula Parser</h4>
+              <p class="text-parchment-400 font-light">A recursive-descent parser evaluating Excel-style calculated fields and window functions on the fly in pure JavaScript.</p>
+            </div>
+            <div class="p-4 bg-walnut-950/60 border border-gold-500/10 rounded space-y-2">
+              <span class="text-copper-500 font-mono font-semibold">Engine 02</span>
+              <h4 class="font-serif text-sm text-gold-200">Pivot Aggregation Engine</h4>
+              <p class="text-parchment-400 font-light">Multidimensional grouping framework for Rows, Columns, and Values supporting sum, average, min, max, count, and distinct counts.</p>
+            </div>
+            <div class="p-4 bg-walnut-950/60 border border-gold-500/10 rounded space-y-2">
+              <span class="text-copper-500 font-mono font-semibold">Engine 03</span>
+              <h4 class="font-serif text-sm text-gold-200">IndexedDB Engine (Dexie)</h4>
+              <p class="text-parchment-400 font-light">High-speed persistent browser store maintaining dataset schemas, workspace snapshots, and history without server database calls.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Core Features Breakdown -->
+      <section class="space-y-6">
+        <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+          <span class="text-xs text-copper-500 font-mono">03 //</span> Core Capabilities & Platform Gallery
+        </h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-walnut-900/30 border border-gold-500/10 rounded-lg p-5 space-y-3 wood-shadow">
+            <h3 class="font-serif text-lg text-gold-300 font-medium">1. Offline-First Storage</h3>
+            <p class="text-xs text-parchment-400 font-light leading-relaxed">
+              Utilizes IndexedDB (via Dexie) to store, version, and query large datasets up to 100MB directly in client memory without external network calls.
+            </p>
+          </div>
+          <div class="bg-walnut-900/30 border border-gold-500/10 rounded-lg p-5 space-y-3 wood-shadow">
+            <h3 class="font-serif text-lg text-gold-300 font-medium">2. Custom AST Formula Parser</h3>
+            <p class="text-xs text-parchment-400 font-light leading-relaxed">
+              Calculates dynamic fields using a custom lexer & AST evaluator, bringing Excel formulas directly to dataset columns without third-party dependencies.
+            </p>
+          </div>
+          <div class="bg-walnut-900/30 border border-gold-500/10 rounded-lg p-5 space-y-3 wood-shadow">
+            <h3 class="font-serif text-lg text-gold-300 font-medium">3. Multidimensional Pivot Engine</h3>
+            <p class="text-xs text-parchment-400 font-light leading-relaxed">
+              Group data by Rows, Columns, and Values with customizable sub-totals, matrix aggregations, and grand totals.
+            </p>
+          </div>
+          <div class="bg-walnut-900/30 border border-gold-500/10 rounded-lg p-5 space-y-3 wood-shadow">
+            <h3 class="font-serif text-lg text-gold-300 font-medium">4. AI Co-Pilot Integration</h3>
+            <p class="text-xs text-parchment-400 font-light leading-relaxed">
+              Connects directly to LLM APIs (Google Gemini, OpenAI GPT-4o) for natural language dataset queries, automated anomaly detection, and insights generation.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Step-by-Step Platform Workflow -->
+      <section class="space-y-4">
+        <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+          <span class="text-xs text-copper-500 font-mono">04 //</span> Analytical Workflow Guide
+        </h2>
+        <div class="space-y-3 text-xs md:text-sm text-parchment-300 font-light leading-relaxed">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 bg-walnut-900/20 border border-gold-500/10 rounded space-y-1">
+              <span class="text-copper-500 font-mono text-xs font-semibold">Step 01. Ingest Data</span>
+              <p class="text-parchment-400">Drag & drop CSV, TSV, or XLSX files up to 100MB into the upload interface or load built-in sample datasets.</p>
+            </div>
+            <div class="p-4 bg-walnut-900/20 border border-gold-500/10 rounded space-y-1">
+              <span class="text-copper-500 font-mono text-xs font-semibold">Step 02. Data Explorer</span>
+              <p class="text-parchment-400">Inspect raw records, write AST expressions for calculated columns, and apply conditional formatting rules.</p>
+            </div>
+            <div class="p-4 bg-walnut-900/20 border border-gold-500/10 rounded space-y-1">
+              <span class="text-copper-500 font-mono text-xs font-semibold">Step 03. Statistical Analysis</span>
+              <p class="text-parchment-400">Calculate mean, median, standard deviation, IQR/Z-score outlier detection, and correlation matrices.</p>
+            </div>
+            <div class="p-4 bg-walnut-900/20 border border-gold-500/10 rounded space-y-1">
+              <span class="text-copper-500 font-mono text-xs font-semibold">Step 04. Window Functions</span>
+              <p class="text-parchment-400">Execute rolling window functions (`ROW_NUMBER`, `RANK`, `DENSE_RANK`, moving averages, cumulative sums).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. GitHub Repository CTA -->
+      <section class="flex flex-col items-center pt-8 border-t border-gold-500/15 gap-4">
+        <h2 class="font-serif text-xl text-gold-200 font-normal tracking-wide">Explore Source Code & Documentation</h2>
+        <p class="text-xs text-parchment-500 font-light max-w-md text-center">
+          The full repository contains Vitest unit tests, Playwright end-to-end tests, AST parser modules, and Zustand store handlers.
+        </p>
+        <a 
+          href="https://github.com/vardaanbazaz/datavista" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-copper-500/10 hover:bg-copper-500/20 border border-copper-500/40 hover:border-copper-500/60 text-parchment-200 hover:text-gold-100 rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 wood-shadow"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-copper-500"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          View GitHub Repository
+        </a>
+      </section>
+
+      <!-- Footer -->
+      <footer class="pt-8 text-center text-[10px] text-parchment-500/50 font-mono">
+        © 2026 Vardaan Bajaj. Handcrafted with precision.
+      </footer>
+
+    </main>
+  </body>
+</html>
