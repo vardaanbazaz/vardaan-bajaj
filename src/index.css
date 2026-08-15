@@ -110,3 +110,29 @@ h1, h2, h3, h4, h5, h6 {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(197, 168, 128, 0.2) 20%, rgba(197, 168, 128, 0.2) 80%, transparent);
 }
+
+mjx-container {
+  @apply text-[#F9DE8B] py-2;
+}
+
+mjx-container[display="true"] {
+  @apply overflow-x-auto overflow-y-hidden max-w-full block;
+}
+
+/* Themed scrollbar for long math equations */
+mjx-container[display="true"]::-webkit-scrollbar {
+  height: 6px;
+}
+mjx-container[display="true"]::-webkit-scrollbar-track {
+  background: rgba(39, 34, 30, 0.8);
+  border-radius: 4px;
+}
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
+  background: rgba(140, 115, 53, 0.7);
+  border-radius: 4px;
+}
+mjx-container[display="true"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 115, 53, 1);
+}
+
+
