@@ -11,201 +11,264 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/src/index.css" />
   </head>
-  <body class="bg-[#100b08] text-[#eadfc9] font-sans selection:bg-[#c2845b]/30 selection:text-[#f4efe6] antialiased overflow-x-hidden">
+  <body class="bg-walnut-950 text-parchment-300 font-sans selection:bg-copper-500/30 selection:text-parchment-100 antialiased overflow-x-hidden">
     
     <!-- Atmospheric SVG noise overlay and lighting drifts -->
-    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.015] grain-overlay mix-blend-overlay"></div>
-    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      <!-- Soft ambient glows -->
-      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#3b5238]/10 blur-[120px] pointer-events-none animate-soft-pulse"></div>
-      <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-[#c2845b]/5 blur-[150px] pointer-events-none animate-soft-pulse" style="animation-delay: 2s;"></div>
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-[0.015] grain-overlay mix-blend-overlay" aria-hidden="true"></div>
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-forest-700/10 blur-[120px] pointer-events-none animate-soft-pulse"></div>
+      <div class="absolute bottom-[20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-copper-500/5 blur-[150px] pointer-events-none animate-soft-pulse" style="animation-delay: 2s;"></div>
     </div>
 
     <!-- Main Page Container -->
-    <div class="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-16">
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-12 md:py-20 space-y-12">
       
-      <!-- Back to Portfolio Button & Title Monogram -->
-      <div class="flex justify-between items-center border-b border-[#c5a880]/15 pb-6">
-        <a href="/" class="flex items-center gap-2 text-xs tracking-wider uppercase font-medium text-[#c5a880] hover:text-[#eadfc9] transition-colors duration-300">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-          Back to Portfolio
+      <!-- Back to Portfolio Link & Title Monogram -->
+      <nav aria-label="Main Navigation" class="flex justify-between items-center border-b border-gold-500/15 pb-6">
+        <a href="/index.html" class="flex items-center gap-2 text-xs tracking-wider uppercase font-medium text-gold-500 hover:text-gold-200 transition-colors duration-300">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          ← Back to Portfolio
         </a>
-        <div class="w-8 h-8 rounded-full border border-[#c5a880]/20 flex items-center justify-center bg-[#18110c]/60 shadow-[inset_0_1px_3px_rgba(255,255,255,0.02)]">
-          <span class="font-serif text-[10px] text-[#c5a880]/80 tracking-widest font-semibold">V</span>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-copper-500/10 border border-copper-500/20">
+            <span class="text-[10px] uppercase tracking-wider text-copper-400 font-semibold font-sans">
+              IEEE CICT 2026
+            </span>
+          </div>
+          <div class="w-8 h-8 rounded-full border border-gold-500/20 flex items-center justify-center bg-walnut-900/60 shadow-[inset_0_1px_3px_rgba(255,255,255,0.02)]">
+            <span class="font-serif text-[10px] text-gold-500/80 tracking-widest font-semibold">V</span>
+          </div>
         </div>
-      </div>
+      </nav>
 
       <!-- Publication Header -->
-      <header class="space-y-4">
-        <p class="text-xs uppercase tracking-[0.2em] text-[#c2845b] font-semibold">IEEE CICT | Conference Paper</p>
-        <h1 class="font-serif text-4xl md:text-5xl font-normal text-[#f4efe6] tracking-wide leading-tight">
+      <header class="space-y-4 max-w-4xl">
+        <p class="text-xs uppercase tracking-[0.2em] text-copper-500 font-semibold">IEEE CICT | Conference Paper</p>
+        <h1 class="font-serif text-4xl md:text-5xl font-normal text-gold-200 tracking-wide leading-tight">
           V-Surveillance: A Hybrid Deep Learning Framework for Real-Time Aerial Surveillance Using Drone Imagery
         </h1>
         <div class="flex flex-wrap gap-2 pt-2">
-          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">ESRGAN</span>
-          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">YOLO12M + SAHI</span>
-          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">Deep SORT</span>
-          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">UAV Edge Computing</span>
-          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-[#c5a880]/80 bg-[#18110c] border border-[#c5a880]/10 rounded">PyTorch</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-copper-400 bg-copper-900/20 border border-copper-700/30 rounded uppercase font-medium">ESRGAN</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-copper-400 bg-copper-900/20 border border-copper-700/30 rounded uppercase font-medium">YOLO12M + SAHI</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-copper-400 bg-copper-900/20 border border-copper-700/30 rounded uppercase font-medium">Deep SORT</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-copper-400 bg-copper-900/20 border border-copper-700/30 rounded uppercase font-medium">UAV Edge Computing</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-sans tracking-wider text-copper-400 bg-copper-900/20 border border-copper-700/30 rounded uppercase font-medium">PyTorch</span>
         </div>
       </header>
 
-      <!-- 1. Abstract & Objective -->
-      <section class="space-y-4">
-        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
-          <span class="text-xs text-[#c2845b] font-mono">01 //</span> Abstract
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-          <div class="md:col-span-2 space-y-4 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
-            <p class="italic">
-              "Aerial surveillance using UAVs is important for safety and emergency response, as well as to monitor and regulate traffic. This research introduces V-Surveillance, an integrated approach to deep learning (Super Resolution, Object Detection & Multi-Object Tracking) for achieving situational awareness. V-Surveillance utilizes a three-stage pipeline that includes Super Resolution (ESRGAN), Fine Grained Object Detection (YOLO12M w/ SAHI), and Multi-Object Tracking (Deep SORT)."
-            </p>
-            <p class="italic">
-              "V-Surveillance’s performance was evaluated through a variety of aerial data sets that tested its ability to achieve accurate detection under varying lighting, altitude, and density conditions. The results showed that the framework achieved very high precision, recall, and sensitivity to small objects. V-Surveillance was designed for real time deployment to address the challenges of motion blur, camera instability and perspective variations, and has potential applications for urban monitoring, law enforcement, border security, traffic management and disaster response."
-            </p>
-            <p class="italic">
-              "V-Surveillance outperformed other frameworks on all four test datasets, with MAP@50 values of 0.967 on UAVDT, 0.966 on Spanish Roundabouts, 0.977 on Traffic Aerial Images, and 0.966 on Top View, thereby proving that the integration of multiple models enhances object detection capability in multiple conditions. These contributions have made V-Surveillance both capable of running in real time on standard UAV-class hardware, while also providing increased robustness in the challenging aerial environment."
-            </p>
-          </div>
-          <div class="bg-[#18110c]/40 border border-[#c5a880]/10 rounded p-5 space-y-3 wood-shadow shrink-0">
-            <h3 class="font-serif text-sm text-[#f4efe6] font-semibold uppercase tracking-wider">Publication Info</h3>
-            <ul class="text-xs space-y-2 text-[#dcd3c1]/90 font-light">
-              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> <strong>Conference:</strong> IEEE CICT</li>
-              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> <strong>Published:</strong> Feb 2026</li>
-              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> <strong>Runtime Target:</strong> Real-time Edge UAV</li>
-              <li class="flex items-start gap-1.5"><span class="text-[#c2845b]">•</span> <strong>Co-authors:</strong> Amit Kumar, Shrivishal Tripathi</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      <!-- 2-Column Academic Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Sticky Table of Contents Sidebar -->
+        <aside aria-label="Table of Contents" class="hidden lg:block lg:col-span-3 sticky top-12 space-y-4 bg-walnut-900/60 backdrop-blur-md border border-gold-500/10 p-5 rounded-lg wood-shadow">
+          <h3 class="font-serif text-xs uppercase tracking-[0.2em] text-gold-400 font-semibold border-b border-gold-500/15 pb-2">
+            Contents Navigation
+          </h3>
+          <nav class="flex flex-col space-y-2 text-xs font-sans">
+            <a href="#abstract" class="text-parchment-400 hover:text-gold-200 transition-colors py-1 flex items-center gap-2">
+              <span class="text-copper-500 font-mono">01 //</span> Abstract
+            </a>
+            <a href="#pipeline" class="text-parchment-400 hover:text-gold-200 transition-colors py-1 flex items-center gap-2">
+              <span class="text-copper-500 font-mono">02 //</span> 3-Stage Pipeline
+            </a>
+            <a href="#adr" class="text-parchment-400 hover:text-gold-200 transition-colors py-1 flex items-center gap-2">
+              <span class="text-copper-500 font-mono">03 //</span> Architectural Decision
+            </a>
+            <a href="#metrics" class="text-parchment-400 hover:text-gold-200 transition-colors py-1 flex items-center gap-2">
+              <span class="text-copper-500 font-mono">04 //</span> MAP@50 Bounds
+            </a>
+            <a href="#applications" class="text-parchment-400 hover:text-gold-200 transition-colors py-1 flex items-center gap-2">
+              <span class="text-copper-500 font-mono">05 //</span> Target Applications
+            </a>
+            <a href="#ieee" class="text-parchment-400 hover:text-gold-200 transition-colors py-1 flex items-center gap-2">
+              <span class="text-copper-500 font-mono">06 //</span> IEEE Xplore Link
+            </a>
+          </nav>
+        </aside>
 
-      <!-- 2. System Pipeline -->
-      <section class="space-y-4">
-        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
-          <span class="text-xs text-[#c2845b] font-mono">02 //</span> Three-Stage Deep Learning Pipeline
-        </h2>
-        <div class="space-y-4 text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
-          <p>
-            V-Surveillance uses three state-of-the-art models operating in sequence to resolve issues related to altitude shifts, camera blur, and perspective changes:
-          </p>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-            <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-5 space-y-2 wood-shadow">
-              <span class="text-xs font-mono text-[#c2845b]">Stage 01</span>
-              <h3 class="font-serif text-base text-[#f4efe6] font-medium">ESRGAN (Super Resolution)</h3>
-              <p class="text-xs text-[#dcd3c1]/85 font-light leading-relaxed">
-                Enhances details and textures in video frames captured from high altitudes, reconstructing essential features before detection.
-              </p>
+        <!-- Main Article Content -->
+        <article class="lg:col-span-9 space-y-16">
+          
+          <!-- 1. Abstract & Objective -->
+          <section id="abstract" class="space-y-4">
+            <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+              <span class="text-xs text-copper-500 font-mono">01 //</span> Abstract
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+              <div class="md:col-span-2 space-y-4 text-sm md:text-base text-parchment-300 font-light leading-relaxed">
+                <p class="italic">
+                  "Aerial surveillance using UAVs is important for safety and emergency response, as well as to monitor and regulate traffic. This research introduces V-Surveillance, an integrated approach to deep learning (Super Resolution, Object Detection & Multi-Object Tracking) for achieving situational awareness. V-Surveillance utilizes a three-stage pipeline that includes Super Resolution (ESRGAN), Fine Grained Object Detection (YOLO12M w/ SAHI), and Multi-Object Tracking (Deep SORT)."
+                </p>
+                <p class="italic">
+                  "V-Surveillance’s performance was evaluated through a variety of aerial data sets that tested its ability to achieve accurate detection under varying lighting, altitude, and density conditions. The results showed that the framework achieved very high precision, recall, and sensitivity to small objects. V-Surveillance was designed for real time deployment to address the challenges of motion blur, camera instability and perspective variations, and has potential applications for urban monitoring, law enforcement, border security, traffic management and disaster response."
+                </p>
+                <p class="italic">
+                  "V-Surveillance outperformed other frameworks on all four test datasets, with MAP@50 values of 0.967 on UAVDT, 0.966 on Spanish Roundabouts, 0.977 on Traffic Aerial Images, and 0.966 on Top View, thereby proving that the integration of multiple models enhances object detection capability in multiple conditions."
+                </p>
+              </div>
+              <div class="bg-walnut-900/60 backdrop-blur-md border border-gold-500/10 rounded p-5 space-y-3 wood-shadow shrink-0">
+                <h3 class="font-serif text-sm text-gold-200 font-semibold uppercase tracking-wider">Publication Info</h3>
+                <ul class="text-xs space-y-2 text-parchment-400 font-light">
+                  <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> <strong>Conference:</strong> IEEE CICT</li>
+                  <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> <strong>Published:</strong> Feb 2026</li>
+                  <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> <strong>Runtime Target:</strong> Real-time Edge UAV</li>
+                  <li class="flex items-start gap-1.5"><span class="text-copper-500">•</span> <strong>Co-authors:</strong> Amit Kumar, Shrivishal Tripathi</li>
+                </ul>
+              </div>
             </div>
-            <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-5 space-y-2 wood-shadow">
-              <span class="text-xs font-mono text-[#c2845b]">Stage 02</span>
-              <h3 class="font-serif text-base text-[#f4efe6] font-medium">YOLO12M + SAHI (Detection)</h3>
-              <p class="text-xs text-[#dcd3c1]/85 font-light leading-relaxed">
-                Applies Slicing Aided Hyper Inference (SAHI) alongside YOLO12M, optimizing spatial attention maps to detect extremely small structures.
+          </section>
+
+          <!-- 2. System Pipeline -->
+          <section id="pipeline" class="space-y-4">
+            <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+              <span class="text-xs text-copper-500 font-mono">02 //</span> Three-Stage Deep Learning Pipeline
+            </h2>
+            <div class="space-y-4 text-sm md:text-base text-parchment-300 font-light leading-relaxed">
+              <p>
+                V-Surveillance uses three state-of-the-art models operating in sequence to resolve issues related to altitude shifts, camera blur, and perspective changes:
               </p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                <div class="bg-walnut-900/60 backdrop-blur-md border border-gold-500/10 rounded p-5 space-y-2 wood-shadow">
+                  <span class="text-xs font-mono text-copper-500">Stage 01</span>
+                  <h3 class="font-serif text-base text-gold-200 font-medium">ESRGAN (Super Resolution)</h3>
+                  <p class="text-xs text-parchment-400 font-light leading-relaxed">
+                    Enhances details and textures in video frames captured from high altitudes, reconstructing essential features before detection.
+                  </p>
+                </div>
+                <div class="bg-walnut-900/60 backdrop-blur-md border border-gold-500/10 rounded p-5 space-y-2 wood-shadow">
+                  <span class="text-xs font-mono text-copper-500">Stage 02</span>
+                  <h3 class="font-serif text-base text-gold-200 font-medium">YOLO12M + SAHI (Detection)</h3>
+                  <p class="text-xs text-parchment-400 font-light leading-relaxed">
+                    Applies Slicing Aided Hyper Inference (SAHI) alongside YOLO12M, optimizing spatial attention maps to detect extremely small structures.
+                  </p>
+                </div>
+                <div class="bg-walnut-900/60 backdrop-blur-md border border-gold-500/10 rounded p-5 space-y-2 wood-shadow">
+                  <span class="text-xs font-mono text-copper-500">Stage 03</span>
+                  <h3 class="font-serif text-base text-gold-200 font-medium">Deep SORT (Tracking)</h3>
+                  <p class="text-xs text-parchment-400 font-light leading-relaxed">
+                    Associates objects across successive frames using motion-based Kalman filtering and descriptor distance matching to handle blur.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="bg-[#18110c]/30 border border-[#c5a880]/10 rounded p-5 space-y-2 wood-shadow">
-              <span class="text-xs font-mono text-[#c2845b]">Stage 03</span>
-              <h3 class="font-serif text-base text-[#f4efe6] font-medium">Deep SORT (Tracking)</h3>
-              <p class="text-xs text-[#dcd3c1]/85 font-light leading-relaxed">
-                Associates objects across successive frames using motion-based Kalman filtering and descriptor distance matching to handle blur.
-              </p>
+          </section>
+
+          <!-- 3. Architecture Decision Record (ADR) -->
+          <section id="adr" class="space-y-4">
+            <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+              <span class="text-xs text-copper-500 font-mono">03 //</span> Architecture Decision Record (ADR)
+            </h2>
+            <div class="bg-walnut-900/70 backdrop-blur-md border border-gold-500/20 rounded-lg p-6 wood-shadow space-y-4">
+              <div class="flex justify-between items-center border-b border-gold-500/15 pb-3">
+                <span class="font-mono text-xs text-copper-400 font-semibold">ADR-006 // Slicing-Aided Hyper Inference (SAHI) Integration</span>
+                <span class="text-[10px] uppercase font-mono tracking-wider text-forest-400 bg-forest-950/40 border border-forest-700/40 px-2 py-0.5 rounded">Status: Accepted</span>
+              </div>
+              <div class="space-y-3 text-xs md:text-sm text-parchment-300 font-light leading-relaxed">
+                <p><strong>Context:</strong> High-altitude drone footage captures micro-objects representing &lt;0.5% of total image pixels, leading standard single-pass detectors to miss small bounding boxes.</p>
+                <p><strong>Decision:</strong> Slice high-resolution UAV video frames dynamically using SAHI windowing prior to feeding sub-tensors into YOLO12M, merging overlapping bounding boxes via Non-Maximum Suppression (NMS).</p>
+                <p><strong>Consequences:</strong> Achieves mAP@50 metrics of 0.967 (UAVDT) and 0.977 (Traffic Aerial Images) while maintaining real-time execution speeds on drone edge accelerators.</p>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <!-- 3. Performance Metrics Benchmarks -->
-      <section class="space-y-4">
-        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
-          <span class="text-xs text-[#c2845b] font-mono">03 //</span> Performance Benchmarks
-        </h2>
-        <div class="space-y-4">
-          <p class="text-sm md:text-base text-[#dcd3c1] font-light leading-relaxed">
-            The hybrid integration was validated across four standard aerial datasets. V-Surveillance consistently outperformed other baseline frameworks, demonstrating strong accuracy in multi-condition object detection:
-          </p>
+          <!-- 4. Performance Metrics Benchmarks -->
+          <section id="metrics" class="space-y-4">
+            <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+              <span class="text-xs text-copper-500 font-mono">04 //</span> Performance Benchmarks & MAP Formulation
+            </h2>
+            <p class="text-sm md:text-base text-parchment-300 font-light leading-relaxed">
+              Mean Average Precision at IoU threshold 0.50 is computed across dataset categories $K$:
+            </p>
 
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse border border-[#c5a880]/10 text-xs md:text-sm">
-              <thead>
-                <tr class="bg-[#18110c] border-b border-[#c5a880]/15">
-                  <th class="p-3 font-serif text-[#f4efe6] font-medium">Evaluation Dataset</th>
-                  <th class="p-3 font-serif text-[#f4efe6] font-medium">Evaluation Focus</th>
-                  <th class="p-3 font-serif text-[#c2845b] font-medium text-right">MAP@50 Metric</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-[#c5a880]/10 font-light text-[#eadfc9]/90">
-                <tr class="hover:bg-[#18110c]/30 transition-colors">
-                  <td class="p-3 font-medium text-[#f4efe6]">UAVDT</td>
-                  <td class="p-3">UAV Detection & Tracking Benchmark</td>
-                  <td class="p-3 text-right font-mono font-semibold text-[#c5a880]">0.967</td>
-                </tr>
-                <tr class="hover:bg-[#18110c]/30 transition-colors">
-                  <td class="p-3 font-medium text-[#f4efe6]">Spanish Roundabouts</td>
-                  <td class="p-3">Dynamic Traffic Flow & Angle Fluctuations</td>
-                  <td class="p-3 text-right font-mono font-semibold text-[#c5a880]">0.966</td>
-                </tr>
-                <tr class="hover:bg-[#18110c]/30 transition-colors">
-                  <td class="p-3 font-medium text-[#f4efe6]">Traffic Aerial Images</td>
-                  <td class="p-3">High Density Vehicle Clusters</td>
-                  <td class="p-3 text-right font-mono font-semibold text-[#c5a880]">0.977</td>
-                </tr>
-                <tr class="hover:bg-[#18110c]/30 transition-colors">
-                  <td class="p-3 font-medium text-[#f4efe6]">Top View</td>
-                  <td class="p-3">Extreme Nadir Perspective Alignments</td>
-                  <td class="p-3 text-right font-mono font-semibold text-[#c5a880]">0.966</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+            <!-- Elevated Equation Container -->
+            <div class="equation-container my-6 p-6 rounded-lg text-center font-serif text-lg md:text-xl text-gold-200">
+              $$\text{mAP}@50 = \frac{1}{|K|} \sum_{k \in K} \int_{0}^{1} P_k(R) \, dR \quad \text{where } \text{IoU} \ge 0.50$$
+            </div>
 
-      <!-- 4. Applications -->
-      <section class="space-y-4">
-        <h2 class="font-serif text-2xl text-[#f4efe6] font-normal tracking-wide flex items-center gap-2 border-b border-[#c5a880]/15 pb-2">
-          <span class="text-xs text-[#c2845b] font-mono">04 //</span> Target Applications
-        </h2>
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-          <div class="p-4 bg-[#18110c]/40 border border-[#c5a880]/10 rounded text-center wood-shadow">
-            <span class="block text-xs uppercase tracking-wider text-[#c5a880] font-semibold">Urban Monitoring</span>
-          </div>
-          <div class="p-4 bg-[#18110c]/40 border border-[#c5a880]/10 rounded text-center wood-shadow">
-            <span class="block text-xs uppercase tracking-wider text-[#c5a880] font-semibold">Law Enforcement</span>
-          </div>
-          <div class="p-4 bg-[#18110c]/40 border border-[#c5a880]/10 rounded text-center wood-shadow">
-            <span class="block text-xs uppercase tracking-wider text-[#c5a880] font-semibold">Border Security</span>
-          </div>
-          <div class="p-4 bg-[#18110c]/40 border border-[#c5a880]/10 rounded text-center wood-shadow">
-            <span class="block text-xs uppercase tracking-wider text-[#c5a880] font-semibold">Traffic Management</span>
-          </div>
-          <div class="p-4 bg-[#18110c]/40 border border-[#c5a880]/10 rounded text-center wood-shadow">
-            <span class="block text-xs uppercase tracking-wider text-[#c5a880] font-semibold">Disaster Response</span>
-          </div>
-        </div>
-      </section>
+            <div class="overflow-x-auto pt-2">
+              <table class="w-full text-left border-collapse border border-gold-500/10 text-xs md:text-sm">
+                <thead>
+                  <tr class="bg-walnut-900 border-b border-gold-500/15">
+                    <th class="p-3 font-serif text-gold-200 font-medium">Evaluation Dataset</th>
+                    <th class="p-3 font-serif text-gold-200 font-medium">Evaluation Focus</th>
+                    <th class="p-3 font-serif text-copper-400 font-medium text-right">MAP@50 Metric</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gold-500/10 font-light text-parchment-300">
+                  <tr class="hover:bg-walnut-800/40 transition-colors">
+                    <td class="p-3 font-medium text-gold-100">UAVDT</td>
+                    <td class="p-3">UAV Detection & Tracking Benchmark</td>
+                    <td class="p-3 text-right font-mono font-semibold text-copper-400">0.967</td>
+                  </tr>
+                  <tr class="hover:bg-walnut-800/40 transition-colors">
+                    <td class="p-3 font-medium text-gold-100">Spanish Roundabouts</td>
+                    <td class="p-3">Dynamic Traffic Flow & Angle Fluctuations</td>
+                    <td class="p-3 text-right font-mono font-semibold text-copper-400">0.966</td>
+                  </tr>
+                  <tr class="hover:bg-walnut-800/40 transition-colors">
+                    <td class="p-3 font-medium text-gold-100">Traffic Aerial Images</td>
+                    <td class="p-3">High Density Vehicle Clusters</td>
+                    <td class="p-3 text-right font-mono font-semibold text-copper-400">0.977</td>
+                  </tr>
+                  <tr class="hover:bg-walnut-800/40 transition-colors">
+                    <td class="p-3 font-medium text-gold-100">Top View</td>
+                    <td class="p-3">Extreme Nadir Perspective Alignments</td>
+                    <td class="p-3 text-right font-mono font-semibold text-copper-400">0.966</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-      <!-- 5. External IEEE Link CTA -->
-      <section class="flex flex-col items-center pt-8 border-t border-[#c5a880]/15 gap-4">
-        <h2 class="font-serif text-xl text-[#f4efe6] font-normal tracking-wide">Explore the Official IEEE Publication</h2>
-        <p class="text-xs text-[#9c9281] font-light max-w-md text-center">
-          The publication details validation loss parameters, neural network layering weights, and frame-by-frame sensitivity tests on standard UAV platforms.
-        </p>
-        <a 
-          href="https://ieeexplore.ieee.org/abstract/document/11399085" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-[#c2845b]/10 hover:bg-[#c2845b]/20 border border-[#c2845b]/40 hover:border-[#c2845b]/60 text-[#eadfc9] hover:text-[#f4efe6] rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 wood-shadow"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#c2845b]"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Open on IEEE Xplore
-        </a>
-      </section>
+          <!-- 5. Target Applications -->
+          <section id="applications" class="space-y-4">
+            <h2 class="font-serif text-2xl text-gold-300 font-normal tracking-wide flex items-center gap-2 border-b border-gold-500/15 pb-2">
+              <span class="text-xs text-copper-500 font-mono">05 //</span> Target Applications
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div class="p-4 bg-walnut-900/60 border border-gold-500/10 rounded text-center wood-shadow">
+                <span class="block text-xs uppercase tracking-wider text-gold-300 font-semibold">Urban Monitoring</span>
+              </div>
+              <div class="p-4 bg-walnut-900/60 border border-gold-500/10 rounded text-center wood-shadow">
+                <span class="block text-xs uppercase tracking-wider text-gold-300 font-semibold">Law Enforcement</span>
+              </div>
+              <div class="p-4 bg-walnut-900/60 border border-gold-500/10 rounded text-center wood-shadow">
+                <span class="block text-xs uppercase tracking-wider text-gold-300 font-semibold">Border Security</span>
+              </div>
+              <div class="p-4 bg-walnut-900/60 border border-gold-500/10 rounded text-center wood-shadow">
+                <span class="block text-xs uppercase tracking-wider text-gold-300 font-semibold">Traffic Management</span>
+              </div>
+              <div class="p-4 bg-walnut-900/60 border border-gold-500/10 rounded text-center wood-shadow">
+                <span class="block text-xs uppercase tracking-wider text-gold-300 font-semibold">Disaster Response</span>
+              </div>
+            </div>
+          </section>
 
-      <!-- Footer -->
-      <footer class="pt-8 text-center text-[10px] text-[#9c9281]/50 font-mono">
-        © 2026 Vardaan Bajaj. Handcrafted with precision.
-      </footer>
+          <!-- 6. External IEEE Link CTA -->
+          <section id="ieee" class="flex flex-col items-center pt-8 border-t border-gold-500/15 gap-4">
+            <h2 class="font-serif text-xl text-gold-200 font-normal tracking-wide">Explore the Official IEEE Publication</h2>
+            <p class="text-xs text-parchment-500 font-light max-w-md text-center">
+              The publication details validation loss parameters, neural network layering weights, and frame-by-frame sensitivity tests on standard UAV platforms.
+            </p>
+            <a 
+              href="https://ieeexplore.ieee.org/abstract/document/11399085" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-3 bg-copper-500/10 hover:bg-copper-500/20 border border-copper-500/40 hover:border-copper-500/60 text-parchment-200 hover:text-gold-100 rounded text-xs tracking-wider uppercase font-medium transition-all duration-300 wood-shadow"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-copper-500" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Open on IEEE Xplore
+            </a>
+          </section>
 
-    </div>
+          <!-- Footer -->
+          <footer class="pt-8 text-center text-[10px] text-parchment-500/50 font-mono">
+            © 2026 Vardaan Bajaj. Handcrafted with precision.
+          </footer>
+
+        </article>
+      </div>
+
+    </main>
   </body>
 </html>

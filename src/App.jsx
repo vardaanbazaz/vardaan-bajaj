@@ -15,7 +15,7 @@ function App() {
       <GrainOverlay />
       
       {/* Main Page Layout */}
-      <div className="relative z-10 w-full">
+      <main className="relative z-10 w-full">
         {/* Section 1: Hero */}
         <Hero />
         
@@ -43,7 +43,7 @@ function App() {
 
         {/* Section 6: Contact */}
         <Contact />
-      </div>
+      </main>
     </div>
   );
 }

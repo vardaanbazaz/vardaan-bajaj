@@ -29,6 +29,12 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-between items-center py-12 md:py-20 max-w-5xl mx-auto px-6 md:px-8 z-10">
+      {/* Artifact 1: The Taped Note */}
+      <div className="hidden lg:block absolute top-10 right-0 w-48 bg-[#FDF6E3] text-[#3E3832] p-4 rotate-3 shadow-md font-serif text-sm border border-[#E0D8C3] z-20 pointer-events-auto">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-white/40 backdrop-blur-sm border border-white/20 shadow-sm rotate-[-2deg]"></div>
+        <p className="italic">"Memory is the residue of thought."</p>
+      </div>
+
       {/* Top Monogram Seal */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
@@ -36,10 +42,10 @@ export default function Hero() {
         transition={{ duration: 1, ease: 'easeOut' }}
         className="flex flex-col items-center gap-2"
       >
-        <div className="w-10 h-10 rounded-full border border-gold-500/20 flex items-center justify-center bg-walnut-900/60 shadow-[inset_0_1px_3px_rgba(255,255,255,0.02)]">
-          <span className="font-serif text-xs text-gold-500/80 tracking-widest font-semibold">VB</span>
+        <div className="w-10 h-10 bg-[#7A3B3B] rounded-full flex items-center justify-center text-[#E8B4B8] text-xs font-serif border-2 border-[#4A1C1C] shadow-lg rotate-12 select-none">
+          VB
         </div>
-        <div className="h-10 w-[1px] bg-gradient-to-b from-gold-500/20 to-transparent" />
+        <div className="h-10 w-[1px] bg-gradient-to-b from-[#8C7335]/40 to-transparent" />
       </motion.div>
 
       {/* Main Content */}

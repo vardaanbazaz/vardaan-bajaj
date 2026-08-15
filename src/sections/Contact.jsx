@@ -102,7 +102,7 @@ export default function Contact() {
         </div>
 
         {/* Footer Credit & Design Dividers */}
-        <div className="w-full pt-16 flex flex-col items-center gap-3">
+        <footer className="w-full pt-16 flex flex-col items-center gap-3">
           <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
           <p className="text-[10px] tracking-[0.2em] uppercase text-gold-500/60 font-sans">
             Handcrafted with intent • Vardaan Bajaj
@@ -110,7 +110,7 @@ export default function Contact() {
           <p className="text-[9px] text-parchment-500/40 font-mono">
             b. 2004 — © 2026. All rights archived.
           </p>
-        </div>
+        </footer>
 
       </div>
     </SectionContainer>

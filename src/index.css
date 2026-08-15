@@ -35,8 +35,8 @@
   --color-navy-900: #121822;
   --color-navy-800: #1b2535;
 
-  --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-sans: "DM Sans", "Inter", sans-serif;
+  --font-serif: "Merriweather", serif;
+  --font-sans: "Inter", "DM Sans", sans-serif;
 
   --animate-subtle-drift: subtle-drift 25s ease-in-out infinite;
   --animate-soft-pulse: soft-pulse 6s ease-in-out infinite;
@@ -73,6 +73,7 @@
 
 /* Base style resets and enhancements */
 html {
+  font-size: 18px;
   scrollbar-color: rgba(197, 168, 128, 0.15) var(--color-walnut-950);
   scrollbar-width: thin;
 }
@@ -80,11 +81,28 @@ html {
 body {
   background-color: var(--color-walnut-950);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  @apply text-base leading-relaxed font-medium text-parchment-300;
 }
 
 /* Faded copper/wood border shadow */
 .wood-shadow {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.wood-shadow-deep {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif tracking-wide;
+}
+
+/* Elevated Math & Algorithmic Equation Container */
+.equation-container {
+  background-color: rgba(24, 17, 12, 0.85);
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
 }
 
 /* Book/study divider line styling */
