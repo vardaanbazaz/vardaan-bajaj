@@ -9,13 +9,21 @@ import CurrentlyBuilding from './sections/CurrentlyBuilding';
 import Contact from './sections/Contact';
 
 function App() {
+  const handleMouseMove = (e) => {
+    document.documentElement.style.setProperty('--x', e.clientX + 'px');
+    document.documentElement.style.setProperty('--y', e.clientY + 'px');
+  };
+
   return (
     <div className="relative min-h-screen bg-walnut-950 text-parchment-300 overflow-hidden font-sans selection:bg-copper-600/30 selection:text-gold-200">
+      {/* Tactile SVG Noise Desk Texture */}
+      <div className="texture-overlay" aria-hidden="true" />
+
       {/* Background grain and lighting atmospheric effects */}
       <GrainOverlay />
-      
-      {/* Main Page Layout */}
-      <main className="relative z-10 w-full">
+
+      {/* Main Page Layout with Reading Lamp Radial Cursor Glow */}
+      <main className="relative z-10 w-full" onMouseMove={handleMouseMove}>
         {/* Section 1: Hero */}
         <Hero />
         

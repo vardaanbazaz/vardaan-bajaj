@@ -81,7 +81,10 @@ html {
 body {
   background-color: var(--color-walnut-950);
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  @apply text-base leading-relaxed font-medium text-parchment-300;
+  font-size: 1rem;
+  line-height: 1.625;
+  font-weight: 500;
+  color: var(--color-parchment-300);
 }
 
 /* Faded copper/wood border shadow */
@@ -94,7 +97,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-serif tracking-wide;
+  font-family: var(--font-serif);
+  letter-spacing: 0.025em;
 }
 
 /* Elevated Math & Algorithmic Equation Container */
@@ -112,12 +116,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 mjx-container {
-  @apply text-[#F9DE8B] py-2;
+  color: #F9DE8B;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 mjx-container[display="true"] {
-  @apply overflow-x-auto overflow-y-hidden max-w-full block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  display: block;
 }
+
 
 /* Themed scrollbar for long math equations */
 mjx-container[display="true"]::-webkit-scrollbar {
@@ -134,5 +144,33 @@ mjx-container[display="true"]::-webkit-scrollbar-thumb {
 mjx-container[display="true"]::-webkit-scrollbar-thumb:hover {
   background: rgba(140, 115, 53, 1);
 }
+
+/* Tactile Desk Texture */
+.texture-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  mix-blend-mode: overlay;
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Reading Lamp Cursor Glow */
+main {
+  background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(249, 222, 139, 0.05), transparent 40%);
+}
+
+/* Floating Dust Motes Animation */
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { transform: translateY(-40px) translateX(15px); opacity: 0; }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
 
 

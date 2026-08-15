@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Card({ children, className = "", hover = true, techStack = [], waxSeal = false }) {
+export default function Card({ children, className = "", hover = true, techStack = [] }) {
   const libraryAccents = [
     "bg-[#4A1C1C] text-[#E8B4B8] border-[#7A3B3B]", // Deep Burgundy
     "bg-[#1C3A27] text-[#B4E8C4] border-[#3B6A4A]", // Forest Green
@@ -13,13 +13,6 @@ export default function Card({ children, className = "", hover = true, techStack
         hover ? 'hover:-translate-y-1 hover:shadow-[8px_8px_22px_rgba(0,0,0,0.75)]' : ''
       } ${className}`}
     >
-      {/* Artifact 2: The Wax Seal / Stamp */}
-      {waxSeal && (
-        <div className="absolute -top-3 -right-3 w-10 h-10 bg-[#7A3B3B] rounded-full flex items-center justify-center text-[#E8B4B8] text-xs font-serif border-2 border-[#4A1C1C] shadow-lg rotate-12 select-none z-20 pointer-events-none">
-          VB
-        </div>
-      )}
-
       <div className="flex-1">
         {children}
       </div>
@@ -42,3 +35,4 @@ export default function Card({ children, className = "", hover = true, techStack
     </div>
   );
 }
+

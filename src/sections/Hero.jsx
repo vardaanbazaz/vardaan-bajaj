@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, BookOpen, Mail, ChevronDown } from 'lucide-react';
+import Clock from '../components/Clock';
 
 const GithubIcon = ({ size = 14, className = "" }) => (
   <svg
@@ -29,11 +30,18 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-between items-center py-12 md:py-20 max-w-5xl mx-auto px-6 md:px-8 z-10">
-      {/* Artifact 1: The Taped Note */}
-      <div className="hidden lg:block absolute top-10 right-0 w-48 bg-[#FDF6E3] text-[#3E3832] p-4 rotate-3 shadow-md font-serif text-sm border border-[#E0D8C3] z-20 pointer-events-auto">
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-white/40 backdrop-blur-sm border border-white/20 shadow-sm rotate-[-2deg]"></div>
-        <p className="italic">"Memory is the residue of thought."</p>
+      {/* Environmental Artifact: Floating Dust Motes */}
+      <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 bg-[#F9DE8B]/40 rounded-full animate-float pointer-events-none" style={{ animationDelay: '0s' }} aria-hidden="true" />
+      <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-[#F9DE8B]/30 rounded-full animate-float pointer-events-none" style={{ animationDelay: '2.5s' }} aria-hidden="true" />
+      <div className="absolute bottom-1/3 left-1/5 w-1 h-1 bg-[#F9DE8B]/25 rounded-full animate-float pointer-events-none" style={{ animationDelay: '4s' }} aria-hidden="true" />
+      <div className="absolute top-1/2 right-1/5 w-1.5 h-1.5 bg-[#F9DE8B]/35 rounded-full animate-float pointer-events-none" style={{ animationDelay: '6s' }} aria-hidden="true" />
+
+      {/* Artifact: The Brass Timepiece */}
+      <div className="hidden lg:block absolute top-10 left-0 z-20 pointer-events-auto transition-transform hover:scale-105 duration-300">
+        <Clock />
       </div>
+
+
 
       {/* Top Monogram Seal */}
       <motion.div
