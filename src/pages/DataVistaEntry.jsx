@@ -1,13 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import ManuscriptLayout from '../layouts/ManuscriptLayout';
-import DataVistaContent from './DataVistaContent';
-import '../index.css';
+import DossierLayout from '../layouts/DossierLayout';
+import { dataVistaSections } from './DataVistaContent';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ManuscriptLayout>
-      <DataVistaContent />
-    </ManuscriptLayout>
-  </React.StrictMode>
-);
+export default function DataVistaEntry() {
+  return <DossierLayout sections={dataVistaSections} />;
+}

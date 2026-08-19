@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SectionContainer from '../components/SectionContainer';
 import Card from '../components/Card';
 import { Cpu, GitBranch, ArrowUpRight, Wrench } from 'lucide-react';
@@ -17,8 +18,8 @@ export default function CurrentlyBuilding() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto">
         {/* Project 1: KanbanLight */}
-        <a 
-          href="/kanbanlight.html"
+        <Link 
+          to="/kanbanlight"
           className="block w-full group cursor-pointer h-full"
           aria-label="KanbanLight active engineering specifications"
         >
@@ -48,7 +49,7 @@ export default function CurrentlyBuilding() {
               <div className="space-y-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-1">
-                    <h3 className="font-serif text-2xl text-gold-200 font-medium tracking-wide group-hover:text-gold-100 transition-colors duration-300">
+                    <h3 className="font-serif text-2xl md:text-3xl text-[#CF9E4F] tracking-wide drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] font-medium group-hover:text-gold-200 transition-colors duration-300">
                       KanbanLight
                     </h3>
                     <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
@@ -56,7 +57,7 @@ export default function CurrentlyBuilding() {
                   <p className="text-xs text-copper-500/90 font-serif italic">The Git-Paradigm Project Board</p>
                 </div>
 
-                <p className="text-sm text-parchment-400 font-light leading-relaxed">
+                <p className="text-stone-300 text-sm md:text-base leading-relaxed mt-2">
                   A distributed state project board architecture modeling board states as non-destructive git-style branches, featuring tri-color differential state resolution, sandboxed WebAssembly execution, and real-time terminal CLI control.
                 </p>
               </div>
@@ -73,11 +74,11 @@ export default function CurrentlyBuilding() {
               </span>
             </div>
           </Card>
-        </a>
+        </Link>
 
         {/* Project 2: CropDoc AI */}
-        <a 
-          href="/cropdoc-ai.html"
+        <Link 
+          to="/cropdoc"
           className="block w-full group cursor-pointer h-full"
           aria-label="CropDoc AI active engineering specifications"
         >
@@ -107,7 +108,7 @@ export default function CurrentlyBuilding() {
               <div className="space-y-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-1">
-                    <h3 className="font-serif text-2xl text-gold-200 font-medium tracking-wide group-hover:text-gold-100 transition-colors duration-300">
+                    <h3 className="font-serif text-2xl md:text-3xl text-[#CF9E4F] tracking-wide drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] font-medium group-hover:text-gold-200 transition-colors duration-300">
                       CropDoc AI
                     </h3>
                     <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
@@ -115,7 +116,7 @@ export default function CurrentlyBuilding() {
                   <p className="text-xs text-copper-500/90 font-serif italic">Crop Disease Detection Inference API</p>
                 </div>
 
-                <p className="text-sm text-parchment-400 font-light leading-relaxed">
+                <p className="text-stone-300 text-sm md:text-base leading-relaxed mt-2">
                   A high-performance computer vision microservice designed for real-time agricultural disease diagnosis, featuring CPU-optimized tensor inference pipelines and strict thread-safe memory management.
                 </p>
               </div>
@@ -132,7 +133,7 @@ export default function CurrentlyBuilding() {
               </span>
             </div>
           </Card>
-        </a>
+        </Link>
       </div>
     </SectionContainer>
   );

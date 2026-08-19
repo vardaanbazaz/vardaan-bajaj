@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import GrainOverlay from '../components/GrainOverlay';
 
 export default function ManuscriptLayout({ children }) {
@@ -24,24 +25,16 @@ export default function ManuscriptLayout({ children }) {
       {/* Atmospheric Grain Overlay */}
       <GrainOverlay />
 
-      {/* Coffee Stain Asset Container */}
-      <img 
-        src="/coffee-stain.png" 
-        alt="" 
-        className="absolute -bottom-16 -right-16 w-64 h-64 opacity-20 mix-blend-multiply pointer-events-none rotate-12" 
-        aria-hidden="true" 
-      />
-
       {/* Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 md:py-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 md:py-24 animate-slide-in-right">
         {/* Navigation back to Portfolio */}
         <nav className="mb-8">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="text-[#8C7335] hover:text-[#F9DE8B] font-serif italic inline-flex items-center gap-2 transition-colors duration-200"
           >
             ← Back to Portfolio
-          </a>
+          </Link>
         </nav>
 
         {children}

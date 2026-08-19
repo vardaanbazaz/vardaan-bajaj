@@ -172,5 +172,248 @@ main {
   animation: float 8s ease-in-out infinite;
 }
 
+/* Phase 4: Slide-In Bookshelf Animation */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out forwards;
+}
+
+/* Global Academic Typography */
+article h1,
+article h2,
+article h3 {
+  font-family: var(--font-serif);
+  color: #CF9E4F;
+  letter-spacing: 0.025em;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.8));
+}
+
+article p,
+article li {
+  color: #d6d3d1;
+  font-size: 1.125rem;
+  line-height: 1.625;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-sans);
+}
+
+nav a {
+  color: #8C7335;
+  font-family: var(--font-serif);
+  font-style: italic;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+nav a:hover {
+  color: #CF9E4F;
+}
+
+/* The Library Index Card (Table of Contents) */
+aside.library-index-card,
+aside[aria-label="Table of Contents"] {
+  position: sticky;
+  top: 6rem;
+  background-color: #2A241F;
+  border: 1px solid rgba(140, 115, 53, 0.3);
+  padding: 1.5rem;
+  border-radius: 0.125rem;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.6);
+  font-family: var(--font-serif);
+  color: #d6d3d1;
+}
+
+aside a,
+.toc-link {
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #a8a29e;
+  transition: color 0.2s ease;
+  border-bottom: 1px solid rgba(68, 64, 60, 0.5);
+}
+
+aside a:last-child,
+.toc-link:last-child {
+  border-bottom: none;
+}
+
+aside a:hover,
+.toc-link:hover {
+  color: #CF9E4F;
+}
+
+/* Brass-Trimmed Engineering Blocks (Code & Math) */
+pre,
+code,
+.math-block {
+  background-color: #110E0C;
+  border: 1px solid rgba(140, 115, 53, 0.5);
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  border-radius: 0.125rem;
+  color: #059669;
+  font-family: monospace;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+/* Phase 6: Dual Layout Mount Animations */
+@keyframes slide-up-drawer {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pan-bookshelf {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-drawer {
+  animation: slide-up-drawer 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-pan {
+  animation: pan-bookshelf 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Leaflet Dark War Room Tile Styling */
+.leaflet-container {
+  background-color: #110E0C !important;
+}
+
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Vintage Paper Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar { width: 8px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #EAE1D0; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #C2B59B; border-radius: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #8C7335; }
+
+/* Phase 7.1: 3D Flip & Page Turn Animations */
+@keyframes folder-flip {
+  0% {
+    transform: perspective(1000px) rotateX(-10deg) translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes page-turn {
+  0% {
+    transform: perspective(1200px) rotateY(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: perspective(1200px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.animate-folder-flip {
+  animation: folder-flip 0.4s ease-out forwards;
+  transform-origin: top;
+}
+
+.animate-page-turn {
+  animation: page-turn 0.5s ease-out forwards;
+  transform-origin: left;
+}
+
+/* Hide scrollbar for the tabs */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Dossier Content Typography & Boundaries */
+.dossier-content {
+  @apply text-stone-300 font-sans leading-relaxed break-words;
+}
+.dossier-content h1, .dossier-content h2, .dossier-content h3 {
+  @apply font-mono font-bold text-[#E0D8C3] mt-10 mb-6 border-b border-[#44463C]/50 pb-2;
+}
+.dossier-content p {
+  @apply mb-6;
+}
+.dossier-content ul {
+  @apply list-disc pl-6 space-y-2 mb-6 marker:text-[#8C7335];
+}
+.dossier-content img {
+  @apply w-full h-auto max-w-full rounded-sm border border-[#44463C] my-8 shadow-[0_10px_20px_rgba(0,0,0,0.5)];
+}
+  /* Inline code (e.g., highlighting a tech stack word inside a paragraph) */
+  .dossier-content p code, .dossier-content li code {
+    @apply bg-[#1A1A17] text-[#CF9E4F] px-1.5 py-0.5 rounded-sm border border-[#44463C] text-sm font-mono shadow-sm;
+  }
+
+  /* Block code (Actual Terminal Commands / Code Snippets) */
+  .dossier-content pre {
+    @apply max-w-full overflow-x-auto bg-[#0D0C0B] p-5 pt-12 rounded-md border border-[#2A2621] my-8 text-emerald-500 font-mono text-sm shadow-[inset_0_2px_10px_rgba(0,0,0,0.5),_0_10px_30px_rgba(0,0,0,0.8)] relative;
+  }
+
+  /* Mac-style Terminal Header Dots */
+  .dossier-content pre::before {
+    content: '';
+    @apply absolute top-4 left-5 w-3 h-3 rounded-full bg-[#FF5F56] shadow-[18px_0_0_#FFBD2E,_36px_0_0_#27C93F];
+  }
+.dossier-content table {
+  @apply w-full max-w-full text-left border-collapse my-6 block overflow-x-auto;
+}
+.dossier-content th, .dossier-content td {
+  @apply border border-[#44463C] p-3;
+}
+.dossier-content a {
+  @apply text-[#CF9E4F] underline decoration-[#CF9E4F]/30 underline-offset-4 hover:decoration-[#CF9E4F] transition-all;
+}
+
+
+
+
 
 

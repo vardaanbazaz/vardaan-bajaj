@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SectionContainer from '../components/SectionContainer';
 import Card from '../components/Card';
 import { Database, ArrowUpRight, Award, Brain, BarChart3 } from 'lucide-react';
@@ -17,13 +18,12 @@ export default function FeaturedWork() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-7xl mx-auto">
         {/* Project 1: DataVista */}
-        <a 
-          href="/datavista.html" 
+        <Link 
+          to="/datavista" 
           className="block w-full group cursor-pointer h-full"
           aria-label="DataVista project case study manuscript"
         >
           <Card 
-            waxSeal={true}
             techStack={['React 18', 'TypeScript', 'IndexedDB', 'Dexie.js', 'Zustand', 'AST Engine', 'Google Gemini', 'OpenAI']}
             className="flex flex-col justify-between min-h-[340px] transition-all duration-300 h-full"
           >
@@ -49,14 +49,14 @@ export default function FeaturedWork() {
               <div className="space-y-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-1">
-                    <h3 className="font-serif text-2xl text-gold-200 font-medium tracking-wide group-hover:text-gold-100 transition-colors duration-300">
+                    <h3 className="font-serif text-2xl md:text-3xl text-[#CF9E4F] tracking-wide drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] font-medium group-hover:text-gold-200 transition-colors duration-300">
                       DataVista
                     </h3>
                     <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
                   </div>
                 </div>
 
-                <p className="text-sm text-parchment-400 font-light leading-relaxed">
+                <p className="text-stone-300 text-sm md:text-base leading-relaxed mt-2">
                   An offline-first, browser-native business intelligence suite that shifts heavy dataset queries to client-side storage, delivering sub-millisecond analytical slicing and zero backend operational latency.
                 </p>
               </div>
@@ -73,11 +73,11 @@ export default function FeaturedWork() {
               </span>
             </div>
           </Card>
-        </a>
+        </Link>
 
         {/* Project 2: NeuroInsight AI */}
-        <a 
-          href="/neuroinsight-ai.html" 
+        <Link 
+          to="/neuroinsight" 
           className="block w-full group cursor-pointer h-full"
           aria-label="NeuroInsight AI project case study manuscript"
         >
@@ -107,14 +107,14 @@ export default function FeaturedWork() {
               <div className="space-y-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-1">
-                    <h3 className="font-serif text-2xl text-gold-200 font-medium tracking-wide group-hover:text-gold-100 transition-colors duration-300">
+                    <h3 className="font-serif text-2xl md:text-3xl text-[#CF9E4F] tracking-wide drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] font-medium group-hover:text-gold-200 transition-colors duration-300">
                       NeuroInsight AI
                     </h3>
                     <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
                   </div>
                 </div>
 
-                <p className="text-sm text-parchment-400 font-light leading-relaxed">
+                <p className="text-stone-300 text-sm md:text-base leading-relaxed mt-2">
                   An applied machine learning system for non-invasive neurodegenerative risk detection, combining novel acoustic biomarker synthesis with interpretable gradient-boosted classification models.
                 </p>
               </div>
@@ -131,11 +131,11 @@ export default function FeaturedWork() {
               </span>
             </div>
           </Card>
-        </a>
+        </Link>
 
         {/* Project 3: Employee Attrition Analytics */}
-        <a 
-          href="/employee-attrition.html" 
+        <Link 
+          to="/attrition" 
           className="block w-full group cursor-pointer h-full"
           aria-label="Employee Attrition Analytics project case study manuscript"
         >
@@ -165,14 +165,14 @@ export default function FeaturedWork() {
               <div className="space-y-4">
                 <div className="space-y-1">
                   <div className="flex items-center gap-1">
-                    <h3 className="font-serif text-2xl text-gold-200 font-medium tracking-wide group-hover:text-gold-100 transition-colors duration-300">
+                    <h3 className="font-serif text-2xl md:text-3xl text-[#CF9E4F] tracking-wide drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] font-medium group-hover:text-gold-200 transition-colors duration-300">
                       Employee Attrition
                     </h3>
                     <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
                   </div>
                 </div>
 
-                <p className="text-sm text-parchment-400 font-light leading-relaxed">
+                <p className="text-stone-300 text-sm md:text-base leading-relaxed mt-2">
                   An enterprise workforce analytics framework that normalizes disjointed organizational records into relational SQL schemas to diagnose operational flight risks and inform retention policies.
                 </p>
               </div>
@@ -189,7 +189,7 @@ export default function FeaturedWork() {
               </span>
             </div>
           </Card>
-        </a>
+        </Link>
       </div>
     </SectionContainer>
   );
