@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useLayoutEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
 import { DeskLaboratoryLayout } from './ui/layouts/DeskLaboratoryLayout';
+import { SeoHead } from './ui/components/SeoHead';
 
 // Automatic scroll-to-top on route navigation
 const ScrollToTop: React.FC = () => {
@@ -15,15 +16,16 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+// Helper component to redirect singular publication alias route to canonical plural path
+const PublicationRedirect: React.FC = () => {
+  const { publicationId } = useParams<{ publicationId: string }>();
+  return <Navigate to={publicationId ? `/publications/${publicationId}` : '/publications'} replace />;
+};
+
 // React Router v7 lazy code-splitting for sub-routes
 const LaboratoryOverviewPage = lazy(() => import('./ui/pages/LaboratoryOverviewPage'));
 const DossiersPage = lazy(() => import('./ui/pages/DossiersPage'));
 const DossierDetailPage = lazy(() => import('./ui/pages/DossierDetailPage'));
-const DataVistaEntry = lazy(() => import('./pages/DataVistaEntry'));
-const NeuroInsightEntry = lazy(() => import('./pages/NeuroInsightEntry'));
-const AttritionEntry = lazy(() => import('./pages/AttritionEntry'));
-const KanbanLightEntry = lazy(() => import('./pages/KanbanLightEntry'));
-const CropDocEntry = lazy(() => import('./pages/CropDocEntry'));
 const ExperienceMapPage = lazy(() => import('./ui/pages/ExperienceMapPage'));
 const PublicationsPage = lazy(() => import('./ui/pages/PublicationsPage'));
 const PublicationDetailPage = lazy(() => import('./ui/pages/PublicationDetailPage'));
@@ -40,6 +42,7 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <SeoHead />
       <Routes>
         <Route path="/" element={<DeskLaboratoryLayout />}>
           <Route
@@ -66,47 +69,13 @@ export const App: React.FC = () => {
               </Suspense>
             }
           />
-          {/* Direct Manuscript Routes */}
-          <Route
-            path="datavista"
-            element={
-              <Suspense fallback={<PageFallback />}>
-                <DataVistaEntry />
-              </Suspense>
-            }
-          />
-          <Route
-            path="neuroinsight-ai"
-            element={
-              <Suspense fallback={<PageFallback />}>
-                <NeuroInsightEntry />
-              </Suspense>
-            }
-          />
-          <Route
-            path="employee-attrition"
-            element={
-              <Suspense fallback={<PageFallback />}>
-                <AttritionEntry />
-              </Suspense>
-            }
-          />
-          <Route
-            path="kanbanlight"
-            element={
-              <Suspense fallback={<PageFallback />}>
-                <KanbanLightEntry />
-              </Suspense>
-            }
-          />
-          <Route
-            path="cropdoc-ai"
-            element={
-              <Suspense fallback={<PageFallback />}>
-                <CropDocEntry />
-              </Suspense>
-            }
-          />
+          {/* Legacy Manuscript Aliases -> Redirect to Canonical /dossier/:dossierId */}
+          <Route path="datavista" element={<Navigate to="/dossier/datavista" replace />} />
+          <Route path="neuroinsight-ai" element={<Navigate to="/dossier/neuroinsight-ai" replace />} />
+          <Route path="employee-attrition" element={<Navigate to="/dossier/attrition" replace />} />
+          <Route path="kanbanlight" element={<Navigate to="/dossier/kanbanlight" replace />} />
+          <Route path="cropdoc-ai" element={<Navigate to="/dossier/cropdoc" replace />} />
+          
           <Route
             path="map"
             element={
@@ -131,14 +100,9 @@ export const App: React.FC = () => {
               </Suspense>
             }
           />
-          <Route
-            path="publication/:publicationId"
-            element={
-              <Suspense fallback={<PageFallback />}>
-                <PublicationDetailPage />
-              </Suspense>
-            }
-          />
+          {/* Legacy Publication Singular Route -> Redirect to Plural Canonical /publications/:publicationId */}
+          <Route path="publication/:publicationId" element={<PublicationRedirect />} />
+
           <Route
             path="telegram"
             element={

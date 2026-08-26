@@ -1,0 +1,5 @@
+# Robots.txt for Vardaan Bajaj Engineering Portfolio & Systems Lab
+User-agent: *
+Allow: /
+
+Sitemap: https://vardaan-bajaj.vercel.app/sitemap.xml
