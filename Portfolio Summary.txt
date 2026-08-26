@@ -1,0 +1,206 @@
+# Comprehensive Architecture & Structural Walkthrough Report
+**Project:** Vardaan Bajaj — Analog Architect Desk Laboratory & Digital Manuscript Archive  
+**Tech Stack:** React 19, Vite 6, TypeScript, Tailwind CSS v4, Three.js (WebGL), Leaflet, Framer Motion, React Router v7  
+**Date:** August 23, 2026  
+
+---
+
+## 🏛️ 1. Core Idea & Philosophy: "The Analog Architect Desk Laboratory"
+
+The portfolio departs fundamentally from typical developer portfolios (which often rely on electric neon dark-modes or generic SPAs). Instead, it adopts **"A Scholar's Digital Library & Analog Architect Desk Laboratory"**.
+
+### Conceptual Foundations
+* **Software as Craftsmanship**: The portfolio frames software engineering not as transient code assembly, but as structured, scholarly craftsmanship at the intersection of low-level systems engineering, signal processing, and applied AI.
+* **Tactile Atmosphere**: The user interface immerses the visitor in a warm, dark walnut desk environment under a banker's lamp, complete with paper grain texture, interactive celestial instruments (WebGL Astrolabe), mechanical telegraph ticker tapes, and cartographic experience maps.
+* **Dual-Layer Delivery Model**: It bridges an interactive, single-page application (SPA) with standalone static digital manuscripts (`*.html`), ensuring both rich interactive exploration and zero-JS instant loading (<4kB gzipped) for deep case studies.
+
+---
+
+## 🎨 2. Theme & Design System
+
+The visual design system is defined centrally in [`src/index.css`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/index.css) using Tailwind CSS v4 `@theme` directives.
+
+### Color Palette Tokens
+| Token Name | Hex Code | Visual Metaphor & Application |
+| :--- | :--- | :--- |
+| **Walnut 950** | `#100b08` | Primary background surface (dark wood grain desk) |
+| **Walnut 900 / 800** | `#18110c` / `#221812` | Container backgrounds, parchment card backings |
+| **Gold 200 / 300 / 500** | `#f4efe6` / `#eadfc9` / `#c5a880` | Gilded serif headers, brass rivets, monograms |
+| **Copper 500 / 400** | `#c2845b` / `#d4a37f` | Telegraph indicators, active timeline nodes, alidade rules |
+| **Forest 950 / 600** | `#0c120c` / `#445944` | Completed build badges, operational status tags |
+| **Parchment 300 / 400** | `#eadfc9` / `#fbf9f4` | Manuscript reading text, high-contrast typography |
+
+### Typography Hierarchy
+* **Gilded Serif (`font-serif`):** *Cormorant Garamond* — Used for section titles, monograms, quotes, and dossier names.
+* **Technical Monospace / Sans-Serif (`font-sans`, `font-mono`):** *DM Sans* / *Fira Code* / *Monospace* — Used for telemetry, status badges, code snippets, and metadata.
+
+### Atmospheric Physics Pipeline
+1. **Paper Noise Overlay ([`NoiseGrainOverlay.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/canvas/NoiseGrainOverlay.tsx)):** Fixed SVG noise texture rendered over the viewport with `mix-blend-overlay` to impart physical paper texture.
+2. **Banker's Lamp Backdrop Glow:** Soft radial CSS blurs (`blur-[120px]`) in warm copper (`#c2845b`) and gold (`#c5a880`) simulating localized study lamp lighting.
+3. **Interactive 3D Astrolabe ([`BrassAstrolabeCanvas.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/canvas/BrassAstrolabeCanvas.tsx)):** Three.js WebGL canvas rendering a rotating brass astrolabe with interactive mouse-drag control, metallic reflection shaders, and context loss recovery.
+4. **Mechanical Ticker Tape ([`MechanicalTickerTape.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/components/MechanicalTickerTape.tsx)):** React 19 `use()` async telemetry bar fetching GitHub repositories, followers, ETag caching status, and commit intensity matrices.
+
+---
+
+## 🏗️ 3. Architecture & Tech Stack
+
+```mermaid
+graph TD
+    A["User Request"] --> B["Vite 6 Dev / Rollup Multi-Entry Bundler"]
+    B --> C["React 19 SPA Entry<br/>(index.html → main.tsx → App.tsx)"]
+    B --> D["Static HTML Manuscripts<br/>(datavista.html, cropdoc-ai.html, etc.)"]
+
+    subgraph "React 19 SPA Architecture"
+        C --> E["DeskLaboratoryLayout.tsx"]
+        E --> F["AnalogNavigation.tsx"]
+        E --> G["MechanicalTickerTape.tsx (React 19 use() + Suspense)"]
+        E --> H["React Router v7 Pages"]
+
+        H --> I["LaboratoryOverviewPage.tsx"]
+        H --> J["DossierDetailPage.tsx"]
+        H --> K["ExperienceMapPage.tsx"]
+        H --> L["PublicationsPage.tsx"]
+        H --> M["TelegramPage.tsx"]
+
+        I --> N["BrassAstrolabeCanvas.tsx (Three.js WebGL)"]
+        I --> O["ParchmentDossierCard.tsx"]
+        I --> P["LeafletExperienceMap.tsx (preferCanvas: true)"]
+    end
+```
+
+### Core Architecture Highlights
+* **React 19 + Vite 6 + React Router v7**: Declarative layout hierarchy utilizing lazy-loaded sub-routes and React 19 features (`use()`, `<Suspense>`).
+* **Hybrid Multi-Page Application (MPA)**: Configured in [`vite.config.js`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/vite.config.js) to compile separate static `.html` entry points alongside the main SPA bundle.
+* **Three.js WebGL Engine**: Native WebGL scene graph with explicit geometry/material cleanup upon component unmount and automatic context restoration handling via [`webgl_context.ts`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/infrastructure/webgl_context.ts).
+* **Leaflet Cartography Engine**: Uses HTML5 Canvas rendering (`preferCanvas: true`) for markers and polyline paths, dynamic bounds calculation (`fitBounds`), and custom CSS/SVG marker iconography.
+
+---
+
+## 📁 4. Comprehensive File Placement & Directory Breakdown
+
+```text
+/home/vardaanbazaz/Git Projects/vardaan-bajaj/
+├── index.html                       # Main SPA HTML Shell & Font definitions
+├── datavista.html                   # Standalone Manuscript: DataVista BI Engine
+├── kanbanlight.html                 # Standalone Manuscript: Distributed Kanban Board
+├── cropdoc-ai.html                  # Standalone Manuscript: CropDoc AI CV Microservice
+├── neuroinsight-ai.html             # Standalone Manuscript: Vocal Biomarker Parkinson's Model
+├── employee-attrition.html          # Standalone Manuscript: Enterprise Attrition ML Suite
+├── v-surveillance.html              # Standalone Manuscript: IEEE Drone Surveillance Paper
+├── web-page-linker.html             # Standalone Manuscript: IEEE Hyperlink Synthesis Paper
+├── vite.config.js                   # Vite 6 + Tailwind v4 + Multi-page Rollup input mapping
+├── tsconfig.json                    # TypeScript strict mode & path resolution
+├── package.json                     # React 19, Three.js, Leaflet, Framer Motion dependencies
+├── eslint.config.js                 # ESLint v9 configuration
+├── api/
+│   └── github-commits.js            # Serverless API proxy for GitHub telemetry & ETag cache
+├── public/                          # Static assets (Resume, favicons, illustrations)
+└── src/
+    ├── main.tsx                     # React 19 entry renderer (`createRoot`)
+    ├── App.tsx                      # SPA Routing setup using React Router v7 & Suspense
+    ├── index.css                    # Tailwind CSS v4 `@theme` design tokens & custom utilities
+    ├── vite-env.d.ts                # Vite environment type definitions
+    ├── data/
+    │   └── manuscript_config.ts     # Master data file (Personal Info, Education, Dossiers, Publications, Experience)
+    ├── infrastructure/
+    │   ├── email_service.ts         # EmailJS dispatch handler for Telegram contact form
+    │   ├── github_api.ts            # GitHub ETag telemetry fetcher with fallback data
+    │   └── webgl_context.ts         # WebGL lifecycle event listeners for context loss recovery
+    └── ui/
+        ├── canvas/
+        │   ├── BrassAstrolabeCanvas.tsx # 3D Three.js interactive Brass Astrolabe component
+        │   └── NoiseGrainOverlay.tsx   # Fixed tactile SVG noise paper overlay
+        ├── components/
+        │   ├── AnalogNavigation.tsx     # Gilded header navigation bar with desk logo
+        │   ├── CRTScreenHeader.tsx      # CRT terminal header badge & live prompt indicator
+        │   ├── DispatchTelegramForm.tsx # Telegraphic contact form with EmailJS integration
+        │   ├── ErrorBoundary.tsx        # React error boundary fallback handler
+        │   ├── LeafletExperienceMap.tsx # Leaflet map component with preferCanvas & bounds fitting
+        │   ├── MechanicalTickerTape.tsx # React 19 use() async ticker tape component
+        │   └── ParchmentDossierCard.tsx # Reusable parchment-styled project card
+        ├── layouts/
+        │   └── DeskLaboratoryLayout.tsx # Main desk layout with Outlet & page transitions
+        └── pages/
+            ├── LaboratoryOverviewPage.tsx # Main dashboard with 3-tab dossier filters & mini-map
+            ├── DossierDetailPage.tsx     # Deep-dive specification view for engineering dossiers
+            ├── ExperienceMapPage.tsx      # Full-screen interactive Leaflet cartography map
+            ├── PublicationsPage.tsx      # IEEE papers catalog with BibTeX copy buttons
+            └── TelegramPage.tsx          # Telegraphic correspondence dispatch page
+```
+
+---
+
+## 🔬 5. Detailed Component & Module Anatomy
+
+### A. Core Layout & Atmospheric Components
+1. **[`DeskLaboratoryLayout.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/layouts/DeskLaboratoryLayout.tsx)**:  
+   Serves as the root UI wrapper. Renders `NoiseGrainOverlay`, `MechanicalTickerTape`, `AnalogNavigation`, the page `Outlet` wrapped in Framer Motion page transitions, and the desk footer.
+2. **[`AnalogNavigation.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/components/AnalogNavigation.tsx)**:  
+   Top desk header bar with gold borders and monogram branding. Displays navigation pills (`[OVERVIEW]`, `[MAP]`, `[PUBLICATIONS]`, `[DISPATCH TELEGRAM]`) with active route indicators.
+3. **[`CRTScreenHeader.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/components/CRTScreenHeader.tsx)**:  
+   Terminal badge displaying green CRT phosphor prompt: `> Authenticated: Vardaan Bajaj / Systems Engineer [SYS_OK]`.
+
+### B. Canvas & 3D WebGL Rendering
+1. **[`BrassAstrolabeCanvas.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/canvas/BrassAstrolabeCanvas.tsx)**:  
+   Constructs a 3D Brass Astrolabe using Three.js (Outer Torus ring, inner Rete grid, alidade sight rule, brass pivot pin, copper celestial spokes, ambient and directional lights). Handles drag interaction via DOM events and implements strict memory cleanup (`dispose()`) upon unmount.
+2. **[`NoiseGrainOverlay.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/canvas/NoiseGrainOverlay.tsx)**:  
+   Fixed viewport overlay containing an inline SVG noise filter with `mix-blend-overlay`.
+
+### C. Map & Telemetry Infrastructure
+1. **[`LeafletExperienceMap.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/components/LeafletExperienceMap.tsx)**:  
+   Renders CartoDB dark tile map with `preferCanvas: true`. Supports two modes:
+   * **Operational History Mode**: Maps DRDO (Hyderabad), AgryBin (Remote), Mahyco (Remote), and Univ. of Jammu with custom markers (On-Site Circle, Remote Square, Hybrid Dot Circle, Cluster Signal Wave) and connecting polylines.
+   * **Training Grounds Mode**: Pins IIIT-Naya Raipur academic base.
+   * **Bounds Fitting**: Automatically computes `latLngBounds` and invokes `fitBounds()` with button override.
+2. **[`MechanicalTickerTape.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/components/MechanicalTickerTape.tsx)**:  
+   Uses React 19 `use()` hook to unwrap `gitHubStatsPromise` declaratively under a `<Suspense>` boundary with error handling.
+
+### D. Pages & Views
+1. **[`LaboratoryOverviewPage.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/pages/LaboratoryOverviewPage.tsx)**:  
+   Overview view displaying the CRT header, 3D WebGL Astrolabe, Scholar Bio, Training Grounds card, 3-tab dossier view (`[FEATURE BUILDS (3)]`, `[ACTIVE BUILDS (2)]`, `[ALL BUILDS (5)]`), and mini cartographic map.
+2. **[`DossierDetailPage.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/pages/DossierDetailPage.tsx)**:  
+   Deep-dive page displaying benchmarks, technical specs, deep dive markdown breakdown, GitHub links, and live demo routes for each dossier.
+3. **[`ExperienceMapPage.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/pages/ExperienceMapPage.tsx)**:  
+   Full-screen cartographic map experience paired with an interactive timeline drawer of DRDO, AgryBin, Mahyco, and Jammu roles.
+4. **[`PublicationsPage.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/pages/PublicationsPage.tsx)**:  
+   IEEE publications catalog (*V-Surveillance* and *Web Page Linker*) with instant BibTeX citation copy functionality.
+5. **[`TelegramPage.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/pages/TelegramPage.tsx)**:  
+   Telegraphic dispatch contact form powered by EmailJS (`email_service.ts`).
+
+---
+
+## 📊 6. Engineering Dossiers & Data Structure
+
+Centralized in [`src/data/manuscript_config.ts`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/data/manuscript_config.ts):
+
+### Categorized Dossier Summary
+| Dossier ID | Title | Category | Status | Highlights & Benchmarks |
+| :--- | :--- | :--- | :--- | :--- |
+| `datavista` | **DataVista** | Feature Build | Completed | Recursive-descent AST parser, Dexie.js IndexedDB (<2ms AST, 250K rec/sec) |
+| `attrition` | **Enterprise Attrition** | Feature Build | Completed | Diagnostic ML model, SMOTE imbalance, SHAP attribution (AUC 0.942) |
+| `neuroinsight-ai` | **NeuroInsight-AI** | Feature Build | Completed | Vocal biomarker fPI formulation, acoustic speech analysis, LightGBM (96.2% acc) |
+| `cropdoc` | **CropDoc AI** | Active Build | In Development | PyTorch EfficientNet plant disease classification (14ms edge latency) |
+| `kanbanlight` | **KanbanLight** | Active Build | In Development | Zero-dependency optimistic task orchestration engine (<24KB gzipped) |
+
+---
+
+## ⚡ 7. Key Technical & Architectural Innovations
+
+1. **React 19 `use()` Data Fetching**:  
+   Replaces fragile `useEffect` state syncing in [`MechanicalTickerTape.tsx`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/ui/components/MechanicalTickerTape.tsx) with direct promise unwrapping under `<Suspense>`.
+2. **GPU Canvas Leaflet Optimization**:  
+   Enables `preferCanvas: true` in Leaflet options to render map paths and markers directly via HTML5 Canvas rather than thousands of DOM nodes.
+3. **WebGL Resource Protection**:  
+   Exposes WebGL context loss listeners ([`webgl_context.ts`](file:///home/vardaanbazaz/Git%20Projects/vardaan-bajaj/src/infrastructure/webgl_context.ts)) that gracefully downgrade 3D canvases to static fallback previews when GPU memory limits are reached.
+4. **Hybrid MPA + SPA Setup**:  
+   Rollup multi-entry configuration allows standalone HTML manuscripts (`/datavista.html`, etc.) to load instantly without JavaScript overhead, while the React SPA provides rich client navigation.
+
+---
+
+## 🏁 8. Build & Verification Status
+
+* **TypeScript Compilation**: Clean build (`npx tsc --noEmit` clean).
+* **Vite Rollup Build**: Successfully compiled (`npm run build`). Multi-page HTML manuscripts and React SPA chunks bundled cleanly under `/dist`.
+* **Linting & Code Quality**: Configured cleanly with ESLint v9 (`npm run lint`).
+
+
