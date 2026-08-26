@@ -128,15 +128,15 @@ export const TELEGRAM_CONFIG = {
 export const PERSONAL_INFO: PersonalInfo = {
   name: "Vardaan Bajaj",
   role: "Systems Engineer & Applied AI Researcher",
-  title: "Analog Architect Desk Laboratory",
+  title: "Engineering Portfolio & Systems Lab",
   tagline: "Building high-performance backend pipelines, neural segmentation architectures, and edge computer vision solutions.",
   githubUser: "vardaanbazaz",
   email: "vardaanbajaj2004@gmail.com",
   linkedin: "https://www.linkedin.com/in/vardaan-bajaj-a03605254/",
   location: "Jammu & Kashmir, India",
-  bio: "Systems Engineer & Applied AI Researcher specializing in digital signal processing, edge computer vision, and high-throughput browser-native analytical engines.",
-  authenticatedPrompt: "> Authenticated: Vardaan Bajaj / Systems Engineer [SYS_OK]",
-  telegramHeader: "DESK-TELEGRAPH-DISPATCH // SECURE TRANSMISSION CHANNEL",
+  bio: "Systems Engineer & Applied AI Researcher specializing in digital signal processing, edge computer vision, and high-throughput browser-native analytical engines. Focused on building high-performance backend pipelines, neural segmentation architectures, and edge computer vision solutions.",
+  authenticatedPrompt: "> Vardaan Bajaj — Systems Engineer & AI Researcher",
+  telegramHeader: "DIRECT MESSAGING & CONTACT CHANNEL",
 };
 
 export const EDUCATION_DATA: EducationRecord = {
@@ -150,7 +150,7 @@ export const EDUCATION_DATA: EducationRecord = {
   location: "Naya Raipur, Chhattisgarh, India",
   lat: 21.1610,
   lng: 81.7865,
-  deploymentType: "On-Site Base",
+  deploymentType: "On-site",
 };
 
 export const DOSSIER_LIST: ProjectDossier[] = [
@@ -540,8 +540,8 @@ export const MAP_DATA: MapDataSchema = {
       { title: 'Full-Stack Developer Apprentice', org: 'University of Jammu · Apprenticeship', type: 'On-site', year: 'Jun 2024 - Aug 2024 · 3 mos', bullets: ['Engineered core modules for an institutional Hostel Management System as part of a university engineering apprenticeship.', 'Developed responsive, reusable UI components using React.js and modern JavaScript.', 'Integrated client-side state management with backend REST APIs and relational database schemas for student records.', 'Streamlined administrative record-keeping and room allocation workflows across campus facilities.'] }
     ]},
     { id: 'raipur-exp', coords: [21.1610, 81.7850], type: 'remote-hub', roles: [
-      { title: 'Founding AI & Full-Stack Engineer Intern', org: 'AgryBin · Internship', type: 'Remote (From college in Naya Raipur)', year: 'May 2025 - Aug 2025 · 4 mos', bullets: ['Architected and built the complete agritech platform from scratch, spanning PyTorch computer vision pipelines, backend microservices, web interface, and Android application.', 'Processed 50K+ geospatial tiles across multi-spectral datasets, improving crop segmentation accuracy by 17% via dynamic augmentations.', 'Developed low-latency FastAPI inference microservices maintaining <120ms latency for live satellite analytics.', 'Built the cross-platform Android application and responsive web client to deliver live vegetation indices and spatial field insights to users.'] },
-      { title: 'Data Science & Frontend Intern', org: 'Mahyco · Internship', type: 'Remote (From college in Naya Raipur)', year: 'Aug 2024 - Dec 2024 · 5 mos', bullets: ['Constructed an automated crop yield estimation and tracking pipeline analyzing high-resolution aerial imagery.', 'Implemented YOLO-based object detection and spatial analytics across 20K+ drone images.', 'Designed responsive data visualization dashboards and automated Python report pipelines, boosting operational review efficiency by 23%.', 'Built modular frontend interfaces and collaborated on RESTful backend integrations for field analytics.'] }
+      { title: 'Founding AI & Full-Stack Engineer Intern', org: 'AgryBin · Internship', type: 'Remote (From Naya Raipur)', year: 'May 2025 - Aug 2025 · 4 mos', bullets: ['Architected and built the complete agritech platform from scratch, spanning PyTorch computer vision pipelines, backend microservices, web interface, and Android application.', 'Processed 50K+ geospatial tiles across multi-spectral datasets, improving crop segmentation accuracy by 17% via dynamic augmentations.', 'Developed low-latency FastAPI inference microservices maintaining <120ms latency for live satellite analytics.', 'Built the cross-platform Android application and responsive web client to deliver live vegetation indices and spatial field insights to users.'] },
+      { title: 'Data Science & Frontend Intern', org: 'Mahyco · Internship', type: 'Remote (From Naya Raipur)', year: 'Aug 2024 - Dec 2024 · 5 mos', bullets: ['Constructed an automated crop yield estimation and tracking pipeline analyzing high-resolution aerial imagery.', 'Implemented YOLO-based object detection and spatial analytics across 20K+ drone images.', 'Designed responsive data visualization dashboards and automated Python report pipelines, boosting operational review efficiency by 23%.', 'Built modular frontend interfaces and collaborated on RESTful backend integrations for field analytics.'] }
     ]},
     { id: 'hyderabad-exp', coords: [17.3850, 78.4867], type: 'hybrid', roles: [
       { title: 'Research And Development Intern', org: 'Defence Research and Development Organisation (DRDO) · Internship', type: 'Hybrid', year: 'Jan 2026 - Jun 2026 · 6 mos', bullets: ['Engineered a real-time digital signal processing (DSP) simulation framework in C to process dynamic time-series telemetry and high-frequency data communication links.', 'Implemented an in-place double-precision Radix-2 FFT and spectral peak-detection routine to analyze signal parameters from simulated up/down-chirp waveforms under AWGN.', 'Designed telemetry packet serialization over RS-422 sliding-window buffers and implemented a deterministic command-response serial bus Remote Terminal state machine.', 'Architectured a lock-free state machine utilizing C11 atomic variables, eliminating thread race conditions and execution jitter.'] }
@@ -549,7 +549,7 @@ export const MAP_DATA: MapDataSchema = {
   ],
   education: [
     { id: 'jammu-edu', coords: [32.7266, 74.8570], type: 'onsite', roles: [
-      { title: 'CBSE (Central Board of Secondary Education) — Class XII', org: 'G.D. Goenka Public School, Jammu', type: 'On-site', year: 'Attended from standard I - XII', bullets: ['Grade : 81.0%'] }
+      { title: 'CBSE (Central Board of Secondary Education) — Class XII', org: 'G.D. Goenka Public School, Jammu', type: 'On-site', year: 'Standard I - XII', bullets: ['Grade : 81.0%'] }
     ]},
     { id: 'raipur-edu', coords: [21.1610, 81.7850], type: 'onsite', roles: [
       { title: 'Bachelor of Technology - BTech, Data Science & Artificial Intelligence', org: 'IIIT-Naya Raipur', type: 'On-site', year: 'Nov 2022 – Jul 2026', bullets: ['Grade: 80.7% (CGPA: 7.57 / 10.0)', 'Focused on core computer science foundations, statistical learning, and systems engineering.', 'Core Coursework: Data Structures & Algorithms, Operating Systems, Database Management Systems, Computer Networks, Deep Learning, Distributed Systems, Linear Algebra & Probability.', 'Research Focus: Edge AI inference optimization, computer vision pipelines, and digital signal processing.'] }

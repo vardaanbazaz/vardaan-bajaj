@@ -53,8 +53,8 @@ export const DispatchTelegramForm: React.FC = () => {
         <h3 className="text-sm font-mono tracking-widest text-amber-400 uppercase">
           {PERSONAL_INFO.telegramHeader}
         </h3>
-        <p className="text-xs font-serif text-amber-200/70 italic mt-0.5">
-          Transmit a direct mechanical telegraph dispatch to Vardaan Bajaj.
+        <p className="text-xs font-sans text-amber-200/80 mt-0.5">
+          Send a direct message to Vardaan Bajaj.
         </p>
       </div>
 
@@ -74,26 +74,26 @@ export const DispatchTelegramForm: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-[11px] font-mono text-amber-400 uppercase mb-1">
-              DISPATCH SENDER NAME *
+              YOUR NAME *
             </label>
             <input
               type="text"
               value={senderName}
               onChange={(e) => setSenderName(e.target.value)}
-              placeholder="e.g. Dr. Arthur Pendelton"
+              placeholder="e.g. Alex Pendelton"
               className="w-full bg-[#18110c] border border-amber-900/60 rounded px-3 py-2 text-xs font-mono text-amber-100 placeholder-amber-900 focus:outline-none focus:border-amber-400"
               required
             />
           </div>
           <div>
             <label className="block text-[11px] font-mono text-amber-400 uppercase mb-1">
-              RETURN SENDER EMAIL *
+              YOUR EMAIL *
             </label>
             <input
               type="email"
               value={senderEmail}
               onChange={(e) => setSenderEmail(e.target.value)}
-              placeholder="e.g. arthur@laboratory.org"
+              placeholder="e.g. alex@company.org"
               className="w-full bg-[#18110c] border border-amber-900/60 rounded px-3 py-2 text-xs font-mono text-amber-100 placeholder-amber-900 focus:outline-none focus:border-amber-400"
               required
             />
@@ -102,41 +102,41 @@ export const DispatchTelegramForm: React.FC = () => {
 
         <div>
           <label className="block text-[11px] font-mono text-amber-400 uppercase mb-1">
-            TELEGRAPH SUBJECT
+            SUBJECT
           </label>
           <input
             type="text"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            placeholder="e.g. Neural Architecture Collaboration Inquiry"
+            placeholder="e.g. Engineering Collaboration Inquiry"
             className="w-full bg-[#18110c] border border-amber-900/60 rounded px-3 py-2 text-xs font-mono text-amber-100 placeholder-amber-900 focus:outline-none focus:border-amber-400"
           />
         </div>
 
         <div>
           <label className="block text-[11px] font-mono text-amber-400 uppercase mb-1">
-            TELEGRAM MESSAGE CONTENT *
+            MESSAGE CONTENT *
           </label>
           <textarea
             rows={4}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Write your dispatch here..."
+            placeholder="Write your message here..."
             className="w-full bg-[#18110c] border border-amber-900/60 rounded px-3 py-2 text-xs font-mono text-amber-100 placeholder-amber-900 focus:outline-none focus:border-amber-400 resize-none"
             required
           />
         </div>
 
-        <div className="flex items-center justify-between pt-2">
-          <div className="text-[10px] font-mono text-amber-600">
-            SECURITY: PUBLIC_KEY API ISOLATION
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+          <div className="text-[10px] font-mono text-amber-500/80 shrink-0">
+            [SECURE DIRECT MESSAGE]
           </div>
           <button
             type="submit"
             disabled={isTransmitting}
-            className="px-5 py-2.5 bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-600 hover:to-amber-800 text-amber-100 font-mono text-xs uppercase tracking-wider rounded border border-amber-500/50 shadow-lg disabled:opacity-50 transition-all cursor-pointer"
+            className="px-5 py-2.5 bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-600 hover:to-amber-800 text-amber-100 font-mono text-xs uppercase tracking-wider rounded border border-amber-500/50 shadow-lg disabled:opacity-50 transition-all cursor-pointer shrink-0"
           >
-            {isTransmitting ? '[TRANSMITTING TELEGRAM...]' : 'DISPATCH TELEGRAM'}
+            {isTransmitting ? '[SENDING MESSAGE...]' : 'SEND MESSAGE'}
           </button>
         </div>
       </form>

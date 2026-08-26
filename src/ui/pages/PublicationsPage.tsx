@@ -8,13 +8,13 @@ export const PublicationsPage: React.FC = () => {
       {/* Header Banner */}
       <header className="parchment-card backdrop-blur-md bg-[#18110c]/90 p-8 rounded-lg relative border border-[#8C7335]/30 shadow-lg">
         <span className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest block mb-2">
-          [SCHOLARLY DISCLOSURES // IEEE PROCEEDINGS]
+          [RESEARCH & IEEE PUBLICATIONS]
         </span>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
-          IEEE Research Publications & Academic Dossiers
+          IEEE Research Publications
         </h1>
         <p className="text-sm font-sans text-[#eadfc9]/90 max-w-2xl leading-relaxed">
-          Peer-reviewed proceedings, algorithmic synthesis papers, edge AI architectures, and graph topology formulations. Click any disclosure card below to view detailed specifications, benchmarks, ADRs, and BibTeX citations.
+          Peer-reviewed proceedings, algorithmic synthesis papers, edge AI architectures, and graph topology formulations. Click any publication card below to view detailed specifications, benchmarks, ADRs, and BibTeX citations.
         </p>
       </header>
 
@@ -24,7 +24,7 @@ export const PublicationsPage: React.FC = () => {
           <div className="flex items-center space-x-2 text-[#f4efe6]">
             <span className="w-2.5 h-2.5 rounded-full bg-[#34d399] shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
             <span className="font-bold uppercase tracking-wider">
-              PUBLISHED IEEE DISCLOSURES ({PUBLICATIONS.length})
+              PUBLISHED IEEE PAPERS ({PUBLICATIONS.length})
             </span>
           </div>
           <span className="text-[#9c9281]">

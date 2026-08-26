@@ -6,10 +6,10 @@ export const ExperienceMapPage: React.FC = () => {
     <div className="space-y-6 py-4">
       <div className="border-b border-[#8C7335]/30 pb-3">
         <h1 className="text-2xl font-serif font-bold text-[#f4efe6]">
-          Geographic Experience & Strategic Command Map
+          Work & Academic Experience Map
         </h1>
         <p className="text-xs font-mono text-[#CF9E4F]">
-          Interactive Dual-Tier Command Map & Research Cartography (`preferCanvas: true`)
+          Interactive map showing engineering roles, research internships, and academic locations
         </p>
       </div>
 

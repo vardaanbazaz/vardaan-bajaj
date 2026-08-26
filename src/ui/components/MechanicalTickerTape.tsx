@@ -32,13 +32,13 @@ const MechanicalTickerTapeContent: React.FC = () => {
       <div className="text-amber-700">|</div>
 
       <div className="flex items-center space-x-2">
-        <span className="font-bold text-amber-400">CACHE STATUS:</span>
+        <span className="font-bold text-amber-400">STATUS:</span>
         <span className={`px-1.5 py-0.5 rounded border text-[10px] ${
           stats.cached
             ? 'bg-amber-900/40 border-amber-600/50 text-amber-300'
             : 'bg-emerald-950/50 border-emerald-600/50 text-emerald-300'
         }`}>
-          {stats.cached ? 'ETAG_SWR_VALIDATED' : 'LIVE_HTTP_SYNC'}
+          {stats.cached ? 'CACHE_VALIDATED' : 'LIVE_SYNC'}
         </span>
       </div>
 
@@ -46,7 +46,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
 
       {/* Mechanical Matrix Grid Micro-Ticker */}
       <div className="flex items-center space-x-1 bg-black/40 px-2 py-1 rounded border border-amber-900/40">
-        <span className="text-[10px] text-amber-500 mr-1 font-bold">COMMIT_TELEMETRY:</span>
+        <span className="text-[10px] text-amber-500 mr-1 font-bold">COMMIT ACTIVITY:</span>
         <div className="flex items-center space-x-0.5">
           {stats.commitData.slice(0, 24).map((intensity, idx) => (
             <span
@@ -72,8 +72,8 @@ const MechanicalTickerTapeContent: React.FC = () => {
 
 const TickerFallback: React.FC = () => (
   <div className="flex items-center space-x-4 py-1.5 px-3 text-xs font-mono text-amber-500/70 animate-pulse">
-    <span>[MECHANICAL TICKER TAPE INITIALIZING...]</span>
-    <span>CONNECTING TO ETAG TELEMETRY ENGINE...</span>
+    <span>[LOADING SYSTEM STATS...]</span>
+    <span>SYNCING GITHUB TELEMETRY...</span>
   </div>
 );
 

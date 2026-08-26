@@ -19,13 +19,13 @@ export const DossiersPage: React.FC = () => {
       <header className="parchment-card backdrop-blur-md bg-[#18110c]/90 p-8 rounded-lg relative border border-[#c5a880]/30 shadow-lg">
         <div className="absolute top-4 right-4 brass-rivet" aria-hidden="true" />
         <span className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest block mb-2">
-          [ENGINEERING CATALOG // ARCHIVAL DOSSIERS]
+          [PROJECT CATALOG & DOSSIERS]
         </span>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
-          Dossier Archives
+          Engineering Projects & Dossiers
         </h1>
         <p className="text-sm font-sans text-[#eadfc9]/90 max-w-2xl leading-relaxed">
-          Comprehensive catalog of systems engineering builds, machine learning diagnostic pipelines, and real-time application frameworks. Filter by feature production builds or active development projects.
+          Catalog of systems engineering builds, machine learning diagnostic pipelines, and real-time application frameworks. Filter by feature production builds or active development projects.
         </p>
       </header>
 
@@ -35,15 +35,15 @@ export const DossiersPage: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#c5a880]/30 pb-4">
           <div>
             <h2 className="text-xl font-serif font-bold text-[#f4efe6]">
-              Engineering Dossiers & System Models
+              Selected Projects & Systems
             </h2>
             <p className="text-xs font-mono text-[#9c9281]">
-              Select list view: Feature Builds (3), Active Builds (2), All Builds (5)
+              Filter view: Feature Builds, Active Development, or All Projects
             </p>
           </div>
 
           {/* 3 View Tabs rendered in exact order: 1 (Feature), 2 (Active), 3 (All) */}
-          <div className="flex items-center space-x-2 bg-[#18110c] p-1.5 rounded-lg border border-[#c5a880]/30 shadow-inner">
+          <div className="flex items-center space-x-2 bg-[#18110c] p-1.5 rounded-lg border border-[#c5a880]/30 shadow-inner overflow-x-auto custom-scrollbar">
             <button
               onClick={() => setActiveTab('feature')}
               className={`px-3.5 py-1.5 text-xs font-mono rounded-md transition-all cursor-pointer ${
