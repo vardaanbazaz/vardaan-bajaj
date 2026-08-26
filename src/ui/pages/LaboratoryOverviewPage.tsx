@@ -99,22 +99,14 @@ export const LaboratoryOverviewPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Projects & Resume Teaser Buttons */}
-              <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+              {/* Projects Teaser Button */}
+              <div className="text-center pt-4">
                 <Link
                   to="/dossiers"
-                  className="inline-block px-5 py-2.5 border border-[#8C7335] text-[#CF9E4F] hover:bg-[#8C7335]/10 font-mono tracking-widest text-xs uppercase transition-colors rounded"
+                  className="inline-block px-6 py-2.5 border border-[#8C7335] text-[#CF9E4F] hover:bg-[#8C7335]/10 font-mono tracking-widest text-xs uppercase transition-colors rounded"
                 >
                   [VIEW ALL PROJECTS & DOSSIERS &rarr;]
                 </Link>
-                <a
-                  href={PERSONAL_INFO.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-5 py-2.5 bg-[#8C7335] text-[#f4efe6] hover:bg-[#8C7335]/90 border border-[#CF9E4F]/60 font-mono tracking-widest text-xs uppercase transition-colors rounded shadow font-bold"
-                >
-                  [VIEW RESUME / CV &rarr;]
-                </a>
               </div>
             </div>
           </div>

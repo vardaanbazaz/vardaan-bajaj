@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { PERSONAL_INFO } from '../../data/manuscript_config';
 
 export const AnalogNavigation: React.FC = () => {
   return (
@@ -85,16 +84,6 @@ export const AnalogNavigation: React.FC = () => {
           >
             [CONTACT]
           </NavLink>
-
-          {/* 6. RESUME */}
-          <a
-            href={PERSONAL_INFO.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 text-[#CF9E4F] border border-[#8C7335]/50 hover:border-[#CF9E4F] hover:bg-[#8C7335]/20 font-bold"
-          >
-            [RESUME / CV]
-          </a>
         </div>
       </div>
     </nav>
