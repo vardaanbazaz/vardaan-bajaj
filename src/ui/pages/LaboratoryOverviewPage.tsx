@@ -1,0 +1,167 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { CRTScreenHeader } from '../components/CRTScreenHeader';
+import { ENGINEERING_DOSSIERS, PERSONAL_INFO, EDUCATION_DATA, MAP_DATA } from '../../data/manuscript_config';
+
+export const LaboratoryOverviewPage: React.FC = () => {
+  return (
+    <div className="space-y-12 py-6">
+      {/* CRT Terminal Header */}
+      <section aria-label="Terminal status header">
+        <CRTScreenHeader />
+      </section>
+
+      {/* Main Grid: Scholar Bio & Scholar Portrait Bento */}
+      <section aria-label="Laboratory Overview and Scholar Portrait">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Left Column: Scholar Portrait Bento Container */}
+          <div className="lg:col-span-5 bg-walnut-900/80 backdrop-blur-md border border-[#8C7335]/20 rounded-lg overflow-hidden flex flex-col h-full min-h-[340px] relative group shadow-sm">
+            <div className="px-6 py-3 border-b border-[#8C7335]/20 flex justify-between items-center bg-walnut-950/60">
+              <span className="text-xs font-mono tracking-widest text-[#CF9E4F] uppercase">[ IDENTIFICATION // ARCHITECT ]</span>
+            </div>
+            <div className="relative flex-grow min-h-[300px]">
+              <img 
+                src="/avatar.jpg" 
+                alt="Scholar Portrait" 
+                className="w-full h-full object-cover grayscale sepia-[0.3] hover:grayscale-0 hover:sepia-0 transition-all duration-700" 
+              />
+            </div>
+          </div>
+
+          {/* Right Column: Scholar Bio & Credentials */}
+          <div className="lg:col-span-7 bg-walnut-900/80 backdrop-blur-md p-8 rounded-lg flex flex-col justify-between relative border border-[#8C7335]/20 shadow-sm">
+            <div>
+              <div className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest mb-2">
+                [SYSTEM_STATEMENT // ARCHITECTURAL PHILOSOPHY]
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#f4efe6] mb-3">
+                {PERSONAL_INFO.title}
+              </h2>
+
+              <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-4">
+                {PERSONAL_INFO.bio}
+              </p>
+
+              <p className="text-xs font-sans text-[#d4a37f] leading-relaxed mb-6 italic border-l-2 border-[#8C7335] pl-4 py-1.5 bg-[#221812]/50 rounded-r">
+                "{PERSONAL_INFO.tagline}"
+              </p>
+
+              {/* Academic Training Grounds Credentials Card */}
+              <div className="bg-[#100b08]/80 p-4 rounded-lg border border-[#8C7335]/20 mb-6">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-mono font-bold text-[#CF9E4F] uppercase tracking-wider">
+                    [TRAINING GROUNDS] &bull; {EDUCATION_DATA.institution}
+                  </span>
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#2a1810] text-[#d4a37f] border border-[#5c3218]">
+                    {EDUCATION_DATA.period}
+                  </span>
+                </div>
+                <div className="text-xs font-mono text-[#eadfc9] mb-1.5">
+                  {EDUCATION_DATA.degree}
+                </div>
+                <div className="flex items-center space-x-4 text-xs font-mono text-[#9c9281] mb-3">
+                  <span>{EDUCATION_DATA.grade}</span>
+                  <span>CGPA: <strong className="text-[#34d399]">{EDUCATION_DATA.cgpa}</strong></span>
+                </div>
+                
+                {/* Coursework Tags */}
+                <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                  <span className="text-[10px] font-mono text-[#d4a37f] mr-1">COURSEWORK:</span>
+                  {EDUCATION_DATA.coursework.map((course, idx) => (
+                    <span key={idx} className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/40 text-[#d4a37f] border border-[#8C7335]/20">
+                      {course}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="text-[10px] font-mono text-[#9c9281] italic pt-1 border-t border-[#8C7335]/15">
+                  {EDUCATION_DATA.focus}
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Metrics & Routing Teaser */}
+            <div>
+              <div className="grid grid-cols-3 gap-4 border-t border-[#8C7335]/20 pt-4">
+                <div className="bg-[#100b08]/50 p-3 rounded-lg border border-[#8C7335]/20 text-center">
+                  <span className="block text-2xl font-serif font-bold text-[#CF9E4F]">
+                    {ENGINEERING_DOSSIERS.featureBuilds.length}
+                  </span>
+                  <span className="text-[10px] font-mono text-[#9c9281]">FEATURE BUILDS</span>
+                </div>
+                <div className="bg-[#100b08]/50 p-3 rounded-lg border border-[#8C7335]/20 text-center">
+                  <span className="block text-2xl font-serif font-bold text-[#CF9E4F]">
+                    {ENGINEERING_DOSSIERS.activeBuilds.length}
+                  </span>
+                  <span className="text-[10px] font-mono text-[#9c9281]">ACTIVE BUILDS</span>
+                </div>
+                <div className="bg-[#100b08]/50 p-3 rounded-lg border border-[#8C7335]/20 text-center">
+                  <span className="block text-2xl font-serif font-bold text-[#CF9E4F]">
+                    {ENGINEERING_DOSSIERS.allBuilds.length}
+                  </span>
+                  <span className="text-[10px] font-mono text-[#9c9281]">ALL BUILDS</span>
+                </div>
+              </div>
+
+              {/* Projects Teaser Button */}
+              <div className="text-center pt-4">
+                <Link
+                  to="/dossiers"
+                  className="inline-block px-6 py-2.5 border border-[#8C7335] text-[#CF9E4F] hover:bg-[#8C7335]/10 font-mono tracking-widest text-xs uppercase transition-colors rounded"
+                >
+                  [ACCESS FULL DOSSIER ARCHIVES &rarr;]
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STRATEGIC DEPLOYMENTS MAP TEASER */}
+      <section aria-label="Strategic Deployments Teaser">
+        <div className="bg-walnut-900/80 backdrop-blur-md p-8 rounded-lg border border-[#8C7335]/20 shadow-sm relative">
+          <div className="border-b border-[#8C7335]/20 pb-3 mb-6">
+            <span className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest block mb-1">
+              [CARTOGRAPHIC TEASER // OPERATIONAL HISTORY]
+            </span>
+            <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#f4efe6] uppercase tracking-wide">
+              Strategic Deployments & Research Bases
+            </h2>
+            <p className="text-xs font-mono text-[#9c9281]">
+              Operational base stations and engineering facilities across India
+            </p>
+          </div>
+
+          {/* Monospace List of Base Stations */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            {MAP_DATA.experience.flatMap((node) => node.roles).map((role, idx) => (
+              <div key={idx} className="bg-[#100b08]/70 p-4 rounded-lg border border-[#8C7335]/20 font-mono text-xs text-[#eadfc9]">
+                <div className="flex items-center justify-between text-[#CF9E4F] font-bold mb-1">
+                  <span>[{role.org.toUpperCase()}]</span>
+                  <span className="text-[10px] text-[#d4a37f] px-2 py-0.5 rounded bg-[#2a1810] border border-[#5c3218]">
+                    {role.type}
+                  </span>
+                </div>
+                <div className="text-[#f4efe6] mb-1 font-serif">{role.title}</div>
+                <div className="text-[11px] text-[#9c9281]">{role.year}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Map Teaser Button */}
+          <div className="text-center pt-2 border-t border-[#8C7335]/20">
+            <Link
+              to="/map"
+              className="mt-2 inline-block px-6 py-2.5 border border-[#8C7335] text-[#CF9E4F] hover:bg-[#8C7335]/10 font-mono tracking-widest text-xs uppercase transition-colors rounded"
+            >
+              [OPEN STRATEGIC COMMAND MAP &rarr;]
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default LaboratoryOverviewPage;
+

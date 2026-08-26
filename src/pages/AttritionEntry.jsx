@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-export const CropDocEntry = () => {
+export const AttritionEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
-  const githubUrl = "https://github.com/vardaanbazaz/cropdoc-ai";
+  const githubUrl = "https://github.com/vardaanbazaz/employee-attrition-analysis";
 
   const tocItems = [
-    { id: 'abstract', label: '1. Abstract & Agricultural Vision' },
-    { id: 'efficientnet', label: '2. EfficientNet-B0 Edge Model' },
-    { id: 'quantization', label: '3. INT8 Quantization & ONNX' },
+    { id: 'abstract', label: '1. Abstract & HR Vision' },
+    { id: 'imbalance', label: '2. SMOTE Imbalance Resolution' },
+    { id: 'shap-attribution', label: '3. SHAP Feature Attribution' },
     { id: 'adrs', label: '4. Architectural Decision Records' },
-    { id: 'inference-code', label: '5. ONNX Inference Engine' },
-    { id: 'benchmarks', label: '6. Edge Latency Benchmarks' },
+    { id: 'pipeline-code', label: '5. Pipeline Implementation' },
+    { id: 'benchmarks', label: '6. AUC-ROC & Factor Metrics' },
   ];
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const CropDocEntry = () => {
           &larr; Back to Dossier Archives
         </Link>
         <span className="text-xs font-mono text-[#c5a880]/80 uppercase tracking-widest">
-          [MANUSCRIPT DOSSIER-CD-9910]
+          [MANUSCRIPT DOSSIER-EA-5120]
         </span>
       </nav>
 
@@ -72,8 +72,8 @@ export const CropDocEntry = () => {
           </nav>
 
           <div className="pt-4 border-t border-[#c5a880]/20 text-[11px] font-mono text-[#9c9281] space-y-2">
-            <div>F1-Score: <span className="text-[#34d399]">98.4%</span></div>
-            <div>Latency: <span className="text-[#eadfc9]">14ms / Frame</span></div>
+            <div>AUC-ROC: <span className="text-[#34d399]">0.942</span></div>
+            <div>Imbalance: <span className="text-[#eadfc9]">SMOTE Balanced</span></div>
           </div>
         </aside>
 
@@ -84,21 +84,21 @@ export const CropDocEntry = () => {
             <div className="absolute top-4 right-4 brass-rivet" aria-hidden="true" />
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
               <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#2a1810] text-[#d4a37f] border border-[#5c3218]">
-                CATEGORY: Active Build
+                CATEGORY: Feature Build
               </span>
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#2a1810] text-[#d4a37f] border border-[#5c3218]">
-                STATUS: In Development
+              <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#141c14] text-[#34d399] border border-[#304030]">
+                STATUS: Completed
               </span>
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
-              CropDoc AI Pathogen Diagnostic
+              Enterprise Employee Attrition Intelligence
             </h1>
             <p className="text-sm font-mono text-[#d4a37f] mb-4 italic">
-              Edge Computer Vision Pathology Engine & Quantized Inference
+              Predictive Machine Learning Diagnostic Suite & Retention Analytics
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
-              An automated agricultural pathology tool delivering immediate plant disease identification to field devices, supporting offline operational resilience for remote farming communities.
+              An enterprise intelligence platform isolating key turnover drivers across multi-departmental organizations using balanced machine learning classifiers and Shapley feature attribution.
             </p>
 
             {/* Prominent Brass GitHub Button */}
@@ -115,7 +115,7 @@ export const CropDocEntry = () => {
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-[#c5a880]/20">
-              {["PyTorch", "EfficientNet", "OpenCV", "FastAPI", "React 19", "Docker", "ONNX Runtime", "Sub-15ms Edge Latency"].map((tech, i) => (
+              {["Python", "Scikit-Learn", "XGBoost", "Random Forest", "SMOTE Oversampling", "SHAP Values", "Relational SQL", "Pandas"].map((tech, i) => (
                 <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-[#d4a37f] bg-[#2a1810]/60 border border-[#5c3218]">
                   {tech}
                 </span>
@@ -126,43 +126,46 @@ export const CropDocEntry = () => {
           {/* Section 1: Abstract */}
           <section id="abstract" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              1. Abstract & Agricultural Scope
+              1. Abstract & Executive HR Scope
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Crop disease outbreaks devastate agricultural yields and smallholder livelihoods. In remote rural sectors, access to certified agronomists is extremely limited, and cellular network connectivity is highly unreliable. Sending raw high-resolution foliage photos to cloud APIs introduces latency and total failure offline.
+              Unplanned employee turnover inflicts substantial replacement costs, loss of institutional knowledge, and operational friction within enterprise organizations. Traditional HR exit interviews reflect retrospective sentiments after resignation decisions are already finalized.
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              CropDoc AI solves this critical bottleneck by deploying a lightweight, quantized EfficientNet vision model directly onto low-cost field devices (e.g. Raspberry Pi or field handhelds), diagnosing 38 distinct crop pathologies in under 15ms.
+              This project constructs a proactive ML diagnostic pipeline that evaluates multi-dimensional workforce telemetry (overtime hours, compensation ratios, promotion history, manager tenure) to score individual flight risks and isolate structural retention levers for executive decision-makers.
             </p>
           </section>
 
-          {/* Section 2: EfficientNet-B0 Edge Model */}
-          <section id="efficientnet" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 2: SMOTE Imbalance Resolution */}
+          <section id="imbalance" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              2. EfficientNet-B0 Edge Architecture
+              2. Class Imbalance Resolution via SMOTE
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              EfficientNet-B0 utilizes compound scaling to balance network depth, width, and image resolution simultaneously:
+              Enterprise HR datasets present severe class imbalance: positive attrition cases typically comprise under 15% of records. Standard classifiers trained on unadjusted data collapse into majority-class trivial predictors.
+            </p>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              Synthetic Minority Over-sampling Technique (SMOTE) synthesizes new minority instances along k-nearest neighbor feature vectors:
             </p>
 
             <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-6 rounded-lg text-center font-mono text-sm text-[#f4efe6] my-4 shadow-inner">
-              <div className="text-[10px] text-[#c5a880] mb-2 uppercase tracking-widest">[COMPOUND SCALING FORMULA]</div>
+              <div className="text-[10px] text-[#c5a880] mb-2 uppercase tracking-widest">[SMOTE SYNTHESIS FORMULA]</div>
               <div className="py-2">
-                {`Depth: d = α^φ,  Width: w = β^φ,  Resolution: r = γ^φ,  s.t. α·β^2·γ^2 ≈ 2`}
+                {`x_new = x_i + λ × (x_knn - x_i),  where λ ~ Uniform(0, 1)`}
               </div>
               <div className="text-xs text-[#9c9281] mt-2">
-                Where φ represents the resource scaling coefficient tailored to targeted edge hardware.
+                Where x_i is a minority sample, x_knn is a random k-nearest neighbor, and λ dictates vector interpolation offset.
               </div>
             </div>
           </section>
 
-          {/* Section 3: INT8 Quantization & ONNX */}
-          <section id="quantization" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 3: SHAP Feature Attribution */}
+          <section id="shap-attribution" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              3. INT8 Quantization & ONNX Runtime
+              3. SHAP Additive Feature Attribution
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Model weights are converted from 32-bit floating-point (FP32) into 8-bit integers (INT8), shrinking model binary size by 75% while leveraging vector SIMD execution instructions on low-cost ARM CPUs.
+              To provide actionable insight rather than opaque probability scores, the pipeline integrates SHAP (Shapley Additive exPlanations) values to calculate exact feature contributions per employee profile.
             </p>
           </section>
 
@@ -179,12 +182,12 @@ export const CropDocEntry = () => {
                 <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
               </div>
               <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                EfficientNet-B0 Backbone Selection for Edge Vision
+                SMOTE Synthetic Oversampling for Severe Class Imbalance
               </h3>
               <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> Agricultural field devices have strict power limits but require high accuracy across 38 distinct plant disease classes.</p>
-                <p><strong>Decision:</strong> Select EfficientNet-B0 with compound depth/width scaling fine-tuned on foliar pathology datasets.</p>
-                <p><strong>Consequences:</strong> Achieved 98.4% classification F1-score with under 5 million total trainable parameters.</p>
+                <p><strong>Context:</strong> Enterprise HR datasets feature severe class imbalance (~15% positive attrition rate), causing unadjusted models to overfit heavily toward predicting retention.</p>
+                <p><strong>Decision:</strong> Apply Synthetic Minority Over-sampling Technique (SMOTE) to interpolate new synthetic minority instances in feature space prior to model fitting.</p>
+                <p><strong>Consequences:</strong> Elevated classifier AUC-ROC score to 0.942 while eliminating majority-class prediction bias.</p>
               </div>
             </div>
 
@@ -195,82 +198,85 @@ export const CropDocEntry = () => {
                 <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
               </div>
               <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                INT8 Quantization & ONNX Runtime CPU Deployment
+                SHAP Additive Attribution for Executive Leadership Transparency
               </h3>
               <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> Field units operate on ARM single-board computers lacking discrete GPUs.</p>
-                <p><strong>Decision:</strong> Export PyTorch model weights to ONNX format and apply INT8 dynamic quantization.</p>
-                <p><strong>Consequences:</strong> Reduced binary file footprint by 75% while achieving 14ms per-frame CPU inference throughput.</p>
+                <p><strong>Context:</strong> HR leadership cannot act on black-box risk probabilities without clear, auditable factor attributions (e.g. overtime hours vs compensation band).</p>
+                <p><strong>Decision:</strong> Integrate SHAP tree explainer algorithms into inference workflows to output directional factor rank-orderings.</p>
+                <p><strong>Consequences:</strong> Provided executive dashboards with exact variable impact breakdowns for targeted retention policies.</p>
               </div>
             </div>
           </section>
 
-          {/* Section 5: ONNX Inference Engine */}
-          <section id="inference-code" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 5: Pipeline Implementation */}
+          <section id="pipeline-code" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              5. ONNX Inference Engine Implementation
+              5. Pipeline Implementation Code
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Below is an excerpt demonstrating ONNX Runtime inference execution:
+              Below is an excerpt demonstrating the SMOTE resampling and XGBoost model fitting procedure:
             </p>
 
             <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-5 rounded-lg font-mono text-xs text-[#eadfc9] my-4 shadow-inner overflow-x-auto">
               <div className="flex justify-between text-[10px] text-[#c5a880] mb-2 border-b border-[#c5a880]/20 pb-1">
-                <span>[EDGE_INFERENCE.PY]</span>
-                <span>ONNX RUNTIME INT8</span>
+                <span>[ATTRITION_MODEL.PY]</span>
+                <span>SMOTE & XGBOOST PIPELINE</span>
               </div>
-              <pre>{`import onnxruntime as ort
-import numpy as np
-import cv2
+              <pre>{`from imblearn.over_sampling import SMOTE
+from xgboost import XGBClassifier
+from sklearn.metrics import roc_auc_score
 
-def run_cropdoc_inference(image_path: str, model_path: str = "cropdoc_int8.onnx"):
-    # 1. Image Preprocessing
-    img = cv2.imread(image_path)
-    img = cv2.resize(img, (224, 224))
-    img = img.astype(np.float32) / 255.0
-    img = np.transpose(img, (2, 0, 1))
-    input_tensor = np.expand_dims(img, axis=0)
-
-    # 2. Execute ONNX Runtime Session
-    session = ort.InferenceSession(model_path, providers=['CPUExecutionProvider'])
-    input_name = session.get_inputs()[0].name
-    outputs = session.run(None, {input_name: input_tensor})
-
-    # 3. Softmax & Class Extraction
-    probabilities = np.exp(outputs[0]) / np.sum(np.exp(outputs[0]))
-    predicted_class = np.argmax(probabilities)
-    return predicted_class, float(probabilities[0][predicted_class])`}</pre>
+def build_attrition_pipeline(X_train, y_train, X_test, y_test):
+    # 1. Apply SMOTE to balance minority class
+    smote = SMOTE(random_state=42, sampling_strategy=0.8)
+    X_res, y_res = smote.fit_resample(X_train, y_train)
+    
+    # 2. Train XGBoost classifier
+    model = XGBClassifier(
+        n_estimators=200,
+        max_depth=5,
+        learning_rate=0.03,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        eval_metric='auc'
+    )
+    model.fit(X_res, y_res)
+    
+    # 3. Evaluate AUC-ROC performance
+    preds = model.predict_proba(X_test)[:, 1]
+    auc_score = roc_auc_score(y_test, preds)
+    return model, auc_score`}</pre>
             </div>
           </section>
 
           {/* Section 6: Benchmarks */}
           <section id="benchmarks" className="parchment-card p-8 rounded-lg space-y-6">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              6. Edge Latency Benchmarks
+              6. AUC-ROC & Factor Metrics
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  98.4%
+                  0.942
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Classification F1-Score
+                  AUC-ROC Score
                 </span>
               </div>
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  14 ms
+                  SMOTE
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  CPU Frame Latency
+                  Class Imbalance Correction
                 </span>
               </div>
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  38
+                  100%
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Pathogen Classes
+                  SHAP Interpretability
                 </span>
               </div>
             </div>
@@ -281,4 +287,4 @@ def run_cropdoc_inference(image_path: str, model_path: str = "cropdoc_int8.onnx"
   );
 };
 
-export default CropDocEntry;
+export default AttritionEntry;
