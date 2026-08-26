@@ -3,10 +3,10 @@ import React from 'react';
 export const NoiseGrainOverlay: React.FC = () => {
   return (
     <div
-      className="noise-isolation-container fixed inset-0 z-40 opacity-25 pointer-events-none"
+      className="noise-isolation-container fixed inset-0 w-full h-full z-40 opacity-25 pointer-events-none overflow-hidden"
       style={{ isolation: 'isolate' }}
     >
-      <svg className="w-full h-full">
+      <svg className="w-full h-full" preserveAspectRatio="none">
         <filter id="analog-desk-noise">
           <feTurbulence
             type="fractalNoise"

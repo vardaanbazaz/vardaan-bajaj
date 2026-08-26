@@ -106,6 +106,13 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
       }).addTo(map);
     }
 
+    const handleResize = () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize();
+      }
+    };
+    window.addEventListener('resize', handleResize);
+
     setTimeout(() => {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.invalidateSize();
@@ -113,6 +120,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
     }, 200);
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
@@ -126,7 +134,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
         {/* MAP CANVAS */}
         <div ref={containerRef} className="w-full h-full min-h-[500px]" />
 
-        {/* BRASS TOGGLE SWITCH AT TOP CENTER */}
+        {/* TOGGLE SWITCH AT TOP CENTER */}
         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] flex items-center space-x-1 bg-black/90 p-1.5 rounded-lg border border-[#8C7335]/60 shadow-xl">
           <button
             onClick={() => setActiveTab('experience')}
@@ -136,7 +144,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
                 : 'text-[#d4a37f] hover:text-[#f4efe6]'
             }`}
           >
-            [OPERATIONAL HISTORY]
+            [WORK EXPERIENCE]
           </button>
           <button
             onClick={() => setActiveTab('education')}
@@ -146,38 +154,38 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
                 : 'text-[#d4a37f] hover:text-[#f4efe6]'
             }`}
           >
-            [TRAINING GROUNDS]
+            [EDUCATION]
           </button>
         </div>
 
         {/* BOTTOM LEGEND OVERLAY */}
         <div className="absolute bottom-4 left-4 z-[1000] bg-black/85 p-3 rounded-lg border border-[#8C7335]/30 text-[10px] font-mono text-[#eadfc9] space-y-1.5">
           <div className="font-bold text-[#CF9E4F] mb-1 border-b border-[#8C7335]/20 pb-0.5 uppercase tracking-wider">
-            MARKER ICONOGRAPHY:
+            LOCATION TYPES:
           </div>
           <div className="flex items-center space-x-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#8C7335] border border-[#CF9E4F] inline-block"></span>
-            <span>On-Site Base (Solid Brass Dot)</span>
+            <span>On-site Role</span>
           </div>
           <div className="flex items-center space-x-2">
             <span className="w-2.5 h-2.5 rounded-full border border-[#CF9E4F] bg-[#18110c] flex items-center justify-center">
               <span className="w-1 h-1 bg-[#8C7335] rounded-full"></span>
             </span>
-            <span>Hybrid Facility (Dual-Ring Circle)</span>
+            <span>Hybrid Role</span>
           </div>
           <div className="flex items-center space-x-2">
             <span className="w-2.5 h-2.5 rounded-full bg-[#CF9E4F] animate-ping inline-block"></span>
-            <span>Remote Hub (Pulsing Signal Wave)</span>
+            <span>Remote Role</span>
           </div>
         </div>
 
         {/* TELEMETRY BADGE */}
         <div className="absolute top-4 right-4 z-[1000] bg-black/80 px-3 py-1 rounded border border-[#8C7335]/30 text-[10px] font-mono text-[#CF9E4F]">
-          [COMMAND_GRID: CENTER (25.0, 78.5) // ZOOM 4.2]
+          [MAP CENTER: INDIA (25.0, 78.5)]
         </div>
       </div>
 
-      {/* ACTIVE TELEGRAM MODAL OVERLAY ON MARKER CLICK (PORTALED TO BODY) */}
+      {/* ACTIVE MODAL OVERLAY ON MARKER CLICK (PORTALED TO BODY) */}
       {activeTelegram && createPortal(
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pointer-events-auto">
           {/* 1. Rigid Outer Paper Container */}
@@ -193,8 +201,8 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
             {/* 3. Inner Scrolling Content */}
             <div className="p-8 md:p-12 overflow-y-auto custom-paper-scrollbar flex-grow relative">
               <p className="font-mono text-[10px] md:text-xs text-[#8C7335] uppercase tracking-widest mb-8">
-                [STRATEGIC TELEGRAM DISPATCH // {activeTelegram.type.toUpperCase()}]<br/>
-                NODAL LOCATION: [{activeTelegram.coords[0]}, {activeTelegram.coords[1]}]
+                [ROLE DETAILS // {activeTelegram.type.toUpperCase()}]<br/>
+                LOCATION: [{activeTelegram.coords[0]}, {activeTelegram.coords[1]}]
               </p>
 
               {activeTelegram.roles.map((role: MapRole, i: number) => (
