@@ -1,75 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import GrainOverlay from '../components/GrainOverlay';
 
-export default function DossierLayout({ sections, children }) {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const handleMouseMove = (e) => {
-    document.documentElement.style.setProperty('--x', e.clientX + 'px');
-    document.documentElement.style.setProperty('--y', e.clientY + 'px');
-  };
-
+export const DossierLayout = ({ children, dossierCode, tocItems }) => {
   return (
-    <main 
-      className="min-h-screen bg-[#27221E] text-stone-300 font-mono animate-fade-in relative overflow-x-hidden py-12 px-4 md:px-8 selection:bg-[#44463C] selection:text-white"
-      onMouseMove={handleMouseMove}
-    >
-      {/* Desk Texture Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-50 mix-blend-overlay opacity-15" 
-        style={{ 
-          backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" 
-        }} 
-        aria-hidden="true" 
-      />
-
-      <GrainOverlay />
-
-      {/* Navigation back to Desk */}
-      <nav className="max-w-5xl mx-auto mb-8 relative z-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+      <nav aria-label="Manuscript navigation">
         <Link
-          to="/"
-          className="text-[#8C7335] hover:text-[#CF9E4F] font-serif italic inline-flex items-center gap-2 transition-colors duration-200"
+          to="/dossiers"
+          className="text-[#8C7335] hover:text-[#CF9E4F] font-mono text-xs uppercase tracking-widest inline-block transition-colors"
         >
-          ← Back to Portfolio Desk
+          &larr; Back to Dossier Archives
         </Link>
       </nav>
 
-      {/* Main Dossier Container */}
-      <div className="max-w-5xl mx-auto relative z-10 animate-drawer">
-        {/* Top Physical Manila Folder Tabs */}
-        {sections && sections.length > 0 && (
-          <div className="flex items-end px-4 md:px-8 -mb-[2px] z-20 relative overflow-x-auto hide-scrollbar whitespace-nowrap snap-x gap-1">
-            {sections.map((sec, index) => (
-              <button
-                key={sec.id || index}
-                onClick={() => setActiveTab(index)}
-                className={`flex-shrink-0 snap-start px-6 py-3 text-sm font-mono font-bold uppercase tracking-widest cursor-pointer border-t-2 border-l-2 border-r-2 rounded-t-lg transition-all ${
-                  activeTab === index 
-                    ? 'bg-[#2D2E27] border-[#44463C] border-b-transparent text-[#E0D8C3] z-30 pt-4' 
-                    : 'bg-[#1E1F1A] border-[#2D2E27] border-b-[#44463C] text-stone-500 hover:bg-[#252620]'
-                }`}
-              >
-                📁 {sec.title}
-              </button>
-            ))}
+      <div className="flex flex-col lg:flex-row gap-8 items-start">
+        {/* Left side sticky Table of Contents (w-1/4) */}
+        <aside className="w-full lg:w-1/4 sticky top-12 bg-walnut-900/80 backdrop-blur-md p-5 rounded-lg border border-[#8C7335]/20 shadow-sm space-y-4">
+          <div className="text-xs font-mono text-[#CF9E4F] uppercase tracking-wider font-bold border-b border-[#8C7335]/20 pb-2">
+            [DOSSIER OUTLINE]
           </div>
-        )}
-
-        {/* Dark Archival Olive Folder Body */}
-        <div className="bg-[#2D2E27] border-2 border-[#44463C] shadow-[0_30px_60px_rgba(0,0,0,0.5)] rounded-b-md rounded-tr-md p-6 md:p-14 relative z-10 min-h-[500px]">
-          {sections && sections.length > 0 ? (
-            <div key={activeTab} className="dossier-content p-2 md:p-4 min-h-[60vh] animate-folder-flip max-w-full overflow-hidden">
-              {sections[activeTab]?.content}
-            </div>
-          ) : (
-            <div className="dossier-content max-w-full overflow-hidden">
-              {children}
+          {dossierCode && (
+            <div className="text-[10px] font-mono text-[#9c9281]">
+              CODE: <span className="text-[#f4efe6]">{dossierCode}</span>
             </div>
           )}
-        </div>
+          {tocItems && (
+            <nav className="space-y-2" aria-label="Table of contents">
+              {tocItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className="block text-xs font-mono text-[#9c9281] hover:text-[#f4efe6] py-1 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          )}
+        </aside>
+
+        {/* Right side wide reading canvas (w-3/4) */}
+        <main className="w-full lg:w-3/4 space-y-6">
+          {children}
+        </main>
       </div>
-    </main>
+    </div>
   );
-}
+};
+
+export default DossierLayout;
+

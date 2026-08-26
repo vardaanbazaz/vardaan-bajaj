@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-/**
- * SectionContainer Primitive
- * Step 1: Spatial Expansion & Accessibility Hardening
- * Enforces vertical spacing between major sections (py-24 md:py-36)
- * and strict HTML5 landmark semantics (<section>).
- */
-export const SectionContainer = ({
+interface SectionContainerProps {
+  children: ReactNode;
+  id?: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export const SectionContainer: React.FC<SectionContainerProps> = ({
   children,
   id,
   className = '',

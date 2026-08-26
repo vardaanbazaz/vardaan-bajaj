@@ -1,196 +1,106 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import SectionContainer from '../components/SectionContainer';
 import Card from '../components/Card';
-import { Database, ArrowUpRight, Award, Brain, BarChart3 } from 'lucide-react';
+import SectionContainer from '../components/SectionContainer';
 
-export default function FeaturedWork() {
+/**
+ * FeaturedWork Section
+ * STEP 3: Narrative Calibration
+ * Executive summaries focused on systemic impact, product vision, and architectural scope.
+ * Low-level keywords pushed into Tech-Stack Pill Badges.
+ */
+export const FEATURED_WORK_DOSSIERS = [
+  {
+    id: "datavista",
+    title: "DataVista BI Platform",
+    subtitle: "Offline-First Browser-Native Analytics Engine",
+    category: "Feature Build",
+    status: "Completed",
+    route: "/dossier/datavista",
+    githubUrl: "https://github.com/vardaanbazaz/datavista",
+    summary:
+      "A high-performance client-side business intelligence platform that performs multi-dimensional data analysis and real-time visual dashboard rendering directly within browser memory, eliminating server latency and data exposure.",
+    techStack: [
+      "React 19",
+      "TypeScript",
+      "Dexie.js",
+      "AST Parser",
+      "IndexedDB",
+      "Tailwind CSS v4",
+      "Web Workers",
+      "Zero Server Latency",
+    ],
+    dossierCode: "DOSSIER-DV-8092",
+  },
+  {
+    id: "neuroinsight-ai",
+    title: "NeuroInsight-AI",
+    subtitle: "Vocal Biomarker Diagnostic Screening Engine",
+    category: "Feature Build",
+    status: "Completed",
+    route: "/dossier/neuroinsight-ai",
+    githubUrl: "https://github.com/vardaanbazaz/neuroinsight-ai",
+    summary:
+      "A non-invasive clinical screening system leveraging acoustic speech signal analysis to provide rapid, early-stage risk assessment for neurodegenerative conditions on low-cost diagnostic edge devices.",
+    techStack: [
+      "Python",
+      "PyTorch",
+      "Audio Signal Processing",
+      "fPI Biomarker",
+      "LightGBM",
+      "SHAP Attribution",
+      "Edge AI",
+      "FastAPI",
+    ],
+    dossierCode: "DOSSIER-NI-7744",
+  },
+  {
+    id: "attrition",
+    title: "Enterprise Attrition Intelligence",
+    subtitle: "Predictive HR & Workforce Retention Suite",
+    category: "Feature Build",
+    status: "Completed",
+    route: "/dossier/attrition",
+    githubUrl: "https://github.com/vardaanbazaz/employee-attrition-analysis",
+    summary:
+      "An enterprise analytics suite designed to identify workforce flight risk across multi-departmental organizations, isolating structural turnover drivers to inform executive talent retention strategy.",
+    techStack: [
+      "Python",
+      "Scikit-Learn",
+      "XGBoost",
+      "Random Forest",
+      "SMOTE Oversampling",
+      "SHAP Values",
+      "Relational SQL",
+      "Pandas",
+    ],
+    dossierCode: "DOSSIER-EA-5120",
+  },
+];
+
+export const FeaturedWork = () => {
   return (
-    <SectionContainer id="work">
-      <div className="flex flex-col mb-12">
-        <p className="text-xs uppercase tracking-[0.2em] text-copper-500 font-sans font-semibold mb-2">
-          Flagship Systems & Applied ML
+    <SectionContainer id="featured-work" ariaLabel="Featured Engineering Work">
+      <header className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#c5a880]/30 pb-4">
+        <div>
+          <span className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest block mb-1">
+            [EXECUTIVE ARCHITECTURE DOSSIERS]
+          </span>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#f4efe6]">
+            Featured Engineering Systems
+          </h2>
+        </div>
+        <p className="text-xs font-mono text-[#9c9281] max-w-md">
+          Production-grade architectures emphasizing client-side performance, non-invasive diagnostics, and enterprise decision intelligence.
         </p>
-        <h2 className="font-serif text-3xl md:text-4xl text-gold-200 font-normal tracking-wide">
-          Featured Work
-        </h2>
-      </div>
+      </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-7xl mx-auto">
-        {/* Project 1: DataVista */}
-        <Link 
-          to="/datavista" 
-          className="block w-full group cursor-pointer h-full"
-          aria-label="DataVista project case study manuscript"
-        >
-          <Card 
-            techStack={['React 18', 'TypeScript', 'IndexedDB', 'Dexie.js', 'Zustand', 'AST Engine', 'Google Gemini', 'OpenAI']}
-            className="flex flex-col justify-between min-h-[340px] transition-all duration-300 h-full"
-          >
-            <div className="space-y-6">
-              {/* Header */}
-              <div className="flex justify-between items-start">
-                <div className="p-2.5 bg-[#5A461A] text-[#F9DE8B] border border-[#8C7335] rounded transition-colors duration-300">
-                  <BarChart3 size={20} aria-hidden="true" />
-                  <span className="sr-only">Analytics Icon</span>
-                </div>
-                
-                {/* Completed / Production Badge */}
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1C3A27] text-[#B4E8C4] border border-[#3B6A4A] shadow-sm">
-                  <span className="w-2 h-2 rounded-full bg-[#B4E8C4]" aria-hidden="true" />
-                  <span className="text-[11px] uppercase tracking-wider font-semibold font-sans">
-                    Completed
-                  </span>
-                  <span className="sr-only">System Status: Completed</span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="space-y-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1">
-                    <h3 className="font-serif text-2xl md:text-3xl text-[#CF9E4F] tracking-wide drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] font-medium group-hover:text-gold-200 transition-colors duration-300">
-                      DataVista
-                    </h3>
-                    <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
-                  </div>
-                </div>
-
-                <p className="text-stone-300 text-sm md:text-base leading-relaxed mt-2">
-                  An offline-first, browser-native business intelligence suite that shifts heavy dataset queries to client-side storage, delivering sub-millisecond analytical slicing and zero backend operational latency.
-                </p>
-              </div>
-            </div>
-
-            {/* Status Footer */}
-            <div className="pt-4 border-t border-gold-500/10 mt-8 flex justify-between items-center text-[10px] tracking-wider uppercase text-gold-500/60 font-sans">
-              <span className="flex items-center gap-1 text-copper-500/80">
-                <Award size={12} aria-hidden="true" />
-                Browser BI Engine
-              </span>
-              <span className="group-hover:text-gold-300 transition-colors duration-300 font-serif italic text-copper-500">
-                Read Manuscript →
-              </span>
-            </div>
-          </Card>
-        </Link>
-
-        {/* Project 2: NeuroInsight AI */}
-        <Link 
-          to="/neuroinsight" 
-          className="block w-full group cursor-pointer h-full"
-          aria-label="NeuroInsight AI project case study manuscript"
-        >
-          <Card 
-            techStack={['Python', 'XGBoost', 'fPI Index', 'Scikit-Learn', 'Signal Processing', 'AUC 0.958']}
-            className="flex flex-col justify-between min-h-[340px] border-gold-500/10 group-hover:border-gold-500/30 transition-all duration-300 h-full"
-          >
-            <div className="space-y-6">
-              {/* Header */}
-              <div className="flex justify-between items-start">
-                <div className="p-2.5 bg-copper-500/10 border border-copper-500/20 text-copper-500 rounded transition-colors duration-300 group-hover:bg-copper-500/20">
-                  <Brain size={20} aria-hidden="true" />
-                  <span className="sr-only">Artificial Intelligence Icon</span>
-                </div>
-                
-                {/* Completed / Production Badge */}
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-forest-950/20 border border-forest-700/30">
-                  <span className="w-2 h-2 rounded-full bg-forest-600/90" aria-hidden="true" />
-                  <span className="text-[10px] uppercase tracking-wider text-forest-400 font-semibold font-sans">
-                    Completed
-                  </span>
-                  <span className="sr-only">Research Status: Completed</span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="space-y-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1">
-                    <h3 className="font-serif text-2xl md:text-3xl text-[#CF9E4F] tracking-wide drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] font-medium group-hover:text-gold-200 transition-colors duration-300">
-                      NeuroInsight AI
-                    </h3>
-                    <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
-                  </div>
-                </div>
-
-                <p className="text-stone-300 text-sm md:text-base leading-relaxed mt-2">
-                  An applied machine learning system for non-invasive neurodegenerative risk detection, combining novel acoustic biomarker synthesis with interpretable gradient-boosted classification models.
-                </p>
-              </div>
-            </div>
-
-            {/* Status Footer */}
-            <div className="pt-4 border-t border-gold-500/10 mt-8 flex justify-between items-center text-[10px] tracking-wider uppercase text-gold-500/60 font-sans">
-              <span className="flex items-center gap-1 text-copper-500/80">
-                <Award size={12} aria-hidden="true" />
-                Applied ML Research
-              </span>
-              <span className="group-hover:text-gold-300 transition-colors duration-300 font-serif italic text-copper-500">
-                Read Manuscript →
-              </span>
-            </div>
-          </Card>
-        </Link>
-
-        {/* Project 3: Employee Attrition Analytics */}
-        <Link 
-          to="/attrition" 
-          className="block w-full group cursor-pointer h-full"
-          aria-label="Employee Attrition Analytics project case study manuscript"
-        >
-          <Card 
-            techStack={['MySQL', 'Power BI', 'Tableau', 'Python', 'Scikit-Learn', 'Relational Schema', 'ETL Pipeline']}
-            className="flex flex-col justify-between min-h-[340px] border-gold-500/10 group-hover:border-gold-500/30 transition-all duration-300 h-full"
-          >
-            <div className="space-y-6">
-              {/* Header */}
-              <div className="flex justify-between items-start">
-                <div className="p-2.5 bg-copper-500/10 border border-copper-500/20 text-copper-500 rounded transition-colors duration-300 group-hover:bg-copper-500/20">
-                  <Database size={20} aria-hidden="true" />
-                  <span className="sr-only">Database Icon</span>
-                </div>
-                
-                {/* Completed / Production Badge */}
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-forest-950/20 border border-forest-700/30">
-                  <span className="w-2 h-2 rounded-full bg-forest-600/90" aria-hidden="true" />
-                  <span className="text-[10px] uppercase tracking-wider text-forest-400 font-semibold font-sans">
-                    Completed
-                  </span>
-                  <span className="sr-only">System Status: Completed</span>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="space-y-4">
-                <div className="space-y-1">
-                  <div className="flex items-center gap-1">
-                    <h3 className="font-serif text-2xl md:text-3xl text-[#CF9E4F] tracking-wide drop-shadow-[0_1px_1px_rgba(0,0,0,0.8)] font-medium group-hover:text-gold-200 transition-colors duration-300">
-                      Employee Attrition
-                    </h3>
-                    <ArrowUpRight size={16} className="text-copper-500/60 group-hover:text-copper-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" aria-hidden="true" />
-                  </div>
-                </div>
-
-                <p className="text-stone-300 text-sm md:text-base leading-relaxed mt-2">
-                  An enterprise workforce analytics framework that normalizes disjointed organizational records into relational SQL schemas to diagnose operational flight risks and inform retention policies.
-                </p>
-              </div>
-            </div>
-
-            {/* Status Footer */}
-            <div className="pt-4 border-t border-gold-500/10 mt-8 flex justify-between items-center text-[10px] tracking-wider uppercase text-gold-500/60 font-sans">
-              <span className="flex items-center gap-1 text-copper-500/80">
-                <Award size={12} aria-hidden="true" />
-                BI Analytics System
-              </span>
-              <span className="group-hover:text-gold-300 transition-colors duration-300 font-serif italic text-copper-500">
-                Read Manuscript →
-              </span>
-            </div>
-          </Card>
-        </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {FEATURED_WORK_DOSSIERS.map((dossier) => (
+          <Card key={dossier.id} {...dossier} />
+        ))}
       </div>
     </SectionContainer>
   );
-}
+};
+
+export default FeaturedWork;

@@ -1,71 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import GrainOverlay from '../components/GrainOverlay';
 
-export default function PublicationLayout({ pages, children }) {
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const handleMouseMove = (e) => {
-    document.documentElement.style.setProperty('--x', e.clientX + 'px');
-    document.documentElement.style.setProperty('--y', e.clientY + 'px');
-  };
-
+export const PublicationLayout = ({ children, tocItems }) => {
   return (
-    <main 
-      className="min-h-screen bg-[#110E0C] text-stone-300 font-serif animate-fade-in flex flex-col items-center justify-center py-12 px-4 md:px-12 relative overflow-x-hidden selection:bg-[#5A461A] selection:text-white"
-      onMouseMove={handleMouseMove}
-    >
-      {/* Desk Texture Overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-50 mix-blend-overlay opacity-15" 
-        style={{ 
-          backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")" 
-        }} 
-        aria-hidden="true" 
-      />
-
-      <GrainOverlay />
-
-      {/* Navigation back to Desk */}
-      <nav className="w-full max-w-4xl mb-6 relative z-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+      <nav aria-label="Publication navigation">
         <Link
-          to="/"
-          className="text-[#8C7335] hover:text-[#CF9E4F] font-serif italic inline-flex items-center gap-2 transition-colors duration-200"
+          to="/publications"
+          className="text-[#8C7335] hover:text-[#CF9E4F] font-mono text-xs uppercase tracking-widest inline-block transition-colors"
         >
-          ← Back to Portfolio Desk
+          &larr; Back to Publications
         </Link>
       </nav>
 
-      {/* Open Right-Hand Leather Journal Container */}
-      <div className="max-w-4xl w-full bg-[#1E1A16] shadow-[-15px_0_30px_rgba(0,0,0,0.9)] rounded-r-md border-r border-t border-b border-[#3E3832]/50 p-8 md:p-16 relative min-h-[550px] z-10 animate-pan">
-        {/* Right-Edge Horizontal Protrusion Thumb Index Tabs */}
-        {pages && pages.length > 0 && (
-          <div className="absolute top-16 -right-32 flex flex-col gap-3 z-0">
-            {pages.map((page, index) => (
-              <button
-                key={page.id || index}
-                onClick={() => setCurrentPage(index)}
-                className={`w-32 py-3 pl-4 pr-6 rounded-r-md cursor-pointer font-serif text-sm border-r border-t border-b shadow-md transition-all text-left select-none ${
-                  currentPage === index 
-                    ? 'bg-[#1E1A16] border-[#CF9E4F]/60 text-[#CF9E4F] -translate-x-2 z-10 font-bold' 
-                    : 'bg-[#110E0C] border-[#3E3832]/50 text-stone-500 hover:text-stone-300 hover:-translate-x-1'
-                }`}
-              >
-                {page.title}
-              </button>
-            ))}
+      <div className="flex flex-col lg:flex-row gap-8 items-start">
+        {/* Left side sticky Table of Contents (w-1/4) */}
+        <aside className="w-full lg:w-1/4 sticky top-12 bg-walnut-900/80 backdrop-blur-md p-5 rounded-lg border border-[#8C7335]/20 shadow-sm space-y-4">
+          <div className="text-xs font-mono text-[#CF9E4F] uppercase tracking-wider font-bold border-b border-[#8C7335]/20 pb-2">
+            [PUBLICATIONS OUTLINE]
           </div>
-        )}
+          <div className="text-xs font-mono text-[#9c9281] leading-relaxed">
+            Peer-reviewed papers, IEEE proceedings, and academic disclosures.
+          </div>
+          {tocItems && (
+            <nav className="space-y-2 pt-2 border-t border-[#8C7335]/20" aria-label="Table of contents">
+              {tocItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className="block text-xs font-mono text-[#9c9281] hover:text-[#f4efe6] py-1 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          )}
+        </aside>
 
-        {/* Page Content */}
-        {pages && pages.length > 0 ? (
-          <div key={currentPage} className="min-h-[70vh] animate-page-turn space-y-6">
-            {pages[currentPage]?.content}
-          </div>
-        ) : (
-          children
-        )}
+        {/* Right side wide reading canvas (w-3/4) */}
+        <main className="w-full lg:w-3/4 space-y-6">
+          {children}
+        </main>
       </div>
-    </main>
+    </div>
   );
-}
+};
+
+export default PublicationLayout;
+

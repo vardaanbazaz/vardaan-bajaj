@@ -1,28 +1,115 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Card({ children, className = "", hover = true, techStack = [] }) {
+/**
+ * Card Primitive & Parchment Portfolio Card
+ */
+export const Card = ({
+  title,
+  subtitle,
+  summary,
+  techStack = [],
+  dossierCode,
+  status,
+  route,
+  githubUrl,
+}) => {
+  const isCompleted = status === 'Completed' || status === 'Published';
+
   return (
-    <div 
-      className={`relative bg-[#1E1A16] border-l-[14px] border-l-[#110E0C] border-t border-r border-b border-[#3E3832]/30 rounded-r-md p-6 shadow-[8px_12px_20px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out flex flex-col justify-between ${
-        hover ? 'hover:-translate-y-2 hover:shadow-[12px_20px_30px_rgba(0,0,0,0.9)] cursor-pointer' : ''
-      } ${className}`}
+    <article
+      className="bg-walnut-900/80 backdrop-blur-md p-6 rounded-lg relative flex flex-col justify-between h-full border border-[#8C7335]/20 shadow-sm hover:border-[#8C7335]/50 transition-all duration-300"
+      aria-labelledby={`card-title-${dossierCode || title}`}
     >
-      <div className="flex-1">
-        {children}
+      <div>
+        {/* Header Metadata */}
+        <div className="flex items-center justify-between mb-3">
+          {dossierCode && (
+            <span className="text-[10px] font-mono text-[#CF9E4F]/80 tracking-widest uppercase">
+              [{dossierCode}]
+            </span>
+          )}
+          {status && (
+            <span
+              className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border uppercase tracking-wider ${
+                isCompleted
+                  ? 'bg-[#141c14] border-[#304030] text-[#34d399]'
+                  : 'bg-[#2a1810] border-[#5c3218] text-[#d4a37f]'
+              }`}
+            >
+              <span className="sr-only">Project Status: </span>
+              {status}
+            </span>
+          )}
+        </div>
+
+        {/* Title & Subtitle */}
+        <h3
+          id={`card-title-${dossierCode || title}`}
+          className="text-xl font-serif font-bold text-[#f4efe6] mb-1 hover:text-[#CF9E4F] transition-colors"
+        >
+          {title}
+        </h3>
+
+        {subtitle && (
+          <p className="text-xs font-mono text-[#d4a37f] mb-3 italic">
+            {subtitle}
+          </p>
+        )}
+
+        {/* Executive Summary Narrative */}
+        <p className="text-xs font-sans text-[#eadfc9]/80 mb-6 leading-relaxed line-clamp-3">
+          {summary}
+        </p>
       </div>
 
-      {techStack && techStack.length > 0 && (
-        <div className="flex flex-wrap gap-2.5 pt-4 mt-6 border-t border-[#3E3832]/30">
-          {techStack.map((tech) => (
-            <span
-              key={tech}
-              className="bg-[#2A241F] text-[#CF9E4F] border border-[#8C7335]/40 px-3 py-1 text-xs font-mono tracking-wider shadow-inner rounded-sm uppercase"
+      <div>
+        {/* Tech-Stack Pill Badges Aligned at Bottom Edge */}
+        {techStack && techStack.length > 0 && (
+          <div
+            aria-label="Technology Stack"
+            className="flex flex-wrap gap-1.5 mb-5 pt-3 border-t border-[#8C7335]/15"
+          >
+            {techStack.map((tech, idx) => (
+              <span
+                key={idx}
+                className="text-[11px] font-mono px-2.5 py-0.5 rounded text-[#d4a37f] bg-black/40 border border-[#8C7335]/30 hover:border-[#CF9E4F]/50 transition-colors"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Action Links */}
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-[#8C7335]/20">
+          {githubUrl ? (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-[#CF9E4F] border border-[#8C7335] px-3 py-1.5 text-xs hover:bg-[#8C7335]/10 uppercase tracking-wider transition-colors"
             >
-              {tech}
-            </span>
-          ))}
+              [VIEW SOURCE CODE]
+              <span className="sr-only"> for {title} (opens in new tab)</span>
+            </a>
+          ) : (
+            <span />
+          )}
+
+          {route && (
+            <Link
+              to={route}
+              className="px-3.5 py-1.5 bg-[#221812] hover:bg-[#2a1810] text-[#f4efe6] text-xs font-mono rounded border border-[#8C7335]/40 hover:border-[#CF9E4F] transition-all ml-auto"
+            >
+              EXAMINE MANUSCRIPT &rarr;
+              <span className="sr-only"> for {title}</span>
+            </Link>
+          )}
         </div>
-      )}
-    </div>
+      </div>
+    </article>
   );
-}
+};
+
+export default Card;
