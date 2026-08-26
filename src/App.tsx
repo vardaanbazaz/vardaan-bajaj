@@ -1,6 +1,19 @@
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { lazy, Suspense, useLayoutEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { DeskLaboratoryLayout } from './ui/layouts/DeskLaboratoryLayout';
+
+// Automatic scroll-to-top on route navigation
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [pathname]);
+
+  return null;
+};
 
 // React Router v7 lazy code-splitting for sub-routes
 const LaboratoryOverviewPage = lazy(() => import('./ui/pages/LaboratoryOverviewPage'));
@@ -26,6 +39,7 @@ const PageFallback: React.FC = () => (
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<DeskLaboratoryLayout />}>
           <Route
