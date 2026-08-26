@@ -44,17 +44,18 @@ export interface ProjectDossier {
   id: string;
   title: string;
   subtitle: string;
-  category: 'Feature Build' | 'Active Build' | 'Publication';
+  category: 'Feature Build' | 'Active Build' | 'Publication' | 'Pipeline Engine' | string;
   status: 'Completed' | 'In Development' | 'Published';
-  route: string;
+  route?: string;
   githubUrl: string;
   demoUrl?: string;
   summary: string;
   techStack: string[];
   dossierCode: string;
-  benchmarks: Benchmark[];
+  benchmarks?: Benchmark[];
   adrs?: ADRItem[];
-  deepDiveMarkdown: string;
+  deepDiveMarkdown?: string;
+  hasManuscript?: boolean;
 }
 
 export interface ExperienceRecord {
@@ -405,6 +406,34 @@ CropDoc AI delivers real-time plant disease detection to low-power field edge un
 
 #### Abstract
 KanbanLight is a zero-latency task management system engineered for extreme responsiveness. Built without external state abstractions, it relies on React 19 hooks and local persistent storage.`,
+  },
+  {
+    id: "api-ingestor",
+    title: "Automated Data Lakehouse Ingestion Pipeline",
+    subtitle: "Resilient REST API Ingestion & Dual Sink Engine",
+    category: "Pipeline Engine",
+    status: "Completed",
+    githubUrl: "https://github.com/vardaanbazaz/api-ingestor",
+    hasManuscript: false,
+    summary:
+      "An enterprise-grade, resilient, environment-agnostic Data Lakehouse Ingestion Engine built in Python. The pipeline extracts raw JSON payloads from REST APIs with automated exponential backoff retries, normalizes data into structured Pandas DataFrames, and dual-persists records into an idempotent DuckDB database and a Hive-partitioned Parquet Data Lake.",
+    techStack: [
+      "Python 3.10+",
+      "DuckDB 1.0+",
+      "Apache Parquet",
+      "Hive Partitioning",
+      "Pandas",
+      "PyArrow",
+      "Exponential Backoff",
+      "YAML Config",
+      "GitHub Actions",
+    ],
+    dossierCode: "DOSSIER-ADL-1024",
+    benchmarks: [
+      { label: "Execution Reliability", value: "8/8 Unit Tests Passing" },
+      { label: "Persistence Engine", value: "DuckDB + Parquet Lake" },
+      { label: "Partitioning Scheme", value: "Hive UTC Date Pathing" },
+    ],
   },
 ];
 
