@@ -26,6 +26,14 @@ export const CRTScreenHeader: React.FC = () => {
 
         <div className="flex flex-wrap items-center gap-3">
           <a
+            href={PERSONAL_INFO.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-1.5 bg-[#8C7335]/90 hover:bg-[#8C7335] border border-[#CF9E4F]/60 text-[#f4efe6] text-xs font-mono font-bold rounded shadow-[0_0_10px_rgba(207,158,79,0.3)] transition-all flex items-center space-x-1"
+          >
+            <span>[RESUME / CV]</span>
+          </a>
+          <a
             href={PERSONAL_INFO.linkedin}
             target="_blank"
             rel="noopener noreferrer"
