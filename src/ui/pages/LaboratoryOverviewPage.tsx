@@ -17,7 +17,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
           {/* Left Column: Scholar Portrait Bento Container */}
           <div className="lg:col-span-5 bg-walnut-900/80 backdrop-blur-md border border-[#8C7335]/20 rounded-lg overflow-hidden flex flex-col h-full min-h-[340px] relative group shadow-sm">
             <div className="px-6 py-3 border-b border-[#8C7335]/20 flex justify-between items-center bg-walnut-950/60">
-              <span className="text-xs font-mono tracking-widest text-[#CF9E4F] uppercase">[ IDENTIFICATION // ARCHITECT ]</span>
+              <span className="text-xs font-mono tracking-widest text-[#CF9E4F] uppercase">[ DEVELOPER PROFILE ]</span>
             </div>
             <div className="relative flex-grow min-h-[300px]">
               <img 
@@ -32,27 +32,23 @@ export const LaboratoryOverviewPage: React.FC = () => {
           <div className="lg:col-span-7 bg-walnut-900/80 backdrop-blur-md p-8 rounded-lg flex flex-col justify-between relative border border-[#8C7335]/20 shadow-sm">
             <div>
               <div className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest mb-2">
-                [SYSTEM_STATEMENT // ARCHITECTURAL PHILOSOPHY]
+                [ ABOUT & ENGINEERING FOCUS ]
               </div>
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#f4efe6] mb-3">
                 {PERSONAL_INFO.title}
               </h2>
 
-              <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-4">
+              <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
                 {PERSONAL_INFO.bio}
-              </p>
-
-              <p className="text-xs font-sans text-[#d4a37f] leading-relaxed mb-6 italic border-l-2 border-[#8C7335] pl-4 py-1.5 bg-[#221812]/50 rounded-r">
-                "{PERSONAL_INFO.tagline}"
               </p>
 
               {/* Academic Training Grounds Credentials Card */}
               <div className="bg-[#100b08]/80 p-4 rounded-lg border border-[#8C7335]/20 mb-6">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <span className="text-xs font-mono font-bold text-[#CF9E4F] uppercase tracking-wider">
-                    [TRAINING GROUNDS] &bull; {EDUCATION_DATA.institution}
+                    [EDUCATION] &bull; {EDUCATION_DATA.institution}
                   </span>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#2a1810] text-[#d4a37f] border border-[#5c3218]">
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#2a1810] text-[#d4a37f] border border-[#5c3218] shrink-0 whitespace-nowrap">
                     {EDUCATION_DATA.period}
                   </span>
                 </div>
@@ -109,7 +105,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
                   to="/dossiers"
                   className="inline-block px-6 py-2.5 border border-[#8C7335] text-[#CF9E4F] hover:bg-[#8C7335]/10 font-mono tracking-widest text-xs uppercase transition-colors rounded"
                 >
-                  [ACCESS FULL DOSSIER ARCHIVES &rarr;]
+                  [VIEW ALL PROJECTS & DOSSIERS &rarr;]
                 </Link>
               </div>
             </div>
@@ -117,18 +113,18 @@ export const LaboratoryOverviewPage: React.FC = () => {
         </div>
       </section>
 
-      {/* STRATEGIC DEPLOYMENTS MAP TEASER */}
-      <section aria-label="Strategic Deployments Teaser">
+      {/* WORK EXPERIENCE & LOCATION MAP TEASER */}
+      <section aria-label="Work Experience & Location Map Teaser">
         <div className="bg-walnut-900/80 backdrop-blur-md p-8 rounded-lg border border-[#8C7335]/20 shadow-sm relative">
           <div className="border-b border-[#8C7335]/20 pb-3 mb-6">
             <span className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest block mb-1">
-              [CARTOGRAPHIC TEASER // OPERATIONAL HISTORY]
+              [ WORK EXPERIENCE & LOCATION MAP ]
             </span>
             <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#f4efe6] uppercase tracking-wide">
-              Strategic Deployments & Research Bases
+              Work Experience & Research Roles
             </h2>
             <p className="text-xs font-mono text-[#9c9281]">
-              Operational base stations and engineering facilities across India
+              Engineering internships, research roles, and academic projects across India
             </p>
           </div>
 
@@ -136,9 +132,9 @@ export const LaboratoryOverviewPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {MAP_DATA.experience.flatMap((node) => node.roles).map((role, idx) => (
               <div key={idx} className="bg-[#100b08]/70 p-4 rounded-lg border border-[#8C7335]/20 font-mono text-xs text-[#eadfc9]">
-                <div className="flex items-center justify-between text-[#CF9E4F] font-bold mb-1">
-                  <span>[{role.org.toUpperCase()}]</span>
-                  <span className="text-[10px] text-[#d4a37f] px-2 py-0.5 rounded bg-[#2a1810] border border-[#5c3218]">
+                <div className="flex flex-wrap sm:flex-nowrap items-start sm:items-center justify-between gap-2 text-[#CF9E4F] font-bold mb-1">
+                  <span className="break-words">[{role.org.toUpperCase()}]</span>
+                  <span className="text-[10px] text-[#d4a37f] px-2.5 py-0.5 rounded bg-[#2a1810] border border-[#5c3218] shrink-0 whitespace-nowrap">
                     {role.type}
                   </span>
                 </div>
@@ -154,7 +150,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
               to="/map"
               className="mt-2 inline-block px-6 py-2.5 border border-[#8C7335] text-[#CF9E4F] hover:bg-[#8C7335]/10 font-mono tracking-widest text-xs uppercase transition-colors rounded"
             >
-              [OPEN STRATEGIC COMMAND MAP &rarr;]
+              [OPEN INTERACTIVE EXPERIENCE MAP &rarr;]
             </Link>
           </div>
         </div>
