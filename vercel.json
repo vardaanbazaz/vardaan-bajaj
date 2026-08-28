@@ -1,4 +1,41 @@
 {
+  "redirects": [
+    {
+      "source": "/datavista",
+      "destination": "/dossier/datavista",
+      "permanent": true
+    },
+    {
+      "source": "/neuroinsight-ai",
+      "destination": "/dossier/neuroinsight-ai",
+      "permanent": true
+    },
+    {
+      "source": "/employee-attrition",
+      "destination": "/dossier/attrition",
+      "permanent": true
+    },
+    {
+      "source": "/kanbanlight",
+      "destination": "/dossier/kanbanlight",
+      "permanent": true
+    },
+    {
+      "source": "/cropdoc-ai",
+      "destination": "/dossier/cropdoc",
+      "permanent": true
+    },
+    {
+      "source": "/publication",
+      "destination": "/publications",
+      "permanent": true
+    },
+    {
+      "source": "/publication/:publicationId",
+      "destination": "/publications/:publicationId",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!api/|.*\\..*).*)",

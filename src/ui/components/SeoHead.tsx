@@ -9,9 +9,14 @@ export const SeoHead: React.FC = () => {
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
+    // Normalize pathname to remove trailing slash (except root '/')
+    const normalizedPathname = pathname !== '/' && pathname.endsWith('/')
+      ? pathname.replace(/\/+$/, '')
+      : pathname;
+
     let title = `${PERSONAL_INFO.name} | Systems Engineer & Applied AI`;
     let description = PERSONAL_INFO.bio;
-    let canonicalPath = pathname;
+    let canonicalPath = normalizedPathname;
     let ogType = 'website';
     let structuredData: object | object[] = [];
 
@@ -66,12 +71,12 @@ export const SeoHead: React.FC = () => {
     };
 
     // Route-specific metadata mapping
-    if (pathname === '/') {
+    if (normalizedPathname === '/') {
       title = `${PERSONAL_INFO.name} | Systems Engineer & Applied AI`;
       description = `Portfolio and digital manuscript library of Vardaan Bajaj, Systems Engineer & Applied AI Researcher specializing in edge computer vision, neural segmentation, and DSP.`;
       canonicalPath = '/';
       structuredData = [personSchema, websiteSchema, profilePageSchema];
-    } else if (pathname === '/dossiers') {
+    } else if (normalizedPathname === '/dossiers') {
       title = `Engineering Projects & Dossiers | ${PERSONAL_INFO.name}`;
       description = `Catalog of systems engineering builds, machine learning diagnostic pipelines, and real-time application frameworks developed by Vardaan Bajaj.`;
       canonicalPath = '/dossiers';
@@ -82,8 +87,8 @@ export const SeoHead: React.FC = () => {
         url: `${SITE_ORIGIN}/dossiers`,
         description,
       };
-    } else if (pathname.startsWith('/dossier/')) {
-      const dossierId = pathname.replace('/dossier/', '');
+    } else if (normalizedPathname.startsWith('/dossier/')) {
+      const dossierId = normalizedPathname.replace('/dossier/', '');
       const dossier = DOSSIERS.find((d) => d.id === dossierId);
       if (dossier) {
         title = `${dossier.title} — Engineering Dossier | ${PERSONAL_INFO.name}`;
@@ -103,7 +108,7 @@ export const SeoHead: React.FC = () => {
           sameAs: dossier.githubUrl,
         };
       }
-    } else if (pathname === '/publications') {
+    } else if (normalizedPathname === '/publications') {
       title = `IEEE Research Publications | ${PERSONAL_INFO.name}`;
       description = `Peer-reviewed IEEE research proceedings, algorithmic synthesis papers, edge AI architectures, and graph topology formulations by Vardaan Bajaj.`;
       canonicalPath = '/publications';
@@ -114,8 +119,8 @@ export const SeoHead: React.FC = () => {
         url: `${SITE_ORIGIN}/publications`,
         description,
       };
-    } else if (pathname.startsWith('/publications/')) {
-      const pubId = pathname.replace('/publications/', '');
+    } else if (normalizedPathname.startsWith('/publications/')) {
+      const pubId = normalizedPathname.replace('/publications/', '');
       const pub = PUBLICATIONS.find((p) => p.id === pubId);
       if (pub) {
         title = `${pub.title} — IEEE Publication | ${PERSONAL_INFO.name}`;
@@ -139,14 +144,29 @@ export const SeoHead: React.FC = () => {
           url: `${SITE_ORIGIN}/publications/${pub.id}`,
         };
       }
-    } else if (pathname === '/map') {
+    } else if (normalizedPathname === '/map') {
       title = `Work & Academic Experience Map | ${PERSONAL_INFO.name}`;
       description = `Interactive geographic map displaying engineering internships, research roles, and academic locations of Vardaan Bajaj across India.`;
       canonicalPath = '/map';
-    } else if (pathname === '/telegram') {
+    } else if (normalizedPathname === '/telegram') {
       title = `Direct Contact & Dispatch | ${PERSONAL_INFO.name}`;
       description = `Direct communication channel to contact Vardaan Bajaj for systems engineering roles, research collaborations, and technical consultations.`;
       canonicalPath = '/telegram';
+    } else if (normalizedPathname === '/datavista') {
+      canonicalPath = '/dossier/datavista';
+    } else if (normalizedPathname === '/neuroinsight-ai') {
+      canonicalPath = '/dossier/neuroinsight-ai';
+    } else if (normalizedPathname === '/employee-attrition') {
+      canonicalPath = '/dossier/attrition';
+    } else if (normalizedPathname === '/kanbanlight') {
+      canonicalPath = '/dossier/kanbanlight';
+    } else if (normalizedPathname === '/cropdoc-ai') {
+      canonicalPath = '/dossier/cropdoc';
+    } else if (normalizedPathname.startsWith('/publication/')) {
+      const pubId = normalizedPathname.replace('/publication/', '');
+      canonicalPath = pubId ? `/publications/${pubId}` : '/publications';
+    } else if (normalizedPathname === '/publication') {
+      canonicalPath = '/publications';
     }
 
     const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
