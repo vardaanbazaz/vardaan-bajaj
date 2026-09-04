@@ -408,12 +408,12 @@ CropDoc AI delivers real-time plant disease detection to low-power field edge un
 KanbanLight is a zero-latency task management system engineered for extreme responsiveness. Built without external state abstractions, it relies on React 19 hooks and local persistent storage.`,
   },
   {
-    id: "api-ingestor",
+    id: "unified-api-ingester",
     title: "Automated Data Lakehouse Ingestion Pipeline",
     subtitle: "Resilient REST API Ingestion & Dual Sink Engine",
     category: "Pipeline Engine",
     status: "Completed",
-    githubUrl: "https://github.com/vardaanbazaz/api-ingestor",
+    githubUrl: "https://github.com/vardaanbazaz/unified-api-ingester",
     hasManuscript: false,
     summary:
       "An enterprise-grade, resilient, environment-agnostic Data Lakehouse Ingestion Engine built in Python. The pipeline extracts raw JSON payloads from REST APIs with automated exponential backoff retries, normalizes data into structured Pandas DataFrames, and dual-persists records into an idempotent DuckDB database and a Hive-partitioned Parquet Data Lake.",
