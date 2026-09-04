@@ -32,15 +32,19 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
       zoom: 4.2,
       preferCanvas: true,
       zoomControl: true,
-      attributionControl: false,
+      attributionControl: true,
     });
 
     mapInstanceRef.current = map;
 
-    // Dark Carto Tile Layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 18,
-      subdomains: 'abcd',
+    // OSM standard tiles, CSS-inverted to dark. Keyless, no third-party
+    // service dependency (CARTO's keyless dark_all endpoint was deprecated
+    // and now requires an API key — see git history).
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      subdomains: 'abc',
+      className: 'map-tiles-dark',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
     const currentDataset: MapLocationNode[] = MAP_DATA[activeTab];

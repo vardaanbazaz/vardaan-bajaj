@@ -159,4 +159,19 @@
 .custom-paper-scrollbar::-webkit-scrollbar-thumb { background: #C5A880; border-radius: 4px; }
 .custom-paper-scrollbar::-webkit-scrollbar-thumb:hover { background: #8C7335; }
 
+/* Experience Map: dark basemap via CSS filter on keyless OSM tiles
+   (no dependency on a key-gated tile provider). */
+.map-tiles-dark {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9) saturate(0.9);
+}
+.leaflet-control-attribution {
+  background: rgba(0, 0, 0, 0.75) !important;
+  color: #d4a37f !important;
+  font-family: monospace;
+  font-size: 10px !important;
+}
+.leaflet-control-attribution a {
+  color: #CF9E4F !important;
+}
+
 
