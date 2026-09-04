@@ -26,6 +26,16 @@
       "permanent": true
     },
     {
+      "source": "/dossier/api-ingestor",
+      "destination": "/dossier/unified-api-ingester",
+      "permanent": true
+    },
+    {
+      "source": "/api-ingestor",
+      "destination": "/dossier/unified-api-ingester",
+      "permanent": true
+    },
+    {
       "source": "/publication",
       "destination": "/publications",
       "permanent": true
