@@ -55,23 +55,18 @@ export const LaboratoryOverviewPage: React.FC = () => {
                 <div className="text-xs font-mono text-[#eadfc9] mb-1.5">
                   {EDUCATION_DATA.degree}
                 </div>
-                <div className="flex items-center space-x-4 text-xs font-mono text-[#9c9281] mb-3">
-                  <span>{EDUCATION_DATA.grade}</span>
-                  <span>CGPA: <strong className="text-[#34d399]">{EDUCATION_DATA.cgpa}</strong></span>
+                <div className="text-xs font-mono text-[#9c9281] mb-3">
+                  {EDUCATION_DATA.grade}
                 </div>
                 
                 {/* Coursework Tags */}
-                <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-[10px] font-mono text-[#d4a37f] mr-1">COURSEWORK:</span>
                   {EDUCATION_DATA.coursework.map((course, idx) => (
                     <span key={idx} className="text-[10px] font-mono px-2 py-0.5 rounded bg-black/40 text-[#d4a37f] border border-[#8C7335]/20">
                       {course}
                     </span>
                   ))}
-                </div>
-
-                <div className="text-[10px] font-mono text-[#9c9281] italic pt-1 border-t border-[#8C7335]/15">
-                  {EDUCATION_DATA.focus}
                 </div>
               </div>
             </div>

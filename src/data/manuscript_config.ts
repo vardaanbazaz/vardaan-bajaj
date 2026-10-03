@@ -8,6 +8,8 @@ export interface PersonalInfo {
   linkedin: string;
   resumeUrl: string;
   location: string;
+  focusLine: string;
+  researchLine: string;
   bio: string;
   authenticatedPrompt: string;
   telegramHeader: string;
@@ -18,9 +20,7 @@ export interface EducationRecord {
   degree: string;
   period: string;
   grade: string;
-  cgpa: string;
   coursework: string[];
-  focus: string;
   location: string;
   lat: number;
   lng: number;
@@ -119,8 +119,6 @@ export interface PublicationRecord {
 }
 
 
-export const FALLBACK_COMMIT_DATA: number[] = Array.from({ length: 96 }, (_, i) => (i * 7 + 13) % 5);
-
 export const TELEGRAM_CONFIG = {
   serviceId: 'service_telegram',
   templateId: 'template_dispatch',
@@ -129,27 +127,39 @@ export const TELEGRAM_CONFIG = {
 
 export const PERSONAL_INFO: PersonalInfo = {
   name: "Vardaan Bajaj",
-  role: "Systems Engineer & Applied AI Researcher",
-  title: "Engineering Portfolio & Systems Lab",
+  role: "Machine Learning & Software Engineer",
+  title: "About",
   tagline: "Building high-performance backend pipelines, neural segmentation architectures, and edge computer vision solutions.",
   githubUser: "vardaanbazaz",
   email: "vardaanbazaz@gmail.com",
   linkedin: "https://www.linkedin.com/in/vardaan-bajaj-a03605254/",
   resumeUrl: "/resume.pdf",
-  location: "Jammu & Kashmir, India",
-  bio: "Systems Engineer & Applied AI Researcher specializing in digital signal processing, edge computer vision, and high-throughput browser-native analytical engines. Focused on building high-performance backend pipelines, neural segmentation architectures, and edge computer vision solutions.",
-  authenticatedPrompt: "> Vardaan Bajaj — Systems Engineer & AI Researcher",
+  location: "Jammu, India · open to remote",
+  focusLine: "Computer vision · full-stack web · C/DSP systems",
+  researchLine: "Research: two IEEE conference papers (first author, CICT 2025)",
+  bio: "I'm a machine learning and software engineer. I've worked on computer vision for drone imagery as first author of an IEEE CICT 2025 paper, built a browser-based BI tool that runs entirely on the client, and wrote a C signal-processing simulation during a research internship at DRDO. I completed my B.Tech in Data Science and AI at IIIT Naya Raipur in 2026, and I'm open to remote roles.",
+  authenticatedPrompt: "> Vardaan Bajaj — Machine Learning & Software Engineer",
   telegramHeader: "DIRECT MESSAGING & CONTACT CHANNEL",
 };
 
 export const EDUCATION_DATA: EducationRecord = {
-  institution: "IIIT-Naya Raipur",
-  degree: "Bachelor of Technology - BTech, Data Science & Artificial Intelligence",
-  period: "Nov 2022 – Jul 2026",
-  grade: "Grade: 80.7%",
-  cgpa: "7.57 / 10.0",
-  coursework: ["Data Structures", "Deep Learning", "Distributed Systems", "Signal Processing"],
-  focus: "Research Focus: Edge AI inference, computer vision, and digital signal processing.",
+  institution: "Dr. Shyama Prasad Mukherjee International Institute of Information Technology, Naya Raipur",
+  degree: "B.Tech in Data Science and Artificial Intelligence",
+  period: "2022 – 2026 (completed July 2026)",
+  grade: "CGPA 7.57 / 10 (80.7%, official conversion)",
+  coursework: [
+    "Deep Learning",
+    "Computer Vision",
+    "Optimization Methods in ML",
+    "Natural Language Processing",
+    "Data Mining",
+    "Distributed Systems",
+    "Design and Analysis of Algorithms",
+    "Signal and System",
+    "Undergraduate Research Work-I",
+    "Undergraduate Research Work-II",
+    "Major Project/Thesis",
+  ],
   location: "Naya Raipur, Chhattisgarh, India",
   lat: 21.1610,
   lng: 81.7865,
@@ -592,7 +602,7 @@ export const MAP_DATA: MapDataSchema = {
     },
     {
       id: 'raipur-edu', coords: [21.1610, 81.7850], type: 'onsite', roles: [
-        { title: 'Bachelor of Technology - BTech, Data Science & Artificial Intelligence', org: 'IIIT-Naya Raipur', type: 'On-site', year: 'Nov 2022 – Jul 2026', bullets: ['Grade: 80.7% (CGPA: 7.57 / 10.0)', 'Focused on core computer science foundations, statistical learning, and systems engineering.', 'Core Coursework: Data Structures & Algorithms, Operating Systems, Database Management Systems, Computer Networks, Deep Learning, Distributed Systems, Linear Algebra & Probability.', 'Research Focus: Edge AI inference optimization, computer vision pipelines, and digital signal processing.'] }
+        { title: 'B.Tech in Data Science and Artificial Intelligence', org: 'Dr. Shyama Prasad Mukherjee International Institute of Information Technology, Naya Raipur', type: 'On-site', year: '2022 – 2026 (completed July 2026)', bullets: ['CGPA 7.57 / 10 (80.7%, official conversion)', 'Coursework: Deep Learning, Computer Vision, Optimization Methods in ML, Natural Language Processing, Data Mining, Distributed Systems, Design and Analysis of Algorithms, Signal and System, Undergraduate Research Work-I, Undergraduate Research Work-II, Major Project/Thesis.'] }
       ]
     }
   ]

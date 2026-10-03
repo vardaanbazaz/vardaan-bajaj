@@ -10,7 +10,7 @@ export const AnalogNavigation: React.FC = () => {
           <span className="text-xs font-mono font-bold text-[#f4efe6] tracking-widest uppercase">
             VARDAAN BAJAJ // PORTFOLIO
           </span>
-          <span className="sr-only">Vardaan Bajaj Systems Engineering Portfolio Navigation</span>
+          <span className="sr-only">Vardaan Bajaj Portfolio Navigation</span>
         </div>
 
         <div className="w-full sm:w-auto flex items-center justify-start sm:justify-end space-x-1.5 sm:space-x-3 md:space-x-4 overflow-x-auto custom-scrollbar pb-1 sm:pb-0">

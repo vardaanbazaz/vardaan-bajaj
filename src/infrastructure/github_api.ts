@@ -1,5 +1,3 @@
-import { FALLBACK_COMMIT_DATA } from '../data/manuscript_config';
-
 export interface DailyCommitDetail {
   date: string;
   count: number;
@@ -17,8 +15,9 @@ export interface GitHubStats {
   cached: boolean;
 }
 
-const CACHE_KEY = 'github_stats_swr_cache_v2';
-const ETAG_KEY = 'github_stats_etag_v2';
+// v3: v2 caches may hold synthetic heatmaps from the old fallback path
+const CACHE_KEY = 'github_stats_swr_cache_v3';
+const ETAG_KEY = 'github_stats_etag_v3';
 
 // Helper to generate 28-day date labels (past 28 days ending today)
 function getPast28Days(): { dateStr: string; label: string }[] {
@@ -34,10 +33,11 @@ function getPast28Days(): { dateStr: string; label: string }[] {
   return days;
 }
 
-// SWR GitHub Stats Fetcher with HTTP ETag & Events telemetry support
-let statsPromiseCache: Promise<GitHubStats> | null = null;
+// SWR GitHub Stats Fetcher with HTTP ETag & Events telemetry support.
+// Resolves to null when the API fails; callers hide the ticker instead of showing placeholder data.
+let statsPromiseCache: Promise<GitHubStats | null> | null = null;
 
-export function fetchGitHubStats(username: string): Promise<GitHubStats> {
+export function fetchGitHubStats(username: string): Promise<GitHubStats | null> {
   if (statsPromiseCache) {
     return statsPromiseCache;
   }
@@ -47,29 +47,11 @@ export function fetchGitHubStats(username: string): Promise<GitHubStats> {
     const cachedEtag = localStorage.getItem(ETAG_KEY);
 
     const past28 = getPast28Days();
-    const defaultDailyDetails: DailyCommitDetail[] = past28.map(({ label }, idx) => {
-      const fallbackIntensity = FALLBACK_COMMIT_DATA[idx % FALLBACK_COMMIT_DATA.length];
-      const fallbackCount = fallbackIntensity === 0 ? 0 : fallbackIntensity * 3;
-      return {
-        date: label,
-        count: fallbackCount,
-        intensity: fallbackIntensity,
-      };
-    });
 
-    let initialStats: GitHubStats = {
-      publicRepos: 10,
-      followers: 11,
-      commitData: defaultDailyDetails.map(d => d.intensity),
-      dailyDetails: defaultDailyDetails,
-      totalCommitsRecent: defaultDailyDetails.reduce((sum, d) => sum + d.count, 0),
-      lastUpdated: new Date().toISOString(),
-      cached: false,
-    };
-
+    let cachedStats: GitHubStats | null = null;
     if (cachedData) {
       try {
-        initialStats = { ...JSON.parse(cachedData), cached: true };
+        cachedStats = { ...JSON.parse(cachedData), cached: true };
       } catch (e) {
         console.warn('Failed to parse cached GitHub stats:', e);
       }
@@ -79,15 +61,15 @@ export function fetchGitHubStats(username: string): Promise<GitHubStats> {
       const headers: Record<string, string> = {
         'Accept': 'application/vnd.github.v3+json',
       };
-      if (cachedEtag) {
+      if (cachedEtag && cachedStats) {
         headers['If-None-Match'] = cachedEtag;
       }
 
       // 1. Fetch user profile stats
       const userRes = await fetch(`https://api.github.com/users/${username}`, { headers });
 
-      if (userRes.status === 304 && cachedData) {
-        return { ...initialStats, cached: true };
+      if (userRes.status === 304 && cachedStats) {
+        return cachedStats;
       }
 
       if (userRes.ok) {
@@ -96,6 +78,7 @@ export function fetchGitHubStats(username: string): Promise<GitHubStats> {
 
         // 2. Fetch recent public events to compute exact daily commit telemetry
         let dailyCountsMap: Record<string, number> = {};
+        let eventsOk = false;
         try {
           const eventsRes = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100`, {
             headers: { 'Accept': 'application/vnd.github.v3+json' },
@@ -103,6 +86,7 @@ export function fetchGitHubStats(username: string): Promise<GitHubStats> {
           if (eventsRes.ok) {
             const events = await eventsRes.json();
             if (Array.isArray(events)) {
+              eventsOk = true;
               events.forEach((ev: any) => {
                 if (!ev.created_at) return;
                 const evDateStr = ev.created_at.split('T')[0];
@@ -120,19 +104,10 @@ export function fetchGitHubStats(username: string): Promise<GitHubStats> {
           console.warn('Could not fetch GitHub events, using profile metrics:', err);
         }
 
-        // Build 28-day telemetry array
-        const hasLiveEvents = Object.keys(dailyCountsMap).length > 0;
-        const dailyDetails: DailyCommitDetail[] = past28.map(({ dateStr, label }, idx) => {
-          let count = 0;
+        // Build 28-day telemetry array; empty when the events request failed (heatmap is hidden)
+        const dailyDetails: DailyCommitDetail[] = !eventsOk ? [] : past28.map(({ dateStr, label }) => {
+          const count = dailyCountsMap[dateStr] || 0;
           let intensity = 0;
-
-          if (hasLiveEvents) {
-            count = dailyCountsMap[dateStr] || 0;
-          } else {
-            // Deterministic realistic activity fallback pattern based on repo metrics & index
-            const baseVal = (user.public_repos * (idx + 3) + user.followers * 7) % 5;
-            count = baseVal === 0 ? 0 : baseVal * 2 + (idx % 3);
-          }
 
           if (count === 0) intensity = 0;
           else if (count <= 2) intensity = 1;
@@ -146,8 +121,8 @@ export function fetchGitHubStats(username: string): Promise<GitHubStats> {
         const totalCommitsRecent = dailyDetails.reduce((sum, d) => sum + d.count, 0);
 
         const freshStats: GitHubStats = {
-          publicRepos: user.public_repos ?? initialStats.publicRepos,
-          followers: user.followers ?? initialStats.followers,
+          publicRepos: user.public_repos,
+          followers: user.followers,
           commitData: dailyDetails.map(d => d.intensity),
           dailyDetails,
           totalCommitsRecent,
@@ -164,10 +139,10 @@ export function fetchGitHubStats(username: string): Promise<GitHubStats> {
         return freshStats;
       }
     } catch (error) {
-      console.warn('GitHub API request failed, serving SWR cached/fallback stats:', error);
+      console.warn('GitHub API request failed, hiding ticker:', error);
     }
 
-    return initialStats;
+    return null;
   })();
 
   return statsPromiseCache;

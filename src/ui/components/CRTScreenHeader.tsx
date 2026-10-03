@@ -20,7 +20,16 @@ export const CRTScreenHeader: React.FC = () => {
           </h1>
 
           <p className="text-xs md:text-sm font-mono text-emerald-400/90 mt-1">
-            {PERSONAL_INFO.role} &bull; {PERSONAL_INFO.location}
+            {PERSONAL_INFO.role}
+          </p>
+          <p className="text-xs md:text-sm font-mono text-emerald-400/90">
+            {PERSONAL_INFO.focusLine}
+          </p>
+          <p className="text-xs md:text-sm font-mono text-emerald-400/90">
+            {PERSONAL_INFO.location}
+          </p>
+          <p className="text-xs md:text-sm font-mono text-emerald-400/90">
+            {PERSONAL_INFO.researchLine}
           </p>
         </div>
 

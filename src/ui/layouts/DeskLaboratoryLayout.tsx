@@ -47,13 +47,12 @@ export const DeskLaboratoryLayout: React.FC = () => {
       <footer className="w-full bg-[#0e0a07] border-t border-amber-900/40 py-6 px-4 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-amber-500/70 text-center sm:text-left">
           <div className="shrink-0">
-            &copy; {new Date().getFullYear()} {PERSONAL_INFO.name} &bull; Systems Engineering Portfolio
+            &copy; {new Date().getFullYear()} {PERSONAL_INFO.name} &bull; Machine Learning &amp; Software Engineer
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[11px]">
             <span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded bg-black/40 border border-amber-900/30 text-amber-400/90">REACT 19</span>
             <span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded bg-black/40 border border-amber-900/30 text-amber-400/90">VITE 6</span>
             <span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded bg-black/40 border border-amber-900/30 text-amber-400/90">TAILWIND CSS V4</span>
-            <span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded bg-black/40 border border-amber-900/30 text-amber-400/90">THREE.JS / WEBGL</span>
           </div>
         </div>
       </footer>

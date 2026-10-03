@@ -4,6 +4,9 @@ import { DOSSIERS, PUBLICATIONS, PERSONAL_INFO } from '../../data/manuscript_con
 
 const SITE_ORIGIN = 'https://vardaan-bajaj.vercel.app';
 const DEFAULT_IMAGE = `${SITE_ORIGIN}/avatar.jpg`;
+const DEFAULT_TITLE = `${PERSONAL_INFO.name} | ${PERSONAL_INFO.role}`;
+const DEFAULT_DESCRIPTION =
+  'Vardaan Bajaj, machine learning and software engineer. Computer vision, full-stack web and C/DSP systems. First author of an IEEE CICT 2025 paper. Based in Jammu, India; open to remote roles.';
 
 export const SeoHead: React.FC = () => {
   const { pathname } = useLocation();
@@ -14,8 +17,8 @@ export const SeoHead: React.FC = () => {
       ? pathname.replace(/\/+$/, '')
       : pathname;
 
-    let title = `${PERSONAL_INFO.name} | Systems Engineer & Applied AI`;
-    let description = PERSONAL_INFO.bio;
+    let title = DEFAULT_TITLE;
+    let description = DEFAULT_DESCRIPTION;
     let canonicalPath = normalizedPathname;
     let ogType = 'website';
     let structuredData: object | object[] = [];
@@ -35,23 +38,23 @@ export const SeoHead: React.FC = () => {
       ],
       alumniOf: {
         '@type': 'EducationalOrganization',
-        name: 'IIIT-Naya Raipur',
+        name: 'Dr. Shyama Prasad Mukherjee International Institute of Information Technology, Naya Raipur',
       },
       knowsAbout: [
-        'Systems Engineering',
-        'Applied AI',
-        'Digital Signal Processing',
+        'Machine Learning',
         'Computer Vision',
-        'Edge AI',
-        'React',
+        'Full-Stack Web Development',
+        'Digital Signal Processing',
+        'Python',
         'TypeScript',
+        'React',
       ],
     };
 
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: `${PERSONAL_INFO.name} Portfolio & Systems Lab`,
+      name: `${PERSONAL_INFO.name} Portfolio`,
       url: SITE_ORIGIN,
       author: {
         '@type': 'Person',
@@ -72,8 +75,8 @@ export const SeoHead: React.FC = () => {
 
     // Route-specific metadata mapping
     if (normalizedPathname === '/') {
-      title = `${PERSONAL_INFO.name} | Systems Engineer & Applied AI`;
-      description = `Portfolio and digital manuscript library of Vardaan Bajaj, Systems Engineer & Applied AI Researcher specializing in edge computer vision, neural segmentation, and DSP.`;
+      title = DEFAULT_TITLE;
+      description = DEFAULT_DESCRIPTION;
       canonicalPath = '/';
       structuredData = [personSchema, websiteSchema, profilePageSchema];
     } else if (normalizedPathname === '/dossiers') {
