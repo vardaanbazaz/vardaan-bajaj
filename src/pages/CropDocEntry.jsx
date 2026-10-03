@@ -6,12 +6,9 @@ export const CropDocEntry = () => {
   const githubUrl = "https://github.com/vardaanbazaz/cropdoc-ai";
 
   const tocItems = [
-    { id: 'abstract', label: '1. Abstract & Agricultural Vision' },
-    { id: 'efficientnet', label: '2. EfficientNet-B0 Edge Model' },
-    { id: 'quantization', label: '3. INT8 Quantization & ONNX' },
-    { id: 'adrs', label: '4. Architectural Decision Records' },
-    { id: 'inference-code', label: '5. ONNX Inference Engine' },
-    { id: 'benchmarks', label: '6. Edge Latency Benchmarks' },
+    { id: 'abstract', label: '1. Abstract' },
+    { id: 'api', label: '2. API Endpoints' },
+    { id: 'engineering', label: '3. Engineering Details' },
   ];
 
   useEffect(() => {
@@ -72,8 +69,7 @@ export const CropDocEntry = () => {
           </nav>
 
           <div className="pt-4 border-t border-[#c5a880]/20 text-[11px] font-mono text-[#9c9281] space-y-2">
-            <div>F1-Score: <span className="text-[#34d399]">98.4%</span></div>
-            <div>Latency: <span className="text-[#eadfc9]">14ms / Frame</span></div>
+            <div>Status: <span className="text-[#eadfc9]">In Development</span></div>
           </div>
         </aside>
 
@@ -92,13 +88,13 @@ export const CropDocEntry = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
-              CropDoc AI Pathogen Diagnostic
+              CropDoc AI
             </h1>
             <p className="text-sm font-mono text-[#d4a37f] mb-4 italic">
-              Edge Computer Vision Pathology Engine & Quantized Inference
+              Crop disease classifier API
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
-              An automated agricultural pathology tool delivering immediate plant disease identification to field devices, supporting offline operational resilience for remote farming communities.
+              A FastAPI service that classifies plant disease from a leaf photo, using a fine-tuned ResNet18 trained on a PlantVillage subset (15 classes). Work in progress.
             </p>
 
             {/* Prominent Brass GitHub Button */}
@@ -115,7 +111,7 @@ export const CropDocEntry = () => {
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-[#c5a880]/20">
-              {["PyTorch", "EfficientNet", "OpenCV", "FastAPI", "React 19", "Docker", "ONNX Runtime", "Sub-15ms Edge Latency"].map((tech, i) => (
+              {["Python", "FastAPI", "PyTorch", "Torchvision", "Docker"].map((tech, i) => (
                 <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-[#d4a37f] bg-[#2a1810]/60 border border-[#5c3218]">
                   {tech}
                 </span>
@@ -126,154 +122,35 @@ export const CropDocEntry = () => {
           {/* Section 1: Abstract */}
           <section id="abstract" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              1. Abstract & Agricultural Scope
+              1. Abstract
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Crop disease outbreaks devastate agricultural yields and smallholder livelihoods. In remote rural sectors, access to certified agronomists is extremely limited, and cellular network connectivity is highly unreliable. Sending raw high-resolution foliage photos to cloud APIs introduces latency and total failure offline.
-            </p>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              CropDoc AI solves this critical bottleneck by deploying a lightweight, quantized EfficientNet vision model directly onto low-cost field devices (e.g. Raspberry Pi or field handhelds), diagnosing 38 distinct crop pathologies in under 15ms.
+              CropDoc AI is a FastAPI service that classifies plant disease from a leaf photo. It uses a fine-tuned ResNet18 trained on PlantVillage, using the plantvillage-tiny split from Hugging Face (15 classes), and runs on CPU with PyTorch. Solo project. Work in progress.
             </p>
           </section>
 
-          {/* Section 2: EfficientNet-B0 Edge Model */}
-          <section id="efficientnet" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 2: API Endpoints */}
+          <section id="api" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              2. EfficientNet-B0 Edge Architecture
+              2. API Endpoints
             </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              EfficientNet-B0 utilizes compound scaling to balance network depth, width, and image resolution simultaneously:
-            </p>
-
-            <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-6 rounded-lg text-center font-mono text-sm text-[#f4efe6] my-4 shadow-inner">
-              <div className="text-[10px] text-[#c5a880] mb-2 uppercase tracking-widest">[COMPOUND SCALING FORMULA]</div>
-              <div className="py-2">
-                {`Depth: d = α^φ,  Width: w = β^φ,  Resolution: r = γ^φ,  s.t. α·β^2·γ^2 ≈ 2`}
-              </div>
-              <div className="text-xs text-[#9c9281] mt-2">
-                Where φ represents the resource scaling coefficient tailored to targeted edge hardware.
-              </div>
-            </div>
+            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-[#eadfc9]/80 pl-2">
+              <li><strong>/health</strong></li>
+              <li><strong>/model-info</strong></li>
+              <li><strong>/predict:</strong> multipart image upload, up to 5 MB.</li>
+            </ul>
           </section>
 
-          {/* Section 3: INT8 Quantization & ONNX */}
-          <section id="quantization" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 3: Engineering Details */}
+          <section id="engineering" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              3. INT8 Quantization & ONNX Runtime
+              3. Engineering Details
             </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Model weights are converted from 32-bit floating-point (FP32) into 8-bit integers (INT8), shrinking model binary size by 75% while leveraging vector SIMD execution instructions on low-cost ARM CPUs.
-            </p>
-          </section>
-
-          {/* Section 4: Architecture Decision Records (ADRs) */}
-          <section id="adrs" className="parchment-card p-8 rounded-lg space-y-6">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              4. Architecture Decision Records (ADRs)
-            </h2>
-
-            {/* ADR 001 */}
-            <div className="bg-[#221812]/80 p-6 rounded-lg border border-[#c5a880]/30 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#c5a880]/20 pb-2">
-                <span className="text-xs font-mono font-bold text-[#d4a37f] uppercase">[ADR-001]</span>
-                <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
-              </div>
-              <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                EfficientNet-B0 Backbone Selection for Edge Vision
-              </h3>
-              <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> Agricultural field devices have strict power limits but require high accuracy across 38 distinct plant disease classes.</p>
-                <p><strong>Decision:</strong> Select EfficientNet-B0 with compound depth/width scaling fine-tuned on foliar pathology datasets.</p>
-                <p><strong>Consequences:</strong> Achieved 98.4% classification F1-score with under 5 million total trainable parameters.</p>
-              </div>
-            </div>
-
-            {/* ADR 002 */}
-            <div className="bg-[#221812]/80 p-6 rounded-lg border border-[#c5a880]/30 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#c5a880]/20 pb-2">
-                <span className="text-xs font-mono font-bold text-[#d4a37f] uppercase">[ADR-002]</span>
-                <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
-              </div>
-              <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                INT8 Quantization & ONNX Runtime CPU Deployment
-              </h3>
-              <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> Field units operate on ARM single-board computers lacking discrete GPUs.</p>
-                <p><strong>Decision:</strong> Export PyTorch model weights to ONNX format and apply INT8 dynamic quantization.</p>
-                <p><strong>Consequences:</strong> Reduced binary file footprint by 75% while achieving 14ms per-frame CPU inference throughput.</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 5: ONNX Inference Engine */}
-          <section id="inference-code" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              5. ONNX Inference Engine Implementation
-            </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Below is an excerpt demonstrating ONNX Runtime inference execution:
-            </p>
-
-            <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-5 rounded-lg font-mono text-xs text-[#eadfc9] my-4 shadow-inner overflow-x-auto">
-              <div className="flex justify-between text-[10px] text-[#c5a880] mb-2 border-b border-[#c5a880]/20 pb-1">
-                <span>[EDGE_INFERENCE.PY]</span>
-                <span>ONNX RUNTIME INT8</span>
-              </div>
-              <pre>{`import onnxruntime as ort
-import numpy as np
-import cv2
-
-def run_cropdoc_inference(image_path: str, model_path: str = "cropdoc_int8.onnx"):
-    # 1. Image Preprocessing
-    img = cv2.imread(image_path)
-    img = cv2.resize(img, (224, 224))
-    img = img.astype(np.float32) / 255.0
-    img = np.transpose(img, (2, 0, 1))
-    input_tensor = np.expand_dims(img, axis=0)
-
-    # 2. Execute ONNX Runtime Session
-    session = ort.InferenceSession(model_path, providers=['CPUExecutionProvider'])
-    input_name = session.get_inputs()[0].name
-    outputs = session.run(None, {input_name: input_tensor})
-
-    # 3. Softmax & Class Extraction
-    probabilities = np.exp(outputs[0]) / np.sum(np.exp(outputs[0]))
-    predicted_class = np.argmax(probabilities)
-    return predicted_class, float(probabilities[0][predicted_class])`}</pre>
-            </div>
-          </section>
-
-          {/* Section 6: Benchmarks */}
-          <section id="benchmarks" className="parchment-card p-8 rounded-lg space-y-6">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              6. Edge Latency Benchmarks
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
-                <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  98.4%
-                </span>
-                <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Classification F1-Score
-                </span>
-              </div>
-              <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
-                <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  14 ms
-                </span>
-                <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  CPU Frame Latency
-                </span>
-              </div>
-              <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
-                <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  38
-                </span>
-                <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Pathogen Classes
-                </span>
-              </div>
-            </div>
+            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-[#eadfc9]/80 pl-2">
+              <li><strong>Model singleton:</strong> loaded once and warmed up at startup.</li>
+              <li><strong>Inference:</strong> runs under <code>torch.inference_mode()</code>.</li>
+              <li><strong>Dataset hashing:</strong> SHA-256 hash of the dataset inputs.</li>
+            </ul>
           </section>
         </main>
       </div>

@@ -165,7 +165,7 @@ export const NeuroInsightEntry = () => {
               </div>
             </div>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              The feature-engineering work “was inspired by <strong>“fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature”</strong>, a paper by <strong>Gautam Gupta, Mrinal Bhan, and Sahil Nimsarkar</strong> at the Data Science & AI department, International Institute of Information Technology, Naya Raipur (IIIT Naya Raipur)”. Their index is the Frequency Parkinson's Indicator, fPI = log10(D2 × DFA) × spread2. “This project does not reuse their formula.”
+              The feature engineering was inspired by the paper <strong>“fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature”</strong> by <strong>Gautam Gupta, Mrinal Bhan and Sahil Nimsarkar</strong> (Data Science & AI department, IIIT Naya Raipur). Their Frequency Parkinson's Indicator is fPI = log10(D2 × DFA) × spread2. This project does not reuse their formula.
             </p>
           </section>
 

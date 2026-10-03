@@ -10,7 +10,7 @@ const GithubIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" })
 );
 
 export const DossiersPage: React.FC = () => {
-  // Default active tab: Feature Builds
+  // Default active tab: Completed
   const [activeTab, setActiveTab] = useState<'feature' | 'active' | 'all'>('feature');
 
   const filteredProjects: ProjectDossier[] =
@@ -32,7 +32,7 @@ export const DossiersPage: React.FC = () => {
           Engineering Projects & Dossiers
         </h1>
         <p className="text-sm font-sans text-[#eadfc9]/90 max-w-2xl leading-relaxed">
-          Catalog of systems engineering builds, machine learning diagnostic pipelines, and real-time application frameworks. Filter by feature production builds or active development projects.
+          Completed projects and work in progress. Open a card for the write-up and source code.
         </p>
       </header>
 
@@ -81,7 +81,7 @@ export const DossiersPage: React.FC = () => {
               Selected Projects & Systems
             </h2>
             <p className="text-xs font-mono text-[#9c9281]">
-              Filter view: Feature Builds, Active Development, or All Projects
+              Filter view: Completed, In Development, or All Projects
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export const DossiersPage: React.FC = () => {
                   : 'text-[#9c9281] hover:text-[#eadfc9] hover:bg-[#221812]'
               }`}
             >
-              [FEATURE BUILDS ({ENGINEERING_DOSSIERS.featureBuilds.length})]
+              [COMPLETED ({ENGINEERING_DOSSIERS.featureBuilds.length})]
             </button>
             <button
               onClick={() => setActiveTab('active')}
@@ -105,7 +105,7 @@ export const DossiersPage: React.FC = () => {
                   : 'text-[#9c9281] hover:text-[#eadfc9] hover:bg-[#221812]'
               }`}
             >
-              [ACTIVE BUILDS ({ENGINEERING_DOSSIERS.activeBuilds.length})]
+              [IN DEVELOPMENT ({ENGINEERING_DOSSIERS.activeBuilds.length})]
             </button>
             <button
               onClick={() => setActiveTab('all')}
@@ -115,7 +115,7 @@ export const DossiersPage: React.FC = () => {
                   : 'text-[#9c9281] hover:text-[#eadfc9] hover:bg-[#221812]'
               }`}
             >
-              [ALL BUILDS ({ENGINEERING_DOSSIERS.allBuilds.length})]
+              [ALL PROJECTS ({ENGINEERING_DOSSIERS.allBuilds.length})]
             </button>
           </div>
         </div>
@@ -126,10 +126,10 @@ export const DossiersPage: React.FC = () => {
             <span className="w-2.5 h-2.5 rounded-full bg-[#34d399] shadow-[0_0_8px_rgba(52,211,153,0.8)]" aria-hidden="true" />
             <span className="font-bold uppercase tracking-wider">
               {activeTab === 'feature'
-                ? `FEATURE BUILDS VIEW (${ENGINEERING_DOSSIERS.featureBuilds.length} PRODUCTION PROJECTS - DEFAULT)`
+                ? `COMPLETED VIEW (${ENGINEERING_DOSSIERS.featureBuilds.length} COMPLETED PROJECTS - DEFAULT)`
                 : activeTab === 'active'
-                ? `ACTIVE BUILDS VIEW (${ENGINEERING_DOSSIERS.activeBuilds.length} IN-DEVELOPMENT PROJECTS)`
-                : `ALL BUILDS VIEW (${ENGINEERING_DOSSIERS.allBuilds.length} PROJECTS COMBINED)`}
+                ? `IN DEVELOPMENT VIEW (${ENGINEERING_DOSSIERS.activeBuilds.length} IN-DEVELOPMENT PROJECTS)`
+                : `ALL PROJECTS VIEW (${ENGINEERING_DOSSIERS.allBuilds.length} PROJECTS COMBINED)`}
             </span>
           </div>
           <span className="text-[#9c9281]">

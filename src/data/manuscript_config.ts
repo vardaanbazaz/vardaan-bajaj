@@ -256,7 +256,7 @@ Parkinson's screening research on voice features, with an independently derived 
 Started from an earlier fPI analyser (github.com/bhanmrinal/fPI-Parkison-Analyser-using-Acoustic-Sound-Features) and rebuilt with the VIC index, subject-grouped cross-validation and external validation.
 
 #### Credit
-The feature-engineering work "was inspired by **"fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature"**, a paper by **Gautam Gupta, Mrinal Bhan, and Sahil Nimsarkar** at the Data Science & AI department, International Institute of Information Technology, Naya Raipur (IIIT Naya Raipur)". Their index is the Frequency Parkinson's Indicator, fPI = log10(D2 × DFA) × spread2. "This project does not reuse their formula."
+The feature engineering was inspired by the paper **“fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature”** by **Gautam Gupta, Mrinal Bhan and Sahil Nimsarkar** (Data Science & AI department, IIIT Naya Raipur). Their Frequency Parkinson's Indicator is fPI = log10(D2 × DFA) × spread2. This project does not reuse their formula.
 
 #### Dataset
 UCI Oxford Parkinson's Disease Detection Dataset (Little et al.): 195 recordings from 32 subjects (147 PD, 48 healthy). The project uses the dataset's pre-extracted features; there is no audio processing.
@@ -330,111 +330,88 @@ Small dataset; SMOTE uses synthetic minority samples; low recall (0.2958), so th
   },
   {
     id: "cropdoc",
-    title: "CropDoc AI Pathogen Diagnostic",
-    subtitle: "Edge Computer Vision Microservice",
+    title: "CropDoc AI",
+    subtitle: "Crop disease classifier API",
     category: "Active Build",
     status: "In Development",
     route: "/dossier/cropdoc",
     githubUrl: "https://github.com/vardaanbazaz/cropdoc-ai",
     summary:
-      "An automated agricultural diagnostic tool delivering immediate plant disease identification to field devices, supporting offline operational resilience for remote farming communities.",
+      "A FastAPI service that classifies plant disease from a leaf photo, using a fine-tuned ResNet18 trained on a PlantVillage subset (15 classes). Work in progress.",
     techStack: [
-      "PyTorch",
-      "EfficientNet",
-      "OpenCV",
+      "Python",
       "FastAPI",
-      "React 19",
+      "PyTorch",
+      "Torchvision",
       "Docker",
-      "ONNX Runtime",
-      "Sub-15ms Edge Latency",
     ],
     dossierCode: "DOSSIER-CD-9910",
-    benchmarks: [
-      { label: "Classification F1-Score", value: "98.4%" },
-      { label: "Inference Latency (Edge)", value: "14ms / frame" },
-      { label: "Pathogen Classes", value: "38 Plant Diseases" },
-    ],
-    adrs: [
-      {
-        id: "ADR-001",
-        title: "EfficientNet-B0 Backbone Selection for Edge Vision",
-        context: "Agricultural field devices have strict power and memory limitations but require high accuracy across 38 distinct plant disease classes.",
-        decision: "Select EfficientNet-B0 with compound depth/width scaling fine-tuned on foliar pathology datasets.",
-        consequences: "Achieved 98.4% F1-score with under 5 million model parameters.",
-      },
-      {
-        id: "ADR-002",
-        title: "INT8 Quantization & ONNX Runtime CPU Deployment",
-        context: "Remote agricultural stations operate low-cost single-board computers lacking discrete GPUs.",
-        decision: "Export PyTorch model weights to ONNX format and apply INT8 dynamic quantization.",
-        consequences: "Reduced model binary size by 75% while achieving 14ms per-frame CPU inference speed.",
-      },
-    ],
-    deepDiveMarkdown: `### Deep Learning Agricultural Pathology Dossier
+    benchmarks: [],
+    deepDiveMarkdown: `### CropDoc AI
 
 #### Abstract
-CropDoc AI delivers real-time plant disease detection to low-power field edge units. Utilizing EfficientNet models fine-tuned on foliar imagery, it provides instantaneous pathology reports.`,
+A FastAPI service that classifies plant disease from a leaf photo, using a fine-tuned ResNet18 trained on a PlantVillage subset (15 classes). It runs on CPU with PyTorch. Solo project. Work in progress.
+
+#### Dataset
+PlantVillage, using the plantvillage-tiny split from Hugging Face (15 classes).
+
+#### API Endpoints
+- /health
+- /model-info
+- /predict (multipart upload, up to 5 MB)
+
+#### Engineering Details
+- Model singleton with warm-up at startup.
+- Inference under torch.inference_mode().
+- SHA-256 dataset hashing.`,
   },
   {
     id: "kanbanlight",
-    title: "KanbanLight Workflow Engine",
-    subtitle: "Distributed Real-Time Task Management System",
+    title: "KanbanLight",
+    subtitle: "Git-style Kanban board",
     category: "Active Build",
     status: "In Development",
     route: "/dossier/kanbanlight",
     githubUrl: "https://github.com/vardaanbazaz/kanbanlight",
+    demoUrl: "https://kanbanlight.vercel.app",
     summary:
-      "A zero-latency task management system built around a Git-inspired state model, enabling instant branching, offline persistence, and seamless real-time team workflow synchronization.",
+      "A Kanban board you can branch like a Git repo: create board branches saved as IndexedDB snapshots, compare two branches in a visual diff, and send commands from a kb CLI over a local WebSocket bridge. Work in progress.",
     techStack: [
-      "React 19",
-      "Vite 6",
+      "React 18",
       "TypeScript",
-      "Tailwind CSS v4",
-      "Optimistic UI",
-      "WebSockets",
-      "IndexedDB",
-      "Sub-24KB Bundle",
+      "Vite",
+      "Tailwind CSS",
+      "IndexedDB (idb)",
     ],
     dossierCode: "DOSSIER-KL-3041",
-    benchmarks: [
-      { label: "Bundle Overhead", value: "< 24 KB gzipped" },
-      { label: "Interaction Latency", value: "0ms Optimistic" },
-      { label: "State Persistence", value: "IndexedDB + Sync" },
-    ],
-    adrs: [
-      {
-        id: "ADR-001",
-        title: "Zero-Dependency Optimistic State Engine",
-        context: "Task board drag-and-drop actions must feel instantaneous, even over high-latency remote network links.",
-        decision: "Apply optimistic UI updates to local state immediately while dispatching asynchronous background sync events.",
-        consequences: "Eliminated UI drag latency to 0ms with automatic rollback on network sync failure.",
-      },
-      {
-        id: "ADR-002",
-        title: "Lightweight React 19 Architecture (<24KB gzipped)",
-        context: "System must embed into existing micro-frontends without adding framework bloat.",
-        decision: "Utilize native React 19 primitives and raw CSS variables without heavy third-party UI component libraries.",
-        consequences: "Kept total gzipped bundle size under 24KB while maintaining high animation performance.",
-      },
-    ],
-    deepDiveMarkdown: `### Architectural Engineering Dossier
+    benchmarks: [],
+    deepDiveMarkdown: `### KanbanLight
 
 #### Abstract
-KanbanLight is a zero-latency task management system engineered for extreme responsiveness. Built without external state abstractions, it relies on React 19 hooks and local persistent storage.`,
+A Kanban board you can branch like a Git repo: create board branches saved as IndexedDB snapshots, compare two branches in a visual diff, and send commands from a kb CLI over a local WebSocket bridge. Built with React 18, strict TypeScript and Vite. Solo project. Work in progress.
+
+#### Branches and Snapshots
+Board branches, with IndexedDB snapshots of cards, columns and events.
+
+#### Visual Diff
+Branch-vs-branch visual diff.
+
+#### kb CLI
+A kb CLI (Commander.js) sends commands to the board over a local WebSocket bridge at ws://localhost:8080.`,
   },
   {
     id: "unified-api-ingester",
-    title: "Automated Data Lakehouse Ingestion Pipeline",
-    subtitle: "Resilient REST API Ingestion & Dual Sink Engine",
+    title: "Unified API Ingester",
+    subtitle: "REST-to-lakehouse ingestion pipeline",
     category: "Pipeline Engine",
-    status: "Completed",
+    status: "In Development",
+    route: "/dossier/unified-api-ingester",
     githubUrl: "https://github.com/vardaanbazaz/unified-api-ingester",
-    hasManuscript: false,
     summary:
-      "An enterprise-grade, resilient, environment-agnostic Data Lakehouse Ingestion Engine built in Python. The pipeline extracts raw JSON payloads from REST APIs with automated exponential backoff retries, normalizes data into structured Pandas DataFrames, and dual-persists records into an idempotent DuckDB database and a Hive-partitioned Parquet Data Lake.",
+      "A Python pipeline that pulls from a REST API (OpenBreweryDB) with retries and exponential backoff, then writes to DuckDB with idempotent upserts and to a Hive-partitioned Parquet data lake. Work in progress.",
     techStack: [
       "Python 3.10+",
-      "DuckDB 1.0+",
+      "DuckDB",
       "Apache Parquet",
       "Hive Partitioning",
       "Pandas",
@@ -445,16 +422,25 @@ KanbanLight is a zero-latency task management system engineered for extreme resp
     ],
     dossierCode: "DOSSIER-ADL-1024",
     benchmarks: [
-      { label: "Execution Reliability", value: "8/8 Unit Tests Passing" },
+      { label: "Tests", value: "Unit-tested, CI on GitHub Actions" },
       { label: "Persistence Engine", value: "DuckDB + Parquet Lake" },
-      { label: "Partitioning Scheme", value: "Hive UTC Date Pathing" },
+      { label: "Partitioning Scheme", value: "Hive-style UTC date partitions" },
     ],
+    deepDiveMarkdown: `A Python pipeline that pulls from a REST API and writes to two sinks. Solo project. Work in progress.
+
+- Source: OpenBreweryDB REST API.
+- Retries: configurable exponential backoff on transient 4xx/5xx errors.
+- DuckDB sink: idempotent upserts with ON CONFLICT (id) DO UPDATE.
+- Parquet sink: data lake with Hive-style UTC date partitions.
+- Config: config/config.yaml, with CLI overrides.
+- Runtime: Python 3.10+.
+- Tests: unit-tested, CI on GitHub Actions.`,
   },
 ];
 
 export const ENGINEERING_DOSSIERS = {
-  featureBuilds: DOSSIER_LIST.filter((d) => d.category === 'Feature Build'),
-  activeBuilds: DOSSIER_LIST.filter((d) => d.category === 'Active Build'),
+  featureBuilds: DOSSIER_LIST.filter((d) => d.status === 'Completed'),
+  activeBuilds: DOSSIER_LIST.filter((d) => d.status === 'In Development'),
   allBuilds: DOSSIER_LIST,
 };
 
@@ -584,7 +570,7 @@ export const MAP_DATA: MapDataSchema = {
   experience: [
     {
       id: 'raipur-exp', coords: [21.1610, 81.7850], type: 'remote-hub', roles: [
-        { title: 'Web/App Developer', org: 'AgryBin · Internship', type: 'Remote', year: 'May 2025 – Aug 2025', bullets: ['Only developer at an early-stage agritech startup, which closed after the internship for lack of funding.', 'Built the company\'s brand and product website.', 'Built an Android app in Flutter with OTP login and modules for mandi prices, mandi requirements, news, transporter contacts and cold-storage contacts.'] }
+        { title: 'Web/App Developer', org: 'AgryBin · Internship', type: 'Remote', year: 'May 2025 – Aug 2025', bullets: ['Handled all web and mobile development for an early-stage agritech startup as its sole developer, from requirements to delivery.', 'Built the company\'s brand and product website.', 'Built an Android app in Flutter with OTP login and modules for mandi prices, mandi requirements, news, transporter contacts and cold-storage contacts.'] }
       ]
     },
     {

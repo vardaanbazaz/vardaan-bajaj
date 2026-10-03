@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom';
 export const KanbanLightEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
   const githubUrl = "https://github.com/vardaanbazaz/kanbanlight";
+  const demoUrl = "https://kanbanlight.vercel.app";
 
   const tocItems = [
-    { id: 'abstract', label: '1. Abstract & Workflow Vision' },
-    { id: 'optimistic-ui', label: '2. Optimistic Reconciler' },
-    { id: 'git-diff', label: '3. State Branching & Git Diff' },
-    { id: 'adrs', label: '4. Architectural Decision Records' },
-    { id: 'code-spec', label: '5. State Engine Implementation' },
-    { id: 'benchmarks', label: '6. Bundle & Latency Verification' },
+    { id: 'abstract', label: '1. Abstract' },
+    { id: 'branches', label: '2. Branches & Snapshots' },
+    { id: 'git-diff', label: '3. Visual Diff' },
+    { id: 'cli', label: '4. kb CLI' },
   ];
 
   useEffect(() => {
@@ -72,8 +71,7 @@ export const KanbanLightEntry = () => {
           </nav>
 
           <div className="pt-4 border-t border-[#c5a880]/20 text-[11px] font-mono text-[#9c9281] space-y-2">
-            <div>Bundle: <span className="text-[#34d399]">&lt; 24 KB Gzipped</span></div>
-            <div>Latency: <span className="text-[#eadfc9]">0ms Optimistic</span></div>
+            <div>Status: <span className="text-[#eadfc9]">In Development</span></div>
           </div>
         </aside>
 
@@ -92,13 +90,13 @@ export const KanbanLightEntry = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
-              KanbanLight Workflow Engine
+              KanbanLight
             </h1>
             <p className="text-sm font-mono text-[#d4a37f] mb-4 italic">
-              Distributed Task Orchestration System & Git-Paradigm Board
+              Git-style Kanban board
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
-              A zero-latency task management system featuring optimistic state updates, branching workspace contexts, tri-color diff rendering, and local IndexedDB state reconciliation.
+              A Kanban board you can branch like a Git repo: create board branches saved as IndexedDB snapshots, compare two branches in a visual diff, and send commands from a kb CLI over a local WebSocket bridge. Work in progress.
             </p>
 
             {/* Prominent Brass GitHub Button */}
@@ -111,11 +109,19 @@ export const KanbanLightEntry = () => {
               >
                 [VIEW SOURCE CODE]
               </a>
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-3 font-mono text-[#CF9E4F] border border-[#8C7335] px-4 py-2 hover:bg-[#8C7335]/10 inline-block transition-colors"
+              >
+                [LIVE DEMO · WORK IN PROGRESS]
+              </a>
             </div>
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-[#c5a880]/20">
-              {["React 19", "Vite 6", "TypeScript", "Tailwind CSS v4", "Optimistic UI", "WebSockets", "IndexedDB", "Sub-24KB Bundle"].map((tech, i) => (
+              {["React 18", "TypeScript", "Vite", "Tailwind CSS", "IndexedDB (idb)"].map((tech, i) => (
                 <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-[#d4a37f] bg-[#2a1810]/60 border border-[#5c3218]">
                   {tech}
                 </span>
@@ -126,158 +132,41 @@ export const KanbanLightEntry = () => {
           {/* Section 1: Abstract */}
           <section id="abstract" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              1. Abstract & Workflow Vision
+              1. Abstract
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Task management applications frequently suffer from bloated JavaScript bundle footprints, sluggish drag-and-drop interactions, and complete loss of interactivity during transient network outages. When network requests lag, user drag operations freeze or flicker.
-            </p>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              KanbanLight re-imagines task boards through a Git-inspired state paradigm. By storing state operations as atomic commits and reconciling client actions optimistically, KanbanLight achieves zero perceived interaction latency while retaining full offline persistence and multi-branch state exploration.
+              KanbanLight is a Kanban board you can branch like a Git repo. It is built with React 18, strict TypeScript and Vite, and stores data in IndexedDB via idb. Solo project. Work in progress.
             </p>
           </section>
 
-          {/* Section 2: Optimistic Reconciler */}
-          <section id="optimistic-ui" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 2: Branches & Snapshots */}
+          <section id="branches" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              2. Optimistic UI Reconciler
+              2. Branches & Snapshots
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              When a user mutates task state (e.g. moving a card between columns), the UI state updates instantaneously. A background worker dispatches asynchronous delta synchronization payloads to the remote server, rolling back gracefully if confirmation fails.
+              Create branches of a board and switch between them. Each branch is saved as an IndexedDB snapshot of its cards, columns and events.
             </p>
-
-            <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-6 rounded-lg text-center font-mono text-sm text-[#f4efe6] my-4 shadow-inner">
-              <div className="text-[10px] text-[#c5a880] mb-2 uppercase tracking-widest">[OPTIMISTIC RECONCILIATION FORMULA]</div>
-              <div className="py-2">
-                {`S_{t+1} = R( S_t, Δ_action ),  where Commit(Δ_action) → Server`}
-              </div>
-              <div className="text-xs text-[#9c9281] mt-2">
-                If network rejection occurs, S_rollback is applied cleanly without breaking DOM event loops.
-              </div>
-            </div>
           </section>
 
-          {/* Section 3: Git-Diff State Branching */}
+          {/* Section 3: Visual Diff */}
           <section id="git-diff" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              3. State Branching & Tri-Color Diff Engine
+              3. Visual Diff
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              KanbanLight tracks task state history as a directed acyclic graph (DAG) of state diffs, enabling users to create experimental workspace branches, review tri-color diffs (added, modified, deleted tasks), and merge changes seamlessly.
+              Compare the current branch against another branch in a visual diff of the board.
             </p>
           </section>
 
-          {/* Section 4: Architecture Decision Records (ADRs) */}
-          <section id="adrs" className="parchment-card p-8 rounded-lg space-y-6">
+          {/* Section 4: kb CLI */}
+          <section id="cli" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              4. Architecture Decision Records (ADRs)
-            </h2>
-
-            {/* ADR 001 */}
-            <div className="bg-[#221812]/80 p-6 rounded-lg border border-[#c5a880]/30 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#c5a880]/20 pb-2">
-                <span className="text-xs font-mono font-bold text-[#d4a37f] uppercase">[ADR-001]</span>
-                <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
-              </div>
-              <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                Zero-Dependency Optimistic State Engine
-              </h3>
-              <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> User task board drag-and-drop operations must feel instantaneous regardless of background network latency or intermittent connectivity.</p>
-                <p><strong>Decision:</strong> Mutate client UI state immediately upon user input, firing asynchronous background synchronization requests to WebSocket remote endpoints.</p>
-                <p><strong>Consequences:</strong> Reduced perceived interaction latency to 0ms with automatic rollback handling if sync confirmation fails.</p>
-              </div>
-            </div>
-
-            {/* ADR 002 */}
-            <div className="bg-[#221812]/80 p-6 rounded-lg border border-[#c5a880]/30 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#c5a880]/20 pb-2">
-                <span className="text-xs font-mono font-bold text-[#d4a37f] uppercase">[ADR-002]</span>
-                <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
-              </div>
-              <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                Compact Bundle Footprint (&lt;24KB Gzipped)
-              </h3>
-              <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> System must embed cleanly into existing lightweight web views and remote micro-frontend containers without heavy initial page loads.</p>
-                <p><strong>Decision:</strong> Rely exclusively on React 19 primitives and native CSS variables without third-party heavy component libraries.</p>
-                <p><strong>Consequences:</strong> Kept total gzipped bundle size under 24KB while delivering high 60fps drag animation performance.</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 5: Implementation Code */}
-          <section id="code-spec" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              5. Optimistic State Hook Implementation
+              4. kb CLI
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Below is an excerpt showing the optimistic state reducer hook:
+              A kb CLI built with Commander.js sends commands to the board over a local WebSocket bridge at ws://localhost:8080.
             </p>
-
-            <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-5 rounded-lg font-mono text-xs text-[#eadfc9] my-4 shadow-inner overflow-x-auto">
-              <div className="flex justify-between text-[10px] text-[#c5a880] mb-2 border-b border-[#c5a880]/20 pb-1">
-                <span>[USE_OPTIMISTIC_TASK.TS]</span>
-                <span>REACT 19 STATE ENGINE</span>
-              </div>
-              <pre>{`import { useOptimistic, useTransition } from 'react';
-
-export interface TaskState {
-  id: string;
-  columnId: 'todo' | 'in_progress' | 'done';
-  title: string;
-}
-
-export function useOptimisticBoard(initialTasks: TaskState[]) {
-  const [isPending, startTransition] = useTransition();
-  const [optimisticTasks, setOptimisticTask] = useOptimistic(
-    initialTasks,
-    (state: TaskState[], update: { taskId: string; newColumn: TaskState['columnId'] }) =>
-      state.map((t) => (t.id === update.taskId ? { ...t, columnId: update.newColumn } : t))
-  );
-
-  const moveTask = (taskId: string, newColumn: TaskState['columnId'], syncServer: () => Promise<void>) => {
-    startTransition(async () => {
-      setOptimisticTask({ taskId, newColumn });
-      await syncServer();
-    });
-  };
-
-  return { optimisticTasks, moveTask, isPending };
-}`}</pre>
-            </div>
-          </section>
-
-          {/* Section 6: Benchmarks */}
-          <section id="benchmarks" className="parchment-card p-8 rounded-lg space-y-6">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              6. Performance Verification & Metrics
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
-                <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  &lt; 24 KB
-                </span>
-                <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Gzipped Bundle Size
-                </span>
-              </div>
-              <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
-                <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  0 ms
-                </span>
-                <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Perceived Drag Latency
-                </span>
-              </div>
-              <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
-                <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  IndexedDB
-                </span>
-                <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Offline Sync Persistence
-                </span>
-              </div>
-            </div>
           </section>
         </main>
       </div>

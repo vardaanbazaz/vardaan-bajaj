@@ -78,19 +78,19 @@ export const LaboratoryOverviewPage: React.FC = () => {
                   <span className="block text-2xl font-serif font-bold text-[#CF9E4F]">
                     {ENGINEERING_DOSSIERS.featureBuilds.length}
                   </span>
-                  <span className="text-[10px] font-mono text-[#9c9281]">FEATURE BUILDS</span>
+                  <span className="text-[10px] font-mono text-[#9c9281]">COMPLETED</span>
                 </div>
                 <div className="bg-[#100b08]/50 p-3 rounded-lg border border-[#8C7335]/20 text-center">
                   <span className="block text-2xl font-serif font-bold text-[#CF9E4F]">
                     {ENGINEERING_DOSSIERS.activeBuilds.length}
                   </span>
-                  <span className="text-[10px] font-mono text-[#9c9281]">ACTIVE BUILDS</span>
+                  <span className="text-[10px] font-mono text-[#9c9281]">IN DEVELOPMENT</span>
                 </div>
                 <div className="bg-[#100b08]/50 p-3 rounded-lg border border-[#8C7335]/20 text-center">
                   <span className="block text-2xl font-serif font-bold text-[#CF9E4F]">
                     {ENGINEERING_DOSSIERS.allBuilds.length}
                   </span>
-                  <span className="text-[10px] font-mono text-[#9c9281]">ALL BUILDS</span>
+                  <span className="text-[10px] font-mono text-[#9c9281]">ALL PROJECTS</span>
                 </div>
               </div>
 
@@ -138,6 +138,10 @@ export const LaboratoryOverviewPage: React.FC = () => {
               </div>
             ))}
           </div>
+
+          <p className="text-xs font-mono text-[#9c9281] mb-4">
+            Also: built a results-review web app for a crop-imaging research collaboration between IIIT Naya Raipur and Mahyco (2024).
+          </p>
 
           {/* Map Teaser Button */}
           <div className="text-center pt-2 border-t border-[#8C7335]/20">

@@ -81,7 +81,7 @@ export const SeoHead: React.FC = () => {
       structuredData = [personSchema, websiteSchema, profilePageSchema];
     } else if (normalizedPathname === '/dossiers') {
       title = `Engineering Projects & Dossiers | ${PERSONAL_INFO.name}`;
-      description = `Catalog of systems engineering builds, machine learning diagnostic pipelines, and real-time application frameworks developed by Vardaan Bajaj.`;
+      description = `Projects by Vardaan Bajaj: completed work and projects in progress, with write-ups and source code.`;
       canonicalPath = '/dossiers';
       structuredData = {
         '@context': 'https://schema.org',
@@ -113,7 +113,7 @@ export const SeoHead: React.FC = () => {
       }
     } else if (normalizedPathname === '/publications') {
       title = `IEEE Research Publications | ${PERSONAL_INFO.name}`;
-      description = `Peer-reviewed IEEE research proceedings, algorithmic synthesis papers, edge AI architectures, and graph topology formulations by Vardaan Bajaj.`;
+      description = `Two IEEE conference papers by Vardaan Bajaj: aerial computer vision (first author, CICT 2025) and an object-oriented web page linker (IATMSI 2024).`;
       canonicalPath = '/publications';
       structuredData = {
         '@context': 'https://schema.org',
@@ -153,7 +153,7 @@ export const SeoHead: React.FC = () => {
       canonicalPath = '/map';
     } else if (normalizedPathname === '/telegram') {
       title = `Direct Contact & Dispatch | ${PERSONAL_INFO.name}`;
-      description = `Direct communication channel to contact Vardaan Bajaj for systems engineering roles, research collaborations, and technical consultations.`;
+      description = `Direct communication channel to contact Vardaan Bajaj for machine learning and software engineering roles, research collaborations, and technical consultations.`;
       canonicalPath = '/telegram';
     } else if (normalizedPathname === '/datavista') {
       canonicalPath = '/dossier/datavista';

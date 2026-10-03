@@ -74,7 +74,13 @@ export const DossierDetailPage: React.FC = () => {
           <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#2a1810] text-[#d4a37f] border border-[#5c3218]">
             CATEGORY: {dossier.category}
           </span>
-          <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#141c14] text-[#34d399] border border-[#304030]">
+          <span
+            className={`text-xs font-mono px-3 py-1 rounded-full border ${
+              dossier.status === 'Completed' || dossier.status === 'Published'
+                ? 'bg-[#141c14] border-[#304030] text-[#34d399]'
+                : 'bg-[#2a1810] border-[#5c3218] text-[#d4a37f]'
+            }`}
+          >
             STATUS: {dossier.status}
           </span>
         </div>
