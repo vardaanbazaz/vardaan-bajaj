@@ -152,10 +152,10 @@ export const SeoHead: React.FC = () => {
       title = `Work & Academic Experience Map | ${PERSONAL_INFO.name}`;
       description = `Interactive geographic map displaying engineering internships, research roles, and academic locations of Vardaan Bajaj across India.`;
       canonicalPath = '/map';
-    } else if (normalizedPathname === '/telegram') {
-      title = `Direct Contact & Dispatch | ${PERSONAL_INFO.name}`;
-      description = `Direct communication channel to contact Vardaan Bajaj for machine learning and software engineering roles, research collaborations, and technical consultations.`;
-      canonicalPath = '/telegram';
+    } else if (normalizedPathname === '/contact') {
+      title = `Contact | ${PERSONAL_INFO.name}`;
+      description = `Contact Vardaan Bajaj by email. Open to remote machine learning and software roles.`;
+      canonicalPath = '/contact';
     } else if (normalizedPathname === '/datavista') {
       canonicalPath = '/dossier/datavista';
     } else if (normalizedPathname === '/neuroinsight-ai') {

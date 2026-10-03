@@ -12,7 +12,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
   onSelectRecord,
 }) => {
   const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
-  const [activeTelegram, setActiveTelegram] = useState<MapLocationNode | null>(null);
+  const [activeNode, setActiveNode] = useState<MapLocationNode | null>(null);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
@@ -91,7 +91,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
       const marker = L.marker(coords, { icon: customIcon }).addTo(map);
 
       marker.on('click', () => {
-        setActiveTelegram(node);
+        setActiveNode(node);
         if (onSelectRecord) {
           onSelectRecord(node);
         }
@@ -197,13 +197,13 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
       </div>
 
       {/* ACTIVE MODAL OVERLAY ON MARKER CLICK (PORTALED TO BODY) */}
-      {activeTelegram && createPortal(
+      {activeNode && createPortal(
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 pointer-events-auto">
           {/* 1. Rigid Outer Paper Container */}
           <div className="bg-[#FDF6E3] w-full max-w-2xl max-h-[85vh] h-auto relative rounded-sm border border-[#E0D8C3] shadow-[0_20px_50px_rgba(0,0,0,0.7)] text-[#3E3832] flex flex-col overflow-hidden">
             {/* 2. Fixed Wax Seal Button */}
             <button
-              onClick={() => setActiveTelegram(null)}
+              onClick={() => setActiveNode(null)}
               className="absolute top-4 right-4 md:top-6 md:right-6 w-10 h-10 bg-[#7A3B3B] text-[#FDF6E3] rounded-full shadow-md border-2 border-[#4A1C1C] font-serif hover:scale-105 transition-transform flex items-center justify-center z-50 cursor-pointer"
             >
               X
@@ -212,11 +212,11 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
             {/* 3. Inner Scrolling Content */}
             <div className="p-8 md:p-12 overflow-y-auto custom-paper-scrollbar flex-grow relative">
               <p className="font-mono text-[10px] md:text-xs text-[#8C7335] uppercase tracking-widest mb-8">
-                [ROLE DETAILS // {activeTelegram.type.toUpperCase()}]<br/>
-                LOCATION: [{activeTelegram.coords[0]}, {activeTelegram.coords[1]}]
+                [ROLE DETAILS // {activeNode.type.toUpperCase()}]<br/>
+                LOCATION: [{activeNode.coords[0]}, {activeNode.coords[1]}]
               </p>
 
-              {activeTelegram.roles.map((role: MapRole, i: number) => (
+              {activeNode.roles.map((role: MapRole, i: number) => (
                 <div key={i} className="mb-10 pb-10 border-b border-dashed border-[#C5A880]/40 last:border-0 last:mb-0 last:pb-0">
                   <h3 className="font-serif text-2xl font-bold mb-1 text-[#2A241F] pr-12 leading-tight">
                     {role.title}

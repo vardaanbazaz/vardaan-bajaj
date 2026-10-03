@@ -73,7 +73,7 @@ export const AnalogNavigation: React.FC = () => {
 
           {/* 5. CONTACT */}
           <NavLink
-            to="/telegram"
+            to="/contact"
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive

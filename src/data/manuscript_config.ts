@@ -11,7 +11,6 @@ export interface PersonalInfo {
   researchLine: string;
   bio: string;
   authenticatedPrompt: string;
-  telegramHeader: string;
 }
 
 export interface EducationRecord {
@@ -102,12 +101,6 @@ export interface PublicationRecord {
 }
 
 
-export const TELEGRAM_CONFIG = {
-  serviceId: 'service_telegram',
-  templateId: 'template_dispatch',
-  publicKey: 'PUBLIC_KEY_PLACEHOLDER',
-};
-
 export const PERSONAL_INFO: PersonalInfo = {
   name: "Vardaan Bajaj",
   role: "Machine Learning & Software Engineer",
@@ -121,7 +114,6 @@ export const PERSONAL_INFO: PersonalInfo = {
   researchLine: "Research: two IEEE conference papers (first author, CICT 2025)",
   bio: "I'm a machine learning and software engineer. I've worked on computer vision for drone imagery as first author of an IEEE CICT 2025 paper, built a browser-based BI tool that runs entirely on the client, and wrote a C signal-processing simulation during a research internship at DRDO. I completed my B.Tech in Data Science and AI at IIIT Naya Raipur in 2026, and I'm open to remote roles.",
   authenticatedPrompt: "> Vardaan Bajaj — Machine Learning & Software Engineer",
-  telegramHeader: "DIRECT MESSAGING & CONTACT CHANNEL",
 };
 
 export const EDUCATION_DATA: EducationRecord = {

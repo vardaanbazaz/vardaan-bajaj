@@ -29,7 +29,7 @@ const DossierDetailPage = lazy(() => import('./ui/pages/DossierDetailPage'));
 const ExperienceMapPage = lazy(() => import('./ui/pages/ExperienceMapPage'));
 const PublicationsPage = lazy(() => import('./ui/pages/PublicationsPage'));
 const PublicationDetailPage = lazy(() => import('./ui/pages/PublicationDetailPage'));
-const TelegramPage = lazy(() => import('./ui/pages/TelegramPage'));
+const ContactPage = lazy(() => import('./ui/pages/ContactPage'));
 
 const PageFallback: React.FC = () => (
   <div className="w-full h-64 flex flex-col items-center justify-center space-y-3 font-mono text-xs text-[#d4a37f]">
@@ -104,10 +104,10 @@ export const App: React.FC = () => {
           <Route path="publication/:publicationId" element={<PublicationRedirect />} />
 
           <Route
-            path="telegram"
+            path="contact"
             element={
               <Suspense fallback={<PageFallback />}>
-                <TelegramPage />
+                <ContactPage />
               </Suspense>
             }
           />

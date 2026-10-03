@@ -49,6 +49,11 @@
       "source": "/publication/:publicationId",
       "destination": "/publications/:publicationId",
       "permanent": true
+    },
+    {
+      "source": "/telegram",
+      "destination": "/contact",
+      "permanent": true
     }
   ],
   "rewrites": [
