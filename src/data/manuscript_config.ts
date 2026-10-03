@@ -371,7 +371,6 @@ PlantVillage, using the plantvillage-tiny split from Hugging Face (15 classes).
     status: "In Development",
     route: "/dossier/kanbanlight",
     githubUrl: "https://github.com/vardaanbazaz/kanbanlight",
-    demoUrl: "https://kanbanlight.vercel.app",
     summary:
       "A Kanban board you can branch like a Git repo: create board branches saved as IndexedDB snapshots, compare two branches in a visual diff, and send commands from a kb CLI over a local WebSocket bridge. Work in progress.",
     techStack: [

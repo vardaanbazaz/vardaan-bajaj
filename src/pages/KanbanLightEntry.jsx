@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 export const KanbanLightEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
   const githubUrl = "https://github.com/vardaanbazaz/kanbanlight";
-  const demoUrl = "https://kanbanlight.vercel.app";
 
   const tocItems = [
     { id: 'abstract', label: '1. Abstract' },
@@ -108,14 +107,6 @@ export const KanbanLightEntry = () => {
                 className="font-mono text-[#CF9E4F] border border-[#8C7335] px-4 py-2 hover:bg-[#8C7335]/10 inline-block transition-colors"
               >
                 [VIEW SOURCE CODE]
-              </a>
-              <a
-                href={demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-3 font-mono text-[#CF9E4F] border border-[#8C7335] px-4 py-2 hover:bg-[#8C7335]/10 inline-block transition-colors"
-              >
-                [LIVE DEMO · WORK IN PROGRESS]
               </a>
             </div>
 
