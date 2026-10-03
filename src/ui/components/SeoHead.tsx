@@ -124,10 +124,10 @@ export const SeoHead: React.FC = () => {
       };
     } else if (normalizedPathname.startsWith('/publications/')) {
       const pubId = normalizedPathname.replace('/publications/', '');
-      const pub = PUBLICATIONS.find((p) => p.id === pubId);
+      const pub = PUBLICATIONS.find((p) => p.id === pubId && p.route);
       if (pub) {
         title = `${pub.title} — IEEE Publication | ${PERSONAL_INFO.name}`;
-        description = `${pub.subtitle || pub.title}. ${pub.summary}`;
+        description = pub.seoDescription || `${pub.subtitle || pub.title}. ${pub.summary}`;
         canonicalPath = `/publications/${pub.id}`;
         ogType = 'article';
         structuredData = {
@@ -139,6 +139,7 @@ export const SeoHead: React.FC = () => {
             '@type': 'Person',
             name: authorName,
           })),
+          datePublished: pub.datePublishedIso,
           publication: {
             '@type': 'PublicationEvent',
             name: pub.conference,

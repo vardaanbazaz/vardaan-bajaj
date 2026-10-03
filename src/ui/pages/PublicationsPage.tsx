@@ -14,7 +14,7 @@ export const PublicationsPage: React.FC = () => {
           IEEE Research Publications
         </h1>
         <p className="text-sm font-sans text-[#eadfc9]/90 max-w-2xl leading-relaxed">
-          Peer-reviewed proceedings, algorithmic synthesis papers, edge AI architectures, and graph topology formulations. Click any publication card below to view detailed specifications, benchmarks, ADRs, and BibTeX citations.
+          Two IEEE conference papers. Open a paper for its summary, results and citation.
         </p>
       </header>
 

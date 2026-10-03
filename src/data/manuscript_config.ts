@@ -65,15 +65,11 @@ export interface PublicationPipelineStage {
 
 export interface PublicationBenchmarkItem {
   dataset: string;
-  focus: string;
+  description: string;
+  precision: string;
+  recall: string;
   map50: string;
-}
-
-export interface PublicationGraphTheory {
-  formulation: string;
-  vertices: string;
-  edges: string;
-  depthBound: string;
+  map5095: string;
 }
 
 export interface PublicationRecord {
@@ -83,24 +79,26 @@ export interface PublicationRecord {
   conference: string;
   publishedDate?: string;
   year: string;
+  datePublishedIso?: string;
   authors?: string[];
-  target?: string;
+  authorRole?: string;
+  seoDescription?: string;
   doi?: string;
   ieeeUrl?: string;
   githubUrl?: string;
-  route: string;
+  route?: string;
   summary: string;
   techStack?: string[];
   highlights?: string[];
   bibtex: string;
-  abstract: string;
+  abstract?: string;
   adr?: ADRItem;
   pipeline?: PublicationPipelineStage[];
   benchmarks?: {
     formula?: string;
     items: PublicationBenchmarkItem[];
+    note?: string;
   };
-  graphTheory?: PublicationGraphTheory;
 }
 
 
@@ -450,98 +448,77 @@ export const PUBLICATIONS: PublicationRecord[] = [
   {
     id: "linker",
     title: "An Enhanced Object-Oriented Programming-Based Web Page Linker",
-    subtitle: "Web Page Linker: Graph-Based Web Topology Crawler",
-    conference: "IEEE Conference on Interdisciplinary Approaches in Technology and Management for Social Innovation (IATMSI)",
-    publishedDate: "Apr 24, 2024",
+    subtitle: "Object-oriented web page linker",
+    conference: "2024 IEEE International Conference on Interdisciplinary Approaches in Technology and Management for Social Innovation (IATMSI), Gwalior",
+    publishedDate: "Mar 2024",
     year: "2024",
-    authors: ["Vardaan Bajaj"],
-    doi: "10.1109/IATMSI60092.2024.10529783",
+    datePublishedIso: "2024-03",
+    authors: ["J. Vijaya", "Aayush Kulkarni", "Vaibhav Vikas Ranjan", "Vardaan Bajaj"],
+    authorRole: "Co-author",
+    doi: "10.1109/IATMSI60426.2024.10503405",
     ieeeUrl: "https://ieeexplore.ieee.org/abstract/document/10503405",
-    route: "/publications/linker",
-    summary: "Published IEEE research introducing an object-oriented structural design pattern for automated web document linking and relationship mapping.",
-    techStack: ["Python 3.11", "BeautifulSoup4", "NetworkX", "PyVis", "Bounded BFS"],
-    abstract: "Understanding website hierarchy and anchor link connections is vital for SEO auditing, web scraping safety, and network topology analysis. Web Page Linker maps website topologies into interactive, force-directed graph diagrams. Using BFS, it discovers internal links while filtering external domains, generating an interactive HTML canvas via PyVis and NetworkX.",
-    highlights: [
-      "Published IEEE research introducing an object-oriented structural design pattern for automated web document linking and relationship mapping.",
-      "Designed an extensible OOP-based graph indexing architecture for parsing unstructured DOM elements and resolving dynamic hyperlinking dependencies.",
-      "Implemented recursive link extraction and validation algorithms to reduce routing overhead and eliminate broken navigation paths.",
-      "Evaluated memory footprint and traversal latency against baseline document linkers across modular web architectures."
-    ],
-    graphTheory: {
-      formulation: "Directed Graph Topology Formulation: G = (V, E) where (u, v) ∈ E iff u contains a hyperlink targeting v",
-      vertices: "Vertex Set (V): Canonical URL endpoints discovered during traversal, sanitized to eliminate fragment identifiers and query parameters.",
-      edges: "Edge Set (E): Directed connections extracted from anchor tags inside HTML elements using BeautifulSoup parsing.",
-      depthBound: "Depth Bound (d_max): Configurable maximum depth threshold preventing exponential queue growth and keeping requests bounded."
-    },
-    pipeline: [
-      { step: "STEP 01", title: "Queue Init", description: "Seed target URL pushed into BFS queue with depth=0 and domain restrictions." },
-      { step: "STEP 02", title: "Fetch & Parse", description: "HTTP request fetches HTML; BeautifulSoup extracts canonical href links." },
-      { step: "STEP 03", title: "Graph Construction", description: "NetworkX DiGraph appends vertices and directed edges, eliminating out-of-domain targets." },
-      { step: "STEP 04", title: "PyVis Canvas", description: "Graph data serialized into map.html with force-directed physics simulation." }
-    ],
-    adr: {
-      id: "ADR-007",
-      title: "ADR-007 // PyVis Dynamic Physics Canvas Selection",
-      context: "Static Matplotlib network plots are unreadable when site topologies scale beyond 50+ nodes, resulting in overlapping label text.",
-      decision: "Export NetworkX directed graphs to interactive PyVis HTML canvases featuring force-directed physics engines and node dragging.",
-      consequences: "Enables immediate visual inspection of isolated sub-pages, dead-end nodes, and highly interconnected hub pages."
-    },
-    bibtex: `@inproceedings{bajaj2024webpagelinker,
+    summary: "A Python object-oriented wrapper that encapsulates web-page <div> functionality into reusable classes. My part: researching and comparing candidate approaches and technologies, and contributing to the OOP-based implementation.",
+    techStack: ["Python"],
+    bibtex: `@inproceedings{vijaya2024webpagelinker,
   title={An Enhanced Object-Oriented Programming-Based Web Page Linker},
-  author={Bajaj, Vardaan},
-  booktitle={IEEE Conference on Interdisciplinary Approaches in Technology and Management for Social Innovation (IATMSI)},
+  author={Vijaya, J. and Kulkarni, Aayush and Ranjan, Vaibhav Vikas and Bajaj, Vardaan},
+  booktitle={2024 IEEE International Conference on Interdisciplinary Approaches in Technology and Management for Social Innovation (IATMSI)},
+  address={Gwalior, India},
   year={2024},
-  organization={IEEE}
+  doi={10.1109/IATMSI60426.2024.10503405},
+  publisher={IEEE}
 }`
   },
   {
     id: "surveillance",
     title: "V-Surveillance: A Hybrid Deep Learning Framework for Real-Time Aerial Surveillance Using Drone Imagery",
-    subtitle: "Real-Time Edge UAV Deep Learning Architecture",
-    conference: "IEEE International Conference on Information and Communication Technology (CICT)",
-    publishedDate: "Feb 24, 2026",
-    year: "2026",
-    authors: ["Amit Kumar", "Shrivishal Tripathi", "Vardaan Bajaj"],
-    target: "Real-time Edge UAV",
-    doi: "10.1109/CICT.2026.1044921",
+    subtitle: "Detection and tracking pipeline for drone imagery",
+    conference: "2025 IEEE 9th International Conference on Information and Communication Technology (CICT), Chennai",
+    publishedDate: "Dec 2025",
+    year: "2025",
+    datePublishedIso: "2025-12",
+    authors: ["Vardaan Bajaj", "Amit Kumar", "Shrivishal Tripathi"],
+    authorRole: "First author",
+    seoDescription: "V-Surveillance (IEEE CICT 2025, first author): detection and tracking in drone imagery with ESRGAN, YOLO12m with SAHI, and DeepSORT.",
+    doi: "10.1109/CICT67193.2025.11399085",
     ieeeUrl: "https://ieeexplore.ieee.org/abstract/document/11399085",
     route: "/publications/surveillance",
-    summary: "Published IEEE research presenting an edge-optimized aerial surveillance framework combining high-resolution super-resolution with tiled object detection for UAV telemetry.",
-    techStack: ["ESRGAN", "YOLO12M", "SAHI", "Deep SORT", "PyTorch"],
-    abstract: "Aerial surveillance using UAVs is important for safety and emergency response, as well as to monitor and regulate traffic. This research introduces V-Surveillance, an integrated approach to deep learning (Super Resolution, Object Detection & Multi-Object Tracking) for achieving situational awareness. V-Surveillance's performance was evaluated through a variety of aerial data sets that tested its ability to achieve accurate detection under varying lighting, altitude, and density conditions. The results showed that the framework achieved very high precision, recall, and sensitivity to small objects.",
+    summary: "First-author IEEE CICT 2025 paper: a detection and tracking pipeline for drone imagery combining ESRGAN, YOLO12m with SAHI, and DeepSORT.",
+    techStack: ["ESRGAN", "YOLO12m", "SAHI", "DeepSORT"],
+    abstract: "A pipeline that combines selective ESRGAN super-resolution, YOLO12m detection with dynamic SAHI slicing, and DeepSORT tracking with ID-retention heuristics, evaluated on four public aerial datasets: UAVDT, Spanish Roundabouts, Traffic Aerial Images and Top-View.",
     highlights: [
-      "Published IEEE research presenting an edge-optimized aerial surveillance framework combining high-resolution super-resolution with tiled object detection for UAV telemetry.",
-      "Architected a multi-stage computer vision pipeline integrating YOLO12M, Slicing Aided Hyper Inference (SAHI), ESRGAN, and DeepSORT for multi-object tracking under occlusion.",
-      "Engineered a dynamic image-tiling strategy that boosted small-object detection accuracy (mAP@0.50) across high-altitude drone datasets with dense scenes.",
-      "Benchmarked inference latency and tracking stability under varying lighting conditions, motion blur, and edge compute constraints."
+      "Led the methodology, literature review and pipeline architecture; implementation co-developed and cross-reviewed with Amit Kumar. Supervised by Shrivishal Tripathi."
     ],
     pipeline: [
-      { step: "Stage 01", title: "ESRGAN (Super Resolution)", description: "Enhances details and textures in video frames captured from high altitudes, reconstructing essential features before detection." },
-      { step: "Stage 02", title: "YOLO12M + SAHI (Detection)", description: "Applies Slicing Aided Hyper Inference (SAHI) alongside YOLO12M, optimizing spatial attention maps to detect extremely small structures." },
-      { step: "Stage 03", title: "Deep SORT (Tracking)", description: "Associates objects across successive frames using motion-based Kalman filtering and descriptor distance matching to handle blur." }
+      { step: "Stage 01", title: "ESRGAN (super-resolution)", description: "Applied selectively to tiles below a resolution threshold." },
+      { step: "Stage 02", title: "YOLO12m + SAHI (detection)", description: "Slice size and overlap adjusted to scene density, detections merged with NMS." },
+      { step: "Stage 03", title: "DeepSORT (tracking)", description: "Kalman motion model plus appearance encoder, with ID-retention heuristics when motion blur exceeds a threshold." }
     ],
     adr: {
       id: "ADR-006",
-      title: "ADR-006 // SAHI Windowing Integration",
-      context: "High-altitude drone footage captures micro-objects representing <0.5% of total image pixels, leading standard single-pass detectors to miss small bounding boxes.",
-      decision: "Slice high-resolution UAV video frames dynamically using SAHI windowing prior to feeding sub-tensors into YOLO12M, merging overlapping bounding boxes via Non-Maximum Suppression (NMS).",
-      consequences: "Achieves mAP@50 metrics of 0.967 (UAVDT) and 0.977 (Traffic Aerial Images) while maintaining real-time execution speeds on drone edge accelerators."
+      title: "ADR-006 // SAHI slicing for small objects",
+      context: "Small objects in high-altitude drone frames.",
+      decision: "SAHI slicing, with slice size and overlap adjusted to scene density; detections merged with NMS.",
+      consequences: "mAP@50 of 0.966–0.977 across the four datasets."
     },
     benchmarks: {
       formula: "mAP@50 = (1 / |K|) * SUM_k ( INT P_k(R) dR )",
       items: [
-        { dataset: "UAVDT", focus: "UAV Detection & Tracking Benchmark", map50: "0.967" },
-        { dataset: "Spanish Roundabouts", focus: "Dynamic Traffic Flow & Angle Fluctuations", map50: "0.966" },
-        { dataset: "Traffic Aerial Images", focus: "High Density Vehicle Clusters", map50: "0.977" },
-        { dataset: "Top View", focus: "Extreme Nadir Perspective Alignments", map50: "0.966" }
-      ]
+        { dataset: "UAVDT", description: "Large-scale UAV video frames with occlusion tags and weather/altitude labels, urban and highway scenes.", precision: "0.935", recall: "0.919", map50: "0.967", map5095: "0.600" },
+        { dataset: "Spanish Roundabouts", description: "Drone images of roundabouts from top-down and oblique views (car, truck, bus, motorbike).", precision: "0.960", recall: "0.962", map50: "0.966", map5095: "0.665" },
+        { dataset: "Traffic Aerial Images", description: "High-resolution drone imagery of urban roads, highways, intersections and parking areas.", precision: "0.942", recall: "0.946", map50: "0.977", map5095: "0.693" },
+        { dataset: "Top-View", description: "Overhead images from static cameras and UAVs at intersections, road segments and parking lots.", precision: "0.907", recall: "0.906", map50: "0.966", map5095: "0.711" }
+      ],
+      note: "Training: 25 epochs, SGD, mosaic augmentation, label smoothing."
     },
-    bibtex: `@inproceedings{kumar2026vsurveillance,
+    bibtex: `@inproceedings{bajaj2025vsurveillance,
   title={V-Surveillance: A Hybrid Deep Learning Framework for Real-Time Aerial Surveillance Using Drone Imagery},
-  author={Kumar, Amit and Tripathi, Shrivishal and Bajaj, Vardaan},
-  booktitle={IEEE International Conference on Information and Communication Technology (CICT)},
-  year={2026},
-  organization={IEEE}
+  author={Bajaj, Vardaan and Kumar, Amit and Tripathi, Shrivishal},
+  booktitle={2025 IEEE 9th International Conference on Information and Communication Technology (CICT)},
+  address={Chennai, India},
+  year={2025},
+  doi={10.1109/CICT67193.2025.11399085},
+  publisher={IEEE}
 }`
   }
 ];

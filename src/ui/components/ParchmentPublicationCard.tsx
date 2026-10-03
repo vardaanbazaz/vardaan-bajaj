@@ -28,15 +28,24 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
           )}
         </div>
 
-        {/* Title */}
-        <Link to={publication.route}>
+        {/* Title (linked only when the publication has a detail page) */}
+        {publication.route ? (
+          <Link to={publication.route}>
+            <h3
+              id={`pub-title-${publication.id}`}
+              className="text-xl font-serif font-bold text-[#f4efe6] mb-1.5 hover:text-[#CF9E4F] transition-colors leading-tight"
+            >
+              {publication.title}
+            </h3>
+          </Link>
+        ) : (
           <h3
             id={`pub-title-${publication.id}`}
-            className="text-xl font-serif font-bold text-[#f4efe6] mb-1.5 hover:text-[#CF9E4F] transition-colors leading-tight"
+            className="text-xl font-serif font-bold text-[#f4efe6] mb-1.5 leading-tight"
           >
             {publication.title}
           </h3>
-        </Link>
+        )}
 
         {/* Subtitle */}
         {publication.subtitle && (
@@ -45,8 +54,25 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
           </p>
         )}
 
-        {/* Summary */}
-        <p className="text-xs font-sans text-[#eadfc9]/80 mb-5 leading-relaxed line-clamp-3">
+        {/* Venue */}
+        <p className="text-[11px] font-mono text-[#9c9281] mb-2 leading-relaxed">
+          {publication.conference}
+        </p>
+
+        {/* Authors & Role */}
+        {publication.authors && publication.authors.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono text-[#9c9281] mb-3">
+            <span>Authors: <strong className="text-[#eadfc9]">{publication.authors.join(', ')}</strong></span>
+            {publication.authorRole && (
+              <span className="px-2 py-0.5 rounded bg-[#2a1810] text-[#CF9E4F] border border-[#5c3218] text-[10px] font-bold uppercase tracking-wider">
+                {publication.authorRole}
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Summary (not clamped when there is no detail page to read the rest) */}
+        <p className={`text-xs font-sans text-[#eadfc9]/80 mb-5 leading-relaxed ${publication.route ? 'line-clamp-3' : ''}`}>
           {publication.summary}
         </p>
       </div>
@@ -69,9 +95,9 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
           </div>
         )}
 
-        {/* Action Buttons: IEEE Xplore & Examine Publication Detail */}
+        {/* Action Buttons: IEEE Xplore, DOI & Examine Publication Detail */}
         <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-[#8C7335]/20">
-          {publication.ieeeUrl ? (
+          {publication.ieeeUrl && (
             <a
               href={publication.ieeeUrl}
               target="_blank"
@@ -81,17 +107,30 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
               <span>IEEE XPLORE</span>
               <ExternalLink className="w-3 h-3" />
             </a>
-          ) : (
-            <span />
           )}
 
-          <Link
-            to={publication.route}
-            className="px-3.5 py-1.5 bg-[#221812] hover:bg-[#2a1810] text-[#f4efe6] text-xs font-mono rounded border border-[#8C7335]/40 hover:border-[#CF9E4F] transition-all ml-auto"
-          >
-            EXAMINE DISCLOSURE &rarr;
-            <span className="sr-only"> for {publication.title}</span>
-          </Link>
+          {publication.doi && (
+            <a
+              href={`https://doi.org/${publication.doi}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono text-[#34d399] hover:text-[#6ee7b7] flex items-center gap-1 bg-[#0c120c]/60 px-2.5 py-1 rounded border border-[#164e33]/50 transition-colors"
+            >
+              <span>DOI</span>
+              <ExternalLink className="w-3 h-3" />
+              <span className="sr-only"> {publication.doi}</span>
+            </a>
+          )}
+
+          {publication.route && (
+            <Link
+              to={publication.route}
+              className="px-3.5 py-1.5 bg-[#221812] hover:bg-[#2a1810] text-[#f4efe6] text-xs font-mono rounded border border-[#8C7335]/40 hover:border-[#CF9E4F] transition-all ml-auto"
+            >
+              EXAMINE DISCLOSURE &rarr;
+              <span className="sr-only"> for {publication.title}</span>
+            </Link>
+          )}
         </div>
       </div>
     </article>

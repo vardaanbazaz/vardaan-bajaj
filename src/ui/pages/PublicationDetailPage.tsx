@@ -4,16 +4,14 @@ import { PUBLICATIONS } from '../../data/manuscript_config';
 import { 
   Copy, 
   Check, 
-  ExternalLink, 
-  Cpu, 
-  Layers, 
+  ExternalLink,
+  Layers,
   BarChart3, 
   BookOpen, 
   User, 
   Calendar, 
   Tag, 
-  ShieldCheck,
-  Network
+  ShieldCheck
 } from 'lucide-react';
 
 export const PublicationDetailPage: React.FC = () => {
@@ -21,7 +19,8 @@ export const PublicationDetailPage: React.FC = () => {
   const navigate = useNavigate();
   const [copiedId, setCopiedId] = React.useState<string | null>(null);
 
-  const publication = PUBLICATIONS.find((p) => p.id === publicationId);
+  // Only publications with a route have a detail page
+  const publication = PUBLICATIONS.find((p) => p.id === publicationId && p.route);
 
   const handleCopyBibtex = (id: string, bibtex: string) => {
     navigator.clipboard.writeText(bibtex);
@@ -79,13 +78,6 @@ export const PublicationDetailPage: React.FC = () => {
                 {publication.publishedDate}
               </span>
             )}
-
-            {publication.target && (
-              <span className="px-2.5 py-1 rounded bg-[#0c120c] text-[#34d399] border border-[#164e33] text-xs font-mono flex items-center gap-1">
-                <Cpu className="w-3 h-3" />
-                {publication.target}
-              </span>
-            )}
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
@@ -131,6 +123,11 @@ export const PublicationDetailPage: React.FC = () => {
             <div className="flex items-center gap-2 text-xs font-mono text-[#9c9281] pt-1">
               <User className="w-3.5 h-3.5 text-[#d4a37f]" />
               <span>Authors: <strong className="text-[#eadfc9]">{publication.authors.join(', ')}</strong></span>
+              {publication.authorRole && (
+                <span className="px-2 py-0.5 rounded bg-[#2a1810] text-[#CF9E4F] border border-[#5c3218] text-[10px] font-bold uppercase tracking-wider">
+                  {publication.authorRole}
+                </span>
+              )}
             </div>
           )}
         </div>
@@ -156,10 +153,10 @@ export const PublicationDetailPage: React.FC = () => {
         <div className="bg-[#100b08]/90 p-5 rounded-lg border border-[#8C7335]/20 space-y-3">
           <div className="text-xs font-mono text-[#CF9E4F] uppercase tracking-wider font-bold flex items-center gap-1.5">
             <BookOpen className="w-3.5 h-3.5" />
-            [ABSTRACT & RESEARCH SUMMARY]
+            [SUMMARY]
           </div>
-          <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed italic border-l-2 border-[#8C7335] pl-4 py-1">
-            "{publication.abstract}"
+          <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed border-l-2 border-[#8C7335] pl-4 py-1">
+            {publication.abstract}
           </p>
         </div>
 
@@ -168,9 +165,9 @@ export const PublicationDetailPage: React.FC = () => {
           <div className="space-y-3">
             <div className="text-xs font-mono text-[#CF9E4F] uppercase tracking-wider font-bold flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5" />
-              [KEY RESEARCH HIGHLIGHTS]
+              [CONTRIBUTION]
             </div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono text-[#eadfc9]">
+            <ul className="grid grid-cols-1 gap-2 text-xs font-mono text-[#eadfc9]">
               {publication.highlights.map((highlight, idx) => (
                 <li key={idx} className="bg-[#100b08]/50 p-3 rounded border border-[#8C7335]/15 flex items-start gap-2">
                   <span className="text-[#CF9E4F] font-bold">&bull;</span>
@@ -178,35 +175,6 @@ export const PublicationDetailPage: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </div>
-        )}
-
-        {/* Graph Theory / Mathematical Formulation */}
-        {publication.graphTheory && (
-          <div className="bg-[#100b08]/80 p-5 rounded-lg border border-[#8C7335]/20 space-y-3">
-            <div className="text-xs font-mono text-[#CF9E4F] uppercase tracking-wider font-bold flex items-center gap-1.5">
-              <Network className="w-3.5 h-3.5" />
-              [GRAPH THEORY & TOPOLOGY FORMULATION]
-            </div>
-
-            <div className="bg-black/50 p-3 rounded border border-[#8C7335]/30 text-xs font-mono text-[#34d399] tracking-wide">
-              {publication.graphTheory.formulation}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1 text-xs font-mono">
-              <div className="bg-black/30 p-3 rounded border border-[#8C7335]/15">
-                <div className="text-[#CF9E4F] font-bold mb-1">Vertex Set (V)</div>
-                <div className="text-[#9c9281] leading-relaxed">{publication.graphTheory.vertices}</div>
-              </div>
-              <div className="bg-black/30 p-3 rounded border border-[#8C7335]/15">
-                <div className="text-[#CF9E4F] font-bold mb-1">Edge Set (E)</div>
-                <div className="text-[#9c9281] leading-relaxed">{publication.graphTheory.edges}</div>
-              </div>
-              <div className="bg-black/30 p-3 rounded border border-[#8C7335]/15">
-                <div className="text-[#CF9E4F] font-bold mb-1">Depth Bound (d_max)</div>
-                <div className="text-[#9c9281] leading-relaxed">{publication.graphTheory.depthBound}</div>
-              </div>
-            </div>
           </div>
         )}
 
@@ -256,21 +224,33 @@ export const PublicationDetailPage: React.FC = () => {
                 <thead className="bg-[#2a1810]/80 text-[#CF9E4F] border-b border-[#8C7335]/20 uppercase text-[10px]">
                   <tr>
                     <th className="px-4 py-2.5">Dataset</th>
-                    <th className="px-4 py-2.5">Evaluation Focus</th>
+                    <th className="px-4 py-2.5">Description</th>
+                    <th className="px-4 py-2.5 text-right">Precision</th>
+                    <th className="px-4 py-2.5 text-right">Recall</th>
                     <th className="px-4 py-2.5 text-right">mAP@50</th>
+                    <th className="px-4 py-2.5 text-right">mAP@50:95</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#8C7335]/15">
                   {publication.benchmarks.items.map((item, idx) => (
                     <tr key={idx} className="hover:bg-white/5 transition-colors">
                       <td className="px-4 py-2.5 font-bold text-[#f4efe6]">{item.dataset}</td>
-                      <td className="px-4 py-2.5 text-[#9c9281]">{item.focus}</td>
+                      <td className="px-4 py-2.5 text-[#9c9281]">{item.description}</td>
+                      <td className="px-4 py-2.5 text-right text-[#eadfc9]">{item.precision}</td>
+                      <td className="px-4 py-2.5 text-right text-[#eadfc9]">{item.recall}</td>
                       <td className="px-4 py-2.5 text-right font-bold text-[#34d399]">{item.map50}</td>
+                      <td className="px-4 py-2.5 text-right text-[#eadfc9]">{item.map5095}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+
+            {publication.benchmarks.note && (
+              <p className="text-[11px] font-mono text-[#9c9281]">
+                {publication.benchmarks.note}
+              </p>
+            )}
           </div>
         )}
 

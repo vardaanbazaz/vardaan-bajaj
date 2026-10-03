@@ -36,6 +36,11 @@
       "permanent": true
     },
     {
+      "source": "/publications/linker",
+      "destination": "/publications",
+      "permanent": true
+    },
+    {
       "source": "/publication",
       "destination": "/publications",
       "permanent": true
