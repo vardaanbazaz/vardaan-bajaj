@@ -153,159 +153,180 @@ export const EDUCATION_DATA: EducationRecord = {
 export const DOSSIER_LIST: ProjectDossier[] = [
   {
     id: "datavista",
-    title: "DataVista BI Platform",
-    subtitle: "Offline-First Browser-Native Analytics Engine",
+    title: "DataVista",
+    subtitle: "Browser-native BI platform",
     category: "Feature Build",
     status: "Completed",
     route: "/dossier/datavista",
     githubUrl: "https://github.com/vardaanbazaz/datavista",
     summary:
-      "A high-performance client-side business intelligence platform that performs multi-dimensional data analysis and real-time visual dashboard rendering directly within browser memory, eliminating server latency and data exposure.",
+      "A business-intelligence app that runs in the browser: load a CSV or Excel file and build pivots, calculated fields and dashboards without a backend.",
     techStack: [
-      "React 19",
+      "React 18",
+      "Vite",
       "TypeScript",
+      "Tailwind CSS",
+      "Zustand",
       "Dexie.js",
-      "AST Parser",
       "IndexedDB",
-      "Tailwind CSS v4",
-      "Web Workers",
-      "Zero Server Latency",
+      "Recursive-descent parser",
+      "TanStack Virtual",
+      "Vitest",
+      "Playwright",
+      "GitHub Actions",
     ],
     dossierCode: "DOSSIER-DV-8092",
-    benchmarks: [
-      { label: "Formula Parsing Speed", value: "< 2ms AST Build" },
-      { label: "IndexedDB Throughput", value: "250K records/sec" },
-      { label: "Offline Storage Capacity", value: "Zero Server Overhead" },
-    ],
+    benchmarks: [],
     adrs: [
       {
         id: "ADR-001",
-        title: "Client-Side AST Parsing vs. Remote Server Evaluation",
-        context: "DataVista requires real-time evaluation of custom mathematical and conditional expressions across large tabular datasets without incurring cloud backend API latency or bandwidth costs.",
-        decision: "Implement a zero-dependency recursive-descent mathematical parser running directly inside client JavaScript web workers.",
-        consequences: "Achieved sub-2ms AST build times, total user privacy via local computation, and complete offline availability.",
+        title: "Client-Side Formula Parsing",
+        context: "Calculated fields and window functions have to run in the browser, without a backend.",
+        decision: "A recursive-descent parser for Excel-style calculated fields and window functions (ROW_NUMBER, RANK, DENSE_RANK; rolling, moving averages, cumulative sums).",
+        consequences: "Works fully offline, except the AI Co-Pilot, which sends sample column values to Gemini or OpenAI when a key is added.",
       },
       {
         id: "ADR-002",
-        title: "Dexie.js IndexedDB Engine for Multi-Gigabyte Persistence",
-        context: "Browsers throttle local storage options like localStorage to 5MB. Large enterprise CSV/JSON imports require persistent high-throughput client databases.",
-        decision: "Adopt Dexie.js as an asynchronous transactional key-value querying layer over native IndexedDB.",
-        consequences: "Sustained throughput of 250,000 records/second without blocking the main UI thread during recalculation passes.",
+        title: "IndexedDB via Dexie.js for Local Persistence",
+        context: "Uploaded CSV, TSV or XLSX files of up to 100 MB have to persist in the browser.",
+        decision: "Store datasets in IndexedDB via Dexie.js; keep app state in Zustand with local-storage persistence.",
+        consequences: "No backend is needed to store data.",
       },
     ],
-    deepDiveMarkdown: `### Architectural Dossier & Engineering Specifications
+    deepDiveMarkdown: `### DataVista
 
 #### Abstract
-DataVista is an offline-first, browser-native business intelligence engine built to process complex mathematical formula transformations locally within client viewports. By eliminating server roundtrips, DataVista executes calculations using a lightweight recursive-descent AST parser.
+DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend. Solo project.
 
-#### Key Architectural Components
-1. **Recursive-Descent AST Parser**: Tokenizes, parses, and evaluates custom user mathematical expressions with strict operator precedence.
-2. **Dexie.js IndexedDB Engine**: Indexed storage layer managing zero-latency local database transactions.
-3. **Reactive View Updates**: Subscribes UI components to local state mutations without layout recalculation thrashing.`,
+#### Key Components
+1. **Recursive-descent parser**: Excel-style calculated fields and window functions (ROW_NUMBER, RANK, DENSE_RANK; rolling, moving averages, cumulative sums).
+2. **Unified Query & Pivot Engine**: rows, columns and values.
+3. **Storage**: IndexedDB via Dexie.js for datasets; Zustand with local-storage persistence for app state.
+4. **Testing and CI**: Vitest unit tests and Playwright E2E tests, run in GitHub Actions.
+
+#### Limitations
+Fully offline except the AI Co-Pilot, which sends sample column values to Gemini or OpenAI when a key is added.`,
   },
   {
     id: "neuroinsight-ai",
-    title: "NeuroInsight-AI Diagnostic Model",
-    subtitle: "Vocal Biomarker Parkinson's Prediction Engine",
+    title: "NeuroInsight-AI",
+    subtitle: "Voice-feature Parkinson's research",
     category: "Feature Build",
     status: "Completed",
     route: "/dossier/neuroinsight-ai",
     githubUrl: "https://github.com/vardaanbazaz/neuroinsight-ai",
     summary:
-      "A non-invasive clinical screening system leveraging acoustic speech signal analysis to provide rapid, early-stage risk assessment for neurodegenerative conditions on low-cost diagnostic edge devices.",
+      "Parkinson's screening research on voice features, with an independently derived index (VIC) and subject-grouped evaluation. A research project, not a clinical tool.",
     techStack: [
       "Python",
-      "PyTorch",
-      "Audio Signal Processing",
-      "fPI Biomarker",
-      "LightGBM",
-      "SHAP Attribution",
-      "Edge AI",
-      "FastAPI",
+      "Pandas",
+      "scikit-learn",
+      "XGBoost",
+      "Notebooks",
+      "VIC index",
+      "Subject-grouped CV",
     ],
     dossierCode: "DOSSIER-NI-7744",
     benchmarks: [
-      { label: "Diagnostic Accuracy", value: "96.2%" },
-      { label: "Biomarker Formulation", value: "fPI Acoustic Metric" },
-      { label: "Ensemble Latency", value: "< 5ms Inference" },
+      { label: "Accuracy (XGBoost)", value: "0.796 ± 0.098" },
+      { label: "Majority Baseline Accuracy", value: "0.756 ± 0.067" },
+      { label: "VIC Alone ROC-AUC", value: "0.833 vs 0.734" },
     ],
     adrs: [
       {
         id: "ADR-001",
-        title: "Fundamental Pitch Fluctuation Index (fPI) Formulation",
-        context: "Standard acoustic metrics (jitter, shimmer) alone suffer high false-positive rates when detecting early-stage motor impairment in non-clinical environments.",
-        decision: "Formulate non-linear frequency perturbation metrics combined with log-scaled amplitude shimmer indices into the unified fPI biomarker.",
-        consequences: "Attained 96.2% cross-validated diagnostic accuracy across voice sample datasets while drastically reducing environmental noise sensitivity.",
+        title: "Vocal Instability Compound (VIC)",
+        context: "Inspired by the paper \"fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature\" by Gautam Gupta, Mrinal Bhan, and Sahil Nimsarkar (IIIT Naya Raipur), whose Frequency Parkinson's Indicator is fPI = log10(D2 × DFA) × spread2.",
+        decision: "Derive a separate index, VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000). This project does not reuse their formula.",
+        consequences: "VIC alone reaches 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford dataset only, subject-grouped CV). VIC is untested outside the Oxford dataset because spread2 is missing from the external datasets.",
       },
       {
         id: "ADR-002",
-        title: "Gradient-Boosted Decision Trees over Deep Spectrogram Models",
-        context: "Medical practitioners require interpretable decision criteria, and field screening hardware lacks dedicated GPU acceleration.",
-        decision: "Train LightGBM and XGBoost tree ensembles on engineered acoustic features, backed by SHAP value calculations.",
-        consequences: "Sub-5ms CPU inference execution and transparent feature attribution for clinicians reviewing risk reports.",
+        title: "XGBoost on Pre-Extracted Voice Features",
+        context: "The UCI Oxford Parkinson's Disease Detection Dataset (Little et al.) has 195 recordings from 32 subjects (147 PD, 48 healthy), with features already extracted; there is no audio processing.",
+        decision: "Compare XGBoost against Decision Tree, Random Forest, SVM and KNN under 5-fold subject-grouped stratified CV over 10 seeds (50 folds).",
+        consequences: "XGBoost: accuracy 0.796 ± 0.098 vs a majority baseline of 0.756 ± 0.067; F1 0.872 ± 0.063 (baseline 0.860); precision 0.833 ± 0.093; ROC-AUC 0.741 ± 0.034 (Random Forest 0.764 ± 0.022).",
       },
     ],
-    deepDiveMarkdown: `### Vocal Biomarker Diagnostic Dossier
+    deepDiveMarkdown: `### NeuroInsight-AI
 
 #### Abstract
-NeuroInsight-AI formulates the novel **fPI (Fundamental Pitch Fluctuation Index)** vocal biomarker to non-invasively detect early-stage Parkinsonian tremors from acoustic speech recordings.
+Parkinson's screening research on voice features, with an independently derived index (VIC) and subject-grouped evaluation. This is a research project; it is not designed, certified, or intended for clinical medical diagnosis.
 
-#### Signal Processing Pipeline
-1. **Acoustic Extraction**: Extracts pitch perturbations, shimmer, and harmonic-to-noise ratios.
-2. **fPI Formulation**: Computes non-linear frequency variation indices sensitive to sub-clinical vocal cord rigidity.
-3. **Tree Ensembles**: Trains LightGBM and Random Forest classifiers for rapid diagnostic output.`,
+Started from an earlier fPI analyser (github.com/bhanmrinal/fPI-Parkison-Analyser-using-Acoustic-Sound-Features) and rebuilt with the VIC index, subject-grouped cross-validation and external validation.
+
+#### Credit
+The feature-engineering work "was inspired by **"fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature"**, a paper by **Gautam Gupta, Mrinal Bhan, and Sahil Nimsarkar** at the Data Science & AI department, International Institute of Information Technology, Naya Raipur (IIIT Naya Raipur)". Their index is the Frequency Parkinson's Indicator, fPI = log10(D2 × DFA) × spread2. "This project does not reuse their formula."
+
+#### Dataset
+UCI Oxford Parkinson's Disease Detection Dataset (Little et al.): 195 recordings from 32 subjects (147 PD, 48 healthy). The project uses the dataset's pre-extracted features; there is no audio processing.
+
+#### VIC Index
+VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000). VIC alone: 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford only, subject-grouped CV).
+
+#### Evaluation
+5-fold subject-grouped stratified CV over 10 seeds (50 folds). XGBoost, compared against Decision Tree, Random Forest, SVM and KNN: accuracy 0.796 ± 0.098 (majority baseline 0.756 ± 0.067), F1 0.872 ± 0.063 (baseline 0.860), precision 0.833 ± 0.093, ROC-AUC 0.741 ± 0.034 (Random Forest 0.764 ± 0.022).
+
+#### Limitations
+VIC is untested outside the Oxford dataset because spread2 is missing from the external datasets.`,
   },
   {
     id: "attrition",
-    title: "Enterprise Attrition Intelligence",
-    subtitle: "Predictive HR & Workforce Retention Analytics",
+    title: "Employee Attrition Analysis",
+    subtitle: "HR attrition prediction",
     category: "Feature Build",
     status: "Completed",
     route: "/dossier/attrition",
     githubUrl: "https://github.com/vardaanbazaz/employee-attrition-analysis",
     summary:
-      "An enterprise analytics suite designed to identify workforce flight risk across multi-departmental organizations, isolating structural turnover drivers to inform executive talent retention strategy.",
+      "Predicting employee attrition on the IBM HR dataset with SMOTE, XGBoost and SHAP explanations, reported with its limitations.",
     techStack: [
       "Python",
-      "Scikit-Learn",
-      "XGBoost",
-      "Random Forest",
-      "SMOTE Oversampling",
-      "SHAP Values",
-      "Relational SQL",
       "Pandas",
+      "scikit-learn",
+      "Logistic Regression",
+      "Random Forest",
+      "XGBoost",
+      "SMOTE",
+      "SHAP",
     ],
     dossierCode: "DOSSIER-EA-5120",
     benchmarks: [
-      { label: "AUC-ROC Score", value: "0.942" },
-      { label: "Class Imbalance Handling", value: "SMOTE Balanced" },
-      { label: "Feature Attribution", value: "SHAP Exact Values" },
+      { label: "ROC-AUC (XGBoost)", value: "0.7592" },
+      { label: "Recall (XGBoost)", value: "0.2958" },
+      { label: "Training Set After SMOTE", value: "1,726 (863 per class)" },
     ],
     adrs: [
       {
         id: "ADR-001",
-        title: "SMOTE Oversampling for Extreme Imbalance Correction",
-        context: "Enterprise HR datasets feature severe class imbalance (~15% positive attrition), causing baseline models to overfit to retention.",
-        decision: "Apply Synthetic Minority Over-sampling Technique (SMOTE) to synthesize minority class samples in feature space prior to model fitting.",
-        consequences: "Elevated classifier AUC-ROC to 0.942 while eliminating majority-class prediction bias.",
+        title: "SMOTE on the Training Split",
+        context: "The IBM/Watson HR Employee Attrition dataset (1,470 records, 35 features) is imbalanced: 83.88% retained, 16.12% attrition.",
+        decision: "Apply SMOTE to the training split, giving 1,726 records (863 per class).",
+        consequences: "XGBoost reaches ROC-AUC 0.7592 on the 441-record (30%) test split, but recall is 0.2958: the model misses most actual leavers.",
       },
       {
         id: "ADR-002",
-        title: "SHAP Additive Attribution for Executive Transparency",
-        context: "HR leadership cannot act on black-box probabilities without understanding specific turnover levers (compensation, overtime, tenure).",
-        decision: "Integrate SHAP tree explainer algorithms directly into model inference workflows.",
-        consequences: "Generates clear factor rank-orderings per department, pinpointing overtime load and pay disparity as top flight risk catalysts.",
+        title: "SHAP Attribution for Attrition Drivers",
+        context: "Predictions need feature-level explanations.",
+        decision: "Compute SHAP values for the model's predictions.",
+        consequences: "Driver ranking: OverTime #1 (30.5% vs 10.4% attrition), YearsWithCurrManager #2, StockOptionLevel #3, MonthlyIncome #4, NumCompaniesWorked #5.",
       },
     ],
-    deepDiveMarkdown: `### Machine Learning Diagnostic Dossier
+    deepDiveMarkdown: `### Employee Attrition Analysis
 
 #### Abstract
-An enterprise analytical suite engineered to discover flight-risk drivers in workforce data. Integrates Synthetic Minority Over-sampling Technique (SMOTE) to overcome severe class imbalance and leverages SHAP values for granular feature attribution.
+Predicting employee attrition on the IBM/Watson HR Employee Attrition dataset: 1,470 records, 35 features, 83.88% retained / 16.12% attrition. Logistic Regression, Random Forest and XGBoost are evaluated on a 441-record (30%) test split, with SHAP explanations. The repo also keeps a legacy SQL exploration, which predates the single-CSV pipeline and is not wired into it.
+
+Refurbished from an earlier attrition analysis (github.com/bhanmrinal/Employee-Attrition-and-Churn-Analysis).
 
 #### Model Pipeline
-- **Imbalance Mitigation**: SMOTE generates synthetic minority instances to prevent classifier bias.
-- **Ensemble Benchmarking**: Compares tuned XGBoost and Random Forest architectures.
-- **SHAP Interpretability**: Quantifies exact directional impact of each organizational variable on attrition risk.`,
+- **SMOTE**: applied to the training split, giving 1,726 records (863 per class).
+- **Models**: Logistic Regression, Random Forest, XGBoost.
+- **XGBoost results**: ROC-AUC 0.7592, accuracy 0.8549, precision 0.60, recall 0.2958, F1 0.3962.
+- **SHAP drivers**: OverTime #1 (30.5% vs 10.4% attrition), YearsWithCurrManager #2, StockOptionLevel #3, MonthlyIncome #4, NumCompaniesWorked #5.
+
+#### Limitations
+Small dataset; SMOTE uses synthetic minority samples; low recall (0.2958), so the model misses most actual leavers.`,
   },
   {
     id: "cropdoc",

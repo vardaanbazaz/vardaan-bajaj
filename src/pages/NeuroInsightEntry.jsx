@@ -6,12 +6,12 @@ export const NeuroInsightEntry = () => {
   const githubUrl = "https://github.com/vardaanbazaz/neuroinsight-ai";
 
   const tocItems = [
-    { id: 'abstract', label: '1. Abstract & Clinical Scope' },
-    { id: 'signal-pipeline', label: '2. Acoustic Signal Pipeline' },
-    { id: 'fpi-formulation', label: '3. fPI Biomarker Formulation' },
+    { id: 'abstract', label: '1. Abstract & Scope' },
+    { id: 'dataset', label: '2. Dataset' },
+    { id: 'vic-index', label: '3. VIC Index & Credits' },
     { id: 'adrs', label: '4. Architectural Decision Records' },
-    { id: 'model-eval', label: '5. Model Training & Code' },
-    { id: 'benchmarks', label: '6. Diagnostic Benchmarks' },
+    { id: 'benchmarks', label: '5. Evaluation' },
+    { id: 'limitations', label: '6. Limitations' },
   ];
 
   useEffect(() => {
@@ -72,8 +72,8 @@ export const NeuroInsightEntry = () => {
           </nav>
 
           <div className="pt-4 border-t border-[#c5a880]/20 text-[11px] font-mono text-[#9c9281] space-y-2">
-            <div>Accuracy: <span className="text-[#34d399]">96.2%</span></div>
-            <div>Inference: <span className="text-[#eadfc9]">&lt; 5ms CPU</span></div>
+            <div>Accuracy: <span className="text-[#34d399]">0.796 ± 0.098</span></div>
+            <div>Baseline: <span className="text-[#eadfc9]">0.756 ± 0.067</span></div>
           </div>
         </aside>
 
@@ -92,13 +92,13 @@ export const NeuroInsightEntry = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
-              NeuroInsight-AI Diagnostic Model
+              NeuroInsight-AI
             </h1>
             <p className="text-sm font-mono text-[#d4a37f] mb-4 italic">
-              Vocal Biomarker Parkinson's Detection & Acoustic Signal Model
+              Voice-feature Parkinson's research
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
-              A non-invasive clinical diagnostic system formulating acoustic speech signal perturbations to detect early-stage neurodegenerative indicators on resource-constrained medical edge hardware.
+              Parkinson's screening research on voice features, with an independently derived index (VIC) and subject-grouped evaluation. A research project, not a clinical tool.
             </p>
 
             {/* Prominent Brass GitHub Button */}
@@ -115,7 +115,7 @@ export const NeuroInsightEntry = () => {
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-[#c5a880]/20">
-              {["Python", "PyTorch", "Audio Signal Processing", "fPI Biomarker", "LightGBM", "SHAP Attribution", "Edge AI"].map((tech, i) => (
+              {["Python", "Pandas", "scikit-learn", "XGBoost", "Notebooks", "VIC index", "Subject-grouped CV"].map((tech, i) => (
                 <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-[#d4a37f] bg-[#2a1810]/60 border border-[#5c3218]">
                   {tech}
                 </span>
@@ -126,49 +126,47 @@ export const NeuroInsightEntry = () => {
           {/* Section 1: Abstract */}
           <section id="abstract" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              1. Abstract & Clinical Scope
+              1. Abstract & Scope
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Early detection of Parkinson's Disease remains a critical bottleneck in preventative neurology. Traditional clinical motor evaluations often detect symptoms only after substantial neurological degradation has occurred. Acoustic vocal analysis provides a non-invasive, cost-effective window into sub-clinical laryngeal motor control impairment.
+              Parkinson's screening research on voice features, with an independently derived index (VIC) and subject-grouped evaluation. This is a research project; it is not designed, certified, or intended for clinical medical diagnosis.
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              NeuroInsight-AI formulates the novel Fundamental Pitch Fluctuation Index (fPI), extracting micro-tremor frequencies and amplitude perturbations from sustained phonation samples. Combined with tree-based ensemble classifiers, it achieves early diagnostic risk scoring without requiring specialized laboratory infrastructure.
+              Started from an earlier fPI analyser (github.com/bhanmrinal/fPI-Parkison-Analyser-using-Acoustic-Sound-Features) and rebuilt with the VIC index, subject-grouped cross-validation and external validation.
             </p>
           </section>
 
-          {/* Section 2: Signal Pipeline */}
-          <section id="signal-pipeline" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 2: Dataset */}
+          <section id="dataset" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              2. Acoustic Signal Pipeline
+              2. Dataset
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              The audio pre-processing pipeline consists of three sequential processing phases:
+              UCI Oxford Parkinson's Disease Detection Dataset (Little et al.): 195 recordings from 32 subjects (147 PD, 48 healthy). The project uses the dataset's pre-extracted features; there is no audio processing.
             </p>
-            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-[#eadfc9]/80 pl-2">
-              <li><strong>Noise Cancellation & Framing:</strong> Applies high-pass Butterworth filtering to eliminate room reverberation, slicing audio into 25ms Hamming window frames.</li>
-              <li><strong>Pitch Perturbation Extraction:</strong> Computes fundamental frequency (f_0), jitter percentage, and shimmer variations across speech frames.</li>
-              <li><strong>Harmonic-to-Noise Ratio (HNR):</strong> Quantifies sub-harmonic voice turbulence caused by vocal cord incomplete closure.</li>
-            </ul>
           </section>
 
-          {/* Section 3: fPI Biomarker Formulation */}
-          <section id="fpi-formulation" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 3: VIC Index & Credits */}
+          <section id="vic-index" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              3. fPI Biomarker Formulation
+              3. VIC Index & Credits
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              The Fundamental Pitch Fluctuation Index (fPI) unifies instantaneous frequency variance with log-amplitude shimmer:
+              The Vocal Instability Compound (VIC) is an independently derived index:
             </p>
 
             <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-6 rounded-lg text-center font-mono text-sm text-[#f4efe6] my-4 shadow-inner">
-              <div className="text-[10px] text-[#c5a880] mb-2 uppercase tracking-widest">[FUNDAMENTAL PITCH FLUCTUATION INDEX FORMULA]</div>
+              <div className="text-[10px] text-[#c5a880] mb-2 uppercase tracking-widest">[VOCAL INSTABILITY COMPOUND (VIC)]</div>
               <div className="py-2">
-                {`fPI = (1 / N) × ∑ | Δf_k / f_bar | × ln( 1 + Shimmer_k ) + λ × H_turbulence`}
+                {`VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000)`}
               </div>
               <div className="text-xs text-[#9c9281] mt-2">
-                Where Δf_k measures frame-to-frame pitch shift, f_bar is mean fundamental frequency, and H_turbulence represents spectral turbulence.
+                VIC alone: 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford only, subject-grouped CV).
               </div>
             </div>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              The feature-engineering work “was inspired by <strong>“fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature”</strong>, a paper by <strong>Gautam Gupta, Mrinal Bhan, and Sahil Nimsarkar</strong> at the Data Science & AI department, International Institute of Information Technology, Naya Raipur (IIIT Naya Raipur)”. Their index is the Frequency Parkinson's Indicator, fPI = log10(D2 × DFA) × spread2. “This project does not reuse their formula.”
+            </p>
           </section>
 
           {/* Section 4: Architecture Decision Records (ADRs) */}
@@ -184,12 +182,12 @@ export const NeuroInsightEntry = () => {
                 <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
               </div>
               <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                Formulation of Fundamental Pitch Fluctuation Index (fPI)
+                Vocal Instability Compound (VIC)
               </h3>
               <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> Baseline voice features (isolated jitter and shimmer) produce elevated false-positive rates when evaluating early laryngeal motor impairment in noisy non-clinical screening rooms.</p>
-                <p><strong>Decision:</strong> Formulate a unified non-linear index (fPI) combining frequency variance and log-scaled amplitude shimmer.</p>
-                <p><strong>Consequences:</strong> Raised cross-validated diagnostic accuracy to 96.2% while drastically stabilizing scoring across varied microphone inputs.</p>
+                <p><strong>Context:</strong> Inspired by the paper “fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature” by Gautam Gupta, Mrinal Bhan, and Sahil Nimsarkar (IIIT Naya Raipur), whose Frequency Parkinson's Indicator is fPI = log10(D2 × DFA) × spread2.</p>
+                <p><strong>Decision:</strong> Derive a separate index, VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000). This project does not reuse their formula.</p>
+                <p><strong>Consequences:</strong> VIC alone reaches 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford dataset only, subject-grouped CV). VIC is untested outside the Oxford dataset because spread2 is missing from the external datasets.</p>
               </div>
             </div>
 
@@ -200,87 +198,60 @@ export const NeuroInsightEntry = () => {
                 <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
               </div>
               <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                Gradient-Boosted Decision Trees (LightGBM) over Deep Spectrogram CNNs
+                XGBoost on Pre-Extracted Voice Features
               </h3>
               <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> Clinicians require explainable factor attributions for patient risk reports, and mobile field tablets lack dedicated deep learning accelerators.</p>
-                <p><strong>Decision:</strong> Deploy LightGBM and XGBoost tree ensembles trained on engineered acoustic feature vectors, paired with SHAP value calculation.</p>
-                <p><strong>Consequences:</strong> Achieved sub-5ms CPU execution latency and transparent feature attributions for attending physicians.</p>
+                <p><strong>Context:</strong> The UCI Oxford Parkinson's Disease Detection Dataset (Little et al.) has 195 recordings from 32 subjects (147 PD, 48 healthy), with features already extracted; there is no audio processing.</p>
+                <p><strong>Decision:</strong> Compare XGBoost against Decision Tree, Random Forest, SVM and KNN under 5-fold subject-grouped stratified CV over 10 seeds (50 folds).</p>
+                <p><strong>Consequences:</strong> XGBoost: accuracy 0.796 ± 0.098 vs a majority baseline of 0.756 ± 0.067; F1 0.872 ± 0.063 (baseline 0.860); precision 0.833 ± 0.093; ROC-AUC 0.741 ± 0.034 (Random Forest 0.764 ± 0.022).</p>
               </div>
             </div>
           </section>
 
-          {/* Section 5: Model Training & Code */}
-          <section id="model-eval" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              5. Model Training & Code Implementation
-            </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Below is an excerpt from the LightGBM diagnostic classifier pipeline:
-            </p>
-
-            <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-5 rounded-lg font-mono text-xs text-[#eadfc9] my-4 shadow-inner overflow-x-auto">
-              <div className="flex justify-between text-[10px] text-[#c5a880] mb-2 border-b border-[#c5a880]/20 pb-1">
-                <span>[DIAGNOSTIC_CLASSIFIER.PY]</span>
-                <span>LIGHTGBM & SHAP EXPLAINER</span>
-              </div>
-              <pre>{`import lightgbm as lgb
-import shap
-import numpy as np
-
-def train_fpi_classifier(X_train: np.ndarray, y_train: np.ndarray):
-    params = {
-        'objective': 'binary',
-        'metric': 'auc',
-        'boosting_type': 'gbdt',
-        'learning_rate': 0.05,
-        'num_leaves': 31,
-        'max_depth': 6,
-        'verbose': -1
-    }
-    
-    train_data = lgb.Dataset(X_train, label=y_train)
-    model = lgb.train(params, train_data, num_boost_round=150)
-    
-    # Compute SHAP feature attributions
-    explainer = shap.TreeExplainer(model)
-    shap_values = explainer.shap_values(X_train)
-    
-    return model, shap_values`}</pre>
-            </div>
-          </section>
-
-          {/* Section 6: Benchmarks */}
+          {/* Section 5: Evaluation */}
           <section id="benchmarks" className="parchment-card p-8 rounded-lg space-y-6">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              6. Diagnostic Benchmarks & Validation
+              5. Evaluation
             </h2>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              5-fold subject-grouped stratified CV over 10 seeds (50 folds); XGBoost compared against Decision Tree, Random Forest, SVM and KNN. XGBoost precision: 0.833 ± 0.093.
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  96.2%
+                  0.796 ± 0.098
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Diagnostic Accuracy
+                  XGBoost Accuracy (baseline 0.756 ± 0.067)
                 </span>
               </div>
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  &lt; 5ms
+                  0.872 ± 0.063
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  CPU Inference Latency
+                  XGBoost F1 (baseline 0.860)
                 </span>
               </div>
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  0.978
+                  0.741 ± 0.034
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  ROC-AUC Validation
+                  XGBoost ROC-AUC (Random Forest 0.764 ± 0.022)
                 </span>
               </div>
             </div>
+          </section>
+
+          {/* Section 6: Limitations */}
+          <section id="limitations" className="parchment-card p-8 rounded-lg space-y-4">
+            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+              6. Limitations
+            </h2>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              VIC is untested outside the Oxford dataset because spread2 is missing from the external datasets.
+            </p>
           </section>
         </main>
       </div>

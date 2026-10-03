@@ -6,12 +6,12 @@ export const AttritionEntry = () => {
   const githubUrl = "https://github.com/vardaanbazaz/employee-attrition-analysis";
 
   const tocItems = [
-    { id: 'abstract', label: '1. Abstract & HR Vision' },
-    { id: 'imbalance', label: '2. SMOTE Imbalance Resolution' },
-    { id: 'shap-attribution', label: '3. SHAP Feature Attribution' },
+    { id: 'abstract', label: '1. Abstract & Scope' },
+    { id: 'imbalance', label: '2. Class Imbalance & SMOTE' },
+    { id: 'shap-attribution', label: '3. SHAP Attribution & Drivers' },
     { id: 'adrs', label: '4. Architectural Decision Records' },
-    { id: 'pipeline-code', label: '5. Pipeline Implementation' },
-    { id: 'benchmarks', label: '6. AUC-ROC & Factor Metrics' },
+    { id: 'benchmarks', label: '5. Results' },
+    { id: 'limitations', label: '6. Limitations' },
   ];
 
   useEffect(() => {
@@ -72,8 +72,8 @@ export const AttritionEntry = () => {
           </nav>
 
           <div className="pt-4 border-t border-[#c5a880]/20 text-[11px] font-mono text-[#9c9281] space-y-2">
-            <div>AUC-ROC: <span className="text-[#34d399]">0.942</span></div>
-            <div>Imbalance: <span className="text-[#eadfc9]">SMOTE Balanced</span></div>
+            <div>ROC-AUC: <span className="text-[#34d399]">0.7592</span></div>
+            <div>Imbalance: <span className="text-[#eadfc9]">SMOTE (training split)</span></div>
           </div>
         </aside>
 
@@ -92,13 +92,13 @@ export const AttritionEntry = () => {
             </div>
 
             <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
-              Enterprise Employee Attrition Intelligence
+              Employee Attrition Analysis
             </h1>
             <p className="text-sm font-mono text-[#d4a37f] mb-4 italic">
-              Predictive Machine Learning Diagnostic Suite & Retention Analytics
+              HR attrition prediction
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
-              An enterprise intelligence platform isolating key turnover drivers across multi-departmental organizations using balanced machine learning classifiers and Shapley feature attribution.
+              Predicting employee attrition on the IBM HR dataset with SMOTE, XGBoost and SHAP explanations, reported with its limitations.
             </p>
 
             {/* Prominent Brass GitHub Button */}
@@ -115,7 +115,7 @@ export const AttritionEntry = () => {
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-[#c5a880]/20">
-              {["Python", "Scikit-Learn", "XGBoost", "Random Forest", "SMOTE Oversampling", "SHAP Values", "Relational SQL", "Pandas"].map((tech, i) => (
+              {["Python", "Pandas", "scikit-learn", "Logistic Regression", "Random Forest", "XGBoost", "SMOTE", "SHAP"].map((tech, i) => (
                 <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-[#d4a37f] bg-[#2a1810]/60 border border-[#5c3218]">
                   {tech}
                 </span>
@@ -126,23 +126,23 @@ export const AttritionEntry = () => {
           {/* Section 1: Abstract */}
           <section id="abstract" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              1. Abstract & Executive HR Scope
+              1. Abstract & Scope
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Unplanned employee turnover inflicts substantial replacement costs, loss of institutional knowledge, and operational friction within enterprise organizations. Traditional HR exit interviews reflect retrospective sentiments after resignation decisions are already finalized.
+              Predicting employee attrition on the IBM/Watson HR Employee Attrition dataset: 1,470 records, 35 features. Logistic Regression, Random Forest and XGBoost are evaluated on a 441-record (30%) test split, with SHAP explanations. The repo also keeps a legacy SQL exploration, which predates the single-CSV pipeline and is not wired into it.
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              This project constructs a proactive ML diagnostic pipeline that evaluates multi-dimensional workforce telemetry (overtime hours, compensation ratios, promotion history, manager tenure) to score individual flight risks and isolate structural retention levers for executive decision-makers.
+              Refurbished from an earlier attrition analysis (github.com/bhanmrinal/Employee-Attrition-and-Churn-Analysis).
             </p>
           </section>
 
-          {/* Section 2: SMOTE Imbalance Resolution */}
+          {/* Section 2: Class Imbalance & SMOTE */}
           <section id="imbalance" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              2. Class Imbalance Resolution via SMOTE
+              2. Class Imbalance & SMOTE
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Enterprise HR datasets present severe class imbalance: positive attrition cases typically comprise under 15% of records. Standard classifiers trained on unadjusted data collapse into majority-class trivial predictors.
+              The dataset is imbalanced: 83.88% of employees retained, 16.12% attrition.
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
               Synthetic Minority Over-sampling Technique (SMOTE) synthesizes new minority instances along k-nearest neighbor feature vectors:
@@ -157,16 +157,26 @@ export const AttritionEntry = () => {
                 Where x_i is a minority sample, x_knn is a random k-nearest neighbor, and λ dictates vector interpolation offset.
               </div>
             </div>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              SMOTE is applied to the training split, giving 1,726 records (863 per class).
+            </p>
           </section>
 
-          {/* Section 3: SHAP Feature Attribution */}
+          {/* Section 3: SHAP Attribution & Drivers */}
           <section id="shap-attribution" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              3. SHAP Additive Feature Attribution
+              3. SHAP Attribution & Drivers
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              To provide actionable insight rather than opaque probability scores, the pipeline integrates SHAP (Shapley Additive exPlanations) values to calculate exact feature contributions per employee profile.
+              SHAP values show which features drive predicted attrition. Ranked drivers:
             </p>
+            <ol className="list-decimal list-inside space-y-2 text-sm font-sans text-[#eadfc9]/80 pl-2">
+              <li><strong>OverTime</strong> (30.5% vs 10.4% attrition)</li>
+              <li><strong>YearsWithCurrManager</strong></li>
+              <li><strong>StockOptionLevel</strong></li>
+              <li><strong>MonthlyIncome</strong></li>
+              <li><strong>NumCompaniesWorked</strong></li>
+            </ol>
           </section>
 
           {/* Section 4: Architecture Decision Records (ADRs) */}
@@ -182,12 +192,12 @@ export const AttritionEntry = () => {
                 <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
               </div>
               <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                SMOTE Synthetic Oversampling for Severe Class Imbalance
+                SMOTE on the Training Split
               </h3>
               <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> Enterprise HR datasets feature severe class imbalance (~15% positive attrition rate), causing unadjusted models to overfit heavily toward predicting retention.</p>
-                <p><strong>Decision:</strong> Apply Synthetic Minority Over-sampling Technique (SMOTE) to interpolate new synthetic minority instances in feature space prior to model fitting.</p>
-                <p><strong>Consequences:</strong> Elevated classifier AUC-ROC score to 0.942 while eliminating majority-class prediction bias.</p>
+                <p><strong>Context:</strong> The IBM/Watson HR Employee Attrition dataset (1,470 records, 35 features) is imbalanced: 83.88% retained, 16.12% attrition.</p>
+                <p><strong>Decision:</strong> Apply SMOTE to the training split, giving 1,726 records (863 per class).</p>
+                <p><strong>Consequences:</strong> XGBoost reaches ROC-AUC 0.7592 on the 441-record (30%) test split, but recall is 0.2958: the model misses most actual leavers.</p>
               </div>
             </div>
 
@@ -198,88 +208,60 @@ export const AttritionEntry = () => {
                 <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
               </div>
               <h3 className="text-base font-serif font-bold text-[#f4efe6]">
-                SHAP Additive Attribution for Executive Leadership Transparency
+                SHAP Attribution for Attrition Drivers
               </h3>
               <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
-                <p><strong>Context:</strong> HR leadership cannot act on black-box risk probabilities without clear, auditable factor attributions (e.g. overtime hours vs compensation band).</p>
-                <p><strong>Decision:</strong> Integrate SHAP tree explainer algorithms into inference workflows to output directional factor rank-orderings.</p>
-                <p><strong>Consequences:</strong> Provided executive dashboards with exact variable impact breakdowns for targeted retention policies.</p>
+                <p><strong>Context:</strong> Predictions need feature-level explanations.</p>
+                <p><strong>Decision:</strong> Compute SHAP values for the model's predictions.</p>
+                <p><strong>Consequences:</strong> Driver ranking: OverTime #1 (30.5% vs 10.4% attrition), YearsWithCurrManager #2, StockOptionLevel #3, MonthlyIncome #4, NumCompaniesWorked #5.</p>
               </div>
             </div>
           </section>
 
-          {/* Section 5: Pipeline Implementation */}
-          <section id="pipeline-code" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              5. Pipeline Implementation Code
-            </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Below is an excerpt demonstrating the SMOTE resampling and XGBoost model fitting procedure:
-            </p>
-
-            <div className="elevated-math-block border border-[#c5a880]/30 bg-[#18110c]/70 p-5 rounded-lg font-mono text-xs text-[#eadfc9] my-4 shadow-inner overflow-x-auto">
-              <div className="flex justify-between text-[10px] text-[#c5a880] mb-2 border-b border-[#c5a880]/20 pb-1">
-                <span>[ATTRITION_MODEL.PY]</span>
-                <span>SMOTE & XGBOOST PIPELINE</span>
-              </div>
-              <pre>{`from imblearn.over_sampling import SMOTE
-from xgboost import XGBClassifier
-from sklearn.metrics import roc_auc_score
-
-def build_attrition_pipeline(X_train, y_train, X_test, y_test):
-    # 1. Apply SMOTE to balance minority class
-    smote = SMOTE(random_state=42, sampling_strategy=0.8)
-    X_res, y_res = smote.fit_resample(X_train, y_train)
-    
-    # 2. Train XGBoost classifier
-    model = XGBClassifier(
-        n_estimators=200,
-        max_depth=5,
-        learning_rate=0.03,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        eval_metric='auc'
-    )
-    model.fit(X_res, y_res)
-    
-    # 3. Evaluate AUC-ROC performance
-    preds = model.predict_proba(X_test)[:, 1]
-    auc_score = roc_auc_score(y_test, preds)
-    return model, auc_score`}</pre>
-            </div>
-          </section>
-
-          {/* Section 6: Benchmarks */}
+          {/* Section 5: Results */}
           <section id="benchmarks" className="parchment-card p-8 rounded-lg space-y-6">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              6. AUC-ROC & Factor Metrics
+              5. Results
             </h2>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              XGBoost on the 441-record (30%) test split: accuracy 0.8549, precision 0.60, recall 0.2958, F1 0.3962.
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  0.942
+                  0.7592
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  AUC-ROC Score
+                  XGBoost ROC-AUC
                 </span>
               </div>
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  SMOTE
+                  1,726
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  Class Imbalance Correction
+                  Training Records After SMOTE (863 per class)
                 </span>
               </div>
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
                 <span className="block text-3xl font-serif font-bold text-[#c5a880] mb-1">
-                  100%
+                  0.2958
                 </span>
                 <span className="text-xs font-mono text-[#9c9281] uppercase">
-                  SHAP Interpretability
+                  XGBoost Recall (misses most actual leavers)
                 </span>
               </div>
             </div>
+          </section>
+
+          {/* Section 6: Limitations */}
+          <section id="limitations" className="parchment-card p-8 rounded-lg space-y-4">
+            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+              6. Limitations
+            </h2>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              Small dataset (1,470 records); SMOTE uses synthetic minority samples; recall is low (0.2958), so the model misses most actual leavers.
+            </p>
           </section>
         </main>
       </div>
