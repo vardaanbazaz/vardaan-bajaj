@@ -119,7 +119,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
               Work Experience & Research Roles
             </h2>
             <p className="text-xs font-mono text-[#9c9281]">
-              Engineering internships, research roles, and academic projects across India
+              Internships and research work
             </p>
           </div>
 

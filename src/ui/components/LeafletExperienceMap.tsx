@@ -26,10 +26,8 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
       mapInstanceRef.current = null;
     }
 
-    // Set Map default bounds: center=[25.0, 78.5] zoom=4.2 to keep Jammu in frame
+    // View is set below by fitting the bounds of the active tab's pins
     const map = L.map(containerRef.current, {
-      center: [25.0, 78.5],
-      zoom: 4.2,
       preferCanvas: true,
       zoomControl: true,
       attributionControl: true,
@@ -110,6 +108,14 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
       }).addTo(map);
     }
 
+    // Frame all pins; maxZoom keeps a single-pin tab from zooming in too far
+    const fitPins = () => {
+      if (latLngs.length > 0) {
+        map.fitBounds(L.latLngBounds(latLngs), { padding: [60, 60], maxZoom: 6 });
+      }
+    };
+    fitPins();
+
     const handleResize = () => {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.invalidateSize();
@@ -120,6 +126,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
     setTimeout(() => {
       if (mapInstanceRef.current) {
         mapInstanceRef.current.invalidateSize();
+        fitPins();
       }
     }, 200);
 
