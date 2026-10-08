@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 export const KanbanLightEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
   const githubUrl = "https://github.com/vardaanbazaz/kanbanlight";
+  const demoUrl = "https://kanbanlight.vercel.app";
 
   const tocItems = [
     { id: 'abstract', label: '1. Abstract' },
-    { id: 'branches', label: '2. Branches & Snapshots' },
+    { id: 'branches', label: '2. Branches' },
     { id: 'git-diff', label: '3. Visual Diff' },
-    { id: 'cli', label: '4. kb CLI' },
+    { id: 'local-first', label: '4. Local-first' },
+    { id: 'cli', label: '5. kb CLI' },
   ];
 
   useEffect(() => {
@@ -92,10 +94,10 @@ export const KanbanLightEntry = () => {
               KanbanLight
             </h1>
             <p className="text-sm font-mono text-[#d4a37f] mb-4 italic">
-              Git-style Kanban board
+              Git-style Kanban board · v0.0.1 (early build)
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
-              A Kanban board you can branch like a Git repo: create board branches saved as IndexedDB snapshots, compare two branches in a visual diff, and send commands from a kb CLI over a local WebSocket bridge. Work in progress.
+              A browser-based Kanban board that borrows ideas from Git: branch a board, switch between branches, and compare them in a visual diff. Work in progress.
             </p>
 
             {/* Prominent Brass GitHub Button */}
@@ -108,11 +110,19 @@ export const KanbanLightEntry = () => {
               >
                 [VIEW SOURCE CODE]
               </a>
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-3 font-mono text-[#CF9E4F] border border-[#8C7335] px-4 py-2 hover:bg-[#8C7335]/10 inline-block transition-colors"
+              >
+                [LIVE DEMO · EARLY BUILD]
+              </a>
             </div>
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-[#c5a880]/20">
-              {["React 18", "TypeScript", "Vite", "Tailwind CSS", "IndexedDB (idb)"].map((tech, i) => (
+              {["React 18", "TypeScript", "Vite", "Tailwind CSS", "IndexedDB (idb)", "Node.js", "Commander.js", "WebSocket (ws)"].map((tech, i) => (
                 <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-[#d4a37f] bg-[#2a1810]/60 border border-[#5c3218]">
                   {tech}
                 </span>
@@ -126,17 +136,17 @@ export const KanbanLightEntry = () => {
               1. Abstract
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              KanbanLight is a Kanban board you can branch like a Git repo. It is built with React 18, strict TypeScript and Vite, and stores data in IndexedDB via idb. Solo project. Work in progress.
+              A browser-based Kanban board that borrows ideas from Git: branch a board, switch between branches, and compare them in a visual diff. Work in progress.
             </p>
           </section>
 
-          {/* Section 2: Branches & Snapshots */}
+          {/* Section 2: Branches */}
           <section id="branches" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              2. Branches & Snapshots
+              2. Branches
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Create branches of a board and switch between them. Each branch is saved as an IndexedDB snapshot of its cards, columns and events.
+              Branch a board and switch between branches.
             </p>
           </section>
 
@@ -146,17 +156,27 @@ export const KanbanLightEntry = () => {
               3. Visual Diff
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Compare the current branch against another branch in a visual diff of the board.
+              Compare the active branch with another branch; cards are marked as added, modified or deleted.
             </p>
           </section>
 
-          {/* Section 4: kb CLI */}
-          <section id="cli" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 4: Local-first */}
+          <section id="local-first" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              4. kb CLI
+              4. Local-first
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              A kb CLI built with Commander.js sends commands to the board over a local WebSocket bridge at ws://localhost:8080.
+              All data stays in the browser (IndexedDB via idb); no backend, no accounts.
+            </p>
+          </section>
+
+          {/* Section 5: kb CLI */}
+          <section id="cli" className="parchment-card p-8 rounded-lg space-y-4">
+            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+              5. kb CLI
+            </h2>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              A Node.js CLI (Commander.js) controls the open board over a local WebSocket bridge (ws).
             </p>
           </section>
         </main>

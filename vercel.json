@@ -22,7 +22,12 @@
     },
     {
       "source": "/cropdoc-ai",
-      "destination": "/dossier/cropdoc",
+      "destination": "/dossiers",
+      "permanent": true
+    },
+    {
+      "source": "/dossier/cropdoc",
+      "destination": "/dossiers",
       "permanent": true
     },
     {

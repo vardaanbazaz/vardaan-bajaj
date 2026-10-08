@@ -9,8 +9,11 @@ export const DataVistaEntry = () => {
     { id: 'abstract', label: '1. Abstract' },
     { id: 'architecture', label: '2. System Architecture' },
     { id: 'ast-parser', label: '3. Formula Parser' },
-    { id: 'adrs', label: '4. Architectural Decision Records' },
-    { id: 'limitations', label: '5. Limitations' },
+    { id: 'features', label: '4. Features' },
+    { id: 'ai-copilot', label: '5. AI Co-Pilot' },
+    { id: 'adrs', label: '6. Architectural Decision Records' },
+    { id: 'audits', label: '7. Audits and Fixes' },
+    { id: 'limitations', label: '8. Limitations' },
   ];
 
   useEffect(() => {
@@ -113,7 +116,7 @@ export const DataVistaEntry = () => {
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-[#c5a880]/20">
-              {["React 18", "Vite", "TypeScript", "Tailwind CSS", "Zustand", "Dexie.js", "IndexedDB", "Recursive-descent parser", "TanStack Virtual", "Vitest", "Playwright", "GitHub Actions"].map((tech, i) => (
+              {["React 18", "Vite", "TypeScript", "Tailwind CSS", "Zustand", "Dexie.js", "IndexedDB", "Recursive-descent parser", "TanStack Virtual", "D3", "Vitest", "Playwright", "GitHub Actions"].map((tech, i) => (
                 <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-[#d4a37f] bg-[#2a1810]/60 border border-[#5c3218]">
                   {tech}
                 </span>
@@ -127,7 +130,7 @@ export const DataVistaEntry = () => {
               1. Abstract
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend. Solo project.
+              DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend.
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
               It is built with React 18 and Vite, keeps app state in Zustand with local-storage persistence, and stores data in IndexedDB via Dexie.js. Tests run on Vitest (unit) and Playwright (E2E) in GitHub Actions.
@@ -160,10 +163,34 @@ export const DataVistaEntry = () => {
             </p>
           </section>
 
-          {/* Section 4: Architecture Decision Records (ADRs) */}
+          {/* Section 4: Features */}
+          <section id="features" className="parchment-card p-8 rounded-lg space-y-4">
+            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+              4. Features
+            </h2>
+            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-[#eadfc9]/80 pl-2">
+              <li><strong>Data explorer:</strong> Inspect records, with filters.</li>
+              <li><strong>Statistics:</strong> Descriptive statistics, correlation matrices and outlier detection.</li>
+              <li><strong>Charts:</strong> Interactive charts.</li>
+              <li><strong>Dashboards:</strong> Arrange charts into dashboards, save them as templates, and capture snapshots.</li>
+              <li><strong>Export:</strong> Charts as PNG or SVG, and reports as PDF.</li>
+            </ul>
+          </section>
+
+          {/* Section 5: AI Co-Pilot */}
+          <section id="ai-copilot" className="parchment-card p-8 rounded-lg space-y-4">
+            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+              5. AI Co-Pilot
+            </h2>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              Optional and bring-your-own-key (Gemini or OpenAI). Without a key, a local heuristic engine is used. The app discloses at the point of use that sample values are sent to the provider.
+            </p>
+          </section>
+
+          {/* Section 6: Architecture Decision Records (ADRs) */}
           <section id="adrs" className="parchment-card p-8 rounded-lg space-y-6">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              4. Architecture Decision Records (ADRs)
+              6. Architecture Decision Records (ADRs)
             </h2>
 
             {/* ADR 001 */}
@@ -178,7 +205,7 @@ export const DataVistaEntry = () => {
               <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
                 <p><strong>Context:</strong> Calculated fields and window functions have to run in the browser, without a backend.</p>
                 <p><strong>Decision:</strong> A recursive-descent parser for Excel-style calculated fields and window functions (ROW_NUMBER, RANK, DENSE_RANK; rolling, moving averages, cumulative sums).</p>
-                <p><strong>Consequences:</strong> Works fully offline, except the AI Co-Pilot, which sends sample column values to Gemini or OpenAI when a key is added.</p>
+                <p><strong>Consequences:</strong> Works fully offline; the optional AI Co-Pilot is the only exception (see AI Co-Pilot).</p>
               </div>
             </div>
 
@@ -199,13 +226,31 @@ export const DataVistaEntry = () => {
             </div>
           </section>
 
-          {/* Section 5: Limitations */}
-          <section id="limitations" className="parchment-card p-8 rounded-lg space-y-4">
+          {/* Section 7: Audits and Fixes */}
+          <section id="audits" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
-              5. Limitations
+              7. Audits and Fixes
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              AI features send data off-device: the app is fully offline except the AI Co-Pilot, which sends sample column values to Gemini or OpenAI when a key is added.
+              Five audits (correctness, type-inference gaps, shell completeness, product relevance, and a cross-cutting review). The critical and high findings of the correctness audit are fixed. A regression pass found and fixed a crash when creating dashboards, and live testing of the AI path caught two bugs: a retired model name and charts using the wrong aggregation.
+            </p>
+            <a
+              href="https://github.com/vardaanbazaz/datavista/tree/main/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-[#CF9E4F] hover:text-[#8C7335] underline transition-colors"
+            >
+              [READ THE AUDIT REPORTS]
+            </a>
+          </section>
+
+          {/* Section 8: Limitations */}
+          <section id="limitations" className="parchment-card p-8 rounded-lg space-y-4">
+            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+              8. Limitations
+            </h2>
+            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+              No live demo is linked yet. The redesign is dark-mode first; light mode was not redesigned. Only the Gemini path has been tested against a live key.
             </p>
           </section>
         </main>

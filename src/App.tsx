@@ -74,7 +74,6 @@ export const App: React.FC = () => {
           <Route path="neuroinsight-ai" element={<Navigate to="/dossier/neuroinsight-ai" replace />} />
           <Route path="employee-attrition" element={<Navigate to="/dossier/attrition" replace />} />
           <Route path="kanbanlight" element={<Navigate to="/dossier/kanbanlight" replace />} />
-          <Route path="cropdoc-ai" element={<Navigate to="/dossier/cropdoc" replace />} />
           
           <Route
             path="map"

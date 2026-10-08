@@ -98,7 +98,7 @@ export const NeuroInsightEntry = () => {
               Voice-feature Parkinson's research
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
-              Parkinson's screening research on voice features, with an independently derived index (VIC) and subject-grouped evaluation. A research project, not a clinical tool.
+              Parkinson's voice-classification research, with an independently derived index (VIC) and subject-grouped evaluation. A research project, not a clinical tool.
             </p>
 
             {/* Prominent Brass GitHub Button */}
@@ -129,10 +129,10 @@ export const NeuroInsightEntry = () => {
               1. Abstract & Scope
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Parkinson's screening research on voice features, with an independently derived index (VIC) and subject-grouped evaluation. This is a research project; it is not designed, certified, or intended for clinical medical diagnosis.
+              Parkinson's voice-classification research, with an independently derived index (VIC) and subject-grouped evaluation. This is a research project; it is not designed, certified, or intended for clinical medical diagnosis.
             </p>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              Started from an earlier fPI analyser (github.com/bhanmrinal/fPI-Parkison-Analyser-using-Acoustic-Sound-Features) and rebuilt with the VIC index, subject-grouped cross-validation and external validation.
+              Started from an earlier fPI analyser (github.com/bhanmrinal/fPI-Parkison-Analyser-using-Acoustic-Sound-Features) and rebuilt with the VIC index and subject-grouped cross-validation; external validation was attempted but is inconclusive (see Limitations).
             </p>
           </section>
 
@@ -161,7 +161,7 @@ export const NeuroInsightEntry = () => {
                 {`VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000)`}
               </div>
               <div className="text-xs text-[#9c9281] mt-2">
-                VIC alone: 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford only, subject-grouped CV).
+                VIC alone: 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford only, subject-grouped CV; the 22-feature model overfits at this sample size).
               </div>
             </div>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
@@ -187,7 +187,7 @@ export const NeuroInsightEntry = () => {
               <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
                 <p><strong>Context:</strong> Inspired by the paper “fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature” by Gautam Gupta, Mrinal Bhan, and Sahil Nimsarkar (IIIT Naya Raipur), whose Frequency Parkinson's Indicator is fPI = log10(D2 × DFA) × spread2.</p>
                 <p><strong>Decision:</strong> Derive a separate index, VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000). This project does not reuse their formula.</p>
-                <p><strong>Consequences:</strong> VIC alone reaches 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford dataset only, subject-grouped CV). VIC is untested outside the Oxford dataset because spread2 is missing from the external datasets.</p>
+                <p><strong>Consequences:</strong> VIC alone reaches 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford dataset only, subject-grouped CV). VIC is untested outside the Oxford dataset because spread2 is missing from both external datasets.</p>
               </div>
             </div>
 
@@ -214,7 +214,7 @@ export const NeuroInsightEntry = () => {
               5. Evaluation
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              5-fold subject-grouped stratified CV over 10 seeds (50 folds); XGBoost compared against Decision Tree, Random Forest, SVM and KNN. XGBoost precision: 0.833 ± 0.093.
+              5-fold subject-grouped stratified CV over 10 seeds (50 folds); XGBoost compared against Decision Tree, Random Forest, SVM and KNN. XGBoost precision: 0.833 ± 0.093. XGBoost is nominally best of the five on accuracy, precision and F1, but each margin over the majority baseline is comparable to or smaller than the fold-to-fold spread, and no paired test was run.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="bg-[#100b08] p-5 rounded-lg border border-[#c5a880]/30 text-center">
@@ -250,7 +250,7 @@ export const NeuroInsightEntry = () => {
               6. Limitations
             </h2>
             <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
-              VIC is untested outside the Oxford dataset because spread2 is missing from the external datasets.
+              VIC is untested outside the Oxford dataset because spread2 is missing from both external datasets. Its two testable ingredients (Jitter%, Shimmer:APQ3) were modestly weaker on one external cohort and showed no significant relationship with disease severity on the other, which is a different task. These comparisons are not like-for-like with VIC itself, so they neither confirm nor refute it, and external validation remains open.
             </p>
           </section>
         </main>

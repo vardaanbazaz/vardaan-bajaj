@@ -6,7 +6,6 @@ import DataVistaEntry from '../../pages/DataVistaEntry';
 import NeuroInsightEntry from '../../pages/NeuroInsightEntry';
 import AttritionEntry from '../../pages/AttritionEntry';
 import KanbanLightEntry from '../../pages/KanbanLightEntry';
-import CropDocEntry from '../../pages/CropDocEntry';
 
 export const DossierDetailPage: React.FC = () => {
   const { dossierId } = useParams<{ dossierId: string }>();
@@ -24,9 +23,6 @@ export const DossierDetailPage: React.FC = () => {
   }
   if (dossierId === 'kanbanlight') {
     return <KanbanLightEntry />;
-  }
-  if (dossierId === 'cropdoc') {
-    return <CropDocEntry />;
   }
 
   // Fallback for unknown or additional dossier IDs

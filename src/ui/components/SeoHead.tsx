@@ -164,8 +164,6 @@ export const SeoHead: React.FC = () => {
       canonicalPath = '/dossier/attrition';
     } else if (normalizedPathname === '/kanbanlight') {
       canonicalPath = '/dossier/kanbanlight';
-    } else if (normalizedPathname === '/cropdoc-ai') {
-      canonicalPath = '/dossier/cropdoc';
     } else if (normalizedPathname.startsWith('/publication/')) {
       const pubId = normalizedPathname.replace('/publication/', '');
       canonicalPath = pubId ? `/publications/${pubId}` : '/publications';

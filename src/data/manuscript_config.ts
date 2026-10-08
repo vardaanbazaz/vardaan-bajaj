@@ -161,6 +161,7 @@ export const DOSSIER_LIST: ProjectDossier[] = [
       "IndexedDB",
       "Recursive-descent parser",
       "TanStack Virtual",
+      "D3",
       "Vitest",
       "Playwright",
       "GitHub Actions",
@@ -173,7 +174,7 @@ export const DOSSIER_LIST: ProjectDossier[] = [
         title: "Client-Side Formula Parsing",
         context: "Calculated fields and window functions have to run in the browser, without a backend.",
         decision: "A recursive-descent parser for Excel-style calculated fields and window functions (ROW_NUMBER, RANK, DENSE_RANK; rolling, moving averages, cumulative sums).",
-        consequences: "Works fully offline, except the AI Co-Pilot, which sends sample column values to Gemini or OpenAI when a key is added.",
+        consequences: "Works fully offline; the optional AI Co-Pilot is the only exception (see AI Co-Pilot).",
       },
       {
         id: "ADR-002",
@@ -186,7 +187,7 @@ export const DOSSIER_LIST: ProjectDossier[] = [
     deepDiveMarkdown: `### DataVista
 
 #### Abstract
-DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend. Solo project.
+DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend.
 
 #### Key Components
 1. **Recursive-descent parser**: Excel-style calculated fields and window functions (ROW_NUMBER, RANK, DENSE_RANK; rolling, moving averages, cumulative sums).
@@ -194,8 +195,22 @@ DataVista is an offline-first, browser-native business intelligence (BI) and ana
 3. **Storage**: IndexedDB via Dexie.js for datasets; Zustand with local-storage persistence for app state.
 4. **Testing and CI**: Vitest unit tests and Playwright E2E tests, run in GitHub Actions.
 
+#### Features
+- **Data explorer**: inspect records, with filters.
+- **Statistics**: descriptive statistics, correlation matrices and outlier detection.
+- **Charts**: interactive charts.
+- **Dashboards**: arrange charts into dashboards, save them as templates, and capture snapshots.
+- **Export**: charts as PNG or SVG, and reports as PDF.
+
+#### AI Co-Pilot
+Optional and bring-your-own-key (Gemini or OpenAI). Without a key, a local heuristic engine is used. The app discloses at the point of use that sample values are sent to the provider.
+
+#### Audits and fixes
+Five audits (correctness, type-inference gaps, shell completeness, product relevance, and a cross-cutting review). The critical and high findings of the correctness audit are fixed. A regression pass found and fixed a crash when creating dashboards, and live testing of the AI path caught two bugs: a retired model name and charts using the wrong aggregation.
+Audit reports: github.com/vardaanbazaz/datavista/tree/main/docs
+
 #### Limitations
-Fully offline except the AI Co-Pilot, which sends sample column values to Gemini or OpenAI when a key is added.`,
+No live demo is linked yet. The redesign is dark-mode first; light mode was not redesigned. Only the Gemini path has been tested against a live key.`,
   },
   {
     id: "neuroinsight-ai",
@@ -206,7 +221,7 @@ Fully offline except the AI Co-Pilot, which sends sample column values to Gemini
     route: "/dossier/neuroinsight-ai",
     githubUrl: "https://github.com/vardaanbazaz/neuroinsight-ai",
     summary:
-      "Parkinson's screening research on voice features, with an independently derived index (VIC) and subject-grouped evaluation. A research project, not a clinical tool.",
+      "Parkinson's voice-classification research, with an independently derived index (VIC) and subject-grouped evaluation. A research project, not a clinical tool.",
     techStack: [
       "Python",
       "Pandas",
@@ -228,7 +243,7 @@ Fully offline except the AI Co-Pilot, which sends sample column values to Gemini
         title: "Vocal Instability Compound (VIC)",
         context: "Inspired by the paper \"fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature\" by Gautam Gupta, Mrinal Bhan, and Sahil Nimsarkar (IIIT Naya Raipur), whose Frequency Parkinson's Indicator is fPI = log10(D2 × DFA) × spread2.",
         decision: "Derive a separate index, VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000). This project does not reuse their formula.",
-        consequences: "VIC alone reaches 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford dataset only, subject-grouped CV). VIC is untested outside the Oxford dataset because spread2 is missing from the external datasets.",
+        consequences: "VIC alone reaches 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford dataset only, subject-grouped CV). VIC is untested outside the Oxford dataset because spread2 is missing from both external datasets.",
       },
       {
         id: "ADR-002",
@@ -241,9 +256,9 @@ Fully offline except the AI Co-Pilot, which sends sample column values to Gemini
     deepDiveMarkdown: `### NeuroInsight-AI
 
 #### Abstract
-Parkinson's screening research on voice features, with an independently derived index (VIC) and subject-grouped evaluation. This is a research project; it is not designed, certified, or intended for clinical medical diagnosis.
+Parkinson's voice-classification research, with an independently derived index (VIC) and subject-grouped evaluation. This is a research project; it is not designed, certified, or intended for clinical medical diagnosis.
 
-Started from an earlier fPI analyser (github.com/bhanmrinal/fPI-Parkison-Analyser-using-Acoustic-Sound-Features) and rebuilt with the VIC index, subject-grouped cross-validation and external validation.
+Started from an earlier fPI analyser (github.com/bhanmrinal/fPI-Parkison-Analyser-using-Acoustic-Sound-Features) and rebuilt with the VIC index and subject-grouped cross-validation; external validation was attempted but is inconclusive (see Limitations).
 
 #### Credit
 The feature engineering was inspired by the paper **“fPI: A Novel Index for Predictive Analysis of Parkinson's Disease Using Acoustic Sound Feature”** by **Gautam Gupta, Mrinal Bhan and Sahil Nimsarkar** (Data Science & AI department, IIIT Naya Raipur). Their Frequency Parkinson's Indicator is fPI = log10(D2 × DFA) × spread2. This project does not reuse their formula.
@@ -252,13 +267,13 @@ The feature engineering was inspired by the paper **“fPI: A Novel Index for Pr
 UCI Oxford Parkinson's Disease Detection Dataset (Little et al.): 195 recordings from 32 subjects (147 PD, 48 healthy). The project uses the dataset's pre-extracted features; there is no audio processing.
 
 #### VIC Index
-VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000). VIC alone: 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford only, subject-grouped CV).
+VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000). VIC alone: 0.833 ROC-AUC vs 0.734 for the raw 22-feature set (Oxford only, subject-grouped CV; the 22-feature model overfits at this sample size).
 
 #### Evaluation
-5-fold subject-grouped stratified CV over 10 seeds (50 folds). XGBoost, compared against Decision Tree, Random Forest, SVM and KNN: accuracy 0.796 ± 0.098 (majority baseline 0.756 ± 0.067), F1 0.872 ± 0.063 (baseline 0.860), precision 0.833 ± 0.093, ROC-AUC 0.741 ± 0.034 (Random Forest 0.764 ± 0.022).
+5-fold subject-grouped stratified CV over 10 seeds (50 folds). XGBoost, compared against Decision Tree, Random Forest, SVM and KNN: accuracy 0.796 ± 0.098 (majority baseline 0.756 ± 0.067), F1 0.872 ± 0.063 (baseline 0.860), precision 0.833 ± 0.093, ROC-AUC 0.741 ± 0.034 (Random Forest 0.764 ± 0.022). XGBoost is nominally best of the five on accuracy, precision and F1, but each margin over the majority baseline is comparable to or smaller than the fold-to-fold spread, and no paired test was run.
 
 #### Limitations
-VIC is untested outside the Oxford dataset because spread2 is missing from the external datasets.`,
+VIC is untested outside the Oxford dataset because spread2 is missing from both external datasets. Its two testable ingredients (Jitter%, Shimmer:APQ3) were modestly weaker on one external cohort and showed no significant relationship with disease severity on the other, which is a different task. These comparisons are not like-for-like with VIC itself, so they neither confirm nor refute it, and external validation remains open.`,
   },
   {
     id: "attrition",
@@ -319,74 +334,44 @@ Refurbished from an earlier attrition analysis (github.com/bhanmrinal/Employee-A
 Small dataset; SMOTE uses synthetic minority samples; low recall (0.2958), so the model misses most actual leavers.`,
   },
   {
-    id: "cropdoc",
-    title: "CropDoc AI",
-    subtitle: "Crop disease classifier API",
-    category: "Active Build",
-    status: "In Development",
-    route: "/dossier/cropdoc",
-    githubUrl: "https://github.com/vardaanbazaz/cropdoc-ai",
-    summary:
-      "A FastAPI service that classifies plant disease from a leaf photo, using a fine-tuned ResNet18 trained on a PlantVillage subset (15 classes). Work in progress.",
-    techStack: [
-      "Python",
-      "FastAPI",
-      "PyTorch",
-      "Torchvision",
-      "Docker",
-    ],
-    dossierCode: "DOSSIER-CD-9910",
-    benchmarks: [],
-    deepDiveMarkdown: `### CropDoc AI
-
-#### Abstract
-A FastAPI service that classifies plant disease from a leaf photo, using a fine-tuned ResNet18 trained on a PlantVillage subset (15 classes). It runs on CPU with PyTorch. Solo project. Work in progress.
-
-#### Dataset
-PlantVillage, using the plantvillage-tiny split from Hugging Face (15 classes).
-
-#### API Endpoints
-- /health
-- /model-info
-- /predict (multipart upload, up to 5 MB)
-
-#### Engineering Details
-- Model singleton with warm-up at startup.
-- Inference under torch.inference_mode().
-- SHA-256 dataset hashing.`,
-  },
-  {
     id: "kanbanlight",
     title: "KanbanLight",
-    subtitle: "Git-style Kanban board",
+    subtitle: "Git-style Kanban board · v0.0.1 (early build)",
     category: "Active Build",
     status: "In Development",
     route: "/dossier/kanbanlight",
     githubUrl: "https://github.com/vardaanbazaz/kanbanlight",
+    demoUrl: "https://kanbanlight.vercel.app",
     summary:
-      "A Kanban board you can branch like a Git repo: create board branches saved as IndexedDB snapshots, compare two branches in a visual diff, and send commands from a kb CLI over a local WebSocket bridge. Work in progress.",
+      "A browser-based Kanban board that borrows ideas from Git: branch a board, switch between branches, and compare them in a visual diff. Work in progress.",
     techStack: [
       "React 18",
       "TypeScript",
       "Vite",
       "Tailwind CSS",
       "IndexedDB (idb)",
+      "Node.js",
+      "Commander.js",
+      "WebSocket (ws)",
     ],
     dossierCode: "DOSSIER-KL-3041",
     benchmarks: [],
     deepDiveMarkdown: `### KanbanLight
 
 #### Abstract
-A Kanban board you can branch like a Git repo: create board branches saved as IndexedDB snapshots, compare two branches in a visual diff, and send commands from a kb CLI over a local WebSocket bridge. Built with React 18, strict TypeScript and Vite. Solo project. Work in progress.
+A browser-based Kanban board that borrows ideas from Git: branch a board, switch between branches, and compare them in a visual diff. Work in progress.
 
-#### Branches and Snapshots
-Board branches, with IndexedDB snapshots of cards, columns and events.
+#### Branches
+Branch a board and switch between branches.
 
 #### Visual Diff
-Branch-vs-branch visual diff.
+Compare the active branch with another branch; cards are marked as added, modified or deleted.
+
+#### Local-first
+All data stays in the browser (IndexedDB via idb); no backend, no accounts.
 
 #### kb CLI
-A kb CLI (Commander.js) sends commands to the board over a local WebSocket bridge at ws://localhost:8080.`,
+A Node.js CLI (Commander.js) controls the open board over a local WebSocket bridge (ws).`,
   },
   {
     id: "unified-api-ingester",
@@ -415,7 +400,8 @@ A kb CLI (Commander.js) sends commands to the board over a local WebSocket bridg
       { label: "Persistence Engine", value: "DuckDB + Parquet Lake" },
       { label: "Partitioning Scheme", value: "Hive-style UTC date partitions" },
     ],
-    deepDiveMarkdown: `A Python pipeline that pulls from a REST API and writes to two sinks. Solo project. Work in progress.
+    deepDiveMarkdown: `A Python pipeline that pulls from a REST API and writes to two sinks.
+Work in progress; details may change.
 
 - Source: OpenBreweryDB REST API.
 - Retries: configurable exponential backoff on transient 4xx/5xx errors.
