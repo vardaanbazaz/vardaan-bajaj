@@ -112,7 +112,7 @@ export const PERSONAL_INFO: PersonalInfo = {
   location: "Jammu, India · open to remote",
   focusLine: "Computer vision · full-stack web · C/DSP systems",
   researchLine: "Research: two IEEE conference papers (first author, CICT 2025)",
-  bio: "I'm a machine learning and software engineer. I've worked on computer vision for drone imagery as first author of an IEEE CICT 2025 paper, built a browser-based BI tool that runs entirely on the client, and wrote a C signal-processing simulation during a research internship at DRDO. I completed my B.Tech in Data Science and AI at IIIT Naya Raipur in 2026, and I'm open to remote roles.",
+  bio: "I'm a machine learning and software engineer. I've worked on computer vision for drone imagery as first author of an IEEE CICT 2025 paper, built a browser-based BI tool that works offline, and wrote a C signal-processing simulation during a research internship at DRDO. I completed my B.Tech in Data Science and AI at IIIT Naya Raipur in 2026, and I'm open to remote roles.",
   authenticatedPrompt: "> Vardaan Bajaj — Machine Learning & Software Engineer",
 };
 
@@ -529,7 +529,7 @@ export const MAP_DATA: MapDataSchema = {
     },
     {
       id: 'hyderabad-exp', coords: [17.3850, 78.4867], type: 'hybrid', roles: [
-        { title: 'Research and Development Intern', org: 'DRDO · Internship', type: 'Hyderabad (Hybrid)', year: 'Jan 2026 – Jun 2026', bullets: ['Built a C simulation framework for processing simulated time-series signals and telemetry data.', 'Implemented an in-place double-precision Radix-2 FFT and spectral peak detection for chirp waveforms under noise.', 'Modelled RS-422 serial framing and a command-response Remote Terminal state machine.', 'Used C11 atomics and multithreading for thread-safe state updates with minimal jitter.'] }
+        { title: 'Research and Development Intern', org: 'DRDO · Internship', type: 'Hyderabad (Hybrid)', year: 'Jan 2026 – Jun 2026', bullets: ['Built a C simulation framework for processing simulated time-series signals and telemetry data.', 'Implemented an in-place double-precision Radix-2 FFT and spectral peak detection for chirp waveforms under noise.', 'Modelled RS-422 serial framing and a command-response state machine.', 'Used C11 atomics and multithreading for thread-safe state updates with minimal jitter.'] }
       ]
     }
   ],
