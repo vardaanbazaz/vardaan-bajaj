@@ -17,7 +17,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
           {/* Left Column: Scholar Portrait Bento Container */}
           <div className="lg:col-span-5 bg-walnut-900/80 backdrop-blur-md border border-[#8C7335]/20 rounded-lg overflow-hidden flex flex-col h-full min-h-[340px] relative group shadow-sm">
             <div className="px-6 py-3 border-b border-[#8C7335]/20 flex justify-between items-center bg-walnut-950/60">
-              <span className="text-xs font-mono tracking-widest text-[#CF9E4F] uppercase">[ DEVELOPER PROFILE ]</span>
+              <span className="text-xs font-mono tracking-widest text-[#CF9E4F] uppercase">[ PROFILE ]</span>
             </div>
             <div className="relative flex-grow min-h-[300px]">
               <img 
@@ -32,7 +32,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
           <div className="lg:col-span-7 bg-walnut-900/80 backdrop-blur-md p-8 rounded-lg flex flex-col justify-between relative border border-[#8C7335]/20 shadow-sm">
             <div>
               <div className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest mb-2">
-                [ ABOUT & ENGINEERING FOCUS ]
+                [ ABOUT ]
               </div>
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#f4efe6] mb-3">
                 {PERSONAL_INFO.title}
@@ -100,7 +100,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
                   to="/dossiers"
                   className="inline-block px-6 py-2.5 border border-[#8C7335] text-[#CF9E4F] hover:bg-[#8C7335]/10 font-mono tracking-widest text-xs uppercase transition-colors rounded"
                 >
-                  [VIEW ALL PROJECTS & DOSSIERS &rarr;]
+                  [VIEW ALL PROJECTS &rarr;]
                 </Link>
               </div>
             </div>
@@ -113,7 +113,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
         <div className="bg-walnut-900/80 backdrop-blur-md p-8 rounded-lg border border-[#8C7335]/20 shadow-sm relative">
           <div className="border-b border-[#8C7335]/20 pb-3 mb-6">
             <span className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest block mb-1">
-              [ WORK EXPERIENCE & LOCATION MAP ]
+              [ EXPERIENCE ]
             </span>
             <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#f4efe6] uppercase tracking-wide">
               Work Experience & Research Roles
@@ -149,7 +149,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
               to="/map"
               className="mt-2 inline-block px-6 py-2.5 border border-[#8C7335] text-[#CF9E4F] hover:bg-[#8C7335]/10 font-mono tracking-widest text-xs uppercase transition-colors rounded"
             >
-              [OPEN INTERACTIVE EXPERIENCE MAP &rarr;]
+              [OPEN EXPERIENCE MAP &rarr;]
             </Link>
           </div>
         </div>

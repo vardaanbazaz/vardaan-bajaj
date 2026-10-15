@@ -8,7 +8,7 @@ export const PublicationsPage: React.FC = () => {
       {/* Header Banner */}
       <header className="parchment-card backdrop-blur-md bg-[#18110c]/90 p-8 rounded-lg relative border border-[#8C7335]/30 shadow-lg">
         <span className="text-xs font-mono text-[#d4a37f] uppercase tracking-widest block mb-2">
-          [RESEARCH & IEEE PUBLICATIONS]
+          [PUBLICATIONS]
         </span>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
           IEEE Research Publications
@@ -28,7 +28,7 @@ export const PublicationsPage: React.FC = () => {
             </span>
           </div>
           <span className="text-[#9c9281]">
-            SHOWING {PUBLICATIONS.length} OF {PUBLICATIONS.length} PAPERS
+            SHOWING {PUBLICATIONS.length} OF {PUBLICATIONS.length}
           </span>
         </div>
 

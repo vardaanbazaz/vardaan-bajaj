@@ -183,7 +183,7 @@ export const PublicationDetailPage: React.FC = () => {
           <div className="space-y-3">
             <div className="text-xs font-mono text-[#CF9E4F] uppercase tracking-wider font-bold flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5" />
-              [SYSTEM PIPELINE & ARCHITECTURE STAGES]
+              [PIPELINE]
             </div>
 
             <div className={`grid grid-cols-1 ${publication.pipeline.length === 4 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-3'} gap-3`}>
@@ -210,7 +210,7 @@ export const PublicationDetailPage: React.FC = () => {
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="text-xs font-mono text-[#CF9E4F] uppercase tracking-wider font-bold flex items-center gap-1.5">
                 <BarChart3 className="w-3.5 h-3.5" />
-                [PERFORMANCE BENCHMARKS & mAP METRICS]
+                [RESULTS]
               </div>
               {publication.benchmarks.formula && (
                 <div className="text-[11px] font-mono text-[#34d399] bg-black/40 px-2.5 py-0.5 rounded border border-[#164e33]/40">
@@ -287,7 +287,7 @@ export const PublicationDetailPage: React.FC = () => {
         <div className="space-y-2 pt-2 border-t border-[#8C7335]/20">
           <div className="flex items-center justify-between">
             <span className="text-xs font-mono text-[#CF9E4F] uppercase tracking-wider font-bold">
-              [BIBTEX CITATION SCHEME]
+              [CITATION (BIBTEX)]
             </span>
             <button
               onClick={() => handleCopyBibtex(publication.id, publication.bibtex)}
@@ -296,7 +296,7 @@ export const PublicationDetailPage: React.FC = () => {
               {copiedId === publication.id ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-[#34d399]" />
-                  <span className="text-[#34d399]">[COPIED TO CLIPBOARD]</span>
+                  <span className="text-[#34d399]">[COPIED]</span>
                 </>
               ) : (
                 <>

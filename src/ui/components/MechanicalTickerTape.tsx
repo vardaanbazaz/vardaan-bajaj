@@ -113,7 +113,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
 const TickerFallback: React.FC = () => (
   <div className="w-full bg-[#1b1410] border-y border-amber-900/40 shadow-inner">
     <div className="flex items-center space-x-4 py-1.5 px-3 text-xs font-mono text-amber-500/70 animate-pulse">
-      <span>[LOADING GITHUB STATS...]</span>
+      <span>[LOADING GITHUB ACTIVITY...]</span>
     </div>
   </div>
 );

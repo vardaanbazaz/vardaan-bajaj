@@ -80,13 +80,13 @@ export const SeoHead: React.FC = () => {
       canonicalPath = '/';
       structuredData = [personSchema, websiteSchema, profilePageSchema];
     } else if (normalizedPathname === '/dossiers') {
-      title = `Engineering Projects & Dossiers | ${PERSONAL_INFO.name}`;
+      title = `Engineering Projects | ${PERSONAL_INFO.name}`;
       description = `Projects by Vardaan Bajaj: completed work and projects in progress, with write-ups and source code.`;
       canonicalPath = '/dossiers';
       structuredData = {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        name: `Engineering Projects & Dossiers by ${PERSONAL_INFO.name}`,
+        name: `Engineering Projects by ${PERSONAL_INFO.name}`,
         url: `${SITE_ORIGIN}/dossiers`,
         description,
       };
@@ -94,7 +94,7 @@ export const SeoHead: React.FC = () => {
       const dossierId = normalizedPathname.replace('/dossier/', '');
       const dossier = DOSSIERS.find((d) => d.id === dossierId);
       if (dossier) {
-        title = `${dossier.title} — Engineering Dossier | ${PERSONAL_INFO.name}`;
+        title = `${dossier.title} — Project | ${PERSONAL_INFO.name}`;
         description = `${dossier.subtitle}. ${dossier.summary}`;
         canonicalPath = `/dossier/${dossier.id}`;
         ogType = 'article';

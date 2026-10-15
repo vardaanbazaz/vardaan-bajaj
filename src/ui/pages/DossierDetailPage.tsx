@@ -32,15 +32,15 @@ export const DossierDetailPage: React.FC = () => {
     return (
       <div className="max-w-4xl mx-auto py-16 px-4">
         <div className="parchment-card p-8 rounded-lg text-center space-y-4 border border-[#c5a880]/30">
-          <h2 className="text-2xl font-serif font-bold text-[#f4efe6]">DOSSIER NOT FOUND</h2>
+          <h2 className="text-2xl font-serif font-bold text-[#f4efe6]">PROJECT NOT FOUND</h2>
           <p className="text-xs font-mono text-[#d4a37f]">
-            The requested engineering manuscript reference [{dossierId}] does not exist in the catalog.
+            No project with ID "{dossierId}".
           </p>
           <button
             onClick={() => navigate('/dossiers')}
             className="px-5 py-2.5 bg-[#221812] hover:bg-[#2a1810] text-[#f4efe6] font-mono text-xs rounded border border-[#c5a880]/50 shadow transition-all cursor-pointer uppercase"
           >
-            RETURN TO DOSSIER ARCHIVES
+            BACK TO PROJECTS
           </button>
         </div>
       </div>
@@ -55,14 +55,11 @@ export const DossierDetailPage: React.FC = () => {
           to="/dossiers"
           className="text-[#8C7335] hover:text-[#CF9E4F] font-serif italic mb-2 inline-block transition-colors"
         >
-          &larr; Back to Dossier Archives
+          &larr; Back to projects
         </Link>
-        <div className="text-xs font-mono text-[#c5a880]/80">
-          [{dossier.dossierCode}]
-        </div>
       </nav>
 
-      {/* Main Dossier Header */}
+      {/* Main Project Header */}
       <article className="parchment-card backdrop-blur-md bg-[#18110c]/90 p-8 rounded-lg relative border border-[#c5a880]/30">
         <div className="absolute top-4 right-4 brass-rivet" aria-hidden="true" />
 
@@ -102,7 +99,7 @@ export const DossierDetailPage: React.FC = () => {
               rel="noopener noreferrer"
               className="font-mono text-[#CF9E4F] border border-[#8C7335] px-4 py-2 hover:bg-[#8C7335]/10 inline-block transition-colors"
             >
-              [VIEW SOURCE CODE]
+              [VIEW ON GITHUB ↗]
             </a>
           </div>
         )}

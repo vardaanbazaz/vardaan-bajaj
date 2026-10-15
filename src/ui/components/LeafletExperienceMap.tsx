@@ -88,7 +88,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
         iconAnchor: [14, 14],
       });
 
-      const marker = L.marker(coords, { icon: customIcon }).addTo(map);
+      const marker = L.marker(coords, { icon: customIcon, title: node.label, alt: node.label }).addTo(map);
 
       marker.on('click', () => {
         setActiveNode(node);
@@ -189,11 +189,6 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
             <span>Remote Role</span>
           </div>
         </div>
-
-        {/* TELEMETRY BADGE */}
-        <div className="absolute top-4 right-4 z-[1000] bg-black/80 px-3 py-1 rounded border border-[#8C7335]/30 text-[10px] font-mono text-[#CF9E4F]">
-          [MAP CENTER: INDIA (25.0, 78.5)]
-        </div>
       </div>
 
       {/* ACTIVE MODAL OVERLAY ON MARKER CLICK (PORTALED TO BODY) */}
@@ -212,8 +207,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
             {/* 3. Inner Scrolling Content */}
             <div className="p-8 md:p-12 overflow-y-auto custom-paper-scrollbar flex-grow relative">
               <p className="font-mono text-[10px] md:text-xs text-[#8C7335] uppercase tracking-widest mb-8">
-                [ROLE DETAILS // {activeNode.type.toUpperCase()}]<br/>
-                LOCATION: [{activeNode.coords[0]}, {activeNode.coords[1]}]
+                [{activeNode.label}]
               </p>
 
               {activeNode.roles.map((role: MapRole, i: number) => (

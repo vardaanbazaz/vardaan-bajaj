@@ -41,11 +41,8 @@ export const KanbanLightEntry = () => {
           to="/dossiers"
           className="text-[#8C7335] hover:text-[#CF9E4F] font-serif italic mb-2 inline-block transition-colors"
         >
-          &larr; Back to Dossier Archives
+          &larr; Back to projects
         </Link>
-        <span className="text-xs font-mono text-[#c5a880]/80 uppercase tracking-widest">
-          [MANUSCRIPT DOSSIER-KL-3041]
-        </span>
       </nav>
 
       {/* Main Manuscript Grid */}
@@ -53,7 +50,7 @@ export const KanbanLightEntry = () => {
         {/* Sticky Table of Contents (visible on lg and xl viewports) */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-12 parchment-card p-5 rounded-lg space-y-4 border border-[#c5a880]/30 bg-[#18110c]/90 backdrop-blur-md">
           <div className="text-xs font-mono text-[#c5a880] uppercase tracking-wider font-bold border-b border-[#c5a880]/20 pb-2">
-            [CONTENTS OUTLINE]
+            [CONTENTS]
           </div>
           <nav className="space-y-2" aria-label="Table of contents">
             {tocItems.map((item) => (
@@ -108,7 +105,7 @@ export const KanbanLightEntry = () => {
                 rel="noopener noreferrer"
                 className="font-mono text-[#CF9E4F] border border-[#8C7335] px-4 py-2 hover:bg-[#8C7335]/10 inline-block transition-colors"
               >
-                [VIEW SOURCE CODE]
+                [VIEW ON GITHUB ↗]
               </a>
               <a
                 href={demoUrl}

@@ -49,7 +49,6 @@ export interface ProjectDossier {
   demoUrl?: string;
   summary: string;
   techStack: string[];
-  dossierCode: string;
   benchmarks?: Benchmark[];
   adrs?: ADRItem[];
   deepDiveMarkdown?: string;
@@ -166,7 +165,6 @@ export const DOSSIER_LIST: ProjectDossier[] = [
       "Playwright",
       "GitHub Actions",
     ],
-    dossierCode: "DOSSIER-DV-8092",
     benchmarks: [],
     adrs: [
       {
@@ -231,7 +229,6 @@ No live demo is linked yet. The redesign is dark-mode first; light mode was not 
       "VIC index",
       "Subject-grouped CV",
     ],
-    dossierCode: "DOSSIER-NI-7744",
     benchmarks: [
       { label: "Accuracy (XGBoost)", value: "0.796 ± 0.098" },
       { label: "Majority Baseline Accuracy", value: "0.756 ± 0.067" },
@@ -295,7 +292,6 @@ VIC is untested outside the Oxford dataset because spread2 is missing from both 
       "SMOTE",
       "SHAP",
     ],
-    dossierCode: "DOSSIER-EA-5120",
     benchmarks: [
       { label: "ROC-AUC (XGBoost)", value: "0.7592" },
       { label: "Recall (XGBoost)", value: "0.2958" },
@@ -354,7 +350,6 @@ Small dataset; SMOTE uses synthetic minority samples; low recall (0.2958), so th
       "Commander.js",
       "WebSocket (ws)",
     ],
-    dossierCode: "DOSSIER-KL-3041",
     benchmarks: [],
     deepDiveMarkdown: `### KanbanLight
 
@@ -394,7 +389,6 @@ A Node.js CLI (Commander.js) controls the open board over a local WebSocket brid
       "YAML Config",
       "GitHub Actions",
     ],
-    dossierCode: "DOSSIER-ADL-1024",
     benchmarks: [
       { label: "Tests", value: "Unit-tested, CI on GitHub Actions" },
       { label: "Persistence Engine", value: "DuckDB + Parquet Lake" },
@@ -511,6 +505,7 @@ export interface MapRole {
 export interface MapLocationNode {
   id: string;
   coords: [number, number];
+  label: string;
   type: 'onsite' | 'remote-hub' | 'hybrid';
   roles: MapRole[];
 }
@@ -523,19 +518,19 @@ export interface MapDataSchema {
 export const MAP_DATA: MapDataSchema = {
   experience: [
     {
-      id: 'raipur-exp', coords: [21.1610, 81.7850], type: 'remote-hub', roles: [
+      id: 'raipur-exp', coords: [21.12846, 81.76617], label: 'Remote (from IIIT Naya Raipur)', type: 'remote-hub', roles: [
         { title: 'Web/App Developer', org: 'AgryBin · Internship', type: 'Remote', year: 'May 2025 – Aug 2025', bullets: ['Handled all web and mobile development for an early-stage agritech startup as its sole developer, from requirements to delivery.', 'Built the company\'s brand and product website.', 'Built an Android app in Flutter with OTP login and modules for mandi prices, mandi requirements, news, transporter contacts and cold-storage contacts.'] }
       ]
     },
     {
-      id: 'hyderabad-exp', coords: [17.3850, 78.4867], type: 'hybrid', roles: [
+      id: 'hyderabad-exp', coords: [17.3850, 78.4867], label: 'Hyderabad (Hybrid)', type: 'hybrid', roles: [
         { title: 'Research and Development Intern', org: 'DRDO · Internship', type: 'Hyderabad (Hybrid)', year: 'Jan 2026 – Jun 2026', bullets: ['Built a C simulation framework for processing simulated time-series signals and telemetry data.', 'Implemented an in-place double-precision Radix-2 FFT and spectral peak detection for chirp waveforms under noise.', 'Modelled RS-422 serial framing and a command-response state machine.', 'Used C11 atomics and multithreading for thread-safe state updates with minimal jitter.'] }
       ]
     }
   ],
   education: [
     {
-      id: 'raipur-edu', coords: [21.1610, 81.7850], type: 'onsite', roles: [
+      id: 'raipur-edu', coords: [21.12846, 81.76617], label: 'IIIT Naya Raipur', type: 'onsite', roles: [
         { title: 'B.Tech in Data Science and Artificial Intelligence', org: 'Dr. Shyama Prasad Mukherjee International Institute of Information Technology, Naya Raipur', type: 'On-site', year: '2022 – 2026 (completed July 2026)', bullets: ['CGPA 7.57 / 10 (80.7%, official conversion)', 'Coursework: Deep Learning, Computer Vision, Optimization Methods in ML, Natural Language Processing, Data Mining, Distributed Systems, Design and Analysis of Algorithms, Signal and System, Undergraduate Research Work-I, Undergraduate Research Work-II, Major Project/Thesis.'] }
       ]
     }

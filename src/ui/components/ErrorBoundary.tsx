@@ -31,7 +31,7 @@ export class ErrorBoundary extends Component<Props, State> {
       }
       return (
         <div className="p-3 bg-red-950/40 border border-red-800/60 rounded text-red-300 font-mono text-xs">
-          [TELEMETRY_SYSTEM_ERROR]: Failed to load stream. Re-initializing cache...
+          Something went wrong loading this section.
         </div>
       );
     }

@@ -95,7 +95,7 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
           </div>
         )}
 
-        {/* Action Buttons: IEEE Xplore, DOI & Examine Publication Detail */}
+        {/* Action Buttons: IEEE Xplore, DOI & Paper Details */}
         <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-[#8C7335]/20">
           {publication.ieeeUrl && (
             <a
@@ -116,9 +116,8 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
               rel="noopener noreferrer"
               className="text-xs font-mono text-[#34d399] hover:text-[#6ee7b7] flex items-center gap-1 bg-[#0c120c]/60 px-2.5 py-1 rounded border border-[#164e33]/50 transition-colors"
             >
-              <span>DOI</span>
+              <span>DOI: {publication.doi}</span>
               <ExternalLink className="w-3 h-3" />
-              <span className="sr-only"> {publication.doi}</span>
             </a>
           )}
 
@@ -127,7 +126,7 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
               to={publication.route}
               className="px-3.5 py-1.5 bg-[#221812] hover:bg-[#2a1810] text-[#f4efe6] text-xs font-mono rounded border border-[#8C7335]/40 hover:border-[#CF9E4F] transition-all ml-auto"
             >
-              EXAMINE DISCLOSURE &rarr;
+              PAPER DETAILS &rarr;
               <span className="sr-only"> for {publication.title}</span>
             </Link>
           )}
