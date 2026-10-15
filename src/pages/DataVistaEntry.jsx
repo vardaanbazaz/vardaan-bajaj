@@ -53,7 +53,7 @@ export const DataVistaEntry = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Sticky Table of Contents (visible on lg and xl viewports) */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 parchment-card p-5 rounded-lg space-y-4">
-          <div className="text-xs font-mono text-lamp tracking-wider font-bold border-b border-edge pb-2">
+          <div className="text-sm font-mono text-lamp tracking-wide font-bold border-b border-edge pb-2">
             Contents
           </div>
           <nav className="space-y-2" aria-label="Table of contents">
@@ -61,7 +61,7 @@ export const DataVistaEntry = () => {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className={`block text-xs font-mono transition-colors py-1 px-2 rounded ${
+                className={`block text-sm font-mono transition-colors py-1 px-2 rounded ${
                   activeSection === item.id
                     ? 'bg-sunset text-ink font-bold pressable press-shift'
                     : 'text-lamp hover:underline underline-offset-4'
@@ -72,7 +72,7 @@ export const DataVistaEntry = () => {
             ))}
           </nav>
 
-          <div className="pt-4 border-t border-edge text-[11px] font-mono text-lamp space-y-2">
+          <div className="pt-4 border-t border-edge text-sm font-mono text-lamp space-y-2">
             <div>Status: <span className="text-lamp">Completed</span></div>
           </div>
         </aside>
@@ -96,7 +96,7 @@ export const DataVistaEntry = () => {
             <p className="text-sm font-mono text-lamp mb-4 italic">
               Browser-native BI platform
             </p>
-            <p className="text-sm font-sans text-lamp leading-relaxed mb-6">
+            <p className="text-base font-sans text-lamp leading-relaxed mb-6">
               A business-intelligence app that runs in the browser: load a CSV or Excel file and build pivots, calculated fields and dashboards without a backend.
             </p>
 
@@ -129,10 +129,10 @@ export const DataVistaEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               1. Abstract
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend.
             </p>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               It is built with React 18 and Vite, keeps app state in Zustand with local-storage persistence, and stores data in IndexedDB via Dexie.js. Tests run on Vitest (unit) and Playwright (E2E) in GitHub Actions.
             </p>
           </section>
@@ -142,10 +142,10 @@ export const DataVistaEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               2. System Architecture
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               DataVista has four main parts:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-lamp pl-2">
+            <ul className="list-disc list-inside space-y-2 text-base leading-relaxed font-sans text-lamp pl-2">
               <li><strong>Formula parser:</strong> Recursive-descent parser for Excel-style calculated fields and window functions.</li>
               <li><strong>Unified Query & Pivot Engine:</strong> Rows, columns and values.</li>
               <li><strong>Storage:</strong> IndexedDB via Dexie.js for datasets; Zustand with local-storage persistence for app state.</li>
@@ -158,7 +158,7 @@ export const DataVistaEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               3. Formula Parser
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               A recursive-descent parser evaluates Excel-style calculated fields and window functions: ROW_NUMBER, RANK, DENSE_RANK, rolling and moving averages, and cumulative sums.
             </p>
           </section>
@@ -168,7 +168,7 @@ export const DataVistaEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               4. Features
             </h2>
-            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-lamp pl-2">
+            <ul className="list-disc list-inside space-y-2 text-base leading-relaxed font-sans text-lamp pl-2">
               <li><strong>Data explorer:</strong> Inspect records, with filters.</li>
               <li><strong>Statistics:</strong> Descriptive statistics, correlation matrices and outlier detection.</li>
               <li><strong>Charts:</strong> Interactive charts.</li>
@@ -182,7 +182,7 @@ export const DataVistaEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               5. AI Co-Pilot
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               Optional and bring-your-own-key (Gemini or OpenAI). Without a key, a local heuristic engine is used. The app discloses at the point of use that sample values are sent to the provider.
             </p>
           </section>
@@ -196,13 +196,13 @@ export const DataVistaEntry = () => {
             {/* ADR 001 */}
             <div className="bg-box p-6 rounded-lg border border-edge well room-chip space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
-                <span className="text-xs font-mono font-bold text-lamp">ADR-001</span>
-                <span className="text-xs font-mono text-lamp">Decision: accepted</span>
+                <span className="text-sm font-mono font-bold text-lamp">ADR-001</span>
+                <span className="text-sm font-mono text-lamp">Decision: accepted</span>
               </div>
-              <h3 className="text-base font-serif font-bold text-lamp">
+              <h3 className="text-lg font-serif font-bold text-lamp">
                 Client-Side Formula Parsing
               </h3>
-              <div className="space-y-2 text-xs font-sans text-lamp">
+              <div className="space-y-2 text-base leading-relaxed font-sans text-lamp">
                 <p><strong>Context:</strong> Calculated fields and window functions have to run in the browser, without a backend.</p>
                 <p><strong>Decision:</strong> A recursive-descent parser for Excel-style calculated fields and window functions (ROW_NUMBER, RANK, DENSE_RANK; rolling, moving averages, cumulative sums).</p>
                 <p><strong>Consequences:</strong> Works fully offline; the optional AI Co-Pilot is the only exception (see AI Co-Pilot).</p>
@@ -212,13 +212,13 @@ export const DataVistaEntry = () => {
             {/* ADR 002 */}
             <div className="bg-box p-6 rounded-lg border border-edge well room-chip space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
-                <span className="text-xs font-mono font-bold text-lamp">ADR-002</span>
-                <span className="text-xs font-mono text-lamp">Decision: accepted</span>
+                <span className="text-sm font-mono font-bold text-lamp">ADR-002</span>
+                <span className="text-sm font-mono text-lamp">Decision: accepted</span>
               </div>
-              <h3 className="text-base font-serif font-bold text-lamp">
+              <h3 className="text-lg font-serif font-bold text-lamp">
                 IndexedDB via Dexie.js for Local Persistence
               </h3>
-              <div className="space-y-2 text-xs font-sans text-lamp">
+              <div className="space-y-2 text-base leading-relaxed font-sans text-lamp">
                 <p><strong>Context:</strong> Uploaded CSV, TSV or XLSX files of up to 100 MB have to persist in the browser.</p>
                 <p><strong>Decision:</strong> Store datasets in IndexedDB via Dexie.js; keep app state in Zustand with local-storage persistence.</p>
                 <p><strong>Consequences:</strong> No backend is needed to store data.</p>
@@ -231,14 +231,14 @@ export const DataVistaEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               7. Audits and Fixes
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               Five audits (correctness, type-inference gaps, shell completeness, product relevance, and a cross-cutting review). The critical and high findings of the correctness audit are fixed. A regression pass found and fixed a crash when creating dashboards, and live testing of the AI path caught two bugs: a retired model name and charts using the wrong aggregation.
             </p>
             <a
               href="https://github.com/vardaanbazaz/datavista/tree/main/docs"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-lamp underline underline-offset-4"
+              className="font-mono text-sm text-lamp underline underline-offset-4"
             >
               Read the audit reports
             </a>
@@ -249,7 +249,7 @@ export const DataVistaEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               8. Limitations
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               No live demo is linked yet. The redesign is dark-mode first; light mode was not redesigned. Only the Gemini path has been tested against a live key.
             </p>
           </section>

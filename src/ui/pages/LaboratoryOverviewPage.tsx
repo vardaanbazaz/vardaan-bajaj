@@ -20,7 +20,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
           {/* Left Column: Scholar Portrait Bento Container */}
           <div className="lg:col-span-5 bg-card border raised rounded-lg overflow-hidden flex flex-col h-full min-h-[340px] relative group">
             <div className="px-6 py-3 border-b border-edge flex justify-between items-center bg-box">
-              <span className="text-xs font-mono tracking-widest text-lamp">Profile</span>
+              <span className="text-sm font-mono tracking-wide text-lamp">Profile</span>
             </div>
             <div className="relative flex-grow min-h-[300px]">
               <img
@@ -38,32 +38,32 @@ export const LaboratoryOverviewPage: React.FC = () => {
                 {PERSONAL_INFO.title}
               </h2>
 
-              <p className="text-sm font-sans text-lamp leading-relaxed mb-6">
+              <p className="text-base font-sans text-lamp leading-relaxed mb-6">
                 {PERSONAL_INFO.bio}
               </p>
 
               {/* Academic Training Grounds Credentials Card */}
               <div className="bg-box p-4 rounded-lg border border-edge well room-chip mb-6">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                  <span className="text-xs font-mono font-bold text-lamp tracking-wider">
+                  <span className="text-sm font-mono font-bold text-lamp tracking-wide">
                     Education &bull; {EDUCATION_DATA.institution}
                   </span>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-box text-lamp border border-edge well room-chip shrink-0 whitespace-nowrap">
+                  <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-box text-lamp border border-edge well room-chip shrink-0 whitespace-nowrap">
                     {EDUCATION_DATA.period}
                   </span>
                 </div>
-                <div className="text-xs font-mono text-lamp mb-1.5">
+                <div className="text-sm font-mono text-lamp mb-1.5">
                   {EDUCATION_DATA.degree}
                 </div>
-                <div className="text-xs font-mono text-lamp mb-3">
+                <div className="text-sm font-mono text-lamp mb-3">
                   {EDUCATION_DATA.grade}
                 </div>
 
                 {/* Coursework Tags */}
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="text-[10px] font-mono text-lamp mr-1">Coursework:</span>
+                  <span className="text-sm font-mono text-lamp mr-1">Coursework:</span>
                   {EDUCATION_DATA.coursework.map((course, idx) => (
-                    <span key={idx} className="text-[10px] font-mono px-2 py-0.5 rounded bg-tag text-lamp border border-edge well room-chip">
+                    <span key={idx} className="text-xs font-mono px-2 py-0.5 rounded bg-tag text-lamp border border-edge well room-chip">
                       {course}
                     </span>
                   ))}
@@ -78,19 +78,19 @@ export const LaboratoryOverviewPage: React.FC = () => {
                   <span className="block text-2xl font-serif font-bold text-lamp">
                     {ENGINEERING_DOSSIERS.featureBuilds.length}
                   </span>
-                  <span className="text-[10px] font-mono text-lamp">Completed</span>
+                  <span className="text-sm font-mono text-lamp">Completed</span>
                 </div>
                 <div className="bg-box p-3 rounded-lg border border-edge well room-chip text-center">
                   <span className="block text-2xl font-serif font-bold text-lamp">
                     {ENGINEERING_DOSSIERS.activeBuilds.length}
                   </span>
-                  <span className="text-[10px] font-mono text-lamp">In development</span>
+                  <span className="text-sm font-mono text-lamp">In development</span>
                 </div>
                 <div className="bg-box p-3 rounded-lg border border-edge well room-chip text-center">
                   <span className="block text-2xl font-serif font-bold text-lamp">
                     {ENGINEERING_DOSSIERS.allBuilds.length}
                   </span>
-                  <span className="text-[10px] font-mono text-lamp">All projects</span>
+                  <span className="text-sm font-mono text-lamp">All projects</span>
                 </div>
               </div>
 
@@ -98,7 +98,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
               <div className="text-center pt-4">
                 <Link
                   to="/dossiers"
-                  className="inline-block font-mono tracking-widest text-xs text-lamp underline underline-offset-4"
+                  className="inline-block font-mono tracking-wide text-sm text-lamp underline underline-offset-4"
                 >
                   View all projects &rarr;
                 </Link>
@@ -112,13 +112,13 @@ export const LaboratoryOverviewPage: React.FC = () => {
       <section aria-label="Work Experience & Location Map Teaser">
         <div className="bg-card p-8 rounded-lg border raised relative">
           <div className="border-b border-edge pb-3 mb-6">
-            <span className="text-xs font-mono text-lamp tracking-widest block mb-1">
+            <span className="text-sm font-mono text-lamp tracking-wide block mb-1">
               Experience
             </span>
             <h2 className="text-xl sm:text-2xl font-serif font-bold text-lamp tracking-wide">
               Work Experience & Research Roles
             </h2>
-            <p className="text-xs font-mono text-lamp">
+            <p className="text-sm font-mono text-lamp">
               Internships and research work
             </p>
           </div>
@@ -126,20 +126,20 @@ export const LaboratoryOverviewPage: React.FC = () => {
           {/* Monospace List of Base Stations */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {MAP_DATA.experience.flatMap((node) => node.roles).map((role, idx) => (
-              <div key={idx} className="bg-box p-4 rounded-lg border border-edge well room-chip font-mono text-xs text-lamp">
+              <div key={idx} className="bg-box p-4 rounded-lg border border-edge well room-chip font-mono text-sm text-lamp">
                 <div className="flex flex-wrap sm:flex-nowrap items-start sm:items-center justify-between gap-2 font-bold mb-1">
                   <span className="break-words">{role.org}</span>
-                  <span className="text-[10px] px-2.5 py-0.5 rounded bg-box border border-edge well room-chip shrink-0 whitespace-nowrap">
+                  <span className="text-xs px-2.5 py-0.5 rounded bg-box border border-edge well room-chip shrink-0 whitespace-nowrap">
                     {role.type}
                   </span>
                 </div>
                 <div className="mb-1 font-serif">{role.title}</div>
-                <div className="text-[11px]">{role.year}</div>
+                <div>{role.year}</div>
               </div>
             ))}
           </div>
 
-          <p className="text-xs font-mono text-lamp mb-4">
+          <p className="text-base font-mono text-lamp leading-relaxed mb-4">
             Also: built a results-review web app for a crop-imaging research collaboration between IIIT Naya Raipur and Mahyco (2024).
           </p>
 
@@ -147,7 +147,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
           <div className="text-center pt-2 border-t border-edge">
             <Link
               to="/map"
-              className="mt-2 inline-block font-mono tracking-widest text-xs text-lamp underline underline-offset-4"
+              className="mt-2 inline-block font-mono tracking-wide text-sm text-lamp underline underline-offset-4"
             >
               Open experience map &rarr;
             </Link>

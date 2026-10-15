@@ -10,7 +10,7 @@ export const ExperienceMapPage: React.FC = () => {
         <h1 className="text-2xl font-serif font-bold text-lamp">
           Work & Academic Experience Map
         </h1>
-        <p className="text-xs font-mono text-lamp">
+        <p className="text-sm font-mono text-lamp">
           Interactive map showing engineering roles, research internships, and academic locations
         </p>
       </MouldedHeader>

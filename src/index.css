@@ -107,8 +107,13 @@
     color: var(--color-lamp);
     font-family: var(--font-sans);
     overflow-x: hidden;
-    /* Anchor jumps clear the sticky nav */
-    scroll-padding-top: 5rem;
+  }
+
+  /* Anchor jumps clear the sticky nav (sticky from sm up only) */
+  @media (width >= 40rem) {
+    :root {
+      scroll-padding-top: 5rem;
+    }
   }
 
   body {
@@ -285,7 +290,7 @@
   background: var(--color-box) !important;
   color: var(--color-lamp) !important;
   font-family: monospace;
-  font-size: 10px !important;
+  font-size: 0.75rem !important;
 }
 .leaflet-control-attribution a {
   color: var(--color-lamp) !important;

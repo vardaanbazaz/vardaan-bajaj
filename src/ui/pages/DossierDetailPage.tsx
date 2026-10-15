@@ -35,12 +35,12 @@ export const DossierDetailPage: React.FC = () => {
       <div className="max-w-4xl mx-auto py-16 px-4">
         <div className="parchment-card p-8 rounded-lg text-center space-y-4">
           <h2 className="text-2xl font-serif font-bold text-lamp">Project not found</h2>
-          <p className="text-xs font-mono text-lamp">
+          <p className="text-sm font-mono text-lamp">
             No project with ID "{dossierId}".
           </p>
           <button
             onClick={() => navigate('/dossiers')}
-            className="px-5 py-2.5 bg-sunset text-ink font-mono text-xs font-bold rounded pressable press-shift cursor-pointer"
+            className="px-5 py-2.5 bg-sunset text-ink font-mono text-sm font-bold rounded pressable press-shift cursor-pointer"
           >
             Back to projects
           </button>
@@ -84,7 +84,7 @@ export const DossierDetailPage: React.FC = () => {
           {dossier.subtitle}
         </p>
 
-        <p className="text-sm font-sans text-lamp leading-relaxed mb-6">
+        <p className="text-base font-sans text-lamp leading-relaxed mb-6">
           {dossier.summary}
         </p>
 
@@ -121,7 +121,7 @@ export const DossierDetailPage: React.FC = () => {
             <span className="block text-2xl font-serif font-bold text-lamp mb-1">
               {bm.value}
             </span>
-            <span className="text-xs font-mono text-lamp">
+            <span className="text-sm font-mono text-lamp">
               {bm.label}
             </span>
           </div>
@@ -134,7 +134,7 @@ export const DossierDetailPage: React.FC = () => {
           Engineering Specifications
         </h3>
 
-        <div className="text-xs font-mono text-lamp leading-relaxed whitespace-pre-wrap elevated-math-block room-chip p-6 rounded-lg">
+        <div className="text-base font-mono text-lamp leading-relaxed whitespace-pre-wrap elevated-math-block room-chip p-6 rounded-lg">
           {dossier.deepDiveMarkdown}
         </div>
       </section>

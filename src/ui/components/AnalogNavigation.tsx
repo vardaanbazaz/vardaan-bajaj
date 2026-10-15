@@ -3,23 +3,23 @@ import { NavLink } from 'react-router-dom';
 
 export const AnalogNavigation: React.FC = () => {
   return (
-    <nav className="sticky top-0 z-30 w-full glass border-b px-4 py-3 mb-8 overflow-hidden" aria-label="Main Navigation">
+    <nav className="relative sm:sticky sm:top-0 z-30 w-full glass border-b px-4 py-3 mb-8 overflow-hidden" aria-label="Main Navigation">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center space-x-2.5 shrink-0">
           <div className="w-3 h-3 rounded-full bg-lamp" aria-hidden="true" />
-          <span className="text-xs font-mono font-bold text-lamp tracking-widest">
+          <span className="text-sm font-mono font-bold text-lamp tracking-wide">
             Vardaan Bajaj
           </span>
           <span className="sr-only">Vardaan Bajaj Portfolio Navigation</span>
         </div>
 
-        <div className="w-full sm:w-auto flex items-center justify-start sm:justify-end space-x-1.5 sm:space-x-3 md:space-x-4 overflow-x-auto custom-scrollbar pb-1 sm:pb-0">
+        <div className="w-full sm:w-auto flex flex-wrap items-center justify-center sm:justify-end gap-x-1.5 gap-y-1 sm:gap-x-3 md:gap-x-4">
           {/* 1. OVERVIEW */}
           <NavLink
             to="/"
             end
             className={({ isActive }) =>
-              `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
+              `px-3 py-1.5 text-sm font-mono rounded transition-all shrink-0 ${
                 isActive
                   ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
@@ -33,7 +33,7 @@ export const AnalogNavigation: React.FC = () => {
           <NavLink
             to="/dossiers"
             className={({ isActive }) =>
-              `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
+              `px-3 py-1.5 text-sm font-mono rounded transition-all shrink-0 ${
                 isActive
                   ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
@@ -47,7 +47,7 @@ export const AnalogNavigation: React.FC = () => {
           <NavLink
             to="/map"
             className={({ isActive }) =>
-              `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
+              `px-3 py-1.5 text-sm font-mono rounded transition-all shrink-0 ${
                 isActive
                   ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
@@ -61,7 +61,7 @@ export const AnalogNavigation: React.FC = () => {
           <NavLink
             to="/publications"
             className={({ isActive }) =>
-              `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
+              `px-3 py-1.5 text-sm font-mono rounded transition-all shrink-0 ${
                 isActive
                   ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
@@ -75,7 +75,7 @@ export const AnalogNavigation: React.FC = () => {
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
+              `px-3 py-1.5 text-sm font-mono rounded transition-all shrink-0 ${
                 isActive
                   ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'

@@ -39,12 +39,12 @@ export const ContactPage: React.FC = () => {
   };
 
   const linkClassName =
-    'text-xs font-mono text-lamp underline underline-offset-4';
+    'text-sm font-mono text-lamp underline underline-offset-4';
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
       <MouldedHeader as="header">
-        <span className="text-xs font-mono text-lamp tracking-widest block mb-2">
+        <span className="text-sm font-mono text-lamp tracking-wide block mb-2">
           Contact
         </span>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-lamp">
@@ -55,11 +55,11 @@ export const ContactPage: React.FC = () => {
       <OrnamentDivider />
 
       <div className="w-full parchment-card p-6 rounded-lg relative overflow-hidden">
-        <p className="text-sm font-sans text-lamp">
+        <p className="text-base font-sans text-lamp leading-relaxed">
           Email is the best way to reach me. I'm open to remote machine learning and software roles.
         </p>
 
-        <p className="mt-4 bg-box px-4 py-3 rounded-lg border border-edge well room-chip text-[17px] font-mono text-lamp break-all">
+        <p className="mt-4 bg-box px-4 py-3 rounded-lg border border-edge well room-chip text-lg font-mono text-lamp break-all">
           <span ref={emailRef}>{PERSONAL_INFO.email}</span>
         </p>
 
@@ -67,20 +67,20 @@ export const ContactPage: React.FC = () => {
           <button
             type="button"
             onClick={handleCopy}
-            className="px-5 py-2.5 bg-sunset text-ink font-mono font-bold text-xs tracking-wider rounded pressable press-shift cursor-pointer shrink-0"
+            className="px-5 py-2.5 bg-sunset text-ink font-mono font-bold text-sm tracking-wide rounded pressable press-shift cursor-pointer shrink-0"
           >
             {copyStatus === 'copied' ? 'Copied' : 'Copy email'}
           </button>
           <a
             href={`mailto:${PERSONAL_INFO.email}`}
-            className="text-lamp font-mono text-xs tracking-wider underline underline-offset-4 shrink-0"
+            className="text-lamp font-mono text-sm tracking-wide underline underline-offset-4 shrink-0"
           >
             Open in mail app
           </a>
           {/* Button label already shows "Copied"; keep that announcement screen-reader only */}
           <span
             aria-live="polite"
-            className={`text-[10px] font-mono text-lamp ${copyStatus === 'copied' ? 'sr-only' : ''}`}
+            className={`text-sm font-mono text-lamp ${copyStatus === 'copied' ? 'sr-only' : ''}`}
           >
             {copyStatus === 'copied' && 'Copied'}
             {copyStatus === 'manual' && 'Press Ctrl+C to copy'}
@@ -105,7 +105,7 @@ export const ContactPage: React.FC = () => {
         </div>
       </div>
 
-      <p className="text-[10px] font-mono text-lamp">
+      <p className="text-sm font-mono text-lamp">
         This site doesn't collect or store personal data. Fonts, map tiles and GitHub stats load from third-party services.
       </p>
     </div>

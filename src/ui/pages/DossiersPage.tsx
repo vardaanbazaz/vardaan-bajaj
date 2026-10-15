@@ -19,13 +19,13 @@ export const DossiersPage: React.FC = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       {/* Page Header */}
       <MouldedHeader as="header">
-        <span className="text-xs font-mono text-lamp tracking-widest block mb-2">
+        <span className="text-sm font-mono text-lamp tracking-wide block mb-2">
           Projects
         </span>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-lamp mb-2">
           Engineering Projects
         </h1>
-        <p className="text-sm font-sans text-lamp max-w-2xl leading-relaxed">
+        <p className="text-base font-sans text-lamp max-w-2xl leading-relaxed">
           Completed projects and work in progress. Open a card for the write-up and source code.
         </p>
       </MouldedHeader>
@@ -41,10 +41,10 @@ export const DossiersPage: React.FC = () => {
           </h2>
 
           {/* 3 View Tabs rendered in exact order: 1 (Feature), 2 (Active), 3 (All) */}
-          <div className="flex items-center space-x-2 bg-box p-1.5 rounded-lg border raised overflow-x-auto custom-scrollbar">
+          <div className="flex flex-wrap items-center gap-2 bg-box p-1.5 rounded-lg border raised">
             <button
               onClick={() => setActiveTab('feature')}
-              className={`px-3.5 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
+              className={`px-3.5 py-1.5 text-sm font-mono rounded transition-all cursor-pointer ${
                 activeTab === 'feature'
                   ? 'bg-sunset text-ink font-bold pressable press-shift'
                   : 'text-lamp hover:underline underline-offset-4'
@@ -54,7 +54,7 @@ export const DossiersPage: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('active')}
-              className={`px-3.5 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
+              className={`px-3.5 py-1.5 text-sm font-mono rounded transition-all cursor-pointer ${
                 activeTab === 'active'
                   ? 'bg-sunset text-ink font-bold pressable press-shift'
                   : 'text-lamp hover:underline underline-offset-4'
@@ -64,7 +64,7 @@ export const DossiersPage: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('all')}
-              className={`px-3.5 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
+              className={`px-3.5 py-1.5 text-sm font-mono rounded transition-all cursor-pointer ${
                 activeTab === 'all'
                   ? 'bg-sunset text-ink font-bold pressable press-shift'
                   : 'text-lamp hover:underline underline-offset-4'
@@ -76,7 +76,7 @@ export const DossiersPage: React.FC = () => {
         </div>
 
         {/* Result Count */}
-        <div className="flex items-center justify-end text-xs font-mono">
+        <div className="flex items-center justify-end text-sm font-mono">
           <span className="text-lamp">
             Showing {filteredProjects.length} of {ENGINEERING_DOSSIERS.allBuilds.length}
           </span>

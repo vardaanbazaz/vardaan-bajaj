@@ -51,7 +51,7 @@ export const KanbanLightEntry = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Sticky Table of Contents (visible on lg and xl viewports) */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-20 parchment-card p-5 rounded-lg space-y-4">
-          <div className="text-xs font-mono text-lamp tracking-wider font-bold border-b border-edge pb-2">
+          <div className="text-sm font-mono text-lamp tracking-wide font-bold border-b border-edge pb-2">
             Contents
           </div>
           <nav className="space-y-2" aria-label="Table of contents">
@@ -59,7 +59,7 @@ export const KanbanLightEntry = () => {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className={`block text-xs font-mono transition-colors py-1 px-2 rounded ${
+                className={`block text-sm font-mono transition-colors py-1 px-2 rounded ${
                   activeSection === item.id
                     ? 'bg-sunset text-ink font-bold pressable press-shift'
                     : 'text-lamp hover:underline underline-offset-4'
@@ -70,7 +70,7 @@ export const KanbanLightEntry = () => {
             ))}
           </nav>
 
-          <div className="pt-4 border-t border-edge text-[11px] font-mono text-lamp space-y-2">
+          <div className="pt-4 border-t border-edge text-sm font-mono text-lamp space-y-2">
             <div>Status: <span className="text-lamp">In development</span></div>
           </div>
         </aside>
@@ -94,7 +94,7 @@ export const KanbanLightEntry = () => {
             <p className="text-sm font-mono text-lamp mb-4 italic">
               Git-style Kanban board · v0.0.1 (early build)
             </p>
-            <p className="text-sm font-sans text-lamp leading-relaxed mb-6">
+            <p className="text-base font-sans text-lamp leading-relaxed mb-6">
               A browser-based Kanban board that borrows ideas from Git: branch a board, switch between branches, and compare them in a visual diff. Work in progress.
             </p>
 
@@ -135,7 +135,7 @@ export const KanbanLightEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               1. Abstract
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               A browser-based Kanban board that borrows ideas from Git: branch a board, switch between branches, and compare them in a visual diff. Work in progress.
             </p>
           </section>
@@ -145,7 +145,7 @@ export const KanbanLightEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               2. Branches
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               Branch a board and switch between branches.
             </p>
           </section>
@@ -155,7 +155,7 @@ export const KanbanLightEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               3. Visual Diff
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               Compare the active branch with another branch; cards are marked as added, modified or deleted.
             </p>
           </section>
@@ -165,7 +165,7 @@ export const KanbanLightEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               4. Local-first
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               All data stays in the browser (IndexedDB via idb); no backend, no accounts.
             </p>
           </section>
@@ -175,7 +175,7 @@ export const KanbanLightEntry = () => {
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               5. kb CLI
             </h2>
-            <p className="text-sm font-sans text-lamp leading-relaxed">
+            <p className="text-base font-sans text-lamp leading-relaxed">
               A Node.js CLI (Commander.js) controls the open board over a local WebSocket bridge (ws).
             </p>
           </section>

@@ -17,7 +17,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
 
   return (
     <div className="w-full bg-box border-y raised">
-      <div className="flex items-center space-x-6 whitespace-nowrap overflow-x-auto py-1.5 px-3 text-xs font-mono text-lamp select-none">
+      <div className="flex items-center space-x-6 whitespace-nowrap overflow-x-auto py-1.5 px-3 text-sm font-mono text-lamp select-none">
         <div className="flex items-center space-x-2 shrink-0">
           <span className="font-bold">GitHub repos:</span>
           <span className="font-bold">
@@ -38,7 +38,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
 
         <div className="flex items-center space-x-2 shrink-0">
           <span className="font-bold">Status:</span>
-          <span className="text-[10px] font-bold">
+          <span className="text-sm font-bold">
             {stats.cached ? `Cached · ${lastUpdated}` : 'Synced'}
           </span>
         </div>
@@ -51,11 +51,11 @@ const MechanicalTickerTapeContent: React.FC = () => {
                 star at stepped opacity) */}
             <div className="flex items-center space-x-2.5 bg-night px-2.5 py-1 rounded border border-edge well shrink-0">
               <div className="flex items-center space-x-1.5">
-                <span className="text-[10px] font-bold tracking-wider">
+                <span className="text-sm font-bold tracking-wide">
                   Commit activity (28 days):
                 </span>
                 {stats.totalCommitsRecent !== undefined && (
-                  <span className="text-[10px] font-bold">
+                  <span className="text-sm font-bold">
                     {stats.totalCommitsRecent} commits
                   </span>
                 )}
@@ -88,7 +88,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
               </div>
 
               {/* Contribution Intensity Legend */}
-              <div className="flex items-center space-x-1 ml-1 text-[9px] font-mono">
+              <div className="flex items-center space-x-1 ml-1 text-xs font-mono">
                 <span>Less</span>
                 <span className="w-1.5 h-1.5 bg-box rounded-xs" />
                 <span className="w-1.5 h-1.5 bg-star/35 rounded-xs" />
@@ -106,7 +106,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
 
 const TickerFallback: React.FC = () => (
   <div className="w-full bg-box border-y raised">
-    <div className="flex items-center space-x-4 py-1.5 px-3 text-xs font-mono text-lamp animate-pulse">
+    <div className="flex items-center space-x-4 py-1.5 px-3 text-sm font-mono text-lamp animate-pulse">
       <span>Loading GitHub activity...</span>
     </div>
   </div>

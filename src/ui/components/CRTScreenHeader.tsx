@@ -9,7 +9,7 @@ export const CRTScreenHeader: React.FC = () => {
         <div>
           <div className="flex items-center space-x-2 mb-1">
             <span className="w-2.5 h-2.5 rounded-full bg-lamp animate-ping inline-block" />
-            <span className="text-[11px] font-mono text-lamp tracking-widest">
+            <span className="text-sm font-mono text-lamp tracking-wide">
               {PERSONAL_INFO.authenticatedPrompt}
             </span>
           </div>
@@ -18,16 +18,16 @@ export const CRTScreenHeader: React.FC = () => {
             {PERSONAL_INFO.name}
           </h1>
 
-          <p className="text-xs md:text-sm font-mono text-lamp mt-1">
+          <p className="text-sm font-mono text-lamp mt-1">
             {PERSONAL_INFO.role}
           </p>
-          <p className="text-xs md:text-sm font-mono text-lamp">
+          <p className="text-sm font-mono text-lamp">
             {PERSONAL_INFO.focusLine}
           </p>
-          <p className="text-xs md:text-sm font-mono text-lamp">
+          <p className="text-sm font-mono text-lamp">
             {PERSONAL_INFO.location}
           </p>
-          <p className="text-xs md:text-sm font-mono text-lamp">
+          <p className="text-sm font-mono text-lamp">
             {PERSONAL_INFO.researchLine}
           </p>
         </div>
@@ -37,7 +37,7 @@ export const CRTScreenHeader: React.FC = () => {
             href={PERSONAL_INFO.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-mono text-lamp underline underline-offset-4"
+            className="text-sm font-mono text-lamp underline underline-offset-4"
           >
             Resume / CV
           </a>
@@ -45,7 +45,7 @@ export const CRTScreenHeader: React.FC = () => {
             href={PERSONAL_INFO.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-mono text-lamp underline underline-offset-4"
+            className="text-sm font-mono text-lamp underline underline-offset-4"
           >
             LinkedIn
           </a>
@@ -53,13 +53,13 @@ export const CRTScreenHeader: React.FC = () => {
             href={`https://github.com/${PERSONAL_INFO.githubUser}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-mono text-lamp underline underline-offset-4"
+            className="text-sm font-mono text-lamp underline underline-offset-4"
           >
             GitHub
           </a>
           <a
             href={`mailto:${PERSONAL_INFO.email}`}
-            className="text-xs font-mono text-lamp underline underline-offset-4"
+            className="text-sm font-mono text-lamp underline underline-offset-4"
           >
             Email
           </a>

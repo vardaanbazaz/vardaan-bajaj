@@ -59,7 +59,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
         iconHtml = `
           <div class="relative w-8 h-8 flex items-center justify-center cursor-pointer">
             <span class="absolute inset-0 rounded-full bg-lamp animate-ping"></span>
-            <div class="relative w-6 h-6 rounded-full bg-lamp flex items-center justify-center font-mono text-[10px] font-bold text-ink">
+            <div class="relative w-6 h-6 rounded-full bg-lamp flex items-center justify-center font-mono text-xs font-bold text-ink">
               ★
             </div>
           </div>
@@ -148,7 +148,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] flex items-center space-x-1 glass p-1.5 rounded-lg border">
           <button
             onClick={() => setActiveTab('experience')}
-            className={`px-4 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
+            className={`px-4 py-1.5 text-sm font-mono rounded transition-all cursor-pointer ${
               activeTab === 'experience'
                 ? 'bg-sunset text-ink font-bold pressable press-shift'
                 : 'text-lamp hover:underline underline-offset-4'
@@ -158,7 +158,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('education')}
-            className={`px-4 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
+            className={`px-4 py-1.5 text-sm font-mono rounded transition-all cursor-pointer ${
               activeTab === 'education'
                 ? 'bg-sunset text-ink font-bold pressable press-shift'
                 : 'text-lamp hover:underline underline-offset-4'
@@ -169,8 +169,8 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
         </div>
 
         {/* BOTTOM LEGEND OVERLAY */}
-        <div className="absolute bottom-4 left-4 z-[1000] glass p-3 rounded-lg border text-[10px] font-mono text-lamp space-y-1.5">
-          <div className="font-bold mb-1 border-b border-edge pb-0.5 tracking-wider">
+        <div className="absolute bottom-4 left-4 z-[1000] glass p-3 rounded-lg border text-sm font-mono text-lamp space-y-1.5">
+          <div className="font-bold mb-1 border-b border-edge pb-0.5 tracking-wide">
             Location types:
           </div>
           <div className="flex items-center space-x-2">
@@ -206,7 +206,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
 
             {/* 3. Inner Scrolling Content */}
             <div className="p-8 md:p-12 overflow-y-auto custom-paper-scrollbar flex-grow relative">
-              <p className="font-mono text-[10px] md:text-xs text-lamp tracking-widest mb-8">
+              <p className="font-mono text-sm text-lamp tracking-wide mb-8">
                 {activeNode.label}
               </p>
 
@@ -219,10 +219,10 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
                     {role.org}
                   </h4>
                   <div className="flex flex-wrap gap-3 mb-6">
-                    <span className="inline-block px-3 py-1 rounded bg-box border border-edge well room-chip font-mono text-xs tracking-widest text-lamp">
+                    <span className="inline-block px-3 py-1 rounded bg-box border border-edge well room-chip font-mono text-xs tracking-wide text-lamp">
                       {role.year}
                     </span>
-                    <span className="inline-block px-3 py-1 rounded bg-box border border-edge well room-chip font-mono text-xs tracking-widest text-lamp">
+                    <span className="inline-block px-3 py-1 rounded bg-box border border-edge well room-chip font-mono text-xs tracking-wide text-lamp">
                       {role.type}
                     </span>
                   </div>

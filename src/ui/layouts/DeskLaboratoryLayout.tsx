@@ -53,11 +53,11 @@ export const DeskLaboratoryLayout: React.FC = () => {
 
       {/* Desk Footer */}
       <footer className="w-full bg-night material border-t border-edge py-6 px-4 relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-lamp text-center sm:text-left">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-mono text-lamp text-center sm:text-left">
           <div className="shrink-0">
             &copy; {new Date().getFullYear()} {PERSONAL_INFO.name} &bull; Machine Learning &amp; Software Engineer
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-[11px]">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs">
             <span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded bg-box border border-edge text-lamp">React 19</span>
             <span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded bg-box border border-edge text-lamp">Vite 6</span>
             <span className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded bg-box border border-edge text-lamp">Tailwind CSS v4</span>

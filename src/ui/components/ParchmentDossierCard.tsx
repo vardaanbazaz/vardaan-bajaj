@@ -18,7 +18,7 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
       <div>
         <div className="flex items-center justify-end mb-3">
           <span
-            className={`text-[10px] font-mono px-2.5 py-0.5 rounded tracking-wider text-ink ${
+            className={`text-xs font-mono px-2.5 py-0.5 rounded tracking-wide text-ink ${
               isCompleted ? 'bg-star' : 'bg-coral'
             }`}
           >
@@ -34,11 +34,11 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
           {dossier.title}
         </h3>
 
-        <p className="text-xs font-mono text-lamp mb-3 italic">
+        <p className="text-sm font-mono text-lamp mb-3 italic">
           {dossier.subtitle}
         </p>
 
-        <p className="text-xs font-sans text-lamp mb-5 leading-relaxed line-clamp-3">
+        <p className="text-base font-sans text-lamp mb-5 leading-relaxed line-clamp-4">
           {dossier.summary}
         </p>
       </div>
@@ -52,7 +52,7 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
           {dossier.techStack.map((tech, idx) => (
             <span
               key={idx}
-              className="text-[11px] font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge well room-chip"
+              className="text-xs font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge well room-chip"
             >
               {tech}
             </span>
@@ -61,7 +61,7 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
 
         {/* Footer: where the card goes */}
         <div className="pt-3 border-t border-edge">
-          <span className="text-[10px] font-mono text-lamp tracking-wider underline underline-offset-4">
+          <span className="text-sm font-mono text-lamp tracking-wide underline underline-offset-4">
             {writeUpRoute ? 'Read write-up →' : 'View on GitHub ↗'}
           </span>
         </div>
