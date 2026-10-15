@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { MouldedHeader } from '../ui/components/MouldedHeader';
+import { OrnamentDivider } from '../ui/components/OrnamentDivider';
 
 export const NeuroInsightEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
@@ -48,7 +50,7 @@ export const NeuroInsightEntry = () => {
       {/* Main Manuscript Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Sticky Table of Contents (visible on lg and xl viewports) */}
-        <aside className="hidden lg:block lg:col-span-3 sticky top-12 parchment-card p-5 rounded-lg space-y-4">
+        <aside className="hidden lg:block lg:col-span-3 sticky top-20 parchment-card p-5 rounded-lg space-y-4">
           <div className="text-xs font-mono text-lamp tracking-wider font-bold border-b border-edge pb-2">
             Contents
           </div>
@@ -77,9 +79,9 @@ export const NeuroInsightEntry = () => {
         {/* Main Document Stream */}
         <main className="lg:col-span-9 space-y-12">
           {/* Document Header Banner */}
-          <header className="bg-box p-8 rounded-lg relative border raised">
+          <MouldedHeader as="header">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well">
+              <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well room-chip">
                 Category: Feature Build
               </span>
               <span className="text-xs font-mono px-3 py-1 rounded bg-star text-ink">
@@ -112,12 +114,14 @@ export const NeuroInsightEntry = () => {
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-edge">
               {["Python", "Pandas", "scikit-learn", "XGBoost", "Notebooks", "VIC index", "Subject-grouped CV"].map((tech, i) => (
-                <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well">
+                <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well room-chip">
                   {tech}
                 </span>
               ))}
             </div>
-          </header>
+          </MouldedHeader>
+
+          <OrnamentDivider />
 
           {/* Section 1: Abstract */}
           <section id="abstract" className="parchment-card p-8 rounded-lg space-y-4">
@@ -151,7 +155,7 @@ export const NeuroInsightEntry = () => {
               The Vocal Instability Compound (VIC) is an independently derived index:
             </p>
 
-            <div className="elevated-math-block p-6 rounded-lg text-center font-mono text-sm text-lamp my-4">
+            <div className="elevated-math-block room-chip p-6 rounded-lg text-center font-mono text-sm text-lamp my-4">
               <div className="text-[10px] text-lamp mb-2 tracking-widest">Vocal instability compound (VIC)</div>
               <div className="py-2">
                 {`VIC = log10(Jitter% × Shimmer:APQ3 × spread2 × 1000)`}
@@ -172,7 +176,7 @@ export const NeuroInsightEntry = () => {
             </h2>
 
             {/* ADR 001 */}
-            <div className="bg-box p-6 rounded-lg border border-edge well space-y-3">
+            <div className="bg-box p-6 rounded-lg border border-edge well room-chip space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
                 <span className="text-xs font-mono font-bold text-lamp">ADR-001</span>
                 <span className="text-xs font-mono text-lamp">Decision: accepted</span>
@@ -188,7 +192,7 @@ export const NeuroInsightEntry = () => {
             </div>
 
             {/* ADR 002 */}
-            <div className="bg-box p-6 rounded-lg border border-edge well space-y-3">
+            <div className="bg-box p-6 rounded-lg border border-edge well room-chip space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
                 <span className="text-xs font-mono font-bold text-lamp">ADR-002</span>
                 <span className="text-xs font-mono text-lamp">Decision: accepted</span>
@@ -213,7 +217,7 @@ export const NeuroInsightEntry = () => {
               5-fold subject-grouped stratified CV over 10 seeds (50 folds); XGBoost compared against Decision Tree, Random Forest, SVM and KNN. XGBoost precision: 0.833 ± 0.093. XGBoost is nominally best of the five on accuracy, precision and F1, but each margin over the majority baseline is comparable to or smaller than the fold-to-fold spread, and no paired test was run.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well room-chip text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.796 ± 0.098
                 </span>
@@ -221,7 +225,7 @@ export const NeuroInsightEntry = () => {
                   XGBoost Accuracy (baseline 0.756 ± 0.067)
                 </span>
               </div>
-              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well room-chip text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.872 ± 0.063
                 </span>
@@ -229,7 +233,7 @@ export const NeuroInsightEntry = () => {
                   XGBoost F1 (baseline 0.860)
                 </span>
               </div>
-              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well room-chip text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.741 ± 0.034
                 </span>

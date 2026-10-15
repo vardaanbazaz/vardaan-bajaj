@@ -1,12 +1,14 @@
 import React from 'react';
 import { PUBLICATIONS } from '../../data/manuscript_config';
 import { ParchmentPublicationCard } from '../components/ParchmentPublicationCard';
+import { MouldedHeader } from '../components/MouldedHeader';
+import { OrnamentDivider } from '../components/OrnamentDivider';
 
 export const PublicationsPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       {/* Header Banner */}
-      <header className="bg-box p-8 rounded-lg relative border raised">
+      <MouldedHeader as="header">
         <span className="text-xs font-mono text-lamp tracking-widest block mb-2">
           Publications
         </span>
@@ -16,7 +18,9 @@ export const PublicationsPage: React.FC = () => {
         <p className="text-sm font-sans text-lamp max-w-2xl leading-relaxed">
           Two IEEE conference papers. Open a paper for its summary, results and citation.
         </p>
-      </header>
+      </MouldedHeader>
+
+      <OrnamentDivider />
 
       {/* Publications Cards Grid */}
       <section aria-label="Publications Catalog" className="space-y-6">

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { DOSSIERS } from '../../data/manuscript_config';
+import { MouldedHeader } from '../components/MouldedHeader';
+import { OrnamentDivider } from '../components/OrnamentDivider';
 
 import DataVistaEntry from '../../pages/DataVistaEntry';
 import NeuroInsightEntry from '../../pages/NeuroInsightEntry';
@@ -60,9 +62,9 @@ export const DossierDetailPage: React.FC = () => {
       </nav>
 
       {/* Main Project Header */}
-      <article className="bg-box p-8 rounded-lg relative border raised">
+      <MouldedHeader as="article">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-          <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well">
+          <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well room-chip">
             Category: {dossier.category}
           </span>
           <span
@@ -103,12 +105,14 @@ export const DossierDetailPage: React.FC = () => {
         {/* Tech Stack Pills */}
         <div className="flex flex-wrap gap-2 pt-4 border-t border-edge">
           {dossier.techStack.map((tech, i) => (
-            <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well">
+            <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well room-chip">
               {tech}
             </span>
           ))}
         </div>
-      </article>
+      </MouldedHeader>
+
+      <OrnamentDivider />
 
       {/* Benchmarks Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -130,7 +134,7 @@ export const DossierDetailPage: React.FC = () => {
           Engineering Specifications
         </h3>
 
-        <div className="text-xs font-mono text-lamp leading-relaxed whitespace-pre-wrap elevated-math-block p-6 rounded-lg">
+        <div className="text-xs font-mono text-lamp leading-relaxed whitespace-pre-wrap elevated-math-block room-chip p-6 rounded-lg">
           {dossier.deepDiveMarkdown}
         </div>
       </section>

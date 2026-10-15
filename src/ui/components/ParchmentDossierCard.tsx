@@ -52,7 +52,7 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
           {dossier.techStack.map((tech, idx) => (
             <span
               key={idx}
-              className="text-[11px] font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge well"
+              className="text-[11px] font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge well room-chip"
             >
               {tech}
             </span>

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PERSONAL_INFO } from '../../data/manuscript_config';
+import { MouldedHeader } from '../components/MouldedHeader';
+import { OrnamentDivider } from '../components/OrnamentDivider';
 
 type CopyStatus = 'idle' | 'copied' | 'manual';
 
@@ -41,18 +43,23 @@ export const ContactPage: React.FC = () => {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
-      <div className="border-b border-edge pb-3">
-        <h1 className="text-2xl font-serif font-bold text-lamp">
+      <MouldedHeader as="header">
+        <span className="text-xs font-mono text-lamp tracking-widest block mb-2">
           Contact
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-lamp">
+          Get in touch
         </h1>
-      </div>
+      </MouldedHeader>
+
+      <OrnamentDivider />
 
       <div className="w-full parchment-card p-6 rounded-lg relative overflow-hidden">
         <p className="text-sm font-sans text-lamp">
           Email is the best way to reach me. I'm open to remote machine learning and software roles.
         </p>
 
-        <p className="mt-4 text-base font-mono text-lamp break-all">
+        <p className="mt-4 bg-box px-4 py-3 rounded-lg border border-edge well room-chip text-[17px] font-mono text-lamp break-all">
           <span ref={emailRef}>{PERSONAL_INFO.email}</span>
         </p>
 
@@ -91,6 +98,9 @@ export const ContactPage: React.FC = () => {
             className={linkClassName}
           >
             GitHub
+          </a>
+          <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className={linkClassName}>
+            Resume / CV
           </a>
         </div>
       </div>

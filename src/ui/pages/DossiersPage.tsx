@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ParchmentDossierCard } from '../components/ParchmentDossierCard';
 import { ENGINEERING_DOSSIERS, ProjectDossier } from '../../data/manuscript_config';
+import { MouldedHeader } from '../components/MouldedHeader';
+import { OrnamentDivider } from '../components/OrnamentDivider';
 
 export const DossiersPage: React.FC = () => {
   // Default active tab: Completed
@@ -16,7 +18,7 @@ export const DossiersPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       {/* Page Header */}
-      <header className="bg-box p-8 rounded-lg relative border raised">
+      <MouldedHeader as="header">
         <span className="text-xs font-mono text-lamp tracking-widest block mb-2">
           Projects
         </span>
@@ -26,20 +28,17 @@ export const DossiersPage: React.FC = () => {
         <p className="text-sm font-sans text-lamp max-w-2xl leading-relaxed">
           Completed projects and work in progress. Open a card for the write-up and source code.
         </p>
-      </header>
+      </MouldedHeader>
+
+      <OrnamentDivider />
 
       {/* 3-TAB FILTERED PROJECTS SECTION */}
       <section aria-label="Engineering Projects List" className="space-y-8">
         {/* Tab Navigation Header */}
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-edge pb-4">
-          <div>
-            <h2 className="text-xl font-serif font-bold text-lamp">
-              Selected Projects & Systems
-            </h2>
-            <p className="text-xs font-mono text-lamp">
-              Filter view: Completed, In Development, or All Projects
-            </p>
-          </div>
+          <h2 className="text-xl font-serif font-bold text-lamp">
+            Selected Projects & Systems
+          </h2>
 
           {/* 3 View Tabs rendered in exact order: 1 (Feature), 2 (Active), 3 (All) */}
           <div className="flex items-center space-x-2 bg-box p-1.5 rounded-lg border raised overflow-x-auto custom-scrollbar">

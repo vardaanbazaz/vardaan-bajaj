@@ -1,9 +1,10 @@
 import React from 'react';
 import { PERSONAL_INFO } from '../../data/manuscript_config';
+import { MouldedHeader } from './MouldedHeader';
 
 export const CRTScreenHeader: React.FC = () => {
   return (
-    <div className="w-full crt-overlay rounded-lg overflow-hidden p-4 md:p-6 mb-6">
+    <MouldedHeader className="w-full" innerClassName="p-4 md:p-6">
       <div className="relative z-20 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center space-x-2 mb-1">
@@ -64,6 +65,6 @@ export const CRTScreenHeader: React.FC = () => {
           </a>
         </div>
       </div>
-    </div>
+    </MouldedHeader>
   );
 };

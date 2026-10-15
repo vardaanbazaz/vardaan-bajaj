@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { PUBLICATIONS } from '../../data/manuscript_config';
+import { MouldedHeader } from '../components/MouldedHeader';
+import { OrnamentDivider } from '../components/OrnamentDivider';
 import { 
   Copy, 
   Check, 
@@ -59,18 +61,18 @@ export const PublicationDetailPage: React.FC = () => {
         </Link>
       </nav>
 
-      {/* Main Publication Article Card */}
-      <article className="bg-card border raised rounded-lg p-6 sm:p-8 space-y-8 relative">
+      {/* Publication Header Moulding */}
+      <MouldedHeader as="header" innerClassName="p-6 sm:p-8 space-y-8">
         {/* Paper Meta Header */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-edge pb-4">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-3 py-1 rounded bg-box text-lamp border border-edge well text-xs font-mono font-bold tracking-wider flex items-center gap-1.5">
+            <span className="px-3 py-1 rounded bg-box text-lamp border border-edge well room-chip text-xs font-mono font-bold tracking-wider flex items-center gap-1.5">
               <BookOpen className="w-3.5 h-3.5" />
               {publication.conference}
             </span>
 
             {publication.publishedDate && (
-              <span className="px-2.5 py-1 rounded bg-box text-lamp border border-edge well text-xs font-mono flex items-center gap-1">
+              <span className="px-2.5 py-1 rounded bg-box text-lamp border border-edge well room-chip text-xs font-mono flex items-center gap-1">
                 <Calendar className="w-3 h-3 text-lamp" />
                 {publication.publishedDate}
               </span>
@@ -121,7 +123,7 @@ export const PublicationDetailPage: React.FC = () => {
               <User className="w-3.5 h-3.5 text-lamp" />
               <span>Authors: <strong>{publication.authors.join(', ')}</strong></span>
               {publication.authorRole && (
-                <span className="px-2 py-0.5 rounded bg-box text-lamp border border-edge well text-[10px] font-bold tracking-wider">
+                <span className="px-2 py-0.5 rounded bg-box text-lamp border border-edge well room-chip text-[10px] font-bold tracking-wider">
                   {publication.authorRole}
                 </span>
               )}
@@ -138,16 +140,21 @@ export const PublicationDetailPage: React.FC = () => {
             {publication.techStack.map((tech, idx) => (
               <span
                 key={idx}
-                className="text-xs font-mono px-2.5 py-0.5 rounded bg-tag text-lamp border border-edge well"
+                className="text-xs font-mono px-2.5 py-0.5 rounded bg-tag text-lamp border border-edge well room-chip"
               >
                 {tech}
               </span>
             ))}
           </div>
         )}
+      </MouldedHeader>
 
+      <OrnamentDivider />
+
+      {/* Main Publication Article Card */}
+      <article className="bg-card border raised rounded-lg p-6 sm:p-8 space-y-8 relative">
         {/* Abstract Section */}
-        <div className="bg-box p-5 rounded-lg border border-edge well space-y-3">
+        <div className="bg-box p-5 rounded-lg border border-edge well room-chip space-y-3">
           <div className="text-xs font-mono text-lamp tracking-wider font-bold flex items-center gap-1.5">
             <BookOpen className="w-3.5 h-3.5" />
             Summary
@@ -166,7 +173,7 @@ export const PublicationDetailPage: React.FC = () => {
             </div>
             <ul className="grid grid-cols-1 gap-2 text-xs font-mono text-lamp">
               {publication.highlights.map((highlight, idx) => (
-                <li key={idx} className="bg-box p-3 rounded border border-edge well flex items-start gap-2">
+                <li key={idx} className="bg-box p-3 rounded border border-edge well room-chip flex items-start gap-2">
                   <span className="font-bold">&bull;</span>
                   <span>{highlight}</span>
                 </li>
@@ -185,7 +192,7 @@ export const PublicationDetailPage: React.FC = () => {
 
             <div className={`grid grid-cols-1 ${publication.pipeline.length === 4 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'sm:grid-cols-3'} gap-3`}>
               {publication.pipeline.map((stage, idx) => (
-                <div key={idx} className="bg-box p-4 rounded-lg border border-edge well font-mono text-xs text-lamp space-y-1.5">
+                <div key={idx} className="bg-box p-4 rounded-lg border border-edge well room-chip font-mono text-xs text-lamp space-y-1.5">
                   <div className="text-[10px] font-bold tracking-wider">
                     {stage.step}
                   </div>
@@ -210,13 +217,13 @@ export const PublicationDetailPage: React.FC = () => {
                 Results
               </div>
               {publication.benchmarks.formula && (
-                <div className="text-[11px] font-mono text-lamp bg-box px-2.5 py-0.5 rounded border border-edge well">
+                <div className="text-[11px] font-mono text-lamp bg-box px-2.5 py-0.5 rounded border border-edge well room-chip">
                   {publication.benchmarks.formula}
                 </div>
               )}
             </div>
 
-            <div className="overflow-x-auto rounded-lg border border-edge bg-box well">
+            <div className="overflow-x-auto rounded-lg border border-edge bg-box well room-chip">
               <table className="w-full text-left font-mono text-xs text-lamp">
                 <thead className="bg-card border-b border-edge text-[10px]">
                   <tr>
@@ -253,12 +260,12 @@ export const PublicationDetailPage: React.FC = () => {
 
         {/* Architecture Decision Record (ADR) */}
         {publication.adr && (
-          <div className="bg-box p-5 rounded-lg border border-edge well space-y-3">
+          <div className="bg-box p-5 rounded-lg border border-edge well room-chip space-y-3">
             <div className="flex items-center justify-between border-b border-edge pb-2">
               <span className="text-xs font-mono text-lamp tracking-wider font-bold">
                 {publication.adr.title}
               </span>
-              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-box text-lamp border border-edge well">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-box text-lamp border border-edge well room-chip">
                 Status: accepted
               </span>
             </div>
@@ -304,7 +311,7 @@ export const PublicationDetailPage: React.FC = () => {
             </button>
           </div>
 
-          <pre className="text-xs font-mono bg-box p-4 rounded-lg border border-edge well text-lamp overflow-x-auto leading-relaxed">
+          <pre className="text-xs font-mono bg-box p-4 rounded-lg border border-edge well room-chip text-lamp overflow-x-auto leading-relaxed">
             {publication.bibtex}
           </pre>
         </div>

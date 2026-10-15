@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { MouldedHeader } from '../ui/components/MouldedHeader';
+import { OrnamentDivider } from '../ui/components/OrnamentDivider';
 
 export const AttritionEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
@@ -48,7 +50,7 @@ export const AttritionEntry = () => {
       {/* Main Manuscript Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Sticky Table of Contents (visible on lg and xl viewports) */}
-        <aside className="hidden lg:block lg:col-span-3 sticky top-12 parchment-card p-5 rounded-lg space-y-4">
+        <aside className="hidden lg:block lg:col-span-3 sticky top-20 parchment-card p-5 rounded-lg space-y-4">
           <div className="text-xs font-mono text-lamp tracking-wider font-bold border-b border-edge pb-2">
             Contents
           </div>
@@ -77,9 +79,9 @@ export const AttritionEntry = () => {
         {/* Main Document Stream */}
         <main className="lg:col-span-9 space-y-12">
           {/* Document Header Banner */}
-          <header className="bg-box p-8 rounded-lg relative border raised">
+          <MouldedHeader as="header">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well">
+              <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well room-chip">
                 Category: Feature Build
               </span>
               <span className="text-xs font-mono px-3 py-1 rounded bg-star text-ink">
@@ -112,12 +114,14 @@ export const AttritionEntry = () => {
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-edge">
               {["Python", "Pandas", "scikit-learn", "Logistic Regression", "Random Forest", "XGBoost", "SMOTE", "SHAP"].map((tech, i) => (
-                <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well">
+                <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well room-chip">
                   {tech}
                 </span>
               ))}
             </div>
-          </header>
+          </MouldedHeader>
+
+          <OrnamentDivider />
 
           {/* Section 1: Abstract */}
           <section id="abstract" className="parchment-card p-8 rounded-lg space-y-4">
@@ -144,7 +148,7 @@ export const AttritionEntry = () => {
               Synthetic Minority Over-sampling Technique (SMOTE) synthesizes new minority instances along k-nearest neighbor feature vectors:
             </p>
 
-            <div className="elevated-math-block p-6 rounded-lg text-center font-mono text-sm text-lamp my-4">
+            <div className="elevated-math-block room-chip p-6 rounded-lg text-center font-mono text-sm text-lamp my-4">
               <div className="text-[10px] text-lamp mb-2 tracking-widest">SMOTE formula</div>
               <div className="py-2">
                 {`x_new = x_i + λ × (x_knn - x_i),  where λ ~ Uniform(0, 1)`}
@@ -182,7 +186,7 @@ export const AttritionEntry = () => {
             </h2>
 
             {/* ADR 001 */}
-            <div className="bg-box p-6 rounded-lg border border-edge well space-y-3">
+            <div className="bg-box p-6 rounded-lg border border-edge well room-chip space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
                 <span className="text-xs font-mono font-bold text-lamp">ADR-001</span>
                 <span className="text-xs font-mono text-lamp">Decision: accepted</span>
@@ -198,7 +202,7 @@ export const AttritionEntry = () => {
             </div>
 
             {/* ADR 002 */}
-            <div className="bg-box p-6 rounded-lg border border-edge well space-y-3">
+            <div className="bg-box p-6 rounded-lg border border-edge well room-chip space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
                 <span className="text-xs font-mono font-bold text-lamp">ADR-002</span>
                 <span className="text-xs font-mono text-lamp">Decision: accepted</span>
@@ -223,7 +227,7 @@ export const AttritionEntry = () => {
               XGBoost on the 441-record (30%) test split: accuracy 0.8549, precision 0.60, recall 0.2958, F1 0.3962.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well room-chip text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.7592
                 </span>
@@ -231,7 +235,7 @@ export const AttritionEntry = () => {
                   XGBoost ROC-AUC
                 </span>
               </div>
-              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well room-chip text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   1,726
                 </span>
@@ -239,7 +243,7 @@ export const AttritionEntry = () => {
                   Training Records After SMOTE (863 per class)
                 </span>
               </div>
-              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well room-chip text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.2958
                 </span>

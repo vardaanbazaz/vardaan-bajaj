@@ -5,6 +5,16 @@ import { MechanicalTickerTape } from '../components/MechanicalTickerTape';
 import { AnalogNavigation } from '../components/AnalogNavigation';
 import { PERSONAL_INFO } from '../../data/manuscript_config';
 
+type Room = 'overview' | 'dossiers' | 'publications' | 'map';
+
+// Each section is a "room" with its own wallpaper, header band and chip detail (see index.css)
+const roomFor = (pathname: string): Room => {
+  if (pathname.startsWith('/dossier')) return 'dossiers';
+  if (pathname.startsWith('/publications')) return 'publications';
+  if (pathname.startsWith('/map')) return 'map';
+  return 'overview';
+};
+
 export const DeskLaboratoryLayout: React.FC = () => {
   const location = useLocation();
 
@@ -15,7 +25,9 @@ export const DeskLaboratoryLayout: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-night material text-lamp relative flex flex-col font-sans selection:bg-sunset selection:text-ink">
+    <div
+      data-room={roomFor(location.pathname)}
+      className="room min-h-screen bg-night material text-lamp relative flex flex-col font-sans selection:bg-sunset selection:text-ink">
       {/* Mechanical Ticker Tape */}
       <MechanicalTickerTape />
 

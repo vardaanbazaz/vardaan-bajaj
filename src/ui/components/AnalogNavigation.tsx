@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const AnalogNavigation: React.FC = () => {
   return (
-    <nav className="w-full bg-night material border-b border-edge px-4 py-3 mb-8 overflow-hidden" aria-label="Main Navigation">
+    <nav className="sticky top-0 z-30 w-full glass border-b px-4 py-3 mb-8 overflow-hidden" aria-label="Main Navigation">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center space-x-2.5 shrink-0">
           <div className="w-3 h-3 rounded-full bg-lamp" aria-hidden="true" />

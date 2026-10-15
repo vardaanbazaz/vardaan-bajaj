@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CRTScreenHeader } from '../components/CRTScreenHeader';
+import { OrnamentDivider } from '../components/OrnamentDivider';
 import { ENGINEERING_DOSSIERS, PERSONAL_INFO, EDUCATION_DATA, MAP_DATA } from '../../data/manuscript_config';
 
 export const LaboratoryOverviewPage: React.FC = () => {
@@ -10,6 +11,8 @@ export const LaboratoryOverviewPage: React.FC = () => {
       <section aria-label="Terminal status header">
         <CRTScreenHeader />
       </section>
+
+      <OrnamentDivider />
 
       {/* Main Grid: Scholar Bio & Scholar Portrait Bento */}
       <section aria-label="Laboratory Overview and Scholar Portrait">
@@ -31,9 +34,6 @@ export const LaboratoryOverviewPage: React.FC = () => {
           {/* Right Column: Scholar Bio & Credentials */}
           <div className="lg:col-span-7 bg-card p-8 rounded-lg flex flex-col justify-between relative border raised">
             <div>
-              <div className="text-xs font-mono text-lamp tracking-widest mb-2">
-                About
-              </div>
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-lamp mb-3">
                 {PERSONAL_INFO.title}
               </h2>
@@ -43,12 +43,12 @@ export const LaboratoryOverviewPage: React.FC = () => {
               </p>
 
               {/* Academic Training Grounds Credentials Card */}
-              <div className="bg-box p-4 rounded-lg border border-edge well mb-6">
+              <div className="bg-box p-4 rounded-lg border border-edge well room-chip mb-6">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <span className="text-xs font-mono font-bold text-lamp tracking-wider">
                     Education &bull; {EDUCATION_DATA.institution}
                   </span>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-box text-lamp border border-edge well shrink-0 whitespace-nowrap">
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-box text-lamp border border-edge well room-chip shrink-0 whitespace-nowrap">
                     {EDUCATION_DATA.period}
                   </span>
                 </div>
@@ -63,7 +63,7 @@ export const LaboratoryOverviewPage: React.FC = () => {
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="text-[10px] font-mono text-lamp mr-1">Coursework:</span>
                   {EDUCATION_DATA.coursework.map((course, idx) => (
-                    <span key={idx} className="text-[10px] font-mono px-2 py-0.5 rounded bg-tag text-lamp border border-edge well">
+                    <span key={idx} className="text-[10px] font-mono px-2 py-0.5 rounded bg-tag text-lamp border border-edge well room-chip">
                       {course}
                     </span>
                   ))}
@@ -74,19 +74,19 @@ export const LaboratoryOverviewPage: React.FC = () => {
             {/* Quick Metrics & Routing Teaser */}
             <div>
               <div className="grid grid-cols-3 gap-4 border-t border-edge pt-4">
-                <div className="bg-box p-3 rounded-lg border border-edge well text-center">
+                <div className="bg-box p-3 rounded-lg border border-edge well room-chip text-center">
                   <span className="block text-2xl font-serif font-bold text-lamp">
                     {ENGINEERING_DOSSIERS.featureBuilds.length}
                   </span>
                   <span className="text-[10px] font-mono text-lamp">Completed</span>
                 </div>
-                <div className="bg-box p-3 rounded-lg border border-edge well text-center">
+                <div className="bg-box p-3 rounded-lg border border-edge well room-chip text-center">
                   <span className="block text-2xl font-serif font-bold text-lamp">
                     {ENGINEERING_DOSSIERS.activeBuilds.length}
                   </span>
                   <span className="text-[10px] font-mono text-lamp">In development</span>
                 </div>
-                <div className="bg-box p-3 rounded-lg border border-edge well text-center">
+                <div className="bg-box p-3 rounded-lg border border-edge well room-chip text-center">
                   <span className="block text-2xl font-serif font-bold text-lamp">
                     {ENGINEERING_DOSSIERS.allBuilds.length}
                   </span>
@@ -126,10 +126,10 @@ export const LaboratoryOverviewPage: React.FC = () => {
           {/* Monospace List of Base Stations */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             {MAP_DATA.experience.flatMap((node) => node.roles).map((role, idx) => (
-              <div key={idx} className="bg-box p-4 rounded-lg border border-edge well font-mono text-xs text-lamp">
+              <div key={idx} className="bg-box p-4 rounded-lg border border-edge well room-chip font-mono text-xs text-lamp">
                 <div className="flex flex-wrap sm:flex-nowrap items-start sm:items-center justify-between gap-2 font-bold mb-1">
                   <span className="break-words">{role.org}</span>
-                  <span className="text-[10px] px-2.5 py-0.5 rounded bg-box border border-edge well shrink-0 whitespace-nowrap">
+                  <span className="text-[10px] px-2.5 py-0.5 rounded bg-box border border-edge well room-chip shrink-0 whitespace-nowrap">
                     {role.type}
                   </span>
                 </div>
