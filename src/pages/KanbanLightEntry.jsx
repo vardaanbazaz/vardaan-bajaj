@@ -59,7 +59,7 @@ export const KanbanLightEntry = () => {
                 href={`#${item.id}`}
                 className={`block text-xs font-mono transition-colors py-1 px-2 rounded ${
                   activeSection === item.id
-                    ? 'bg-sunset text-ink font-bold'
+                    ? 'bg-sunset text-ink font-bold pressable press-shift'
                     : 'text-lamp hover:underline underline-offset-4'
                 }`}
               >
@@ -76,12 +76,12 @@ export const KanbanLightEntry = () => {
         {/* Main Document Stream */}
         <main className="lg:col-span-9 space-y-12">
           {/* Document Header Banner */}
-          <header className="bg-box p-8 rounded-lg relative border border-edge">
+          <header className="bg-box p-8 rounded-lg relative border raised">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-box text-lamp border border-edge">
+              <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well">
                 Category: Active Build
               </span>
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-coral text-ink">
+              <span className="text-xs font-mono px-3 py-1 rounded bg-coral text-ink">
                 Status: In development
               </span>
             </div>
@@ -102,7 +102,7 @@ export const KanbanLightEntry = () => {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded inline-block"
+                className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded pressable press-shift inline-block"
               >
                 View on GitHub ↗
               </a>
@@ -110,7 +110,7 @@ export const KanbanLightEntry = () => {
                 href={demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-3 font-mono font-bold bg-sunset text-ink px-4 py-2 rounded inline-block"
+                className="ml-3 font-mono font-bold bg-sunset text-ink px-4 py-2 rounded pressable press-shift inline-block"
               >
                 Live demo · early build
               </a>
@@ -119,7 +119,7 @@ export const KanbanLightEntry = () => {
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-edge">
               {["React 18", "TypeScript", "Vite", "Tailwind CSS", "IndexedDB (idb)", "Node.js", "Commander.js", "WebSocket (ws)"].map((tech, i) => (
-                <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-lamp bg-tag border border-edge">
+                <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well">
                   {tech}
                 </span>
               ))}

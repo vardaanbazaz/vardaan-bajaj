@@ -10,18 +10,18 @@ interface ParchmentPublicationCardProps {
 export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> = ({ publication }) => {
   return (
     <article
-      className="bg-card p-6 rounded-lg relative flex flex-col justify-between h-full border border-edge"
+      className="bg-card p-6 rounded-lg relative flex flex-col justify-between h-full border raised"
       aria-labelledby={`pub-title-${publication.id}`}
     >
       <div>
         {/* Conference & Published Date Badges */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-box text-lamp border border-edge font-bold tracking-wider flex items-center gap-1">
+          <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-box text-lamp border border-edge well font-bold tracking-wider flex items-center gap-1">
             <BookOpen className="w-3 h-3" />
             {publication.year}
           </span>
           {publication.publishedDate && (
-            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-box text-lamp border border-edge flex items-center gap-1">
+            <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-box text-lamp border border-edge well flex items-center gap-1">
               <Calendar className="w-3 h-3 text-lamp" />
               {publication.publishedDate}
             </span>
@@ -64,7 +64,7 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
           <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono text-lamp mb-3">
             <span>Authors: <strong>{publication.authors.join(', ')}</strong></span>
             {publication.authorRole && (
-              <span className="px-2 py-0.5 rounded bg-box text-lamp border border-edge text-[10px] font-bold tracking-wider">
+              <span className="px-2 py-0.5 rounded bg-box text-lamp border border-edge well text-[10px] font-bold tracking-wider">
                 {publication.authorRole}
               </span>
             )}
@@ -87,7 +87,7 @@ export const ParchmentPublicationCard: React.FC<ParchmentPublicationCardProps> =
             {publication.techStack.map((tech, idx) => (
               <span
                 key={idx}
-                className="text-[11px] font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge"
+                className="text-[11px] font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge well"
               >
                 {tech}
               </span>

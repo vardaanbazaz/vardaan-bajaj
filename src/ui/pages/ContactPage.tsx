@@ -60,7 +60,7 @@ export const ContactPage: React.FC = () => {
           <button
             type="button"
             onClick={handleCopy}
-            className="px-5 py-2.5 bg-sunset text-ink font-mono font-bold text-xs tracking-wider rounded cursor-pointer shrink-0"
+            className="px-5 py-2.5 bg-sunset text-ink font-mono font-bold text-xs tracking-wider rounded pressable press-shift cursor-pointer shrink-0"
           >
             {copyStatus === 'copied' ? 'Copied' : 'Copy email'}
           </button>

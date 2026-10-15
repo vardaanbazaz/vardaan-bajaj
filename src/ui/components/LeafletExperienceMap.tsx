@@ -145,12 +145,12 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
         <div ref={containerRef} className="w-full h-full min-h-[500px]" />
 
         {/* TOGGLE SWITCH AT TOP CENTER */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] flex items-center space-x-1 bg-box p-1.5 rounded-lg border border-edge">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] flex items-center space-x-1 bg-box p-1.5 rounded-lg border raised">
           <button
             onClick={() => setActiveTab('experience')}
             className={`px-4 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
               activeTab === 'experience'
-                ? 'bg-sunset text-ink font-bold'
+                ? 'bg-sunset text-ink font-bold pressable press-shift'
                 : 'text-lamp hover:underline underline-offset-4'
             }`}
           >
@@ -160,7 +160,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
             onClick={() => setActiveTab('education')}
             className={`px-4 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
               activeTab === 'education'
-                ? 'bg-sunset text-ink font-bold'
+                ? 'bg-sunset text-ink font-bold pressable press-shift'
                 : 'text-lamp hover:underline underline-offset-4'
             }`}
           >
@@ -169,7 +169,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
         </div>
 
         {/* BOTTOM LEGEND OVERLAY */}
-        <div className="absolute bottom-4 left-4 z-[1000] bg-box p-3 rounded-lg border border-edge text-[10px] font-mono text-lamp space-y-1.5">
+        <div className="absolute bottom-4 left-4 z-[1000] bg-box p-3 rounded-lg border raised text-[10px] font-mono text-lamp space-y-1.5">
           <div className="font-bold mb-1 border-b border-edge pb-0.5 tracking-wider">
             Location types:
           </div>
@@ -194,7 +194,7 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
       {activeNode && createPortal(
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-night/90 p-4 pointer-events-auto">
           {/* 1. Rigid Outer Panel */}
-          <div className="bg-card w-full max-w-2xl max-h-[85vh] h-auto relative rounded-sm border border-edge text-lamp flex flex-col overflow-hidden">
+          <div className="bg-card w-full max-w-2xl max-h-[85vh] h-auto relative rounded-lg border raised text-lamp flex flex-col overflow-hidden">
             {/* 2. Fixed Close Button */}
             <button
               onClick={() => setActiveNode(null)}
@@ -218,10 +218,10 @@ export const LeafletExperienceMap: React.FC<LeafletExperienceMapProps> = ({
                     {role.org}
                   </h4>
                   <div className="flex flex-wrap gap-3 mb-6">
-                    <span className="inline-block px-3 py-1 bg-box border border-edge font-mono text-xs tracking-widest text-lamp">
+                    <span className="inline-block px-3 py-1 rounded bg-box border border-edge well font-mono text-xs tracking-widest text-lamp">
                       {role.year}
                     </span>
-                    <span className="inline-block px-3 py-1 bg-box border border-edge font-mono text-xs tracking-widest text-lamp">
+                    <span className="inline-block px-3 py-1 rounded bg-box border border-edge well font-mono text-xs tracking-widest text-lamp">
                       {role.type}
                     </span>
                   </div>

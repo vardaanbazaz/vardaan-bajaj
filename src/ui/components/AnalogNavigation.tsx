@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const AnalogNavigation: React.FC = () => {
   return (
-    <nav className="w-full bg-night border-b border-edge px-4 py-3 mb-8 overflow-hidden" aria-label="Main Navigation">
+    <nav className="w-full bg-night material border-b border-edge px-4 py-3 mb-8 overflow-hidden" aria-label="Main Navigation">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center space-x-2.5 shrink-0">
           <div className="w-3 h-3 rounded-full bg-lamp" aria-hidden="true" />
@@ -21,7 +21,7 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-sunset text-ink font-bold'
+                  ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
               }`
             }
@@ -35,7 +35,7 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-sunset text-ink font-bold'
+                  ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
               }`
             }
@@ -49,7 +49,7 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-sunset text-ink font-bold'
+                  ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
               }`
             }
@@ -63,7 +63,7 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-sunset text-ink font-bold'
+                  ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
               }`
             }
@@ -77,7 +77,7 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-sunset text-ink font-bold'
+                  ? 'bg-sunset text-ink font-bold pressable'
                   : 'text-lamp hover:underline underline-offset-4'
               }`
             }

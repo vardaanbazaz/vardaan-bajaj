@@ -38,7 +38,7 @@ export const DossierDetailPage: React.FC = () => {
           </p>
           <button
             onClick={() => navigate('/dossiers')}
-            className="px-5 py-2.5 bg-sunset text-ink font-mono text-xs font-bold rounded cursor-pointer"
+            className="px-5 py-2.5 bg-sunset text-ink font-mono text-xs font-bold rounded pressable press-shift cursor-pointer"
           >
             Back to projects
           </button>
@@ -60,13 +60,13 @@ export const DossierDetailPage: React.FC = () => {
       </nav>
 
       {/* Main Project Header */}
-      <article className="bg-box p-8 rounded-lg relative border border-edge">
+      <article className="bg-box p-8 rounded-lg relative border raised">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-          <span className="text-xs font-mono px-3 py-1 rounded-full bg-box text-lamp border border-edge">
+          <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well">
             Category: {dossier.category}
           </span>
           <span
-            className={`text-xs font-mono px-3 py-1 rounded-full text-ink ${
+            className={`text-xs font-mono px-3 py-1 rounded text-ink ${
               dossier.status === 'Completed' || dossier.status === 'Published' ? 'bg-star' : 'bg-coral'
             }`}
           >
@@ -93,7 +93,7 @@ export const DossierDetailPage: React.FC = () => {
               href={dossier.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded inline-block"
+              className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded pressable press-shift inline-block"
             >
               View on GitHub ↗
             </a>
@@ -103,7 +103,7 @@ export const DossierDetailPage: React.FC = () => {
         {/* Tech Stack Pills */}
         <div className="flex flex-wrap gap-2 pt-4 border-t border-edge">
           {dossier.techStack.map((tech, i) => (
-            <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-lamp bg-tag border border-edge">
+            <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well">
               {tech}
             </span>
           ))}

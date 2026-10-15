@@ -59,7 +59,7 @@ export const NeuroInsightEntry = () => {
                 href={`#${item.id}`}
                 className={`block text-xs font-mono transition-colors py-1 px-2 rounded ${
                   activeSection === item.id
-                    ? 'bg-sunset text-ink font-bold'
+                    ? 'bg-sunset text-ink font-bold pressable press-shift'
                     : 'text-lamp hover:underline underline-offset-4'
                 }`}
               >
@@ -77,12 +77,12 @@ export const NeuroInsightEntry = () => {
         {/* Main Document Stream */}
         <main className="lg:col-span-9 space-y-12">
           {/* Document Header Banner */}
-          <header className="bg-box p-8 rounded-lg relative border border-edge">
+          <header className="bg-box p-8 rounded-lg relative border raised">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-box text-lamp border border-edge">
+              <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well">
                 Category: Feature Build
               </span>
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-star text-ink">
+              <span className="text-xs font-mono px-3 py-1 rounded bg-star text-ink">
                 Status: Completed
               </span>
             </div>
@@ -103,7 +103,7 @@ export const NeuroInsightEntry = () => {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded inline-block"
+                className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded pressable press-shift inline-block"
               >
                 View on GitHub ↗
               </a>
@@ -112,7 +112,7 @@ export const NeuroInsightEntry = () => {
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-edge">
               {["Python", "Pandas", "scikit-learn", "XGBoost", "Notebooks", "VIC index", "Subject-grouped CV"].map((tech, i) => (
-                <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-lamp bg-tag border border-edge">
+                <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well">
                   {tech}
                 </span>
               ))}
@@ -172,7 +172,7 @@ export const NeuroInsightEntry = () => {
             </h2>
 
             {/* ADR 001 */}
-            <div className="bg-box p-6 rounded-lg border border-edge space-y-3">
+            <div className="bg-box p-6 rounded-lg border border-edge well space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
                 <span className="text-xs font-mono font-bold text-lamp">ADR-001</span>
                 <span className="text-xs font-mono text-lamp">Decision: accepted</span>
@@ -188,7 +188,7 @@ export const NeuroInsightEntry = () => {
             </div>
 
             {/* ADR 002 */}
-            <div className="bg-box p-6 rounded-lg border border-edge space-y-3">
+            <div className="bg-box p-6 rounded-lg border border-edge well space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
                 <span className="text-xs font-mono font-bold text-lamp">ADR-002</span>
                 <span className="text-xs font-mono text-lamp">Decision: accepted</span>
@@ -213,7 +213,7 @@ export const NeuroInsightEntry = () => {
               5-fold subject-grouped stratified CV over 10 seeds (50 folds); XGBoost compared against Decision Tree, Random Forest, SVM and KNN. XGBoost precision: 0.833 ± 0.093. XGBoost is nominally best of the five on accuracy, precision and F1, but each margin over the majority baseline is comparable to or smaller than the fold-to-fold spread, and no paired test was run.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-box p-5 rounded-lg border border-edge text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.796 ± 0.098
                 </span>
@@ -221,7 +221,7 @@ export const NeuroInsightEntry = () => {
                   XGBoost Accuracy (baseline 0.756 ± 0.067)
                 </span>
               </div>
-              <div className="bg-box p-5 rounded-lg border border-edge text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.872 ± 0.063
                 </span>
@@ -229,7 +229,7 @@ export const NeuroInsightEntry = () => {
                   XGBoost F1 (baseline 0.860)
                 </span>
               </div>
-              <div className="bg-box p-5 rounded-lg border border-edge text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.741 ± 0.034
                 </span>

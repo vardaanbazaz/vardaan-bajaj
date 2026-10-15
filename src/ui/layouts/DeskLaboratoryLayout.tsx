@@ -15,7 +15,7 @@ export const DeskLaboratoryLayout: React.FC = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-night text-lamp relative flex flex-col font-sans selection:bg-sunset selection:text-ink">
+    <div className="min-h-screen bg-night material text-lamp relative flex flex-col font-sans selection:bg-sunset selection:text-ink">
       {/* Mechanical Ticker Tape */}
       <MechanicalTickerTape />
 
@@ -40,7 +40,7 @@ export const DeskLaboratoryLayout: React.FC = () => {
       </main>
 
       {/* Desk Footer */}
-      <footer className="w-full bg-night border-t border-edge py-6 px-4 relative z-10">
+      <footer className="w-full bg-night material border-t border-edge py-6 px-4 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-lamp text-center sm:text-left">
           <div className="shrink-0">
             &copy; {new Date().getFullYear()} {PERSONAL_INFO.name} &bull; Machine Learning &amp; Software Engineer

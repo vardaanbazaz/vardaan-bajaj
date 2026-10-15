@@ -59,7 +59,7 @@ export const AttritionEntry = () => {
                 href={`#${item.id}`}
                 className={`block text-xs font-mono transition-colors py-1 px-2 rounded ${
                   activeSection === item.id
-                    ? 'bg-sunset text-ink font-bold'
+                    ? 'bg-sunset text-ink font-bold pressable press-shift'
                     : 'text-lamp hover:underline underline-offset-4'
                 }`}
               >
@@ -77,12 +77,12 @@ export const AttritionEntry = () => {
         {/* Main Document Stream */}
         <main className="lg:col-span-9 space-y-12">
           {/* Document Header Banner */}
-          <header className="bg-box p-8 rounded-lg relative border border-edge">
+          <header className="bg-box p-8 rounded-lg relative border raised">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-box text-lamp border border-edge">
+              <span className="text-xs font-mono px-3 py-1 rounded bg-box text-lamp border border-edge well">
                 Category: Feature Build
               </span>
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-star text-ink">
+              <span className="text-xs font-mono px-3 py-1 rounded bg-star text-ink">
                 Status: Completed
               </span>
             </div>
@@ -103,7 +103,7 @@ export const AttritionEntry = () => {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded inline-block"
+                className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded pressable press-shift inline-block"
               >
                 View on GitHub ↗
               </a>
@@ -112,7 +112,7 @@ export const AttritionEntry = () => {
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap gap-2 pt-4 border-t border-edge">
               {["Python", "Pandas", "scikit-learn", "Logistic Regression", "Random Forest", "XGBoost", "SMOTE", "SHAP"].map((tech, i) => (
-                <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-lamp bg-tag border border-edge">
+                <span key={i} className="text-xs font-mono px-3 py-1 rounded text-lamp bg-tag border border-edge well">
                   {tech}
                 </span>
               ))}
@@ -182,7 +182,7 @@ export const AttritionEntry = () => {
             </h2>
 
             {/* ADR 001 */}
-            <div className="bg-box p-6 rounded-lg border border-edge space-y-3">
+            <div className="bg-box p-6 rounded-lg border border-edge well space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
                 <span className="text-xs font-mono font-bold text-lamp">ADR-001</span>
                 <span className="text-xs font-mono text-lamp">Decision: accepted</span>
@@ -198,7 +198,7 @@ export const AttritionEntry = () => {
             </div>
 
             {/* ADR 002 */}
-            <div className="bg-box p-6 rounded-lg border border-edge space-y-3">
+            <div className="bg-box p-6 rounded-lg border border-edge well space-y-3">
               <div className="flex items-center justify-between border-b border-edge pb-2">
                 <span className="text-xs font-mono font-bold text-lamp">ADR-002</span>
                 <span className="text-xs font-mono text-lamp">Decision: accepted</span>
@@ -223,7 +223,7 @@ export const AttritionEntry = () => {
               XGBoost on the 441-record (30%) test split: accuracy 0.8549, precision 0.60, recall 0.2958, F1 0.3962.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="bg-box p-5 rounded-lg border border-edge text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.7592
                 </span>
@@ -231,7 +231,7 @@ export const AttritionEntry = () => {
                   XGBoost ROC-AUC
                 </span>
               </div>
-              <div className="bg-box p-5 rounded-lg border border-edge text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   1,726
                 </span>
@@ -239,7 +239,7 @@ export const AttritionEntry = () => {
                   Training Records After SMOTE (863 per class)
                 </span>
               </div>
-              <div className="bg-box p-5 rounded-lg border border-edge text-center">
+              <div className="bg-box p-5 rounded-lg border border-edge well text-center">
                 <span className="block text-3xl font-serif font-bold text-lamp mb-1">
                   0.2958
                 </span>

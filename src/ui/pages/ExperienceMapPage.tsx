@@ -14,7 +14,7 @@ export const ExperienceMapPage: React.FC = () => {
       </div>
 
       {/* Map Viewport - Full Width Command Center without side cards */}
-      <div className="w-full h-[600px] bg-card rounded-lg border border-edge overflow-hidden">
+      <div className="w-full h-[600px] bg-card rounded-lg border raised overflow-hidden">
         <LeafletExperienceMap />
       </div>
     </div>

@@ -16,7 +16,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
   const lastUpdated = new Date(stats.lastUpdated).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 
   return (
-    <div className="w-full bg-box border-y border-edge">
+    <div className="w-full bg-box border-y raised">
       <div className="flex items-center space-x-6 whitespace-nowrap overflow-x-auto py-1.5 px-3 text-xs font-mono text-lamp select-none">
         <div className="flex items-center space-x-2 shrink-0">
           <span className="font-bold">GitHub repos:</span>
@@ -49,7 +49,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
 
             {/* Commit Telemetry Block (heatmap is the one data-viz exception:
                 star at stepped opacity) */}
-            <div className="flex items-center space-x-2.5 bg-night px-2.5 py-1 rounded border border-edge shrink-0">
+            <div className="flex items-center space-x-2.5 bg-night px-2.5 py-1 rounded border border-edge well shrink-0">
               <div className="flex items-center space-x-1.5">
                 <span className="text-[10px] font-bold tracking-wider">
                   Commit activity (28 days):
@@ -105,7 +105,7 @@ const MechanicalTickerTapeContent: React.FC = () => {
 };
 
 const TickerFallback: React.FC = () => (
-  <div className="w-full bg-box border-y border-edge">
+  <div className="w-full bg-box border-y raised">
     <div className="flex items-center space-x-4 py-1.5 px-3 text-xs font-mono text-lamp animate-pulse">
       <span>Loading GitHub activity...</span>
     </div>

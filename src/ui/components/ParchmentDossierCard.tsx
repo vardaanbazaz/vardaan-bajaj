@@ -7,7 +7,7 @@ interface ParchmentDossierCardProps {
 }
 
 const cardClassName =
-  "bg-card p-6 rounded-lg relative flex flex-col justify-between h-full border border-edge group cursor-pointer";
+  "bg-card p-6 rounded-lg relative flex flex-col justify-between h-full border raised lift group cursor-pointer";
 
 export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ dossier }) => {
   const isCompleted = dossier.status === 'Completed' || dossier.status === 'Published';
@@ -18,7 +18,7 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
       <div>
         <div className="flex items-center justify-end mb-3">
           <span
-            className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full tracking-wider text-ink ${
+            className={`text-[10px] font-mono px-2.5 py-0.5 rounded tracking-wider text-ink ${
               isCompleted ? 'bg-star' : 'bg-coral'
             }`}
           >
@@ -52,7 +52,7 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
           {dossier.techStack.map((tech, idx) => (
             <span
               key={idx}
-              className="text-[11px] font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge"
+              className="text-[11px] font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge well"
             >
               {tech}
             </span>

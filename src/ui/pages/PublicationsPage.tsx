@@ -6,7 +6,7 @@ export const PublicationsPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       {/* Header Banner */}
-      <header className="bg-box p-8 rounded-lg relative border border-edge">
+      <header className="bg-box p-8 rounded-lg relative border raised">
         <span className="text-xs font-mono text-lamp tracking-widest block mb-2">
           Publications
         </span>

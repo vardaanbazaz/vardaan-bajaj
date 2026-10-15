@@ -16,7 +16,7 @@ export const DossiersPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       {/* Page Header */}
-      <header className="bg-box p-8 rounded-lg relative border border-edge">
+      <header className="bg-box p-8 rounded-lg relative border raised">
         <span className="text-xs font-mono text-lamp tracking-widest block mb-2">
           Projects
         </span>
@@ -42,12 +42,12 @@ export const DossiersPage: React.FC = () => {
           </div>
 
           {/* 3 View Tabs rendered in exact order: 1 (Feature), 2 (Active), 3 (All) */}
-          <div className="flex items-center space-x-2 bg-box p-1.5 rounded-lg border border-edge overflow-x-auto custom-scrollbar">
+          <div className="flex items-center space-x-2 bg-box p-1.5 rounded-lg border raised overflow-x-auto custom-scrollbar">
             <button
               onClick={() => setActiveTab('feature')}
-              className={`px-3.5 py-1.5 text-xs font-mono rounded-md transition-all cursor-pointer ${
+              className={`px-3.5 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
                 activeTab === 'feature'
-                  ? 'bg-sunset text-ink font-bold'
+                  ? 'bg-sunset text-ink font-bold pressable press-shift'
                   : 'text-lamp hover:underline underline-offset-4'
               }`}
             >
@@ -55,9 +55,9 @@ export const DossiersPage: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('active')}
-              className={`px-3.5 py-1.5 text-xs font-mono rounded-md transition-all cursor-pointer ${
+              className={`px-3.5 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
                 activeTab === 'active'
-                  ? 'bg-sunset text-ink font-bold'
+                  ? 'bg-sunset text-ink font-bold pressable press-shift'
                   : 'text-lamp hover:underline underline-offset-4'
               }`}
             >
@@ -65,9 +65,9 @@ export const DossiersPage: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('all')}
-              className={`px-3.5 py-1.5 text-xs font-mono rounded-md transition-all cursor-pointer ${
+              className={`px-3.5 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
                 activeTab === 'all'
-                  ? 'bg-sunset text-ink font-bold'
+                  ? 'bg-sunset text-ink font-bold pressable press-shift'
                   : 'text-lamp hover:underline underline-offset-4'
               }`}
             >
