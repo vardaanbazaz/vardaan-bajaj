@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 export const AnalogNavigation: React.FC = () => {
   return (
-    <nav className="w-full bg-[#18110c]/90 backdrop-blur-md border-b border-[#c5a880]/30 shadow-lg px-4 py-3 mb-8 overflow-hidden" aria-label="Main Navigation">
+    <nav className="w-full bg-night border-b border-edge px-4 py-3 mb-8 overflow-hidden" aria-label="Main Navigation">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center space-x-2.5 shrink-0">
-          <div className="w-3 h-3 rounded-full bg-[#c5a880] shadow-[0_0_8px_rgba(197,168,128,0.8)]" aria-hidden="true" />
-          <span className="text-xs font-mono font-bold text-[#f4efe6] tracking-widest uppercase">
-            VARDAAN BAJAJ // PORTFOLIO
+          <div className="w-3 h-3 rounded-full bg-lamp" aria-hidden="true" />
+          <span className="text-xs font-mono font-bold text-lamp tracking-widest">
+            Vardaan Bajaj
           </span>
           <span className="sr-only">Vardaan Bajaj Portfolio Navigation</span>
         </div>
@@ -21,12 +21,12 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-[#2a1810] text-[#f4efe6] border border-[#c5a880]/60 shadow-[0_0_10px_rgba(197,168,128,0.3)] font-bold'
-                  : 'text-[#9c9281] hover:text-[#eadfc9] hover:bg-[#221812]'
+                  ? 'bg-sunset text-ink font-bold'
+                  : 'text-lamp hover:underline underline-offset-4'
               }`
             }
           >
-            [OVERVIEW]
+            Overview
           </NavLink>
 
           {/* 2. DOSSIERS */}
@@ -35,12 +35,12 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-[#2a1810] text-[#f4efe6] border border-[#c5a880]/60 shadow-[0_0_10px_rgba(197,168,128,0.3)] font-bold'
-                  : 'text-[#9c9281] hover:text-[#eadfc9] hover:bg-[#221812]'
+                  ? 'bg-sunset text-ink font-bold'
+                  : 'text-lamp hover:underline underline-offset-4'
               }`
             }
           >
-            [PROJECTS]
+            Projects
           </NavLink>
 
           {/* 3. EXPERIENCE MAP */}
@@ -49,12 +49,12 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-[#2a1810] text-[#f4efe6] border border-[#c5a880]/60 shadow-[0_0_10px_rgba(197,168,128,0.3)] font-bold'
-                  : 'text-[#9c9281] hover:text-[#eadfc9] hover:bg-[#221812]'
+                  ? 'bg-sunset text-ink font-bold'
+                  : 'text-lamp hover:underline underline-offset-4'
               }`
             }
           >
-            [EXPERIENCE MAP]
+            Experience map
           </NavLink>
 
           {/* 4. PUBLICATIONS */}
@@ -63,12 +63,12 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-[#2a1810] text-[#f4efe6] border border-[#c5a880]/60 shadow-[0_0_10px_rgba(197,168,128,0.3)] font-bold'
-                  : 'text-[#9c9281] hover:text-[#eadfc9] hover:bg-[#221812]'
+                  ? 'bg-sunset text-ink font-bold'
+                  : 'text-lamp hover:underline underline-offset-4'
               }`
             }
           >
-            [PUBLICATIONS]
+            Publications
           </NavLink>
 
           {/* 5. CONTACT */}
@@ -77,12 +77,12 @@ export const AnalogNavigation: React.FC = () => {
             className={({ isActive }) =>
               `px-3 py-1.5 text-xs font-mono rounded transition-all shrink-0 ${
                 isActive
-                  ? 'bg-[#2a1810] text-[#f4efe6] border border-[#c5a880]/60 shadow-[0_0_10px_rgba(197,168,128,0.3)] font-bold'
-                  : 'text-[#9c9281] hover:text-[#eadfc9] hover:bg-[#221812]'
+                  ? 'bg-sunset text-ink font-bold'
+                  : 'text-lamp hover:underline underline-offset-4'
               }`
             }
           >
-            [CONTACT]
+            Contact
           </NavLink>
         </div>
       </div>

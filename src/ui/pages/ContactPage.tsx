@@ -37,28 +37,22 @@ export const ContactPage: React.FC = () => {
   };
 
   const linkClassName =
-    'text-xs font-mono text-amber-400 hover:text-amber-200 underline underline-offset-4 decoration-amber-900/60';
+    'text-xs font-mono text-lamp underline underline-offset-4';
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
-      <div className="border-b border-amber-900/40 pb-3">
-        <h1 className="text-2xl font-serif font-bold text-amber-100">
+      <div className="border-b border-edge pb-3">
+        <h1 className="text-2xl font-serif font-bold text-lamp">
           Contact
         </h1>
       </div>
 
       <div className="w-full parchment-card p-6 rounded-lg relative overflow-hidden">
-        {/* Brass Corner Rivets */}
-        <div className="absolute top-3 left-3 brass-rivet" />
-        <div className="absolute top-3 right-3 brass-rivet" />
-        <div className="absolute bottom-3 left-3 brass-rivet" />
-        <div className="absolute bottom-3 right-3 brass-rivet" />
-
-        <p className="text-sm font-sans text-amber-200/80">
+        <p className="text-sm font-sans text-lamp">
           Email is the best way to reach me. I'm open to remote machine learning and software roles.
         </p>
 
-        <p className="mt-4 text-base font-mono text-amber-100 break-all">
+        <p className="mt-4 text-base font-mono text-lamp break-all">
           <span ref={emailRef}>{PERSONAL_INFO.email}</span>
         </p>
 
@@ -66,27 +60,27 @@ export const ContactPage: React.FC = () => {
           <button
             type="button"
             onClick={handleCopy}
-            className="px-5 py-2.5 bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-600 hover:to-amber-800 text-amber-100 font-mono text-xs uppercase tracking-wider rounded border border-amber-500/50 shadow-lg transition-all cursor-pointer shrink-0"
+            className="px-5 py-2.5 bg-sunset text-ink font-mono font-bold text-xs tracking-wider rounded cursor-pointer shrink-0"
           >
             {copyStatus === 'copied' ? 'Copied' : 'Copy email'}
           </button>
           <a
             href={`mailto:${PERSONAL_INFO.email}`}
-            className="px-5 py-2.5 text-amber-100 font-mono text-xs uppercase tracking-wider rounded border border-amber-500/50 hover:bg-amber-900/40 transition-all shrink-0"
+            className="text-lamp font-mono text-xs tracking-wider underline underline-offset-4 shrink-0"
           >
             Open in mail app
           </a>
           {/* Button label already shows "Copied"; keep that announcement screen-reader only */}
           <span
             aria-live="polite"
-            className={`text-[10px] font-mono text-amber-500/80 ${copyStatus === 'copied' ? 'sr-only' : ''}`}
+            className={`text-[10px] font-mono text-lamp ${copyStatus === 'copied' ? 'sr-only' : ''}`}
           >
             {copyStatus === 'copied' && 'Copied'}
             {copyStatus === 'manual' && 'Press Ctrl+C to copy'}
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-4 pt-4 mt-4 border-t border-amber-900/40">
+        <div className="flex flex-wrap gap-4 pt-4 mt-4 border-t border-edge">
           <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" className={linkClassName}>
             LinkedIn
           </a>
@@ -101,7 +95,7 @@ export const ContactPage: React.FC = () => {
         </div>
       </div>
 
-      <p className="text-[10px] font-mono text-amber-500/80">
+      <p className="text-[10px] font-mono text-lamp">
         This site doesn't collect or store personal data. Fonts, map tiles and GitHub stats load from third-party services.
       </p>
     </div>

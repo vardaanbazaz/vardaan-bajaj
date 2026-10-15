@@ -7,7 +7,7 @@ interface ParchmentDossierCardProps {
 }
 
 const cardClassName =
-  "bg-walnut-900/80 backdrop-blur-md p-6 rounded-lg relative flex flex-col justify-between h-full border border-[#8C7335]/20 shadow-sm hover:border-[#CF9E4F]/60 hover:shadow-[0_0_20px_rgba(207,158,79,0.15)] transition-all duration-300 group cursor-pointer";
+  "bg-card p-6 rounded-lg relative flex flex-col justify-between h-full border border-edge group cursor-pointer";
 
 export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ dossier }) => {
   const isCompleted = dossier.status === 'Completed' || dossier.status === 'Published';
@@ -18,29 +18,27 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
       <div>
         <div className="flex items-center justify-end mb-3">
           <span
-            className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border uppercase tracking-wider ${
-              isCompleted
-                ? 'bg-[#141c14] border-[#304030] text-[#34d399]'
-                : 'bg-[#2a1810] border-[#5c3218] text-[#d4a37f]'
+            className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full tracking-wider text-ink ${
+              isCompleted ? 'bg-star' : 'bg-coral'
             }`}
           >
             <span className="sr-only">Status: </span>
-            {dossier.status}
+            {dossier.status === 'In Development' ? 'In development' : dossier.status}
           </span>
         </div>
 
         <h3
           id={`dossier-title-${dossier.id}`}
-          className="text-xl font-serif font-bold text-[#f4efe6] mb-1 group-hover:text-[#CF9E4F] transition-colors"
+          className="text-xl font-serif font-bold text-lamp mb-1 group-hover:underline underline-offset-4"
         >
           {dossier.title}
         </h3>
 
-        <p className="text-xs font-mono text-[#d4a37f] mb-3 italic">
+        <p className="text-xs font-mono text-lamp mb-3 italic">
           {dossier.subtitle}
         </p>
 
-        <p className="text-xs font-sans text-[#eadfc9]/80 mb-5 leading-relaxed line-clamp-3">
+        <p className="text-xs font-sans text-lamp mb-5 leading-relaxed line-clamp-3">
           {dossier.summary}
         </p>
       </div>
@@ -49,12 +47,12 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
         {/* Tech-Stack Pill Badges Aligned at Bottom Edge */}
         <div
           aria-label="Technology Stack"
-          className="flex flex-wrap gap-1.5 mb-4 pt-3 border-t border-[#8C7335]/15"
+          className="flex flex-wrap gap-1.5 mb-4 pt-3 border-t border-edge"
         >
           {dossier.techStack.map((tech, idx) => (
             <span
               key={idx}
-              className="text-[11px] font-mono px-2.5 py-0.5 rounded text-[#d4a37f] bg-black/40 border border-[#8C7335]/30 group-hover:border-[#8C7335]/50 transition-colors"
+              className="text-[11px] font-mono px-2.5 py-0.5 rounded text-lamp bg-tag border border-edge"
             >
               {tech}
             </span>
@@ -62,8 +60,8 @@ export const ParchmentDossierCard: React.FC<ParchmentDossierCardProps> = ({ doss
         </div>
 
         {/* Footer: where the card goes */}
-        <div className="pt-3 border-t border-[#8C7335]/20">
-          <span className="text-[10px] font-mono text-[#9c9281] uppercase tracking-wider group-hover:text-[#CF9E4F] transition-colors">
+        <div className="pt-3 border-t border-edge">
+          <span className="text-[10px] font-mono text-lamp tracking-wider underline underline-offset-4">
             {writeUpRoute ? 'Read write-up →' : 'View on GitHub ↗'}
           </span>
         </div>

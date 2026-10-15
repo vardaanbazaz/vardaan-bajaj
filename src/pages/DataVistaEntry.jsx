@@ -38,10 +38,10 @@ export const DataVistaEntry = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       {/* Top Header Navigation */}
-      <nav className="flex items-center justify-between border-b border-[#c5a880]/30 pb-4" aria-label="Manuscript navigation">
+      <nav className="flex items-center justify-between border-b border-edge pb-4" aria-label="Manuscript navigation">
         <Link
           to="/dossiers"
-          className="text-[#8C7335] hover:text-[#CF9E4F] font-serif italic mb-2 inline-block transition-colors"
+          className="text-lamp hover:underline underline-offset-4 font-serif italic mb-2 inline-block"
         >
           &larr; Back to projects
         </Link>
@@ -50,9 +50,9 @@ export const DataVistaEntry = () => {
       {/* Main Manuscript Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Sticky Table of Contents (visible on lg and xl viewports) */}
-        <aside className="hidden lg:block lg:col-span-3 sticky top-12 parchment-card p-5 rounded-lg space-y-4 border border-[#c5a880]/30 bg-[#18110c]/90 backdrop-blur-md">
-          <div className="text-xs font-mono text-[#c5a880] uppercase tracking-wider font-bold border-b border-[#c5a880]/20 pb-2">
-            [CONTENTS]
+        <aside className="hidden lg:block lg:col-span-3 sticky top-12 parchment-card p-5 rounded-lg space-y-4">
+          <div className="text-xs font-mono text-lamp tracking-wider font-bold border-b border-edge pb-2">
+            Contents
           </div>
           <nav className="space-y-2" aria-label="Table of contents">
             {tocItems.map((item) => (
@@ -61,8 +61,8 @@ export const DataVistaEntry = () => {
                 href={`#${item.id}`}
                 className={`block text-xs font-mono transition-colors py-1 px-2 rounded ${
                   activeSection === item.id
-                    ? 'text-[#f4efe6] bg-[#2a1810] border-l-2 border-[#c5a880] font-bold'
-                    : 'text-[#9c9281] hover:text-[#eadfc9]'
+                    ? 'bg-sunset text-ink font-bold'
+                    : 'text-lamp hover:underline underline-offset-4'
                 }`}
               >
                 {item.label}
@@ -70,32 +70,31 @@ export const DataVistaEntry = () => {
             ))}
           </nav>
 
-          <div className="pt-4 border-t border-[#c5a880]/20 text-[11px] font-mono text-[#9c9281] space-y-2">
-            <div>Status: <span className="text-[#34d399]">Completed</span></div>
+          <div className="pt-4 border-t border-edge text-[11px] font-mono text-lamp space-y-2">
+            <div>Status: <span className="text-lamp">Completed</span></div>
           </div>
         </aside>
 
         {/* Main Document Stream */}
         <main className="lg:col-span-9 space-y-12">
           {/* Document Header Banner */}
-          <header className="parchment-card backdrop-blur-md bg-[#18110c]/90 p-8 rounded-lg relative border border-[#c5a880]/30">
-            <div className="absolute top-4 right-4 brass-rivet" aria-hidden="true" />
+          <header className="bg-box p-8 rounded-lg relative border border-edge">
             <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#2a1810] text-[#d4a37f] border border-[#5c3218]">
-                CATEGORY: Feature Build
+              <span className="text-xs font-mono px-3 py-1 rounded-full bg-box text-lamp border border-edge">
+                Category: Feature Build
               </span>
-              <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#141c14] text-[#34d399] border border-[#304030]">
-                STATUS: Completed
+              <span className="text-xs font-mono px-3 py-1 rounded-full bg-star text-ink">
+                Status: Completed
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#f4efe6] mb-2">
+            <h1 className="text-3xl sm:text-4xl font-serif font-bold text-lamp mb-2">
               DataVista
             </h1>
-            <p className="text-sm font-mono text-[#d4a37f] mb-4 italic">
+            <p className="text-sm font-mono text-lamp mb-4 italic">
               Browser-native BI platform
             </p>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed mb-6">
+            <p className="text-sm font-sans text-lamp leading-relaxed mb-6">
               A business-intelligence app that runs in the browser: load a CSV or Excel file and build pivots, calculated fields and dashboards without a backend.
             </p>
 
@@ -105,16 +104,16 @@ export const DataVistaEntry = () => {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[#CF9E4F] border border-[#8C7335] px-4 py-2 hover:bg-[#8C7335]/10 inline-block transition-colors"
+                className="font-mono font-bold bg-sunset text-ink px-4 py-2 rounded inline-block"
               >
-                [VIEW ON GITHUB ↗]
+                View on GitHub ↗
               </a>
             </div>
 
             {/* Tech Stack Pills */}
-            <div className="flex flex-wrap gap-2 pt-4 border-t border-[#c5a880]/20">
+            <div className="flex flex-wrap gap-2 pt-4 border-t border-edge">
               {["React 18", "Vite", "TypeScript", "Tailwind CSS", "Zustand", "Dexie.js", "IndexedDB", "Recursive-descent parser", "TanStack Virtual", "D3", "Vitest", "Playwright", "GitHub Actions"].map((tech, i) => (
-                <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-[#d4a37f] bg-[#2a1810]/60 border border-[#5c3218]">
+                <span key={i} className="text-xs font-mono px-3 py-1 rounded-full text-lamp bg-tag border border-edge">
                   {tech}
                 </span>
               ))}
@@ -123,26 +122,26 @@ export const DataVistaEntry = () => {
 
           {/* Section 1: Abstract */}
           <section id="abstract" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+            <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               1. Abstract
             </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+            <p className="text-sm font-sans text-lamp leading-relaxed">
               DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend.
             </p>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+            <p className="text-sm font-sans text-lamp leading-relaxed">
               It is built with React 18 and Vite, keeps app state in Zustand with local-storage persistence, and stores data in IndexedDB via Dexie.js. Tests run on Vitest (unit) and Playwright (E2E) in GitHub Actions.
             </p>
           </section>
 
           {/* Section 2: System Architecture */}
           <section id="architecture" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+            <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               2. System Architecture
             </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+            <p className="text-sm font-sans text-lamp leading-relaxed">
               DataVista has four main parts:
             </p>
-            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-[#eadfc9]/80 pl-2">
+            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-lamp pl-2">
               <li><strong>Formula parser:</strong> Recursive-descent parser for Excel-style calculated fields and window functions.</li>
               <li><strong>Unified Query & Pivot Engine:</strong> Rows, columns and values.</li>
               <li><strong>Storage:</strong> IndexedDB via Dexie.js for datasets; Zustand with local-storage persistence for app state.</li>
@@ -152,20 +151,20 @@ export const DataVistaEntry = () => {
 
           {/* Section 3: Formula Parser */}
           <section id="ast-parser" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+            <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               3. Formula Parser
             </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+            <p className="text-sm font-sans text-lamp leading-relaxed">
               A recursive-descent parser evaluates Excel-style calculated fields and window functions: ROW_NUMBER, RANK, DENSE_RANK, rolling and moving averages, and cumulative sums.
             </p>
           </section>
 
           {/* Section 4: Features */}
           <section id="features" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+            <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               4. Features
             </h2>
-            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-[#eadfc9]/80 pl-2">
+            <ul className="list-disc list-inside space-y-2 text-sm font-sans text-lamp pl-2">
               <li><strong>Data explorer:</strong> Inspect records, with filters.</li>
               <li><strong>Statistics:</strong> Descriptive statistics, correlation matrices and outlier detection.</li>
               <li><strong>Charts:</strong> Interactive charts.</li>
@@ -176,30 +175,30 @@ export const DataVistaEntry = () => {
 
           {/* Section 5: AI Co-Pilot */}
           <section id="ai-copilot" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+            <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               5. AI Co-Pilot
             </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+            <p className="text-sm font-sans text-lamp leading-relaxed">
               Optional and bring-your-own-key (Gemini or OpenAI). Without a key, a local heuristic engine is used. The app discloses at the point of use that sample values are sent to the provider.
             </p>
           </section>
 
           {/* Section 6: Architecture Decision Records (ADRs) */}
           <section id="adrs" className="parchment-card p-8 rounded-lg space-y-6">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+            <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               6. Architecture Decision Records (ADRs)
             </h2>
 
             {/* ADR 001 */}
-            <div className="bg-[#221812]/80 p-6 rounded-lg border border-[#c5a880]/30 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#c5a880]/20 pb-2">
-                <span className="text-xs font-mono font-bold text-[#d4a37f] uppercase">[ADR-001]</span>
-                <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
+            <div className="bg-box p-6 rounded-lg border border-edge space-y-3">
+              <div className="flex items-center justify-between border-b border-edge pb-2">
+                <span className="text-xs font-mono font-bold text-lamp">ADR-001</span>
+                <span className="text-xs font-mono text-lamp">Decision: accepted</span>
               </div>
-              <h3 className="text-base font-serif font-bold text-[#f4efe6]">
+              <h3 className="text-base font-serif font-bold text-lamp">
                 Client-Side Formula Parsing
               </h3>
-              <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
+              <div className="space-y-2 text-xs font-sans text-lamp">
                 <p><strong>Context:</strong> Calculated fields and window functions have to run in the browser, without a backend.</p>
                 <p><strong>Decision:</strong> A recursive-descent parser for Excel-style calculated fields and window functions (ROW_NUMBER, RANK, DENSE_RANK; rolling, moving averages, cumulative sums).</p>
                 <p><strong>Consequences:</strong> Works fully offline; the optional AI Co-Pilot is the only exception (see AI Co-Pilot).</p>
@@ -207,15 +206,15 @@ export const DataVistaEntry = () => {
             </div>
 
             {/* ADR 002 */}
-            <div className="bg-[#221812]/80 p-6 rounded-lg border border-[#c5a880]/30 space-y-3">
-              <div className="flex items-center justify-between border-b border-[#c5a880]/20 pb-2">
-                <span className="text-xs font-mono font-bold text-[#d4a37f] uppercase">[ADR-002]</span>
-                <span className="text-xs font-mono text-[#34d399]">DECISION: ACCEPTED</span>
+            <div className="bg-box p-6 rounded-lg border border-edge space-y-3">
+              <div className="flex items-center justify-between border-b border-edge pb-2">
+                <span className="text-xs font-mono font-bold text-lamp">ADR-002</span>
+                <span className="text-xs font-mono text-lamp">Decision: accepted</span>
               </div>
-              <h3 className="text-base font-serif font-bold text-[#f4efe6]">
+              <h3 className="text-base font-serif font-bold text-lamp">
                 IndexedDB via Dexie.js for Local Persistence
               </h3>
-              <div className="space-y-2 text-xs font-sans text-[#eadfc9]/90">
+              <div className="space-y-2 text-xs font-sans text-lamp">
                 <p><strong>Context:</strong> Uploaded CSV, TSV or XLSX files of up to 100 MB have to persist in the browser.</p>
                 <p><strong>Decision:</strong> Store datasets in IndexedDB via Dexie.js; keep app state in Zustand with local-storage persistence.</p>
                 <p><strong>Consequences:</strong> No backend is needed to store data.</p>
@@ -225,28 +224,28 @@ export const DataVistaEntry = () => {
 
           {/* Section 7: Audits and Fixes */}
           <section id="audits" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+            <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               7. Audits and Fixes
             </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+            <p className="text-sm font-sans text-lamp leading-relaxed">
               Five audits (correctness, type-inference gaps, shell completeness, product relevance, and a cross-cutting review). The critical and high findings of the correctness audit are fixed. A regression pass found and fixed a crash when creating dashboards, and live testing of the AI path caught two bugs: a retired model name and charts using the wrong aggregation.
             </p>
             <a
               href="https://github.com/vardaanbazaz/datavista/tree/main/docs"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-[#CF9E4F] hover:text-[#8C7335] underline transition-colors"
+              className="font-mono text-xs text-lamp underline underline-offset-4"
             >
-              [READ THE AUDIT REPORTS]
+              Read the audit reports
             </a>
           </section>
 
           {/* Section 8: Limitations */}
           <section id="limitations" className="parchment-card p-8 rounded-lg space-y-4">
-            <h2 className="text-2xl font-serif font-bold text-[#f4efe6] border-b border-[#c5a880]/25 pb-3">
+            <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
               8. Limitations
             </h2>
-            <p className="text-sm font-sans text-[#eadfc9]/90 leading-relaxed">
+            <p className="text-sm font-sans text-lamp leading-relaxed">
               No live demo is linked yet. The redesign is dark-mode first; light mode was not redesigned. Only the Gemini path has been tested against a live key.
             </p>
           </section>

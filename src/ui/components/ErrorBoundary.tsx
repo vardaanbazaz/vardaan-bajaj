@@ -30,7 +30,7 @@ export class ErrorBoundary extends Component<Props, State> {
         return this.props.fallback;
       }
       return (
-        <div className="p-3 bg-red-950/40 border border-red-800/60 rounded text-red-300 font-mono text-xs">
+        <div className="p-3 bg-box border border-edge rounded text-lamp font-mono text-xs">
           Something went wrong loading this section.
         </div>
       );

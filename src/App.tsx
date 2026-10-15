@@ -32,9 +32,9 @@ const PublicationDetailPage = lazy(() => import('./ui/pages/PublicationDetailPag
 const ContactPage = lazy(() => import('./ui/pages/ContactPage'));
 
 const PageFallback: React.FC = () => (
-  <div className="w-full h-64 flex flex-col items-center justify-center space-y-3 font-mono text-xs text-[#d4a37f]">
-    <div className="w-8 h-8 border-2 border-[#c5a880] border-t-transparent rounded-full animate-spin" />
-    <span>[LOADING...]</span>
+  <div className="w-full h-64 flex flex-col items-center justify-center space-y-3 font-mono text-xs text-lamp">
+    <div className="w-8 h-8 border-2 border-lamp border-t-transparent rounded-full animate-spin" />
+    <span>Loading...</span>
   </div>
 );
 
