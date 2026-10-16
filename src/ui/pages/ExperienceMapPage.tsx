@@ -1,9 +1,16 @@
-import React from 'react';
-import { LeafletExperienceMap } from '../components/LeafletExperienceMap';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { MouldedHeader } from '../components/MouldedHeader';
 import { OrnamentDivider } from '../components/OrnamentDivider';
 
+// Leaflet reads window at import time, so it must never load during prerender
+const LeafletExperienceMap = lazy(() =>
+  import('../components/LeafletExperienceMap').then((m) => ({ default: m.LeafletExperienceMap })),
+);
+
 export const ExperienceMapPage: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   return (
     <div className="space-y-6 py-4">
       <MouldedHeader as="header" innerClassName="p-5 sm:p-6">
@@ -19,7 +26,11 @@ export const ExperienceMapPage: React.FC = () => {
 
       {/* Map Viewport - Full Width Command Center without side cards */}
       <div className="w-full h-[600px] bg-card rounded-lg border raised overflow-hidden">
-        <LeafletExperienceMap />
+        {mounted && (
+          <Suspense fallback={null}>
+            <LeafletExperienceMap />
+          </Suspense>
+        )}
       </div>
     </div>
   );

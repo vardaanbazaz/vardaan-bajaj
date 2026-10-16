@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useLayoutEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
 import { DeskLaboratoryLayout } from './ui/layouts/DeskLaboratoryLayout';
 import { SeoHead } from './ui/components/SeoHead';
 
@@ -38,9 +38,10 @@ const PageFallback: React.FC = () => (
   </div>
 );
 
+// Router-agnostic route tree: wrapped in BrowserRouter (main.tsx) or StaticRouter (entry-server.tsx)
 export const App: React.FC = () => {
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <SeoHead />
       <Routes>
@@ -112,7 +113,7 @@ export const App: React.FC = () => {
           />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
 

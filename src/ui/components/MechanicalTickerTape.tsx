@@ -1,13 +1,11 @@
-import React, { use, Suspense } from 'react';
+import React, { use, Suspense, useEffect, useState } from 'react';
 import { fetchGitHubStats, GitHubStats, DailyCommitDetail } from '../../infrastructure/github_api';
 import { PERSONAL_INFO } from '../../data/manuscript_config';
 import { ErrorBoundary } from './ErrorBoundary';
 
-// Create singleton promise instance for React 19 use()
-const gitHubStatsPromise = fetchGitHubStats(PERSONAL_INFO.githubUser);
-
 const MechanicalTickerTapeContent: React.FC = () => {
-  const stats: GitHubStats | null = use(gitHubStatsPromise);
+  // fetchGitHubStats caches its promise, so use() sees the same instance on every render
+  const stats: GitHubStats | null = use(fetchGitHubStats(PERSONAL_INFO.githubUser));
 
   // API failure: hide the ticker entirely rather than show placeholder numbers
   if (!stats) return null;
@@ -113,6 +111,12 @@ const TickerFallback: React.FC = () => (
 );
 
 export const MechanicalTickerTape: React.FC = () => {
+  // Fetch only in the browser, after mount: prerendered HTML and the first client render both show the fallback
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <TickerFallback />;
+
   return (
     <ErrorBoundary fallback={<></>}>
       <Suspense fallback={<TickerFallback />}>

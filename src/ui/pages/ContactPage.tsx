@@ -106,7 +106,7 @@ export const ContactPage: React.FC = () => {
       </div>
 
       <p className="text-sm font-mono text-lamp">
-        This site doesn't collect or store personal data. Fonts, map tiles and GitHub stats load from third-party services.
+        This site doesn't collect or store personal data. Map tiles load from OpenStreetMap and GitHub stats from GitHub's API.
       </p>
     </div>
   );

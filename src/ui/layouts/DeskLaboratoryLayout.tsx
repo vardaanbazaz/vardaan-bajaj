@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MechanicalTickerTape } from '../components/MechanicalTickerTape';
@@ -17,6 +17,13 @@ const roomFor = (pathname: string): Room => {
 
 export const DeskLaboratoryLayout: React.FC = () => {
   const location = useLocation();
+
+  // First page load shows prerendered HTML as-is (no opacity:0); later client navigations animate
+  const isFirstRender = useRef(true);
+  const skipEntrance = isFirstRender.current;
+  useLayoutEffect(() => {
+    isFirstRender.current = false;
+  }, []);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -40,7 +47,7 @@ export const DeskLaboratoryLayout: React.FC = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
-            initial={{ opacity: 0, y: 15 }}
+            initial={skipEntrance ? false : { opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
@@ -54,7 +61,7 @@ export const DeskLaboratoryLayout: React.FC = () => {
       {/* Desk Footer */}
       <footer className="w-full bg-night material border-t border-edge py-6 px-4 relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-mono text-lamp text-center sm:text-left">
-          <div className="shrink-0">
+          <div className="shrink-0" suppressHydrationWarning>
             &copy; {new Date().getFullYear()} {PERSONAL_INFO.name} &bull; Machine Learning &amp; Software Engineer
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs">
