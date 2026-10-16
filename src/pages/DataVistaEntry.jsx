@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import { MouldedHeader } from '../ui/components/MouldedHeader';
 import { OrnamentDivider } from '../ui/components/OrnamentDivider';
 
+const tocItems = [
+  { id: 'abstract', label: '1. Abstract' },
+  { id: 'architecture', label: '2. System Architecture' },
+  { id: 'ast-parser', label: '3. Formula Parser' },
+  { id: 'features', label: '4. Features' },
+  { id: 'ai-copilot', label: '5. AI Co-Pilot' },
+  { id: 'adrs', label: '6. Architectural Decision Records' },
+  { id: 'audits', label: '7. Audits and Fixes' },
+  { id: 'limitations', label: '8. Limitations' },
+];
+
 export const DataVistaEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
   const githubUrl = "https://github.com/vardaanbazaz/datavista";
-
-  const tocItems = [
-    { id: 'abstract', label: '1. Abstract' },
-    { id: 'architecture', label: '2. System Architecture' },
-    { id: 'ast-parser', label: '3. Formula Parser' },
-    { id: 'features', label: '4. Features' },
-    { id: 'ai-copilot', label: '5. AI Co-Pilot' },
-    { id: 'adrs', label: '6. Architectural Decision Records' },
-    { id: 'audits', label: '7. Audits and Fixes' },
-    { id: 'limitations', label: '8. Limitations' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {

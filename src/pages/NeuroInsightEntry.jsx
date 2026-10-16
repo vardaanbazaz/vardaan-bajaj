@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { MouldedHeader } from '../ui/components/MouldedHeader';
 import { OrnamentDivider } from '../ui/components/OrnamentDivider';
 
+const tocItems = [
+  { id: 'abstract', label: '1. Abstract & Scope' },
+  { id: 'dataset', label: '2. Dataset' },
+  { id: 'vic-index', label: '3. VIC Index & Credits' },
+  { id: 'adrs', label: '4. Architectural Decision Records' },
+  { id: 'benchmarks', label: '5. Evaluation' },
+  { id: 'limitations', label: '6. Limitations' },
+];
+
 export const NeuroInsightEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
   const githubUrl = "https://github.com/vardaanbazaz/neuroinsight-ai";
-
-  const tocItems = [
-    { id: 'abstract', label: '1. Abstract & Scope' },
-    { id: 'dataset', label: '2. Dataset' },
-    { id: 'vic-index', label: '3. VIC Index & Credits' },
-    { id: 'adrs', label: '4. Architectural Decision Records' },
-    { id: 'benchmarks', label: '5. Evaluation' },
-    { id: 'limitations', label: '6. Limitations' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {

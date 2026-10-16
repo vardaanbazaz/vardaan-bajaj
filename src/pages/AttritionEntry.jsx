@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { MouldedHeader } from '../ui/components/MouldedHeader';
 import { OrnamentDivider } from '../ui/components/OrnamentDivider';
 
+const tocItems = [
+  { id: 'abstract', label: '1. Abstract & Scope' },
+  { id: 'imbalance', label: '2. Class Imbalance & SMOTE' },
+  { id: 'shap-attribution', label: '3. SHAP Attribution & Drivers' },
+  { id: 'adrs', label: '4. Architectural Decision Records' },
+  { id: 'benchmarks', label: '5. Results' },
+  { id: 'limitations', label: '6. Limitations' },
+];
+
 export const AttritionEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
   const githubUrl = "https://github.com/vardaanbazaz/employee-attrition-analysis";
-
-  const tocItems = [
-    { id: 'abstract', label: '1. Abstract & Scope' },
-    { id: 'imbalance', label: '2. Class Imbalance & SMOTE' },
-    { id: 'shap-attribution', label: '3. SHAP Attribution & Drivers' },
-    { id: 'adrs', label: '4. Architectural Decision Records' },
-    { id: 'benchmarks', label: '5. Results' },
-    { id: 'limitations', label: '6. Limitations' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {

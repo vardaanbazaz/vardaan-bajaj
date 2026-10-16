@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { MouldedHeader } from '../ui/components/MouldedHeader';
 import { OrnamentDivider } from '../ui/components/OrnamentDivider';
 
+const tocItems = [
+  { id: 'abstract', label: '1. Abstract' },
+  { id: 'branches', label: '2. Branches' },
+  { id: 'git-diff', label: '3. Visual Diff' },
+  { id: 'local-first', label: '4. Local-first' },
+  { id: 'cli', label: '5. kb CLI' },
+];
+
 export const KanbanLightEntry = () => {
   const [activeSection, setActiveSection] = useState('abstract');
   const githubUrl = "https://github.com/vardaanbazaz/kanbanlight";
   const demoUrl = "https://kanbanlight.vercel.app";
-
-  const tocItems = [
-    { id: 'abstract', label: '1. Abstract' },
-    { id: 'branches', label: '2. Branches' },
-    { id: 'git-diff', label: '3. Visual Diff' },
-    { id: 'local-first', label: '4. Local-first' },
-    { id: 'cli', label: '5. kb CLI' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
