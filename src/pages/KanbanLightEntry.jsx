@@ -6,9 +6,9 @@ import { OrnamentDivider } from '../ui/components/OrnamentDivider';
 const tocItems = [
   { id: 'abstract', label: '1. Abstract' },
   { id: 'branches', label: '2. Branches' },
-  { id: 'git-diff', label: '3. Visual Diff' },
-  { id: 'local-first', label: '4. Local-first' },
-  { id: 'cli', label: '5. kb CLI' },
+  { id: 'git-diff', label: '3. Compare' },
+  { id: 'local-first', label: '4. Browser storage' },
+  { id: 'cli', label: '5. CLI' },
 ];
 
 export const KanbanLightEntry = () => {
@@ -150,33 +150,33 @@ export const KanbanLightEntry = () => {
             </p>
           </section>
 
-          {/* Section 3: Visual Diff */}
+          {/* Section 3: Compare */}
           <section id="git-diff" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
-              3. Visual Diff
+              3. Compare
             </h2>
             <p className="text-base font-sans text-lamp leading-relaxed">
-              Compare the active branch with another branch; cards are marked as added, modified or deleted.
+              Compare the current branch with another branch; cards are marked as added, modified or deleted relative to the current branch.
             </p>
           </section>
 
-          {/* Section 4: Local-first */}
+          {/* Section 4: Browser storage */}
           <section id="local-first" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
-              4. Local-first
+              4. Browser storage
             </h2>
             <p className="text-base font-sans text-lamp leading-relaxed">
-              All data stays in the browser (IndexedDB via idb); no backend, no accounts.
+              Board data is stored in the browser (IndexedDB via idb); no backend, no accounts.
             </p>
           </section>
 
-          {/* Section 5: kb CLI */}
+          {/* Section 5: CLI */}
           <section id="cli" className="parchment-card p-8 rounded-lg space-y-4">
             <h2 className="text-2xl font-serif font-bold text-lamp border-b border-edge pb-3">
-              5. kb CLI
+              5. CLI
             </h2>
             <p className="text-base font-sans text-lamp leading-relaxed">
-              A Node.js CLI (Commander.js) controls the open board over a local WebSocket bridge (ws).
+              An optional Node.js CLI (Commander.js) sends commands to an open board over a local WebSocket bridge (ws). It needs a local setup.
             </p>
           </section>
         </main>
