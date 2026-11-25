@@ -185,7 +185,7 @@ export const DOSSIER_LIST: ProjectDossier[] = [
     deepDiveMarkdown: `### DataVista
 
 #### Abstract
-DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend.
+DataVista is a browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend.
 
 #### Key Components
 1. **Recursive-descent parser**: Excel-style calculated fields and window functions (ROW_NUMBER, RANK, DENSE_RANK; rolling, moving averages, cumulative sums).
@@ -359,14 +359,14 @@ A browser-based Kanban board that borrows ideas from Git: branch a board, switch
 #### Branches
 Branch a board and switch between branches.
 
-#### Visual Diff
-Compare the active branch with another branch; cards are marked as added, modified or deleted.
+#### Compare
+Compare the current branch with another branch; cards are marked as added, modified or deleted relative to the current branch.
 
-#### Local-first
-All data stays in the browser (IndexedDB via idb); no backend, no accounts.
+#### Browser storage
+Board data is stored in the browser (IndexedDB via idb); no backend, no accounts.
 
-#### kb CLI
-A Node.js CLI (Commander.js) controls the open board over a local WebSocket bridge (ws).`,
+#### CLI
+An optional Node.js CLI (Commander.js) sends commands to an open board over a local WebSocket bridge (ws). It needs a local setup.`,
   },
   {
     id: "unified-api-ingester",

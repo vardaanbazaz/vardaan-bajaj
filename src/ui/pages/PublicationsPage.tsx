@@ -1,49 +1,40 @@
 import React from 'react';
+import { Footer } from '../components/Footer';
 import { PUBLICATIONS } from '../../data/manuscript_config';
-import { ParchmentPublicationCard } from '../components/ParchmentPublicationCard';
-import { MouldedHeader } from '../components/MouldedHeader';
-import { OrnamentDivider } from '../components/OrnamentDivider';
 
-export const PublicationsPage: React.FC = () => {
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
-      {/* Header Banner */}
-      <MouldedHeader as="header">
-        <span className="text-sm font-mono text-lamp tracking-wide block mb-2">
-          Publications
-        </span>
-        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-lamp mb-2">
-          IEEE Research Publications
-        </h1>
-        <p className="text-base font-sans text-lamp max-w-2xl leading-relaxed">
-          Two IEEE conference papers. Open a paper for its summary, results and citation.
-        </p>
-      </MouldedHeader>
+// Run 1: plain list in the new layout. Styling polish is Run 2.
+export const PublicationsPage: React.FC = () => (
+  <>
+    <section className="page-x pt-22">
+      <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium tracking-[-0.01em]">
+        Publications
+      </h1>
+      <ul className="mt-12 mb-0 max-w-[720px] list-none p-0">
+        {PUBLICATIONS.map((pub) => (
+          <li key={pub.id} className="border-b border-hairline py-8">
+            <h2 className="m-0 font-heading text-2xl leading-[1.3] font-medium">{pub.title}</h2>
+            <p className="mt-2 mb-0 text-[15px] text-muted">
+              {pub.authorRole} · {pub.conference} · {pub.publishedDate}
+            </p>
+            {pub.authors && <p className="mt-1 mb-0 text-[15px] text-muted">{pub.authors.join(', ')}</p>}
+            <p className="mt-3 mb-0 text-body">{pub.summary}</p>
+            {pub.doi && (
+              <p className="mt-2 mb-0 text-base">
+                <a
+                  href={`https://doi.org/${pub.doi}`}
+                  className="inline-block py-2.5 text-link underline-inset hover:text-link-hover"
+                >
+                  DOI {pub.doi}
+                </a>
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
 
-      <OrnamentDivider />
-
-      {/* Publications Cards Grid */}
-      <section aria-label="Publications Catalog" className="space-y-6">
-        <div className="flex items-center justify-between text-sm font-mono border-b border-edge pb-3">
-          <div className="flex items-center space-x-2 text-lamp">
-            <span className="w-2.5 h-2.5 rounded-full bg-lamp" />
-            <span className="font-bold tracking-wide">
-              Published IEEE papers ({PUBLICATIONS.length})
-            </span>
-          </div>
-          <span className="text-lamp">
-            Showing {PUBLICATIONS.length} of {PUBLICATIONS.length}
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {PUBLICATIONS.map((pub) => (
-            <ParchmentPublicationCard key={pub.id} publication={pub} />
-          ))}
-        </div>
-      </section>
-    </div>
-  );
-};
+    <Footer left={<span>Jammu, India</span>} />
+  </>
+);
 
 export default PublicationsPage;

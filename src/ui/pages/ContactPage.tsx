@@ -1,115 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Footer } from '../components/Footer';
+import { ShortRule } from '../components/ShortRule';
 import { PERSONAL_INFO } from '../../data/manuscript_config';
-import { MouldedHeader } from '../components/MouldedHeader';
-import { OrnamentDivider } from '../components/OrnamentDivider';
 
-type CopyStatus = 'idle' | 'copied' | 'manual';
-
-export const ContactPage: React.FC = () => {
-  const [copyStatus, setCopyStatus] = useState<CopyStatus>('idle');
-  const emailRef = useRef<HTMLSpanElement>(null);
-  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => () => {
-    if (resetTimer.current) clearTimeout(resetTimer.current);
-  }, []);
-
-  // Clipboard unavailable or refused: select the address so the visitor can copy it by hand
-  const selectEmailText = () => {
-    const node = emailRef.current;
-    const selection = window.getSelection();
-    if (!node || !selection) return;
-    const range = document.createRange();
-    range.selectNodeContents(node);
-    selection.removeAllRanges();
-    selection.addRange(range);
-  };
-
-  const handleCopy = async () => {
-    if (resetTimer.current) clearTimeout(resetTimer.current);
-    try {
-      if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
-      await navigator.clipboard.writeText(PERSONAL_INFO.email);
-      setCopyStatus('copied');
-      resetTimer.current = setTimeout(() => setCopyStatus('idle'), 2000);
-    } catch {
-      selectEmailText();
-      setCopyStatus('manual');
-    }
-  };
-
-  const linkClassName =
-    'text-sm font-mono text-lamp underline underline-offset-4';
-
-  return (
-    <div className="space-y-6 max-w-4xl mx-auto">
-      <MouldedHeader as="header">
-        <span className="text-sm font-mono text-lamp tracking-wide block mb-2">
-          Contact
-        </span>
-        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-lamp">
-          Get in touch
-        </h1>
-      </MouldedHeader>
-
-      <OrnamentDivider />
-
-      <div className="w-full parchment-card p-6 rounded-lg relative overflow-hidden">
-        <p className="text-base font-sans text-lamp leading-relaxed">
-          Email is the best way to reach me. I'm open to remote machine learning and software roles.
-        </p>
-
-        <p className="mt-4 bg-box px-4 py-3 rounded-lg border border-edge well room-chip text-lg font-mono text-lamp break-all">
-          <span ref={emailRef}>{PERSONAL_INFO.email}</span>
-        </p>
-
-        <div className="flex flex-wrap items-center gap-3 pt-4">
-          <button
-            type="button"
-            onClick={handleCopy}
-            className="px-5 py-2.5 bg-sunset text-ink font-mono font-bold text-sm tracking-wide rounded pressable press-shift cursor-pointer shrink-0"
-          >
-            {copyStatus === 'copied' ? 'Copied' : 'Copy email'}
-          </button>
-          <a
-            href={`mailto:${PERSONAL_INFO.email}`}
-            className="text-lamp font-mono text-sm tracking-wide underline underline-offset-4 shrink-0"
-          >
-            Open in mail app
-          </a>
-          {/* Button label already shows "Copied"; keep that announcement screen-reader only */}
-          <span
-            aria-live="polite"
-            className={`text-sm font-mono text-lamp ${copyStatus === 'copied' ? 'sr-only' : ''}`}
-          >
-            {copyStatus === 'copied' && 'Copied'}
-            {copyStatus === 'manual' && 'Press Ctrl+C to copy'}
-          </span>
-        </div>
-
-        <div className="flex flex-wrap gap-4 pt-4 mt-4 border-t border-edge">
-          <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" className={linkClassName}>
-            LinkedIn
-          </a>
-          <a
-            href={`https://github.com/${PERSONAL_INFO.githubUser}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={linkClassName}
-          >
-            GitHub
-          </a>
-          <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className={linkClassName}>
-            Resume / CV
-          </a>
-        </div>
-      </div>
-
-      <p className="text-sm font-mono text-lamp">
-        This site doesn't collect or store personal data. Map tiles load from OpenStreetMap and GitHub stats from GitHub's API.
+export const ContactPage: React.FC = () => (
+  <>
+    <section className="page-x pt-30">
+      <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium tracking-[-0.01em]">
+        Get in touch
+      </h1>
+      <p className="mt-7 mb-0 max-w-[520px] text-lg text-body">
+        Write to me about roles, research or the projects here.
       </p>
-    </div>
-  );
-};
+      <p className="mt-14 mb-0 font-heading text-[clamp(24px,3.6vw,40px)] leading-[1.3] font-medium">
+        <a
+          href={`mailto:${PERSONAL_INFO.email}`}
+          className="inline-block max-w-full py-2 text-link underline-inset [overflow-wrap:anywhere] hover:text-link-hover"
+        >
+          {PERSONAL_INFO.email}
+        </a>
+      </p>
+      <ShortRule className="mt-18" />
+      <p className="mt-6 mb-0 flex flex-wrap gap-x-9 text-base text-body">
+        <a href={`https://github.com/${PERSONAL_INFO.githubUser}`} className="inline-block py-2.5">GitHub</a>
+        <span className="inline-block py-2.5 text-muted">Jammu, India</span>
+      </p>
+    </section>
+
+    <Footer className="mt-40" showLinks={false} left={<Link to="/" className="inline-block py-2">Back to projects</Link>} />
+  </>
+);
 
 export default ContactPage;

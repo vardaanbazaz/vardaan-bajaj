@@ -1,41 +1,42 @@
-import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
   children: ReactNode;
-  fallback?: ReactNode;
 }
 
 interface State {
   hasError: boolean;
-  error: Error | null;
 }
 
+// Catches render errors in the routed page. SiteLayout keys it by pathname, so navigating away resets it.
 export class ErrorBoundary extends Component<Props, State> {
-  public state: State = {
-    hasError: false,
-    error: null,
-  };
+  public state: State = { hasError: false };
 
-  public static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, error };
+  public static getDerivedStateFromError(): State {
+    return { hasError: true };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('[ErrorBoundary Caught Error]', error, errorInfo);
+    console.error('[ErrorBoundary]', error, errorInfo);
   }
 
   public render() {
     if (this.state.hasError) {
-      if (this.props.fallback) {
-        return this.props.fallback;
-      }
       return (
-        <div className="p-3 bg-box border border-edge rounded text-lamp font-mono text-sm">
-          Something went wrong loading this section.
-        </div>
+        <section className="page-x pt-22 text-body">
+          <p className="m-0">Something went wrong loading this page.</p>
+          <p className="mt-3 mb-0">
+            <Link to="/" className="inline-block py-2.5 text-link underline-inset hover:text-link-hover">
+              Go to the home page
+            </Link>
+          </p>
+        </section>
       );
     }
 
     return this.props.children;
   }
 }
+
+export default ErrorBoundary;

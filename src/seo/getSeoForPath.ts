@@ -1,4 +1,4 @@
-import { DOSSIERS, PUBLICATIONS, PERSONAL_INFO } from '../data/manuscript_config';
+import { PERSONAL_INFO } from '../data/manuscript_config';
 
 export const SITE_ORIGIN = 'https://vardaan-bajaj.vercel.app';
 export const DEFAULT_IMAGE = `${SITE_ORIGIN}/avatar.jpg`;
@@ -68,13 +68,21 @@ const profilePageSchema = {
 // Every canonical route that gets a prerendered HTML file at build time
 export const PRERENDER_ROUTES: string[] = [
   '/',
-  '/dossiers',
-  ...DOSSIERS.filter((d) => d.route).map((d) => `/dossier/${d.id}`),
-  '/map',
+  '/projects',
+  '/projects/employee-attrition-analysis',
+  '/experience',
   '/publications',
-  ...PUBLICATIONS.filter((p) => p.route).map((p) => `/publications/${p.id}`),
   '/contact',
 ];
+
+// Legacy paths -> canonical path (the router and vercel.json redirect these)
+const LEGACY_CANONICAL: Record<string, string> = {
+  '/dossiers': '/projects',
+  '/dossier/attrition': '/projects/employee-attrition-analysis',
+  '/employee-attrition': '/projects/employee-attrition-analysis',
+  '/map': '/experience',
+  '/publication': '/publications',
+};
 
 // Route -> head metadata. Shared by SeoHead (runtime) and scripts/prerender.mjs (build time).
 export const getSeoForPath = (pathname: string): SeoData => {
@@ -89,48 +97,39 @@ export const getSeoForPath = (pathname: string): SeoData => {
   let ogType = 'website';
   let structuredData: object | object[] = [];
 
-  // Route-specific metadata mapping
   if (normalizedPathname === '/') {
-    title = DEFAULT_TITLE;
-    description = DEFAULT_DESCRIPTION;
     canonicalPath = '/';
     structuredData = [personSchema, websiteSchema, profilePageSchema];
-  } else if (normalizedPathname === '/dossiers') {
-    title = `Engineering Projects | ${PERSONAL_INFO.name}`;
-    description = `Projects by Vardaan Bajaj: completed work and projects in progress, with write-ups and source code.`;
-    canonicalPath = '/dossiers';
+  } else if (normalizedPathname === '/projects') {
+    title = `Projects | ${PERSONAL_INFO.name}`;
+    description = 'Projects by Vardaan Bajaj: DataVista, NeuroInsight AI and Employee Attrition Analysis.';
     structuredData = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
-      name: `Engineering Projects by ${PERSONAL_INFO.name}`,
-      url: `${SITE_ORIGIN}/dossiers`,
+      name: `Projects by ${PERSONAL_INFO.name}`,
+      url: `${SITE_ORIGIN}/projects`,
       description,
     };
-  } else if (normalizedPathname.startsWith('/dossier/')) {
-    const dossierId = normalizedPathname.replace('/dossier/', '');
-    const dossier = DOSSIERS.find((d) => d.id === dossierId);
-    if (dossier) {
-      title = `${dossier.title} — Project | ${PERSONAL_INFO.name}`;
-      description = `${dossier.subtitle}. ${dossier.summary}`;
-      canonicalPath = `/dossier/${dossier.id}`;
-      ogType = 'article';
-      structuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'TechArticle',
-        headline: dossier.title,
-        description: dossier.summary,
-        url: `${SITE_ORIGIN}/dossier/${dossier.id}`,
-        author: {
-          '@type': 'Person',
-          name: PERSONAL_INFO.name,
-        },
-        sameAs: dossier.githubUrl,
-      };
-    }
+  } else if (normalizedPathname === '/projects/employee-attrition-analysis') {
+    title = `Employee Attrition Analysis — Case study | ${PERSONAL_INFO.name}`;
+    description = 'Four models on IBM’s fictional HR dataset, compared on the right metric and explained with SHAP.';
+    ogType = 'article';
+    structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: 'Employee Attrition Analysis',
+      description,
+      url: `${SITE_ORIGIN}${canonicalPath}`,
+      author: { '@type': 'Person', name: PERSONAL_INFO.name },
+      sameAs: 'https://github.com/vardaanbazaz/employee-attrition-analysis',
+    };
+  } else if (normalizedPathname === '/experience') {
+    title = `Experience | ${PERSONAL_INFO.name}`;
+    description = 'Work experience of Vardaan Bajaj: research and development internship at DRDO and web/app development internship at AgryBin.';
+    structuredData = personSchema;
   } else if (normalizedPathname === '/publications') {
     title = `IEEE Research Publications | ${PERSONAL_INFO.name}`;
     description = `Two IEEE conference papers by Vardaan Bajaj: aerial computer vision (first author, CICT 2025) and an object-oriented web page linker (IATMSI 2024).`;
-    canonicalPath = '/publications';
     structuredData = {
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
@@ -138,54 +137,15 @@ export const getSeoForPath = (pathname: string): SeoData => {
       url: `${SITE_ORIGIN}/publications`,
       description,
     };
-  } else if (normalizedPathname.startsWith('/publications/')) {
-    const pubId = normalizedPathname.replace('/publications/', '');
-    const pub = PUBLICATIONS.find((p) => p.id === pubId && p.route);
-    if (pub) {
-      title = `${pub.title} — IEEE Publication | ${PERSONAL_INFO.name}`;
-      description = pub.seoDescription || `${pub.subtitle || pub.title}. ${pub.summary}`;
-      canonicalPath = `/publications/${pub.id}`;
-      ogType = 'article';
-      structuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'ScholarlyArticle',
-        headline: pub.title,
-        name: pub.title,
-        author: (pub.authors || [PERSONAL_INFO.name]).map((authorName) => ({
-          '@type': 'Person',
-          name: authorName,
-        })),
-        datePublished: pub.datePublishedIso,
-        publication: {
-          '@type': 'PublicationEvent',
-          name: pub.conference,
-        },
-        sameAs: pub.doi ? `https://doi.org/${pub.doi}` : pub.ieeeUrl,
-        url: `${SITE_ORIGIN}/publications/${pub.id}`,
-      };
-    }
-  } else if (normalizedPathname === '/map') {
-    title = `Work & Academic Experience Map | ${PERSONAL_INFO.name}`;
-    description = `Interactive geographic map displaying engineering internships, research roles, and academic locations of Vardaan Bajaj across India.`;
-    canonicalPath = '/map';
-    structuredData = personSchema;
   } else if (normalizedPathname === '/contact') {
     title = `Contact | ${PERSONAL_INFO.name}`;
     description = `Contact Vardaan Bajaj by email. Open to remote machine learning and software roles.`;
-    canonicalPath = '/contact';
     structuredData = personSchema;
-  } else if (normalizedPathname === '/datavista') {
-    canonicalPath = '/dossier/datavista';
-  } else if (normalizedPathname === '/neuroinsight-ai') {
-    canonicalPath = '/dossier/neuroinsight-ai';
-  } else if (normalizedPathname === '/employee-attrition') {
-    canonicalPath = '/dossier/attrition';
-  } else if (normalizedPathname === '/kanbanlight') {
-    canonicalPath = '/dossier/kanbanlight';
-  } else if (normalizedPathname.startsWith('/publication/')) {
-    const pubId = normalizedPathname.replace('/publication/', '');
-    canonicalPath = pubId ? `/publications/${pubId}` : '/publications';
-  } else if (normalizedPathname === '/publication') {
+  } else if (LEGACY_CANONICAL[normalizedPathname]) {
+    canonicalPath = LEGACY_CANONICAL[normalizedPathname];
+  } else if (normalizedPathname.startsWith('/dossier/')) {
+    canonicalPath = '/';
+  } else if (normalizedPathname.startsWith('/publications/') || normalizedPathname.startsWith('/publication/')) {
     canonicalPath = '/publications';
   }
 
