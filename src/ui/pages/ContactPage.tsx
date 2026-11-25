@@ -28,7 +28,7 @@ export const ContactPage: React.FC = () => (
       </p>
     </section>
 
-    <Footer className="mt-40" showLinks={false} left={<Link to="/" className="inline-block py-2">Back to projects</Link>} />
+    <Footer className="mt-40" showLinks={false} left={<Link to="/" className="inline-block py-2">Back to home</Link>} />
   </>
 );
 

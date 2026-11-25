@@ -11,8 +11,10 @@ export const SiteLayout: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-bg text-text">
       <Grain />
-      {/* Content sits above the grain, as in the tile (figures stay clean) */}
-      <div className="relative z-10">
+      {/* Content sits above the grain, as in the tile (figures stay clean).
+          Capped so wide screens do not stretch the layout: the content box inside the page-x
+          gutters (120px left, 72px right at full width) is at most 1200px, centred. */}
+      <div className="relative z-10 mx-auto max-w-[1392px]">
         <Header />
         <main>
           {/* Keyed by path so an error on one page does not stick after navigating away */}

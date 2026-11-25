@@ -1,6 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Footer } from '../components/Footer';
+import { caseStudyPathFor } from '../publicationPaths';
 import { PUBLICATIONS } from '../../data/manuscript_config';
+
+const linkClass = 'inline-block py-2.5 text-link underline-inset hover:text-link-hover';
+
+// Papers with a case study link to it first and to IEEE Xplore second; the rest stay a card with the DOI only
+const PublicationLinks: React.FC<{ id: string; doi?: string; ieeeUrl?: string }> = ({ id, doi, ieeeUrl }) => {
+  const caseStudyPath = caseStudyPathFor(id);
+  if (!caseStudyPath) {
+    return doi ? (
+      <p className="mt-2 mb-0 text-base">
+        <a href={`https://doi.org/${doi}`} className={linkClass}>DOI {doi}</a>
+      </p>
+    ) : null;
+  }
+  return (
+    <p className="mt-2 mb-0 flex flex-wrap gap-x-9 text-base">
+      <Link to={caseStudyPath} className={linkClass}>Read the case study</Link>
+      {ieeeUrl && <a href={ieeeUrl} className={linkClass}>IEEE Xplore</a>}
+      {doi && <a href={`https://doi.org/${doi}`} className={linkClass}>DOI {doi}</a>}
+    </p>
+  );
+};
 
 export const PublicationsPage: React.FC = () => (
   <>
@@ -17,16 +40,7 @@ export const PublicationsPage: React.FC = () => (
             </p>
             {pub.authors && <p className="mt-1 mb-0 text-[15px] text-muted">{pub.authors.join(', ')}</p>}
             <p className="mt-3.5 mb-0 text-body">{pub.summary}</p>
-            {pub.doi && (
-              <p className="mt-2 mb-0 text-base">
-                <a
-                  href={`https://doi.org/${pub.doi}`}
-                  className="inline-block py-2.5 text-link underline-inset hover:text-link-hover"
-                >
-                  DOI {pub.doi}
-                </a>
-              </p>
-            )}
+            <PublicationLinks id={pub.id} doi={pub.doi} ieeeUrl={pub.ieeeUrl} />
           </li>
         ))}
       </ul>

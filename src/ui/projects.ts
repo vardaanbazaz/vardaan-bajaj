@@ -8,19 +8,22 @@ export interface ProjectEntry {
   title: string;
   summary: string;
   facts: string;
-  // internal: client-side route; otherwise a plain external link
-  action: { label: string; href: string; internal?: boolean };
+  // First link is the main one. internal: client-side route; otherwise a plain external link
+  actions: { label: string; href: string; internal?: boolean }[];
 }
 
 export const PROJECTS: ProjectEntry[] = [
   {
     id: 'datavista',
     image: IMAGES.datavistaThumb,
-    alt: 'DataVista overview screen showing row and column counts, automated insights and a numeric summary table',
+    alt: 'DataVista overview screen showing the row and column counts',
     title: 'DataVista',
     summary: 'Browser-only analytics. Import a CSV or Excel file, clean it, explore it and pivot it, with no backend.',
     facts: '1,746 unit tests and 80 end-to-end tests · 11 AI providers · MIT licence',
-    action: { label: 'Open the live demo', href: 'https://vardaanbazaz.github.io/datavista/' },
+    actions: [
+      { label: 'Read the case study', href: '/projects/datavista', internal: true },
+      { label: 'Open the live demo', href: 'https://vardaanbazaz.github.io/datavista/' },
+    ],
   },
   {
     id: 'neuroinsight-ai',
@@ -29,8 +32,8 @@ export const PROJECTS: ProjectEntry[] = [
     title: 'NeuroInsight AI',
     summary:
       'Telling Parkinson’s voice recordings from healthy ones, with cross-validation grouped by subject so no person appears in both training and test.',
-    facts: 'One engineered index scores 0.833 mean AUC; the raw 22 features score 0.734',
-    action: { label: 'View on GitHub', href: 'https://github.com/vardaanbazaz/neuroinsight-ai' },
+    facts: 'One engineered index, VIC, scores 0.833 mean AUC against 0.734 for the raw 22 features, but it compresses its ingredients (parent features 0.834)',
+    actions: [{ label: 'Read the case study', href: '/projects/neuroinsight-ai', internal: true }],
   },
   {
     id: 'attrition',
@@ -39,7 +42,7 @@ export const PROJECTS: ProjectEntry[] = [
     title: 'Employee Attrition Analysis',
     summary: 'Four models on IBM’s fictional HR data, chosen on cross-validated PR-AUC and explained with SHAP.',
     facts: 'XGBoost and Logistic Regression tie on the selection metric, and the case study shows why that matters',
-    action: { label: 'Read the case study', href: '/projects/employee-attrition-analysis', internal: true },
+    actions: [{ label: 'Read the case study', href: '/projects/employee-attrition-analysis', internal: true }],
   },
 ];
 

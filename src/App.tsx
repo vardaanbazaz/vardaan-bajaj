@@ -4,9 +4,12 @@ import { SiteLayout } from './ui/layouts/SiteLayout';
 import { SeoHead } from './ui/components/SeoHead';
 import HubPage from './ui/pages/HubPage';
 import AttritionCaseStudyPage from './ui/pages/AttritionCaseStudyPage';
+import DataVistaCaseStudyPage from './ui/pages/DataVistaCaseStudyPage';
+import NeuroInsightCaseStudyPage from './ui/pages/NeuroInsightCaseStudyPage';
 import ContactPage from './ui/pages/ContactPage';
 import ExperiencePage from './ui/pages/ExperiencePage';
 import PublicationsPage from './ui/pages/PublicationsPage';
+import VSurveillanceCaseStudyPage from './ui/pages/VSurveillanceCaseStudyPage';
 import ProjectsPage from './ui/pages/ProjectsPage';
 import { LEGACY_REDIRECTS } from './legacyRedirects';
 
@@ -31,8 +34,11 @@ export const App: React.FC = () => (
         <Route index element={<HubPage />} />
         <Route path="projects" element={<ProjectsPage />} />
         <Route path="projects/employee-attrition-analysis" element={<AttritionCaseStudyPage />} />
+        <Route path="projects/datavista" element={<DataVistaCaseStudyPage />} />
+        <Route path="projects/neuroinsight-ai" element={<NeuroInsightCaseStudyPage />} />
         <Route path="experience" element={<ExperiencePage />} />
         <Route path="publications" element={<PublicationsPage />} />
+        <Route path="publications/v-surveillance" element={<VSurveillanceCaseStudyPage />} />
         <Route path="contact" element={<ContactPage />} />
 
         {/* Legacy URLs: one table in legacyRedirects.ts, mirrored in vercel.json */}

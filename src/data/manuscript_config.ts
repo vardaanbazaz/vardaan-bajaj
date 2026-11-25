@@ -68,7 +68,7 @@ export const PERSONAL_INFO: PersonalInfo = {
   email: "vardaanbazaz@gmail.com",
   linkedin: "https://www.linkedin.com/in/vardaan-bajaj-a03605254/",
   resumeUrl: "/resume.pdf",
-  location: "Jammu, India · open to remote",
+  location: "Jammu, India · open to opportunities in machine learning and software",
 };
 
 export const PUBLICATIONS: PublicationRecord[] = [

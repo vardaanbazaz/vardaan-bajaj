@@ -1,11 +1,14 @@
-import { PERSONAL_INFO } from '../data/manuscript_config';
+import { PERSONAL_INFO, PUBLICATIONS } from '../data/manuscript_config';
 import { legacyRedirectFor } from '../legacyRedirects';
+import { VSURVEILLANCE_PATH } from '../ui/publicationPaths';
+
+const vSurveillance = PUBLICATIONS.find((p) => p.id === 'surveillance');
 
 export const SITE_ORIGIN = 'https://vardaan-bajaj.vercel.app';
 export const DEFAULT_IMAGE = `${SITE_ORIGIN}/avatar.jpg`;
 export const DEFAULT_TITLE = `${PERSONAL_INFO.name} | ${PERSONAL_INFO.role}`;
 export const DEFAULT_DESCRIPTION =
-  'Vardaan Bajaj, machine learning and software engineer. Computer vision, full-stack web and C/DSP systems. First author of an IEEE CICT 2025 paper. Based in Jammu, India; open to remote roles.';
+  'Vardaan Bajaj, machine learning and software engineer. Computer vision, full-stack web and C/DSP systems. First author of an IEEE CICT 2025 paper. Based in Jammu, India; open to opportunities in machine learning and software.';
 
 export interface SeoData {
   title: string;
@@ -71,8 +74,11 @@ export const PRERENDER_ROUTES: string[] = [
   '/',
   '/projects',
   '/projects/employee-attrition-analysis',
+  '/projects/datavista',
+  '/projects/neuroinsight-ai',
   '/experience',
   '/publications',
+  '/publications/v-surveillance',
   '/contact',
 ];
 
@@ -115,6 +121,32 @@ export const getSeoForPath = (pathname: string): SeoData => {
       author: { '@type': 'Person', name: PERSONAL_INFO.name },
       sameAs: 'https://github.com/vardaanbazaz/employee-attrition-analysis',
     };
+  } else if (normalizedPathname === '/projects/datavista') {
+    title = `DataVista case study | ${PERSONAL_INFO.name}`;
+    description = 'Browser-only analytics: import a CSV or Excel file, clean it, explore it, pivot it and chart it, with an optional AI copilot and no backend.';
+    ogType = 'article';
+    structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: 'DataVista',
+      description,
+      url: `${SITE_ORIGIN}${canonicalPath}`,
+      author: { '@type': 'Person', name: PERSONAL_INFO.name },
+      sameAs: 'https://github.com/vardaanbazaz/datavista',
+    };
+  } else if (normalizedPathname === '/projects/neuroinsight-ai') {
+    title = `NeuroInsight AI case study | ${PERSONAL_INFO.name}`;
+    description = 'Parkinson’s disease classification from voice recordings, evaluated with subject-grouped cross-validation. Research only, not a diagnostic tool.';
+    ogType = 'article';
+    structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: 'NeuroInsight AI',
+      description,
+      url: `${SITE_ORIGIN}${canonicalPath}`,
+      author: { '@type': 'Person', name: PERSONAL_INFO.name },
+      sameAs: 'https://github.com/vardaanbazaz/neuroinsight-ai',
+    };
   } else if (normalizedPathname === '/experience') {
     title = `Experience | ${PERSONAL_INFO.name}`;
     description = 'Work experience of Vardaan Bajaj: research and development internship at DRDO and web/app development internship at AgryBin.';
@@ -129,9 +161,24 @@ export const getSeoForPath = (pathname: string): SeoData => {
       url: `${SITE_ORIGIN}/publications`,
       description,
     };
+  } else if (normalizedPathname === VSURVEILLANCE_PATH && vSurveillance) {
+    title = `V-Surveillance case study | ${PERSONAL_INFO.name}`;
+    description = vSurveillance.seoDescription ?? vSurveillance.summary;
+    ogType = 'article';
+    structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      headline: vSurveillance.title,
+      description,
+      url: `${SITE_ORIGIN}${canonicalPath}`,
+      author: (vSurveillance.authors ?? []).map((name) => ({ '@type': 'Person', name })),
+      ...(vSurveillance.year ? { datePublished: vSurveillance.datePublishedIso ?? vSurveillance.year } : {}),
+      ...(vSurveillance.doi ? { identifier: `https://doi.org/${vSurveillance.doi}` } : {}),
+      ...(vSurveillance.ieeeUrl ? { sameAs: vSurveillance.ieeeUrl } : {}),
+    };
   } else if (normalizedPathname === '/contact') {
     title = `Contact | ${PERSONAL_INFO.name}`;
-    description = `Contact Vardaan Bajaj by email. Open to remote machine learning and software roles.`;
+    description = `Contact Vardaan Bajaj by email. Open to opportunities in machine learning and software.`;
     structuredData = personSchema;
   } else {
     // Legacy URLs point their canonical at the page they redirect to

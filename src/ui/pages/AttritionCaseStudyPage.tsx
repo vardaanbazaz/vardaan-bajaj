@@ -6,14 +6,13 @@ import { SectionHeading } from '../components/SectionHeading';
 import { IMAGES } from '../images';
 
 const sectionClass = 'page-x flex flex-wrap items-start gap-x-18 gap-y-10 pt-28';
-const h2Class = 'm-0 font-heading text-[30px] leading-[1.3] font-medium';
 const bodyClass = 'mt-4 mb-0 text-body';
 
 export const AttritionCaseStudyPage: React.FC = () => (
   <>
     <section className="page-x pt-18">
       <p className="mt-0 mb-6 text-sm text-muted">
-        <Link to="/" className="inline-block py-2">Projects</Link> / Employee Attrition Analysis
+        <Link to="/projects" className="inline-block py-2">Projects</Link> / Employee Attrition Analysis
       </p>
       <h1 className="m-0 max-w-[760px] font-heading text-[clamp(34px,4.6vw,54px)] leading-[1.2] font-medium">
         Employee Attrition Analysis
@@ -51,7 +50,7 @@ export const AttritionCaseStudyPage: React.FC = () => (
 
     <section className="page-x flex flex-wrap items-start gap-x-18 gap-y-10 pt-24">
       <div className="min-w-0 flex-[0_1_520px]">
-        <h2 className={h2Class}>Accuracy flatters the dummy</h2>
+        <SectionHeading>Accuracy flatters the dummy</SectionHeading>
         <p className={bodyClass}>
           Always predicting “stays” already scores 83.9% accuracy on the test set, so the models are judged on PR-AUC, with the choice made on the training split before the test set is touched.
         </p>
@@ -71,7 +70,7 @@ export const AttritionCaseStudyPage: React.FC = () => (
 
     <section className={sectionClass}>
       <div className="min-w-0 flex-[0_1_520px]">
-        <h2 className={h2Class}>The trade-off is recall</h2>
+        <SectionHeading>The trade-off is recall</SectionHeading>
         <p className={bodyClass}>
           At the default 0.5 threshold XGBoost has precision 0.679 and recall 0.268. Logistic Regression has 0.396 and 0.535. Same selection score, very different behaviour.
         </p>
@@ -91,7 +90,7 @@ export const AttritionCaseStudyPage: React.FC = () => (
 
     <section className={sectionClass}>
       <div className="min-w-0 flex-[0_1_520px]">
-        <h2 className={h2Class}>What the model leans on</h2>
+        <SectionHeading>What the model leans on</SectionHeading>
         <p className={bodyClass}>
           Overtime, stock option level and years with the current manager rank highest by mean absolute SHAP value.
         </p>
@@ -116,7 +115,7 @@ export const AttritionCaseStudyPage: React.FC = () => (
       </p>
     </section>
 
-    <Footer className="mt-24" left={<Link to="/" className="inline-block py-2">Back to all projects</Link>} />
+    <Footer className="mt-24" left={<Link to="/projects" className="inline-block py-2">Back to all projects</Link>} />
   </>
 );
 

@@ -6,6 +6,7 @@ import { ProjectRow, linkClass } from '../components/ProjectRow';
 import { SectionHeading } from '../components/SectionHeading';
 import { IMAGES } from '../images';
 import { projectById } from '../projects';
+import { VSURVEILLANCE_PATH } from '../publicationPaths';
 import { MAP_DATA, PERSONAL_INFO, PUBLICATIONS } from '../../data/manuscript_config';
 
 // Looked up by id, not array position, so reordering the data cannot swap what the hub shows
@@ -30,7 +31,7 @@ export const HubPage: React.FC = () => (
         <p className="mt-8 mb-0 max-w-[520px] text-lg text-body">
           I like thinking things through, sometimes from my own imagination, and sometimes about how existing work could be made more durable, efficient or better.
         </p>
-        <p className="mt-4 mb-0 max-w-[520px] text-base text-muted">Open to remote machine learning and software roles.</p>
+        <p className="mt-4 mb-0 max-w-[520px] text-base text-muted">Open to opportunities in machine learning and software.</p>
         <p className="mt-9 mb-0 flex flex-wrap gap-x-9 text-[17px]">
           <a href="#work" className={linkClass}>See selected work</a>
           <Link to="/contact" className="inline-block py-2.5">Get in touch</Link>
@@ -66,10 +67,11 @@ export const HubPage: React.FC = () => (
           </p>
           <p className="mt-3.5 mb-0 text-body">{vSurveillance.summary}</p>
           <p className="mt-3 mb-0 flex flex-wrap gap-x-9 text-base">
+            <Link to={VSURVEILLANCE_PATH} className={linkClass}>Read the case study</Link>
+            {vSurveillance.ieeeUrl && <a href={vSurveillance.ieeeUrl} className={linkClass}>IEEE Xplore</a>}
             {vSurveillance.doi && (
               <a href={`https://doi.org/${vSurveillance.doi}`} className={linkClass}>DOI {vSurveillance.doi}</a>
             )}
-            {vSurveillance.ieeeUrl && <a href={vSurveillance.ieeeUrl} className={linkClass}>IEEE Xplore</a>}
           </p>
         </article>
         <AllLink to="/publications">All publications</AllLink>
