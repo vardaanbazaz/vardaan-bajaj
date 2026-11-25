@@ -90,7 +90,7 @@ const DATASETS: { name: string; text: string }[] = [
   },
 ];
 
-// Paper Section IV, the same for each of the four models
+// Paper Section IV
 const TRAINING: [string, string][] = [
   ['Model', 'YOLO12m'],
   ['Epochs', '25'],
@@ -103,6 +103,41 @@ const TRAINING: [string, string][] = [
   ['Weight decay', '0.0010'],
   ['Warmup epochs', '3'],
   ['Patience', '50'],
+];
+
+// Short general definitions of the named techniques and metrics. No claims about this paper's results.
+const TERMS: [string, string][] = [
+  ['UAV', 'Unmanned aerial vehicle: an aircraft flown with no pilot on board, such as a drone.'],
+  [
+    'ESRGAN',
+    'Enhanced Super-Resolution Generative Adversarial Network. A neural network that upscales an image and adds plausible fine detail, trained partly against a second network that tries to tell its output from real images.',
+  ],
+  [
+    'SAHI',
+    'Slicing Aided Hyper Inference. A detector is run on overlapping slices of a large image, and the detections are merged back into full-image coordinates, which helps with small objects.',
+  ],
+  [
+    'YOLO12m',
+    'The medium-sized model of YOLO12, a version of the YOLO ("You Only Look Once") family of object detectors. YOLO detectors predict boxes and classes in a single pass over the image.',
+  ],
+  [
+    'Non-maximum suppression',
+    'A step that removes duplicate detections. Among boxes that overlap heavily, it keeps the one with the highest score and drops the rest.',
+  ],
+  [
+    'DeepSORT',
+    'A multi-object tracker. It links detections across frames using a Kalman filter for motion and a learned appearance descriptor, and gives each object a track ID.',
+  ],
+  ['Precision', 'Of the boxes the detector predicts, the share that match a real object.'],
+  ['Recall', 'Of the real objects in the images, the share the detector finds.'],
+  [
+    'mAP@50',
+    'Mean average precision, where a predicted box counts as correct if its intersection over union (IoU) with the true box is at least 0.50. Average precision summarises the precision–recall curve for one class, and the mean is taken over classes.',
+  ],
+  [
+    'mAP@50:95',
+    'mAP averaged over IoU thresholds from 0.50 to 0.95 in steps of 0.05. It rewards tighter boxes, so it is usually lower than mAP@50.',
+  ],
 ];
 
 // Paper Table II
@@ -125,7 +160,7 @@ const ResultsTable: React.FC = () => (
   <div className="mt-8 max-w-full overflow-x-auto">
     <table className="border-collapse text-[15px] leading-[1.5]">
       <caption className="mb-3 text-left text-sm text-muted">
-        Detection results, one model per dataset (paper Table II).
+        Detection results per dataset (paper Table II).
       </caption>
       <thead>
         <tr className="text-muted">
@@ -247,12 +282,6 @@ export const VSurveillanceCaseStudyPage: React.FC = () => {
         ]}
       />
 
-      <section className="page-x pt-10">
-        <p className="m-0 max-w-[640px] text-body">
-          Written with Amit Kumar and Shrivishal Tripathi. Amit and I worked on it together, on and off, with no fixed split of tasks.
-        </p>
-      </section>
-
       <section className="page-x pt-24">
         <SectionHeading>The problem</SectionHeading>
         <div className="max-w-[640px]">
@@ -290,9 +319,10 @@ export const VSurveillanceCaseStudyPage: React.FC = () => {
         <SectionHeading>Training</SectionHeading>
         <div className="max-w-[640px]">
           <p className={bodyClass}>
-            We trained one YOLO12m model per dataset, four in all, and evaluated each model on its own dataset. All four used the same settings.
+            The paper reports training YOLO12m for 25 epochs with mosaic augmentation and label smoothing, using SGD. It describes the four datasets as a combined training strategy and reports the metrics for each dataset separately (Table II).
           </p>
-          <dl className="mt-6 mb-0 grid grid-cols-[auto_1fr] gap-x-10 gap-y-2 text-[15px] leading-[1.6]">
+          <p className="mt-6 mb-0 text-sm text-muted">Hyperparameters reported in the paper.</p>
+          <dl className="mt-3 mb-0 grid grid-cols-[auto_1fr] gap-x-10 gap-y-2 text-[15px] leading-[1.6]">
             {TRAINING.map(([k, v]) => (
               <React.Fragment key={k}>
                 <dt className="m-0 text-muted">{k}</dt>
@@ -304,10 +334,19 @@ export const VSurveillanceCaseStudyPage: React.FC = () => {
       </section>
 
       <section className="page-x pt-28">
+        <SectionHeading>Terms used here</SectionHeading>
+        <dl className="mt-6 mb-0 max-w-[640px]">
+          {TERMS.map(([term, definition]) => (
+            <div key={term} className="mt-5 first:mt-0">
+              <dt className="m-0 text-[17px] leading-[1.5] font-medium">{term}</dt>
+              <dd className="mt-1 mb-0 ml-0 text-body">{definition}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="page-x pt-28">
         <SectionHeading>Results</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>Each row is a separate model, evaluated on its own dataset.</p>
-        </div>
         <ResultsTable />
         <div className="max-w-[640px]">
           <p className={bodyClass}>
@@ -344,7 +383,10 @@ export const VSurveillanceCaseStudyPage: React.FC = () => {
             The hand-count check covers three images only. It compares counts, not where the boxes are placed.
           </p>
           <p className={bodyClass}>
-            Each dataset was evaluated with its own model, so the numbers say nothing about transfer between datasets.
+            The paper reports metrics per dataset (Table II). It does not report a test where a model trained on one dataset is evaluated on another.
+          </p>
+          <p className={bodyClass}>
+            The paper reports detection metrics and counts only. It gives no tracking metrics, such as ID switches, for DeepSORT.
           </p>
         </div>
       </section>
