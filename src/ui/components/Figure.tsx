@@ -6,7 +6,7 @@ interface FigureProps {
   width: number;
   height: number;
   caption: React.ReactNode;
-  // Hero figure loads eagerly; all others lazy
+  // Above-the-fold hero figure: eager + fetchpriority high; all others lazy
   eager?: boolean;
   className?: string;
 }
@@ -20,7 +20,8 @@ export const Figure: React.FC<FigureProps> = ({ src, alt, width, height, caption
         alt={alt}
         width={width}
         height={height}
-        loading={eager ? undefined : 'lazy'}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchPriority={eager ? 'high' : undefined}
         decoding="async"
         className="block h-auto w-full"
       />

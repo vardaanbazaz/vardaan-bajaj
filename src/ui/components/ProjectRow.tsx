@@ -6,9 +6,11 @@ export const linkClass = 'inline-block py-2.5 text-link underline-inset hover:te
 
 // Image left, text right (title, summary, facts, then one or more links); wraps to stacked on narrow screens. Hairline under each row.
 // headingLevel: h3 under a section heading (hub), h2 directly under the page h1 (/projects)
-export const ProjectRow: React.FC<{ project: ProjectEntry; headingLevel?: 'h2' | 'h3' }> = ({
+// priority: thumbnail is above the fold (first row on /projects): eager + fetchpriority high; otherwise lazy
+export const ProjectRow: React.FC<{ project: ProjectEntry; headingLevel?: 'h2' | 'h3'; priority?: boolean }> = ({
   project,
   headingLevel: Heading = 'h3',
+  priority = false,
 }) => {
   const { image, alt, title, summary, facts, actions } = project;
 
@@ -21,7 +23,8 @@ export const ProjectRow: React.FC<{ project: ProjectEntry; headingLevel?: 'h2' |
           alt={alt}
           width={image.width}
           height={image.height}
-          loading="lazy"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : undefined}
           decoding="async"
           className="block h-auto w-[300px] max-w-full"
         />

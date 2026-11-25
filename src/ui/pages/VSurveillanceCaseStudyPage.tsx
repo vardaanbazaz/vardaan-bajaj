@@ -403,19 +403,8 @@ export const VSurveillanceCaseStudyPage: React.FC = () => {
         <div className="max-w-[640px]">
           <p className={bodyClass}>
             V. Bajaj, A. Kumar and S. Tripathi, "V-Surveillance: A Hybrid Deep Learning Framework for Real-Time Aerial
-            Surveillance Using Drone Imagery," in {VENUE}, 2025,{' '}
-            {doiUrl ? (
-              <a href={doiUrl} className={factLinkClass}>doi:{paper.doi}</a>
-            ) : (
-              'doi:10.1109/CICT67193.2025.11399085'
-            )}
-            .
+            Surveillance Using Drone Imagery," in {VENUE}, 2025, doi:{paper.doi ?? '10.1109/CICT67193.2025.11399085'}.
           </p>
-          {paper.ieeeUrl && (
-            <p className="mt-2 mb-0">
-              <a href={paper.ieeeUrl} className={factLinkClass}>IEEE Xplore abstract page</a>
-            </p>
-          )}
           <p className="mt-6 mb-0 text-sm text-muted">
             The paper's figures are not reproduced here because IEEE holds the copyright. The full paper is on{' '}
             {paper.ieeeUrl ? <a href={paper.ieeeUrl} className={factLinkClass}>IEEE Xplore</a> : 'IEEE Xplore'}.

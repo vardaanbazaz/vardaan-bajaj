@@ -2,10 +2,14 @@ import { StrictMode } from 'react';
 import { prerender } from 'react-dom/static';
 import { StaticRouter } from 'react-router-dom';
 import App from './App';
+import { IMAGES } from './ui/images';
 import { getSeoForPath, renderSeoHeadHtml, PRERENDER_ROUTES, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from './seo/getSeoForPath';
 
 export { PRERENDER_ROUTES };
 export { LEGACY_REDIRECTS } from './legacyRedirects';
+
+// Home hero figure (HubPage). prerender.mjs adds a high-priority preload for it on '/' only.
+export const HOME_HERO_IMAGE_SRC: string = IMAGES.rocCurves.src;
 
 // Render one route to static HTML, waiting for every lazy page and Suspense boundary
 export const render = async (url: string): Promise<{ html: string; head: string }> => {

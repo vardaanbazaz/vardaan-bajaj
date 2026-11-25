@@ -11,8 +11,9 @@ export const ProjectsPage: React.FC = () => (
         Projects
       </h1>
       <div className="mt-6">
-        {PROJECTS.map((project) => (
-          <ProjectRow key={project.id} project={project} headingLevel="h2" />
+        {/* First row's thumbnail is above the fold */}
+        {PROJECTS.map((project, index) => (
+          <ProjectRow key={project.id} project={project} headingLevel="h2" priority={index === 0} />
         ))}
       </div>
     </section>

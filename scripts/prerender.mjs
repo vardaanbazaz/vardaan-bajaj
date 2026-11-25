@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = join(root, 'dist');
 
-const { render, shellHead, PRERENDER_ROUTES, LEGACY_REDIRECTS } = await import(
+const { render, shellHead, PRERENDER_ROUTES, LEGACY_REDIRECTS, HOME_HERO_IMAGE_SRC } = await import(
   pathToFileURL(join(root, 'dist-ssr', 'entry-server.js')).href
 );
 
@@ -32,11 +32,14 @@ const fill = (head, html) =>
 // '/' -> dist/index.html, '/projects/x' -> dist/projects/x.html (served at /projects/x via cleanUrls)
 const outFileFor = (route) => (route === '/' ? 'index.html' : `${route.slice(1)}.html`);
 
+// '/' only: start fetching the above-the-fold hero figure before CSS and JS are parsed
+const heroPreload = `<link rel="preload" as="image" href="${HOME_HERO_IMAGE_SRC}" fetchpriority="high" />`;
+
 for (const route of PRERENDER_ROUTES) {
   const { html, head } = await render(route);
   const outFile = join(distDir, outFileFor(route));
   await mkdir(dirname(outFile), { recursive: true });
-  await writeFile(outFile, fill(head, html));
+  await writeFile(outFile, fill(route === '/' ? `${heroPreload}\n    ${head}` : head, html));
   console.log(`prerendered ${route} -> dist/${outFileFor(route)}`);
 }
 
