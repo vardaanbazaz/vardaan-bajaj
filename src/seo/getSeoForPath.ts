@@ -1,4 +1,5 @@
 import { PERSONAL_INFO } from '../data/manuscript_config';
+import { legacyRedirectFor } from '../legacyRedirects';
 
 export const SITE_ORIGIN = 'https://vardaan-bajaj.vercel.app';
 export const DEFAULT_IMAGE = `${SITE_ORIGIN}/avatar.jpg`;
@@ -75,15 +76,6 @@ export const PRERENDER_ROUTES: string[] = [
   '/contact',
 ];
 
-// Legacy paths -> canonical path (the router and vercel.json redirect these)
-const LEGACY_CANONICAL: Record<string, string> = {
-  '/dossiers': '/projects',
-  '/dossier/attrition': '/projects/employee-attrition-analysis',
-  '/employee-attrition': '/projects/employee-attrition-analysis',
-  '/map': '/experience',
-  '/publication': '/publications',
-};
-
 // Route -> head metadata. Shared by SeoHead (runtime) and scripts/prerender.mjs (build time).
 export const getSeoForPath = (pathname: string): SeoData => {
   // Normalize pathname to remove trailing slash (except root '/')
@@ -141,12 +133,9 @@ export const getSeoForPath = (pathname: string): SeoData => {
     title = `Contact | ${PERSONAL_INFO.name}`;
     description = `Contact Vardaan Bajaj by email. Open to remote machine learning and software roles.`;
     structuredData = personSchema;
-  } else if (LEGACY_CANONICAL[normalizedPathname]) {
-    canonicalPath = LEGACY_CANONICAL[normalizedPathname];
-  } else if (normalizedPathname.startsWith('/dossier/')) {
-    canonicalPath = '/';
-  } else if (normalizedPathname.startsWith('/publications/') || normalizedPathname.startsWith('/publication/')) {
-    canonicalPath = '/publications';
+  } else {
+    // Legacy URLs point their canonical at the page they redirect to
+    canonicalPath = legacyRedirectFor(normalizedPathname) ?? normalizedPathname;
   }
 
   return {
