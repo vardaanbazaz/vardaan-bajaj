@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Figure } from '../components/Figure';
 import { Footer } from '../components/Footer';
 import { ProjectRow, linkClass } from '../components/ProjectRow';
-import { ShortRule } from '../components/ShortRule';
+import { SectionHeading } from '../components/SectionHeading';
 import { IMAGES } from '../images';
 import { projectById } from '../projects';
 import { MAP_DATA, PERSONAL_INFO, PUBLICATIONS } from '../../data/manuscript_config';
@@ -11,13 +11,6 @@ import { MAP_DATA, PERSONAL_INFO, PUBLICATIONS } from '../../data/manuscript_con
 // Looked up by id, not array position, so reordering the data cannot swap what the hub shows
 const vSurveillance = PUBLICATIONS.find((p) => p.id === 'surveillance');
 const drdoRole = MAP_DATA.experience.find((node) => node.id === 'hyderabad-exp')?.roles[0];
-
-const SectionLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <>
-    <h2 className="m-0 text-sm font-medium tracking-[0.08em] text-muted uppercase">{children}</h2>
-    <ShortRule />
-  </>
-);
 
 // Plain "see all" link under a section
 const AllLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, children }) => (
@@ -30,15 +23,14 @@ export const HubPage: React.FC = () => (
   <>
     <section className="page-x flex flex-wrap items-start gap-x-18 gap-y-14 pt-22">
       <div className="min-w-0 max-w-[640px] flex-[1_1_440px]">
-        <p className="mt-0 mb-7 text-sm tracking-[0.06em] text-muted uppercase">
-          B.Tech, Data Science and AI · IIIT Naya Raipur · 2026
-        </p>
-        <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium tracking-[-0.01em]">
-          Data and machine-learning work, with the numbers kept honest.
+        <p className="mt-0 mb-7 text-sm text-muted">B.Tech in Data Science and AI, IIIT Naya Raipur, 2026</p>
+        <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium">
+          I build data tools and ML projects, and I report the results as they are
         </h1>
         <p className="mt-8 mb-0 max-w-[520px] text-lg text-body">
-          I build analysis tools and ML projects, and I write down what held up, what didn’t, and what the data can’t show.
+          I like thinking things through, sometimes from my own imagination, and sometimes about how existing work could be made more durable, efficient or better.
         </p>
+        <p className="mt-4 mb-0 max-w-[520px] text-base text-muted">Open to remote machine learning and software roles.</p>
         <p className="mt-9 mb-0 flex flex-wrap gap-x-9 text-[17px]">
           <a href="#work" className={linkClass}>See selected work</a>
           <Link to="/contact" className="inline-block py-2.5">Get in touch</Link>
@@ -53,12 +45,12 @@ export const HubPage: React.FC = () => (
         width={IMAGES.rocCurves.width}
         height={IMAGES.rocCurves.height}
         alt="ROC curves for Logistic Regression, XGBoost, Random Forest and a most-frequent dummy baseline on a held-out test set"
-        caption="ROC curves from the Employee Attrition project, drawn in the same palette as this page."
+        caption="ROC curves on the held-out test set, Employee Attrition project."
       />
     </section>
 
     <section id="work" className="page-x pt-34">
-      <SectionLabel>Selected work</SectionLabel>
+      <SectionHeading>Selected work</SectionHeading>
       <ProjectRow project={projectById('datavista')} />
       <ProjectRow project={projectById('attrition')} />
       <AllLink to="/projects">All projects</AllLink>
@@ -66,7 +58,7 @@ export const HubPage: React.FC = () => (
 
     {vSurveillance && (
       <section className="page-x pt-22">
-        <SectionLabel>Publication</SectionLabel>
+        <SectionHeading>Publication</SectionHeading>
         <article className="max-w-[720px] border-b border-hairline py-12">
           <h3 className="m-0 font-heading text-[26px] leading-[1.35] font-medium">{vSurveillance.title}</h3>
           <p className="mt-2.5 mb-0 text-[15px] text-muted">
@@ -86,7 +78,7 @@ export const HubPage: React.FC = () => (
 
     {drdoRole && (
       <section className="page-x pt-22">
-        <SectionLabel>Experience</SectionLabel>
+        <SectionHeading>Experience</SectionHeading>
         <article className="max-w-[720px] border-b border-hairline py-12">
           <h3 className="m-0 font-heading text-[26px] leading-[1.35] font-medium">{drdoRole.title}</h3>
           <p className="mt-2.5 mb-0 text-[15px] text-muted">
@@ -100,11 +92,7 @@ export const HubPage: React.FC = () => (
       </section>
     )}
 
-    <p className="page-x mt-28 mb-0 font-heading text-[22px] leading-[1.5] text-body">
-      Being honest shows more results.
-    </p>
-
-    <Footer left={<span>Jammu, India</span>} className="mt-14" />
+    <Footer left={<span>Jammu, India</span>} />
   </>
 );
 

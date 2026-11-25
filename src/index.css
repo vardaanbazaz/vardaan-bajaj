@@ -13,6 +13,8 @@
   --color-link-hover: #E0A184;
   --color-hairline: #3A3733;
   --color-rule: #6B6860;
+  /* Border around figures and thumbnails; light mode darkens it so the edge reads on linen */
+  --color-frame: #3A3733;
   /* Figures always sit on a linen plate, in both themes */
   --color-plate: #F1F0EB;
 
@@ -29,6 +31,7 @@
   color-scheme: dark;
   --grain-blend: screen;
   --grain-opacity: 0.05;
+  --frame-shadow: none;
 }
 
 :root[data-theme="light"] {
@@ -41,6 +44,8 @@
   --color-link-hover: #7A3E29;
   --color-hairline: #D5D2C9;
   --color-rule: #7A786F;
+  --color-frame: #A9A599;
+  --frame-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   --grain-blend: multiply;
   --grain-opacity: 0.04;
 }
@@ -81,6 +86,15 @@
 @utility page-x {
   padding-left: clamp(24px, 9vw, 120px);
   padding-right: clamp(24px, 5vw, 72px);
+}
+
+/* Frame for figures and row thumbnails: 1px border, 12px inner padding, 2px radius, linen plate */
+@utility frame {
+  border: 1px solid var(--color-frame);
+  border-radius: 2px;
+  padding: 12px;
+  background-color: var(--color-plate);
+  box-shadow: var(--frame-shadow);
 }
 
 /* Hairline underline drawn with an inset shadow, as in the tile */

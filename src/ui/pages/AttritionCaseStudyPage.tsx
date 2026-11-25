@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Figure } from '../components/Figure';
 import { Footer } from '../components/Footer';
-import { ShortRule } from '../components/ShortRule';
+import { SectionHeading } from '../components/SectionHeading';
 import { IMAGES } from '../images';
 
 const sectionClass = 'page-x flex flex-wrap items-start gap-x-18 gap-y-10 pt-28';
@@ -15,7 +15,7 @@ export const AttritionCaseStudyPage: React.FC = () => (
       <p className="mt-0 mb-6 text-sm text-muted">
         <Link to="/" className="inline-block py-2">Projects</Link> / Employee Attrition Analysis
       </p>
-      <h1 className="m-0 max-w-[760px] font-heading text-[clamp(34px,4.6vw,54px)] leading-[1.2] font-medium tracking-[-0.01em]">
+      <h1 className="m-0 max-w-[760px] font-heading text-[clamp(34px,4.6vw,54px)] leading-[1.2] font-medium">
         Employee Attrition Analysis
       </h1>
       <p className="mt-6 mb-0 max-w-[640px] text-xl leading-[1.6] text-body">
@@ -110,9 +110,8 @@ export const AttritionCaseStudyPage: React.FC = () => (
     </section>
 
     <section className="page-x pt-28">
-      <h2 className="m-0 text-sm font-medium tracking-[0.08em] text-muted uppercase">Limits</h2>
-      <ShortRule />
-      <p className="mt-7 mb-0 max-w-[640px] text-body">
+      <SectionHeading>Limits</SectionHeading>
+      <p className="mt-4 mb-0 max-w-[640px] text-body">
         The data is fictional. The test set holds only 71 leavers, so a few predictions move the metrics. No hyperparameters were tuned, and every test figure uses a fixed 0.5 threshold.
       </p>
     </section>

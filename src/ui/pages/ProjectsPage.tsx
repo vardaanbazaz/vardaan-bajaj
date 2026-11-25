@@ -7,7 +7,7 @@ import { PROJECTS } from '../projects';
 export const ProjectsPage: React.FC = () => (
   <>
     <section className="page-x pt-22">
-      <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium tracking-[-0.01em]">
+      <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium">
         Projects
       </h1>
       <div className="mt-6">

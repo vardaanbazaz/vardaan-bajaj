@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
 
   return (
     <header className="page-x flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2 pt-9">
-      <Link to="/" className="py-2.5 font-heading text-[22px] font-semibold tracking-[0.01em]">
+      <Link to="/" className="py-2.5 font-heading text-[22px] font-semibold">
         Vardaan Bajaj
       </Link>
       <div className="flex flex-wrap items-center gap-x-6">

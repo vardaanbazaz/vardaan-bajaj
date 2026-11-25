@@ -7,7 +7,7 @@ import { PERSONAL_INFO } from '../../data/manuscript_config';
 export const ContactPage: React.FC = () => (
   <>
     <section className="page-x pt-30">
-      <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium tracking-[-0.01em]">
+      <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium">
         Get in touch
       </h1>
       <p className="mt-7 mb-0 max-w-[520px] text-lg text-body">

@@ -11,10 +11,10 @@ interface FigureProps {
   className?: string;
 }
 
-// Chart on a light linen plate in both themes (no dark variants of figures)
+// Chart on a light linen plate in both themes (no dark variants of figures), inside the shared `frame`
 export const Figure: React.FC<FigureProps> = ({ src, alt, width, height, caption, eager = false, className = '' }) => (
   <figure className={`m-0 min-w-0 ${className}`}>
-    <div className="rounded-[2px] border border-hairline bg-plate p-3.5">
+    <div className="frame">
       <img
         src={src}
         alt={alt}

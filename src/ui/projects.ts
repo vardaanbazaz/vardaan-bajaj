@@ -15,7 +15,7 @@ export interface ProjectEntry {
 export const PROJECTS: ProjectEntry[] = [
   {
     id: 'datavista',
-    image: IMAGES.datavistaOverview,
+    image: IMAGES.datavistaThumb,
     alt: 'DataVista overview screen showing row and column counts, automated insights and a numeric summary table',
     title: 'DataVista',
     summary: 'Browser-only analytics. Import a CSV or Excel file, clean it, explore it and pivot it, with no backend.',
@@ -24,7 +24,7 @@ export const PROJECTS: ProjectEntry[] = [
   },
   {
     id: 'neuroinsight-ai',
-    image: IMAGES.neuroModelMetrics,
+    image: IMAGES.neuroThumb,
     alt: 'Bar chart comparing five classifiers on accuracy, precision, recall and F1, with a majority-class baseline',
     title: 'NeuroInsight AI',
     summary:
@@ -34,7 +34,7 @@ export const PROJECTS: ProjectEntry[] = [
   },
   {
     id: 'attrition',
-    image: IMAGES.shapSummary,
+    image: IMAGES.attritionThumb,
     alt: 'SHAP summary plot for the attrition model, dots coloured from teal for low feature values to clay for high',
     title: 'Employee Attrition Analysis',
     summary: 'Four models on IBM’s fictional HR data, chosen on cross-validated PR-AUC and explained with SHAP.',

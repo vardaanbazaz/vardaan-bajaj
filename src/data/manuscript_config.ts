@@ -7,9 +7,6 @@ export interface PersonalInfo {
   linkedin: string;
   resumeUrl: string;
   location: string;
-  focusLine: string;
-  researchLine: string;
-  bio: string;
 }
 
 export interface ADRItem {
@@ -72,9 +69,6 @@ export const PERSONAL_INFO: PersonalInfo = {
   linkedin: "https://www.linkedin.com/in/vardaan-bajaj-a03605254/",
   resumeUrl: "/resume.pdf",
   location: "Jammu, India · open to remote",
-  focusLine: "Computer vision · full-stack web · C/DSP systems",
-  researchLine: "Research: two IEEE conference papers (first author, CICT 2025)",
-  bio: "I'm a machine learning and software engineer. I've worked on computer vision for drone imagery as first author of an IEEE CICT 2025 paper, built a browser-based BI tool that works offline, and wrote a C signal-processing simulation during a research internship at DRDO. I completed my B.Tech in Data Science and AI at IIIT Naya Raipur in 2026, and I'm open to remote roles.",
 };
 
 export const PUBLICATIONS: PublicationRecord[] = [
@@ -189,7 +183,7 @@ export const MAP_DATA: MapDataSchema = {
   education: [
     {
       id: 'raipur-edu', roles: [
-        { title: 'B.Tech in Data Science and Artificial Intelligence', org: 'Dr. Shyama Prasad Mukherjee International Institute of Information Technology, Naya Raipur', type: 'On-site', year: '2022 – 2026 (completed July 2026)', bullets: ['CGPA 7.57 / 10 (80.7%, official conversion)', 'Coursework: Deep Learning, Computer Vision, Optimization Methods in ML, Natural Language Processing, Data Mining, Distributed Systems, Design and Analysis of Algorithms, Signal and System, Undergraduate Research Work-I, Undergraduate Research Work-II, Major Project/Thesis.'] }
+        { title: 'B.Tech in Data Science and Artificial Intelligence', org: 'Dr. Shyama Prasad Mukherjee International Institute of Information Technology, Naya Raipur', type: 'On-site', year: '2022 – 2026 (completed July 2026)', bullets: ['CGPA 7.57 / 10 (80.7%, official conversion)'] }
       ]
     }
   ]
