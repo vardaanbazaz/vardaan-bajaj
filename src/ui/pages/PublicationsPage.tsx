@@ -6,14 +6,14 @@ import { PUBLICATIONS } from '../../data/manuscript_config';
 
 const linkClass = 'inline-block py-2.5 text-link underline-inset hover:text-link-hover';
 
-// Papers with a case study link to it and to IEEE Xplore (no DOI link; the case study cites the DOI as text);
-// the rest stay a card with the DOI link only
-const PublicationLinks: React.FC<{ id: string; doi?: string; ieeeUrl?: string }> = ({ id, doi, ieeeUrl }) => {
+// Every paper links to IEEE Xplore; papers with a case study also link to it. No DOI links:
+// the DOI stays in the data (case-study citation text, BibTeX, structured data)
+const PublicationLinks: React.FC<{ id: string; ieeeUrl?: string }> = ({ id, ieeeUrl }) => {
   const caseStudyPath = caseStudyPathFor(id);
   if (!caseStudyPath) {
-    return doi ? (
+    return ieeeUrl ? (
       <p className="mt-2 mb-0 text-base">
-        <a href={`https://doi.org/${doi}`} className={linkClass}>DOI {doi}</a>
+        <a href={ieeeUrl} className={linkClass}>IEEE Xplore</a>
       </p>
     ) : null;
   }
@@ -40,7 +40,7 @@ export const PublicationsPage: React.FC = () => (
             </p>
             {pub.authors && <p className="mt-1 mb-0 text-[15px] text-muted">{pub.authors.join(', ')}</p>}
             <p className="mt-3.5 mb-0 text-body">{pub.summary}</p>
-            <PublicationLinks id={pub.id} doi={pub.doi} ieeeUrl={pub.ieeeUrl} />
+            <PublicationLinks id={pub.id} ieeeUrl={pub.ieeeUrl} />
           </li>
         ))}
       </ul>

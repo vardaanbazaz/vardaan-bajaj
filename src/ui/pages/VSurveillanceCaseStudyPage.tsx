@@ -10,7 +10,8 @@ import { PUBLICATIONS } from '../../data/manuscript_config';
 // copyright), and the paper file itself is not hosted or linked.
 const paper = PUBLICATIONS.find((p) => p.id === 'surveillance');
 
-// Venue as it should read on this page. The config's `conference` adds ", Chennai"; the brief fixes this string.
+// Venue in the citation sentence (without ", Chennai"). The header Venue fact uses the config's `conference`,
+// the same string as the Publications row.
 const VENUE = '2025 IEEE 9th International Conference on Information and Communication Technology (CICT)';
 
 const bodyClass = 'mt-4 mb-0 text-body';
@@ -267,7 +268,7 @@ export const VSurveillanceCaseStudyPage: React.FC = () => {
           ...(authorLine
             ? [{ label: 'Authors', value: `${authorLine}. IIIT Naya Raipur.`, basis: '300px' }]
             : []),
-          { label: 'Venue', value: VENUE, basis: '300px' },
+          { label: 'Venue', value: paper?.conference ?? VENUE, basis: '300px' },
           {
             label: 'Paper',
             value: (

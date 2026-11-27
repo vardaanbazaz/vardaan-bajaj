@@ -6,13 +6,11 @@ interface FigureProps {
   width: number;
   height: number;
   caption: React.ReactNode;
-  // Above-the-fold hero figure: eager + fetchpriority high; all others lazy
-  eager?: boolean;
   className?: string;
 }
 
 // Chart on a light linen plate in both themes (no dark variants of figures), inside the shared `frame`
-export const Figure: React.FC<FigureProps> = ({ src, alt, width, height, caption, eager = false, className = '' }) => (
+export const Figure: React.FC<FigureProps> = ({ src, alt, width, height, caption, className = '' }) => (
   <figure className={`m-0 min-w-0 ${className}`}>
     <div className="frame">
       <img
@@ -20,8 +18,7 @@ export const Figure: React.FC<FigureProps> = ({ src, alt, width, height, caption
         alt={alt}
         width={width}
         height={height}
-        loading={eager ? 'eager' : 'lazy'}
-        fetchPriority={eager ? 'high' : undefined}
+        loading="lazy"
         decoding="async"
         className="block h-auto w-full"
       />

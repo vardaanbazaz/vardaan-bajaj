@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Figure } from '../components/Figure';
 import { Footer } from '../components/Footer';
 import { ProjectRow, linkClass } from '../components/ProjectRow';
 import { SectionHeading } from '../components/SectionHeading';
-import { IMAGES } from '../images';
 import { projectById } from '../projects';
 import { VSURVEILLANCE_PATH } from '../publicationPaths';
 import { MAP_DATA, PERSONAL_INFO, PUBLICATIONS } from '../../data/manuscript_config';
@@ -22,8 +20,9 @@ const AllLink: React.FC<{ to: string; children: React.ReactNode }> = ({ to, chil
 
 export const HubPage: React.FC = () => (
   <>
-    <section className="page-x flex flex-wrap items-start gap-x-18 gap-y-14 pt-22">
-      <div className="min-w-0 max-w-[640px] flex-[1_1_440px]">
+    {/* Type-only hero for now (the ROC figure was removed); the headline gets a wider column */}
+    <section className="page-x pt-22">
+      <div className="min-w-0 max-w-[860px]">
         <p className="mt-0 mb-7 text-sm text-muted">B.Tech in Data Science and AI, IIIT Naya Raipur, 2026</p>
         <h1 className="m-0 font-heading text-[clamp(36px,5vw,58px)] leading-[1.22] font-medium">
           I build data tools and ML projects, and I report the results as they are
@@ -39,15 +38,6 @@ export const HubPage: React.FC = () => (
           <a href={PERSONAL_INFO.resumeUrl} className="inline-block py-2.5">Résumé</a>
         </p>
       </div>
-      <Figure
-        eager
-        className="mt-12 flex-[0_1_440px]"
-        src={IMAGES.rocCurves.src}
-        width={IMAGES.rocCurves.width}
-        height={IMAGES.rocCurves.height}
-        alt="ROC curves for Logistic Regression, XGBoost, Random Forest and a most-frequent dummy baseline on a held-out test set"
-        caption="ROC curves on the held-out test set, Employee Attrition project."
-      />
     </section>
 
     <section id="work" className="page-x pt-34">

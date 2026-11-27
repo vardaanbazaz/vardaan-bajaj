@@ -84,7 +84,7 @@ export const PUBLICATIONS: PublicationRecord[] = [
     authorRole: "Co-author",
     doi: "10.1109/IATMSI60426.2024.10503405",
     ieeeUrl: "https://ieeexplore.ieee.org/abstract/document/10503405",
-    summary: "A Python object-oriented wrapper that encapsulates web-page <div> functionality into reusable classes. My part: researching and comparing candidate approaches and technologies, and contributing to the OOP-based implementation.",
+    summary: "A Python object-oriented wrapper that encapsulates web-page <div> functionality into reusable classes.",
     techStack: ["Python"],
     bibtex: `@inproceedings{vijaya2024webpagelinker,
   title={An Enhanced Object-Oriented Programming-Based Web Page Linker},
