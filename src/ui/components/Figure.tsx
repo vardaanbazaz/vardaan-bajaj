@@ -14,6 +14,7 @@ interface FigureProps {
 // Chart on a light linen plate in both themes (no dark variants of figures), inside the shared `frame`
 export const Figure: React.FC<FigureProps> = ({ src, alt, width, height, caption, className = '', enlargeable = false }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   // Tracked in a plain ref: DOM refs are already null when an unmount cleanup runs
   const lockedRef = useRef(false);
   const imgId = useId();
@@ -54,6 +55,12 @@ export const Figure: React.FC<FigureProps> = ({ src, alt, width, height, caption
     document.body.style.overflow = 'hidden';
     lockedRef.current = true;
     dialog.showModal();
+    // Below 800px the plate pans inside this area; never reopen scrolled from the last visit
+    const scroller = scrollRef.current;
+    if (scroller) {
+      scroller.scrollLeft = 0;
+      scroller.scrollTop = 0;
+    }
   };
 
   // Fires for Esc, the Close button and backdrop clicks; the native dialog returns focus to the trigger
@@ -72,11 +79,21 @@ export const Figure: React.FC<FigureProps> = ({ src, alt, width, height, caption
       {/* Before the button: figcaption must stay the figure's last child */}
       <dialog ref={dialogRef} className="figure-dialog" aria-label={alt} onClose={onClose} onClick={onDialogClick}>
         <div className="figure-dialog-body">
-          <div className="figure-dialog-plate">
-            <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+          {/* Below 800px: the pan/zoom area; the plate shows at min(1000px, natural width). No styles at 800px+ */}
+          <div
+            ref={scrollRef}
+            className="figure-dialog-scroll"
+            style={{ '--figure-natural-width': `${width}px` } as React.CSSProperties}
+          >
+            <div className="figure-dialog-plate">
+              <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />
+            </div>
           </div>
-          <div className="mt-3 flex items-start justify-between gap-6">
-            <p className="m-0 text-sm text-muted">{caption}</p>
+          <div className="figure-dialog-footer mt-3 flex items-start justify-between gap-6">
+            <div>
+              <p className="m-0 text-sm text-muted">{caption}</p>
+              <p className="figure-dialog-hint m-0 mt-1 text-sm text-muted">Drag to pan, pinch to zoom.</p>
+            </div>
             <button
               type="button"
               className="min-h-11 min-w-11 shrink-0 cursor-pointer px-2 text-sm text-text hover:text-link-hover"
