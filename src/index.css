@@ -230,6 +230,11 @@
   display: none;
 }
 
+/* Zoom out / in / Fit buttons: only shown inside the dialog below 800px */
+.figure-dialog-zoom {
+  display: none;
+}
+
 /* Below 800px the fitted image is too small to read: the dialog fills the screen, the plate renders at
    min(1000px, natural width) inside a pan/pinch scroll area, and the caption + Close row stays fixed below it */
 @media (max-width: 799.98px) {
@@ -260,7 +265,15 @@
     overflow: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x pan-y pinch-zoom;
+    /* No pinch-zoom: the browser leaves two-finger pinches to Figure's pointer handlers; one finger still pans natively */
+    touch-action: pan-x pan-y;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .figure-dialog-scroll[data-dragging] {
+    cursor: grabbing;
   }
 
   /* Auto margins centre a small plate and collapse to 0 when it overflows, so panning reaches every edge */
@@ -275,6 +288,11 @@
     max-height: none;
   }
 
+  /* Zoom width from Figure (inline --figure-zoom-width, set on open); the rule above is the first-paint fallback */
+  .figure-dialog-scroll .figure-dialog-plate img {
+    width: var(--figure-zoom-width, min(1000px, var(--figure-natural-width)));
+  }
+
   .figure-dialog-footer {
     flex: none;
     margin-top: 0;
@@ -283,6 +301,31 @@
 
   .figure-dialog-hint {
     display: block;
+  }
+
+  /* Caption on its own line, then the zoom buttons and Close in one row below it */
+  .figure-dialog-footer {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .figure-dialog-caption {
+    flex: 1 1 100%;
+  }
+
+  .figure-dialog-zoom {
+    display: flex;
+    gap: 4px;
+  }
+
+  /* At a zoom bound: still readable (0.75 keeps text at 5:1 or better on the backdrop in both themes) */
+  .figure-dialog-zoom button[aria-disabled="true"] {
+    opacity: 0.75;
+    cursor: default;
+  }
+
+  .figure-dialog-zoom button[aria-disabled="true"]:hover {
+    color: var(--color-text);
   }
 }
 
