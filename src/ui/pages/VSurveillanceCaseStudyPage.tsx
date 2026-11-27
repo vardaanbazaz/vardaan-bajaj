@@ -251,7 +251,6 @@ const NamedList: React.FC<{ items: { name: string; text: string }[] }> = ({ item
 
 export const VSurveillanceCaseStudyPage: React.FC = () => {
   if (!paper) return null;
-  const doiUrl = paper.doi ? `https://doi.org/${paper.doi}` : undefined;
   const [firstAuthor, ...coAuthors] = paper.authors ?? [];
   const authorLine = firstAuthor
     ? [`${firstAuthor}${paper.authorRole ? ` (${paper.authorRole.toLowerCase()})` : ''}`, ...coAuthors].join(', ')
@@ -274,7 +273,6 @@ export const VSurveillanceCaseStudyPage: React.FC = () => {
             value: (
               <span className="flex flex-wrap gap-x-6">
                 {paper.ieeeUrl && <a href={paper.ieeeUrl} className={factLinkClass}>Read on IEEE Xplore</a>}
-                {doiUrl && <a href={doiUrl} className={factLinkClass}>DOI</a>}
               </span>
             ),
             basis: '220px',

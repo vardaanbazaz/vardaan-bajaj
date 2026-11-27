@@ -6,7 +6,8 @@ import { PUBLICATIONS } from '../../data/manuscript_config';
 
 const linkClass = 'inline-block py-2.5 text-link underline-inset hover:text-link-hover';
 
-// Papers with a case study link to it first and to IEEE Xplore second; the rest stay a card with the DOI only
+// Papers with a case study link to it and to IEEE Xplore (no DOI link; the case study cites the DOI as text);
+// the rest stay a card with the DOI link only
 const PublicationLinks: React.FC<{ id: string; doi?: string; ieeeUrl?: string }> = ({ id, doi, ieeeUrl }) => {
   const caseStudyPath = caseStudyPathFor(id);
   if (!caseStudyPath) {
@@ -20,7 +21,6 @@ const PublicationLinks: React.FC<{ id: string; doi?: string; ieeeUrl?: string }>
     <p className="mt-2 mb-0 flex flex-wrap gap-x-9 text-base">
       <Link to={caseStudyPath} className={linkClass}>Read the case study</Link>
       {ieeeUrl && <a href={ieeeUrl} className={linkClass}>IEEE Xplore</a>}
-      {doi && <a href={`https://doi.org/${doi}`} className={linkClass}>DOI {doi}</a>}
     </p>
   );
 };

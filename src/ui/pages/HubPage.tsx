@@ -69,9 +69,6 @@ export const HubPage: React.FC = () => (
           <p className="mt-3 mb-0 flex flex-wrap gap-x-9 text-base">
             <Link to={VSURVEILLANCE_PATH} className={linkClass}>Read the case study</Link>
             {vSurveillance.ieeeUrl && <a href={vSurveillance.ieeeUrl} className={linkClass}>IEEE Xplore</a>}
-            {vSurveillance.doi && (
-              <a href={`https://doi.org/${vSurveillance.doi}`} className={linkClass}>DOI {vSurveillance.doi}</a>
-            )}
           </p>
         </article>
         <AllLink to="/publications">All publications</AllLink>

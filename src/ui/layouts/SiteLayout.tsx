@@ -8,8 +8,8 @@ export const SiteLayout: React.FC = () => {
   const { pathname } = useLocation();
 
   return (
-    // No background colour here: body paints the colour and the grain tile (index.css),
-    // and a bg here would cover the tile.
+    // No background colour here: body paints it (index.css) and the root canvas takes it
+    // from body, so overscroll matches.
     <div className="min-h-screen text-text">
       {/* Capped so wide screens do not stretch the layout: the content box inside the page-x
           gutters (120px left, 72px right at full width) is at most 1200px, centred. */}

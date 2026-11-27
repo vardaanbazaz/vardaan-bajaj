@@ -29,8 +29,6 @@
 
 :root {
   color-scheme: dark;
-  /* Page grain: a 256px noise tile painted by body over its background colour */
-  --grain-image: url('./assets/grain-dark.png');
   --frame-shadow: none;
 }
 
@@ -46,19 +44,14 @@
   --color-rule: #7A786F;
   --color-frame: #A9A599;
   --frame-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-  --grain-image: url('./assets/grain-light.png');
 }
 
 @layer base {
-  /* No background on html: the root then takes body's background (colour + grain tile)
-     for the whole canvas, so overscroll and any area outside body match the page. */
+  /* No background on html: the root then takes body's background colour for the whole
+     canvas (CSS root-background propagation), so overscroll and any area outside body match the page. */
   body {
     margin: 0;
     background-color: var(--color-bg);
-    background-image: var(--grain-image);
-    background-size: 256px 256px;
-    background-repeat: repeat;
-    background-attachment: scroll;
     color: var(--color-text);
     font-family: var(--font-sans);
     font-size: 17px;
