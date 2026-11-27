@@ -95,3 +95,249 @@
 @utility underline-inset {
   box-shadow: inset 0 -1px 0 currentColor;
 }
+
+/* Contents list on case-study pages (ContentsRail). Below 1100px only the closed <details> shows;
+   from 1100px only the sticky rail shows, in a right-hand column. */
+.contents-rail-column {
+  display: none;
+}
+
+.contents-details summary {
+  list-style: none;
+}
+
+.contents-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.contents-details summary::before {
+  content: "+";
+  width: 1.25em;
+}
+
+.contents-details[open] summary::before {
+  content: "\2212";
+}
+
+@media (min-width: 1100px) {
+  .contents-layout {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .contents-main {
+    flex: 1 1 auto;
+  }
+
+  .contents-details {
+    display: none;
+  }
+
+  /* 180px rail plus the page's right gutter; the main column's own right gutter is the gap */
+  .contents-rail-column {
+    display: block;
+    flex: 0 0 auto;
+    width: 180px;
+    box-sizing: content-box;
+    padding-right: clamp(24px, 5vw, 72px);
+    padding-top: 96px;
+  }
+
+  .contents-rail {
+    position: sticky;
+    top: 40px;
+  }
+}
+
+/* Headings that are contents-rail targets: room above them after a jump */
+.section-anchor {
+  scroll-margin-top: 32px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Smooth only on pages that have a contents list, so route changes elsewhere stay instant */
+  html:has(.contents-layout) {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Enlargeable figure (Figure `enlargeable`): the trigger is the framed image itself */
+.figure-trigger {
+  display: block;
+  width: 100%;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: zoom-in;
+}
+
+/* Native modal <dialog> filling the viewport, transparent, so a click on the dialog itself is a backdrop click */
+.figure-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  overflow-y: auto;
+}
+
+.figure-dialog[open] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.figure-dialog::backdrop {
+  background-color: rgba(31, 29, 26, 0.85);
+}
+
+:root[data-theme="light"] .figure-dialog::backdrop {
+  background-color: rgba(241, 240, 235, 0.85);
+}
+
+/* Width follows the image, so the caption wraps under it */
+.figure-dialog-body {
+  width: min-content;
+  max-width: 92vw;
+}
+
+/* Same linen plate as `frame`, 14px padding, no shadow */
+.figure-dialog-plate {
+  border: 1px solid var(--color-frame);
+  border-radius: 2px;
+  padding: 14px;
+  background-color: var(--color-plate);
+}
+
+.figure-dialog-plate img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(92vw - 30px);
+  max-height: calc(88vh - 30px);
+  object-fit: contain;
+}
+
+/* Pan/zoom hint: only shown inside the dialog below 800px */
+.figure-dialog-hint {
+  display: none;
+}
+
+/* Zoom out / in / Fit buttons: only shown inside the dialog below 800px */
+.figure-dialog-zoom {
+  display: none;
+}
+
+/* Below 800px the fitted image is too small to read: the dialog fills the screen, the plate renders at
+   min(1000px, natural width) inside a pan/pinch scroll area, and the caption + Close row stays fixed below it */
+@media (max-width: 799.98px) {
+  .figure-dialog {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .figure-dialog[open] {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .figure-dialog-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .figure-dialog-scroll {
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 16px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    /* No pinch-zoom: the browser leaves two-finger pinches to Figure's pointer handlers; one finger still pans natively */
+    touch-action: pan-x pan-y;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .figure-dialog-scroll[data-dragging] {
+    cursor: grabbing;
+  }
+
+  /* Auto margins centre a small plate and collapse to 0 when it overflows, so panning reaches every edge */
+  .figure-dialog-plate {
+    flex: none;
+    margin: auto;
+  }
+
+  .figure-dialog-plate img {
+    width: min(1000px, var(--figure-natural-width));
+    max-width: none;
+    max-height: none;
+  }
+
+  /* Zoom width from Figure (inline --figure-zoom-width, set on open); the rule above is the first-paint fallback */
+  .figure-dialog-scroll .figure-dialog-plate img {
+    width: var(--figure-zoom-width, min(1000px, var(--figure-natural-width)));
+  }
+
+  .figure-dialog-footer {
+    flex: none;
+    margin-top: 0;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .figure-dialog-hint {
+    display: block;
+  }
+
+  /* Caption on its own line, then the zoom buttons and Close in one row below it */
+  .figure-dialog-footer {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .figure-dialog-caption {
+    flex: 1 1 100%;
+  }
+
+  .figure-dialog-zoom {
+    display: flex;
+    gap: 4px;
+  }
+
+  /* At a zoom bound: still readable (0.75 keeps text at 5:1 or better on the backdrop in both themes) */
+  .figure-dialog-zoom button[aria-disabled="true"] {
+    opacity: 0.75;
+    cursor: default;
+  }
+
+  .figure-dialog-zoom button[aria-disabled="true"]:hover {
+    color: var(--color-text);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .figure-dialog[open],
+  .figure-dialog[open]::backdrop {
+    animation: figure-fade 150ms ease-out;
+  }
+}
+
+@keyframes figure-fade {
+  from {
+    opacity: 0;
+  }
+}
