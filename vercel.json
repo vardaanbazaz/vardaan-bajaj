@@ -1,66 +1,30 @@
 {
   "cleanUrls": true,
-  "redirects": [
+  "headers": [
     {
-      "source": "/datavista",
-      "destination": "/dossier/datavista",
-      "permanent": true
-    },
-    {
-      "source": "/neuroinsight-ai",
-      "destination": "/dossier/neuroinsight-ai",
-      "permanent": true
-    },
-    {
-      "source": "/employee-attrition",
-      "destination": "/dossier/attrition",
-      "permanent": true
-    },
-    {
-      "source": "/kanbanlight",
-      "destination": "/dossier/kanbanlight",
-      "permanent": true
-    },
-    {
-      "source": "/cropdoc-ai",
-      "destination": "/dossiers",
-      "permanent": true
-    },
-    {
-      "source": "/dossier/cropdoc",
-      "destination": "/dossiers",
-      "permanent": true
-    },
-    {
-      "source": "/dossier/api-ingestor",
-      "destination": "/dossier/unified-api-ingester",
-      "permanent": true
-    },
-    {
-      "source": "/api-ingestor",
-      "destination": "/dossier/unified-api-ingester",
-      "permanent": true
-    },
-    {
-      "source": "/publications/linker",
-      "destination": "/publications",
-      "permanent": true
-    },
-    {
-      "source": "/publication",
-      "destination": "/publications",
-      "permanent": true
-    },
-    {
-      "source": "/publication/:publicationId",
-      "destination": "/publications/:publicationId",
-      "permanent": true
-    },
-    {
-      "source": "/telegram",
-      "destination": "/contact",
-      "permanent": true
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
     }
+  ],
+  "redirects": [
+    { "source": "/dossier/attrition", "destination": "/projects/employee-attrition-analysis", "permanent": true },
+    { "source": "/employee-attrition", "destination": "/projects/employee-attrition-analysis", "permanent": true },
+    { "source": "/map", "destination": "/experience", "permanent": true },
+    { "source": "/dossiers", "destination": "/projects", "permanent": false },
+    { "source": "/dossier/:id", "destination": "/projects", "permanent": false },
+    { "source": "/datavista", "destination": "/projects/datavista", "permanent": true },
+    { "source": "/neuroinsight-ai", "destination": "/projects/neuroinsight-ai", "permanent": true },
+    { "source": "/kanbanlight", "destination": "/projects", "permanent": false },
+    { "source": "/cropdoc-ai", "destination": "/", "permanent": false },
+    { "source": "/api-ingestor", "destination": "/", "permanent": false },
+    { "source": "/publications/surveillance", "destination": "/publications/v-surveillance", "permanent": true },
+    { "source": "/publications/linker", "destination": "/publications", "permanent": false },
+    { "source": "/publication", "destination": "/publications", "permanent": true },
+    { "source": "/publication/surveillance", "destination": "/publications/v-surveillance", "permanent": true },
+    { "source": "/publication/:id", "destination": "/publications", "permanent": false },
+    { "source": "/telegram", "destination": "/contact", "permanent": true }
   ],
   "rewrites": [
     {

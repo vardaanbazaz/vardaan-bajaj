@@ -1,15 +1,23 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="google-site-verification" content="X_TlGkNTJr81IVPfUZ_oE0qjQoYUAZvzm7b4S6UXIuA" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Theme before first paint: dark unless the visitor chose light (prefers-color-scheme is ignored on purpose) -->
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+    } catch (e) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
   <!--app-head-->
 </head>
 
-<body class="bg-night text-lamp font-sans selection:bg-sunset selection:text-ink antialiased overflow-x-hidden">
+<body>
   <div id="root"><!--app-html--></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

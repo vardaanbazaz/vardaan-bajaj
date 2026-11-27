@@ -5,6 +5,7 @@ import App from './App';
 import { getSeoForPath, renderSeoHeadHtml, PRERENDER_ROUTES, DEFAULT_TITLE, DEFAULT_DESCRIPTION } from './seo/getSeoForPath';
 
 export { PRERENDER_ROUTES };
+export { LEGACY_REDIRECTS } from './legacyRedirects';
 
 // Render one route to static HTML, waiting for every lazy page and Suspense boundary
 export const render = async (url: string): Promise<{ html: string; head: string }> => {

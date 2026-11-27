@@ -130,7 +130,7 @@ export const DataVistaEntry = () => {
               1. Abstract
             </h2>
             <p className="text-base font-sans text-lamp leading-relaxed">
-              DataVista is an offline-first, browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend.
+              DataVista is a browser-native business intelligence (BI) and analytics platform. Load a CSV, TSV or XLSX file of up to 100 MB and build pivots, calculated fields and dashboards without a backend.
             </p>
             <p className="text-base font-sans text-lamp leading-relaxed">
               It is built with React 18 and Vite, keeps app state in Zustand with local-storage persistence, and stores data in IndexedDB via Dexie.js. Tests run on Vitest (unit) and Playwright (E2E) in GitHub Actions.

@@ -8,25 +8,23 @@ Personal portfolio site of Vardaan Bajaj, machine learning and software engineer
 - React Router (`react-router-dom` ^7.18.2)
 - Vite (`vite` ^6.2.0, `@vitejs/plugin-react` ^4.3.4)
 - Tailwind CSS v4 (`tailwindcss` ^4.0.0, `@tailwindcss/vite` ^4.3.0)
-- Framer Motion (`framer-motion` ^12.43.0)
-- Leaflet (`leaflet` ^1.9.4) for the experience map
-- Lucide icons (`lucide-react` ^1.17.0)
-- Self-hosted fonts via Fontsource (`@fontsource/inter`, `@fontsource/playfair-display`, `@fontsource/fira-code` ^5.3.0)
+- Self-hosted fonts via Fontsource (`@fontsource/shippori-mincho` ^5.3.0, `@fontsource/zen-kaku-gothic-new` ^5.3.1)
 - TypeScript (`typescript` ~5.9) for type checking
 
 Every route is prerendered to static HTML at build time, each with its own title and meta tags; React then takes over in the browser.
 
 ## Structure
 
-- `src/data/manuscript_config.ts` holds the site's content: personal info, project list, publications and experience map data.
-- `src/pages/*Entry.jsx` hold the long-form write-ups for individual projects.
-- `src/App.tsx` defines the routes: `/`, `/dossiers`, `/dossier/:dossierId`, `/map`, `/publications`, `/publications/:publicationId` and `/contact`.
-- `src/ui/` holds pages, layouts and components. `MouldedHeader` and `OrnamentDivider` are the shared page header and section divider.
-- `src/ui/layouts/DeskLaboratoryLayout.tsx` sets `data-room` on the layout root from the current route; `src/index.css` uses it to pick each section's wallpaper pattern and header band.
+- `src/data/manuscript_config.ts` holds the site's content: personal info, publications and experience.
+- `src/ui/projects.ts` and `src/ui/images.ts` hold the project rows and their images.
+- `src/pages/*Entry.jsx` hold earlier long-form project write-ups. They are not routed and are kept as source material.
+- `src/App.tsx` defines the routes: `/`, `/projects`, `/projects/employee-attrition-analysis`, `/experience`, `/publications` and `/contact`.
+- `src/legacyRedirects.ts` maps old URLs to current pages, for the client router and canonical URLs. `vercel.json` repeats the same list as server redirects, and the build fails if the two differ.
+- `src/ui/` holds pages, the `SiteLayout` layout and components.
 - `src/seo/getSeoForPath.ts` holds the per-route title, description and meta tags, and the list of routes to prerender.
 - `src/entry-server.tsx` renders a route to HTML for the build.
 - `scripts/prerender.mjs` runs after the client and server builds, writes one HTML file per route into `dist/`, and writes `dist/200.html` as the fallback shell.
-- `vercel.json` holds permanent redirects for old URLs and the rewrite that serves `200.html` for paths without a prerendered file.
+- `vercel.json` holds redirects for old URLs and the rewrite that serves `200.html` for paths without a prerendered file.
 
 ## Run locally
 
