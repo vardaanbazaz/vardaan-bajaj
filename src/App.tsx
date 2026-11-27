@@ -13,12 +13,22 @@ import VSurveillanceCaseStudyPage from './ui/pages/VSurveillanceCaseStudyPage';
 import ProjectsPage from './ui/pages/ProjectsPage';
 import { LEGACY_REDIRECTS } from './legacyRedirects';
 
-// Automatic scroll-to-top on route navigation
+// Automatic scroll-to-top on route navigation. A URL with a #fragment (contents-rail links shared or
+// opened directly) scrolls to that element instead. 'instant' so the smooth scrolling on case-study pages
+// never animates a route change.
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+    let target: HTMLElement | null = null;
+    try {
+      target = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+    } catch {
+      // Malformed fragment (e.g. "#%"): fall back to the top
+    }
+    if (target) target.scrollIntoView({ behavior: 'instant' });
+    else window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Only on a new page (pathname); in-page anchor jumps are left to the browser
   }, [pathname]);
 
   return null;

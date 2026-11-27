@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { CaseStudyHeader, factLinkClass } from '../components/CaseStudyHeader';
 import { Footer } from '../components/Footer';
+import { ContentsRail } from '../components/ContentsRail';
 import { SectionHeading } from '../components/SectionHeading';
 import { PUBLICATIONS } from '../../data/manuscript_config';
 
@@ -13,6 +14,21 @@ const paper = PUBLICATIONS.find((p) => p.id === 'surveillance');
 // Venue in the citation sentence (without ", Chennai"). The header Venue fact uses the config's `conference`,
 // the same string as the Publications row.
 const VENUE = '2025 IEEE 9th International Conference on Information and Communication Technology (CICT)';
+
+// Section ids and titles: one source for the h2s and the contents list (ContentsRail)
+const SECTIONS = {
+  problem: { id: 'the-problem', title: 'The problem' },
+  pipeline: { id: 'the-pipeline', title: 'The pipeline' },
+  adaptations: { id: 'adaptations-the-paper-describes', title: 'Adaptations the paper describes' },
+  data: { id: 'data', title: 'Data' },
+  training: { id: 'training', title: 'Training' },
+  terms: { id: 'terms-used-here', title: 'Terms used here' },
+  results: { id: 'results', title: 'Results' },
+  handCount: { id: 'hand-count-check', title: 'Hand-count check' },
+  limits: { id: 'limits', title: 'Limits' },
+  code: { id: 'code', title: 'Code' },
+  citation: { id: 'citation', title: 'Citation' },
+} as const;
 
 const bodyClass = 'mt-4 mb-0 text-body';
 const cellClass = 'border-b border-hairline py-2.5 pr-6 text-right whitespace-nowrap tabular-nums';
@@ -281,135 +297,137 @@ export const VSurveillanceCaseStudyPage: React.FC = () => {
         ]}
       />
 
-      <section className="page-x pt-24">
-        <SectionHeading>The problem</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>
-            From a drone’s altitude, vehicles are small and only a few pixels wide. Motion blur, changing altitude, low light and occlusion all make them harder to detect. The compute on board a drone is also limited.
-          </p>
-          <p className={bodyClass}>
-            The paper’s gap statement is that prior work explores super-resolution, slice-based detection and object tracking in isolation. We combine the three in one pipeline.
-          </p>
-        </div>
-      </section>
+      <ContentsRail sections={Object.values(SECTIONS)}>
+        <section className="page-x pt-24">
+          <SectionHeading id={SECTIONS.problem.id}>{SECTIONS.problem.title}</SectionHeading>
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>
+              From a drone’s altitude, vehicles are small and only a few pixels wide. Motion blur, changing altitude, low light and occlusion all make them harder to detect. The compute on board a drone is also limited.
+            </p>
+            <p className={bodyClass}>
+              The paper’s gap statement is that prior work explores super-resolution, slice-based detection and object tracking in isolation. We combine the three in one pipeline.
+            </p>
+          </div>
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>The pipeline</SectionHeading>
-        <PipelineList />
-      </section>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.pipeline.id}>{SECTIONS.pipeline.title}</SectionHeading>
+          <PipelineList />
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>Adaptations the paper describes</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>The paper describes four changes to the standard components.</p>
-          <NamedList items={ADAPTATIONS} />
-        </div>
-      </section>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.adaptations.id}>{SECTIONS.adaptations.title}</SectionHeading>
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>The paper describes four changes to the standard components.</p>
+            <NamedList items={ADAPTATIONS} />
+          </div>
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>Data</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>We used four public aerial datasets with YOLO-style labels.</p>
-          <NamedList items={DATASETS} />
-        </div>
-      </section>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.data.id}>{SECTIONS.data.title}</SectionHeading>
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>We used four public aerial datasets with YOLO-style labels.</p>
+            <NamedList items={DATASETS} />
+          </div>
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>Training</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>
-            The paper reports training YOLO12m for 25 epochs with mosaic augmentation and label smoothing, using SGD. It describes the four datasets as a combined training strategy and reports the metrics for each dataset separately (Table II).
-          </p>
-          <p className="mt-6 mb-0 text-sm text-muted">Hyperparameters reported in the paper.</p>
-          <dl className="mt-3 mb-0 grid grid-cols-[auto_1fr] gap-x-10 gap-y-2 text-[15px] leading-[1.6]">
-            {TRAINING.map(([k, v]) => (
-              <React.Fragment key={k}>
-                <dt className="m-0 text-muted">{k}</dt>
-                <dd className="m-0 tabular-nums">{v}</dd>
-              </React.Fragment>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.training.id}>{SECTIONS.training.title}</SectionHeading>
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>
+              The paper reports training YOLO12m for 25 epochs with mosaic augmentation and label smoothing, using SGD. It describes the four datasets as a combined training strategy and reports the metrics for each dataset separately (Table II).
+            </p>
+            <p className="mt-6 mb-0 text-sm text-muted">Hyperparameters reported in the paper.</p>
+            <dl className="mt-3 mb-0 grid grid-cols-[auto_1fr] gap-x-10 gap-y-2 text-[15px] leading-[1.6]">
+              {TRAINING.map(([k, v]) => (
+                <React.Fragment key={k}>
+                  <dt className="m-0 text-muted">{k}</dt>
+                  <dd className="m-0 tabular-nums">{v}</dd>
+                </React.Fragment>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.terms.id}>{SECTIONS.terms.title}</SectionHeading>
+          <dl className="mt-6 mb-0 max-w-[640px]">
+            {TERMS.map(([term, definition]) => (
+              <div key={term} className="mt-5 first:mt-0">
+                <dt className="m-0 text-[17px] leading-[1.5] font-medium">{term}</dt>
+                <dd className="mt-1 mb-0 ml-0 text-body">{definition}</dd>
+              </div>
             ))}
           </dl>
-        </div>
-      </section>
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>Terms used here</SectionHeading>
-        <dl className="mt-6 mb-0 max-w-[640px]">
-          {TERMS.map(([term, definition]) => (
-            <div key={term} className="mt-5 first:mt-0">
-              <dt className="m-0 text-[17px] leading-[1.5] font-medium">{term}</dt>
-              <dd className="mt-1 mb-0 ml-0 text-body">{definition}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.results.id}>{SECTIONS.results.title}</SectionHeading>
+          <ResultsTable />
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>
+              mAP@50 is between 0.966 and 0.977 on all four datasets. mAP@50:95 uses stricter overlap thresholds and is lower, from 0.600 on UAVDT to 0.711 on Top-View. On each dataset, precision and recall are within 0.02 of each other.
+            </p>
+          </div>
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>Results</SectionHeading>
-        <ResultsTable />
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>
-            mAP@50 is between 0.966 and 0.977 on all four datasets. mAP@50:95 uses stricter overlap thresholds and is lower, from 0.600 on UAVDT to 0.711 on Top-View. On each dataset, precision and recall are within 0.02 of each other.
-          </p>
-        </div>
-      </section>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.handCount.id}>{SECTIONS.handCount.title}</SectionHeading>
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>
+              We counted the objects in three images by hand and compared that with the number the model predicted.
+            </p>
+          </div>
+          <CountTable />
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>
+              The model’s count is 7 under the hand count on the crowd scene and 3 over on the other two images.
+            </p>
+          </div>
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>Hand-count check</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>
-            We counted the objects in three images by hand and compared that with the number the model predicted.
-          </p>
-        </div>
-        <CountTable />
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>
-            The model’s count is 7 under the hand count on the crowd scene and 3 over on the other two images.
-          </p>
-        </div>
-      </section>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.limits.id}>{SECTIONS.limits.title}</SectionHeading>
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>
+              The title says real-time, but the paper reports no latency or frame-rate figures.
+            </p>
+            <p className={bodyClass}>
+              There is no ablation. The paper does not measure what each component or adaptation adds on its own.
+            </p>
+            <p className={bodyClass}>
+              The hand-count check covers three images only. It compares counts, not where the boxes are placed.
+            </p>
+            <p className={bodyClass}>
+              The paper reports metrics per dataset (Table II). It does not report a test where a model trained on one dataset is evaluated on another.
+            </p>
+            <p className={bodyClass}>
+              The paper reports detection metrics and counts only. It gives no tracking metrics, such as ID switches, for DeepSORT.
+            </p>
+          </div>
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>Limits</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>
-            The title says real-time, but the paper reports no latency or frame-rate figures.
-          </p>
-          <p className={bodyClass}>
-            There is no ablation. The paper does not measure what each component or adaptation adds on its own.
-          </p>
-          <p className={bodyClass}>
-            The hand-count check covers three images only. It compares counts, not where the boxes are placed.
-          </p>
-          <p className={bodyClass}>
-            The paper reports metrics per dataset (Table II). It does not report a test where a model trained on one dataset is evaluated on another.
-          </p>
-          <p className={bodyClass}>
-            The paper reports detection metrics and counts only. It gives no tracking metrics, such as ID switches, for DeepSORT.
-          </p>
-        </div>
-      </section>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.code.id}>{SECTIONS.code.title}</SectionHeading>
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>The code was written on a college lab machine and is no longer available to me.</p>
+          </div>
+        </section>
 
-      <section className="page-x pt-28">
-        <SectionHeading>Code</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>The code was written on a college lab machine and is no longer available to me.</p>
-        </div>
-      </section>
-
-      <section className="page-x pt-28">
-        <SectionHeading>Citation</SectionHeading>
-        <div className="max-w-[640px]">
-          <p className={bodyClass}>
-            V. Bajaj, A. Kumar and S. Tripathi, "V-Surveillance: A Hybrid Deep Learning Framework for Real-Time Aerial
-            Surveillance Using Drone Imagery," in {VENUE}, 2025, doi:{paper.doi ?? '10.1109/CICT67193.2025.11399085'}.
-          </p>
-          <p className="mt-6 mb-0 text-sm text-muted">
-            The paper's figures are not reproduced here because IEEE holds the copyright. The full paper is on{' '}
-            {paper.ieeeUrl ? <a href={paper.ieeeUrl} className={factLinkClass}>IEEE Xplore</a> : 'IEEE Xplore'}.
-          </p>
-        </div>
-      </section>
+        <section className="page-x pt-28">
+          <SectionHeading id={SECTIONS.citation.id}>{SECTIONS.citation.title}</SectionHeading>
+          <div className="max-w-[640px]">
+            <p className={bodyClass}>
+              V. Bajaj, A. Kumar and S. Tripathi, "V-Surveillance: A Hybrid Deep Learning Framework for Real-Time Aerial
+              Surveillance Using Drone Imagery," in {VENUE}, 2025, doi:{paper.doi ?? '10.1109/CICT67193.2025.11399085'}.
+            </p>
+            <p className="mt-6 mb-0 text-sm text-muted">
+              The paper's figures are not reproduced here because IEEE holds the copyright. The full paper is on{' '}
+              {paper.ieeeUrl ? <a href={paper.ieeeUrl} className={factLinkClass}>IEEE Xplore</a> : 'IEEE Xplore'}.
+            </p>
+          </div>
+        </section>
+      </ContentsRail>
 
       <Footer className="mt-24" left={<Link to="/publications" className="inline-block py-2">Back to all publications</Link>} />
     </>
